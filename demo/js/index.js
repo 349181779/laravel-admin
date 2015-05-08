@@ -66,12 +66,15 @@
 				 
 				 /*个人社区 朋友  伸缩 */ 
 				 $(".grsp_l_pep li .grsp_group").click(function(){
-					 		$(this).next().toggle();										
+					 		$(this).next().toggle();		
+							return false;
 				})
 			    /*个人社区 切换 */ 
 				$(".g_l_nav ul li").each(function(i){
 				     $(this).click(function(){
-					    $(".grsp_left .grsp-box").eq(i).show().siblings().hide();					
+					    $(".grsp_left .grsp-box").eq(i).show().siblings().hide();
+						$(".g_r_say span").eq(i).show().siblings().hide();
+						$(".grsp_right .r-grsp-box").eq(i).show().siblings().hide();
                         return false;
 					})			  
 			    })

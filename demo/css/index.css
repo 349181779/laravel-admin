@@ -140,7 +140,7 @@ bottom: 3px;
 .grsq_box{ min-height:910px; background:#fff url(../images/grsqgans.png?__inline) 197px repeat-y; position:relative;}
 .grsp_left{ width:190px; padding:10px 5px 0px 0px; position:relative; min-height:890px; float:left;}
 
-.grsp_l_pep li .grsp_group{ display:block; padding-left:15px; line-height:23px; margin-top:5px; cursor:pointer; background:url(../images/grsqdian.png?__inline) left center no-repeat;}
+.grsp_l_pep li .grsp_group,.grsp_l_pep li .a_grsp_group{ display:block; padding-left:15px; line-height:23px; margin-top:5px; cursor:pointer; background:url(../images/grsqdian.png?__inline) left center no-repeat;}
 .grsp_right{ width:995px; min-height:600px; float:left; margin-bottom:50px;}
 .grsp_bt{ height:50px;line-height:50px; width:995px; position:absolute; bottom:0px; left:200px;}
 .grsp_pep{ width:800px; float:left;}
@@ -263,6 +263,90 @@ border-right: 0px; float:left;}
 .chaxun-list{ width:100%; border-collapse:collapse; line-height:30px; text-align:center;}
 .huise-color{ background-color:#e7e7e7;}
 .baise-color{ background-color:#fff;}
+
+.r-grsp-box{ padding:10px;}
+
+.r-bbs-list{ border:1px solid #3eaf0e;}
+.bbs-name{ height:30px; line-height:30px; text-indent:7px; font-size:14px; color:#fff; background-color:#3eaf0e;}
+.bbs-ul{ overflow:hidden;}
+.bbs-ul li{border-bottom: 1px solid;
+border-color: #eee;
+font-size: 14px;float: left; padding:0px 7px;
+height: 28px;
+line-height: 28px;
+overflow: hidden;
+width: 125px;}
+
+.r-bbs-list{ margin-bottom:10px; padding-bottom:20px;}
+
+.lf-new-ul li {
+padding: 0 55px 0 30px;
+position: relative;
+line-height: 38px;
+height: 38px;
+overflow: hidden;
+margin:0px 5px;
+}
+.lf-new-ul li .l-n-num{position: absolute;
+left: 0;
+width: 20px;
+height: 20px;
+text-align: center;
+line-height: 20px;
+top: 10px;
+font-size: 16px;}
+.lf-new-ul li a{color: #333; font-size:14px;
+height: 38px;
+display: block;
+overflow: hidden;
+text-decoration: none;}
+.r-n-date{position: absolute;
+right: 0;
+font-size: 12px;
+color: #999;
+top: 0;
+width: 35px;
+line-height: 38px;
+text-align: right;}
+.lf-new-ul li .green-num{background: #3eaf0e;
+color: #fff;}
+.lf-new-ul li .span-num {
+color: #3eaf0e;
+}
+
+.r-list-news{position: relative;
+height: 125px;
+border-bottom: 1px solid #ebebeb;
+padding: 15px 15px 20px 195px;}
+
+.r-list-box{ overflow:hidden; padding:10px 0px;}
+.r-list-box h3{ font-weight:normal; padding-bottom:10px;}
+.r-list-box h3 a{ font-size:14px; color:#3eaf0e;}
+.left-n-img{ width:160px; height:120px; float:left;}
+.right-n-cont{ width:805px; height:120px; padding-left:10px; float:left;}
+.right-n-cont p{ line-height:23px;color:#777;}
+.right-n-cont a{ color:#3eaf0e;}
+.infos span{ margin-left:20px;}
+
+.box-baobao{}
+
+
+
+.l_form{ overflow:hidden; margin-left:20px;}
+.text-span{ display:block; width:110px; float:left; line-height:33px; font-size:16px;}
+.l_form p{ overflow:hidden;}
+.div-type{ margin-bottom:10px; overflow:hidden;}
+.input-div{ float:left;}
+.txt-input{ width:400px; height:33px; overflow:hidden; border:1px solid #ccc; border-radius:4px;}
+.check-input{ vertical-align:top;}
+#rgt-submit{ border:0px; float:left; margin-right:20px;}
+.login-btn{ float:left; }
+.txt-mark{ width:200px;height: 33px;
+overflow: hidden;
+border: 1px solid #ccc;
+border-radius: 4px;}
+
+
 
 
 
