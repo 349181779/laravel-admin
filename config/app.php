@@ -202,14 +202,14 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
         //自定义
-        'Html'      => 'Illuminate\Html\HtmlFacade',
-        'Form'      => 'Illuminate\Html\FormFacade',
-        'EndaEditor'=> 'YuanChao\Editor\Facade\EndaEditorFacade',//https://github.com/yccphp/laravel-5-markdown-editor
+        'Html'          => 'Illuminate\Html\HtmlFacade',
+        'Form'          => 'Illuminate\Html\FormFacade',
+        'EndaEditor'    => 'YuanChao\Editor\Facade\EndaEditorFacade',//https://github.com/yccphp/laravel-5-markdown-editor
         'FilterManager' => 'Toplan\FilterManager\Facades\FilterManager',#https://github.com/toplan/FilterManager
         'Agent'         => 'Jenssegers\Agent\Facades\Agent',//https://github.com/jenssegers/laravel-agent
         //https://github.com/AlloVince/EvaOAuth
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel', //https://github.com/Maatwebsite/Laravel-Excel
-        'Wechat' => 'Overtrue\LaravelWechat\Facade',//https://github.com/overtrue/laravel-wechat
+        'Excel'         => 'Maatwebsite\Excel\Facades\Excel', //https://github.com/Maatwebsite/Laravel-Excel
+        'Wechat'        => 'Overtrue\LaravelWechat\Facade',//https://github.com/overtrue/laravel-wechat
 
 
 

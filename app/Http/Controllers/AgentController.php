@@ -15,6 +15,7 @@ class AgentController extends Controller {
 	 */
 	public function getIndex()
 	{
+
         // 操作系统
         Agent::is('Windows');
         Agent::is('Firefox');
