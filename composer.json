@@ -15,7 +15,7 @@
         "overtrue/laravel-wechat":"2.0.*",
         "overtrue/laravel-pinyin": "dev-master",
         "barryvdh/laravel-ide-helper" : "*",
-        "dingo/api": "0.8.*"
+        "dingo/api": "*"
 
 	},
 	"require-dev": {
