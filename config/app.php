@@ -202,8 +202,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
         //自定义
-        'Html'          => 'Illuminate\Html\HtmlFacade',
-        'Form'          => 'Illuminate\Html\FormFacade',
+        'Html'          => 'Illuminate\Html\HtmlFacade',#http://laravelcollective.com/docs/5.0/html
+        'Form'          => 'Illuminate\Html\FormFacade',#http://laravelcollective.com/docs/5.0/html
         'EndaEditor'    => 'YuanChao\Editor\Facade\EndaEditorFacade',//https://github.com/yccphp/laravel-5-markdown-editor
         'FilterManager' => 'Toplan\FilterManager\Facades\FilterManager',#https://github.com/toplan/FilterManager
         'Agent'         => 'Jenssegers\Agent\Facades\Agent',//https://github.com/jenssegers/laravel-agent

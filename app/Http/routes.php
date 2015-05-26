@@ -20,11 +20,20 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-//Test Route
-Route::controller('test','TestController');
-//MarkDown Route
-Route::controller('mark','MarkDownController');
-//Filter Route
-Route::controller('filter','FilterController');
-//Agent Route
-Route::controller('agent','AgentController');
+//后台
+Route::group(['prefix'=>'admin','namespace' => 'Admin'],function(){
+    //登录
+    Route::controller('login','LoginController');
+    //首页
+    Route::controller('home','AdminHomeController');
+});
+
+//Tools
+Route::group(['prefix'=>'tools','namespace' => 'Tools'],function(){
+    //MarkDown Route
+    Route::controller('mark','MarkDownController');
+    //Filter Route
+    Route::controller('filter','FilterController');
+    //Agent Route
+    Route::controller('agent','AgentController');
+});
