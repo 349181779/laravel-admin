@@ -170,6 +170,11 @@
                                 <a href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&WT.z_author=themesmile">
                                     <span class="entypo-basket"></span>&#160;&#160; Purchase</a>
                             </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="<?php echo url('admin/home/logout') ;?>">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>&#160;&#160; 退出</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

@@ -3,7 +3,7 @@
                     <div class="col-sm-3">
                         <h2 class="tittle-content-header">
                             <span class="entypo-menu"></span>
-                            <span><?php echo $data['title'] ;?></span>
+                            <span><?php echo $title; ?></span>
                         </h2>
 
                     </div>

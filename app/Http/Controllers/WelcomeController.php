@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use \DB;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -30,6 +32,9 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
+        $users = DB::table('users')->select('name','password','created_at')->first();
+
+        dd($users->created_at);
         return view('welcome');
 	}
 

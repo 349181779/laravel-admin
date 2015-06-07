@@ -30,25 +30,40 @@
                                         <tr>
                                             <?php if(!empty($schemas) && is_array($schemas)):?>
                                                 <?php foreach($schemas as $k=>$schema):?>
-                                                    <th><?php echo $schema['comment'];?></th>
+                                                    <?php if($schema['type'] != 3):?>
+                                                        <th><?php echo $schema['comment'];?></th>
+                                                    <?php endif;?>
                                                 <?php endforeach;?>
+                                                <th>操作</th>
                                             <?php endif;?>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if(!empty($data['lists']) && is_array($data['lists'])):?>
-                                            <?php foreach($data['lists'] as $list):?>
-                                                <tr>
+                                        <?php if(!empty($data['data'])):?>
+                                            <?php foreach($data['data'] as $list):?>
+                                               <tr>
                                                     <?php if(!empty($schemas) && is_array($schemas)):?>
                                                         <?php foreach($schemas as $k=>$schema):?>
                                                             <?php if($schema['type'] == 1):?>
-                                                                <td class="<?php echo $schema['class'];?>"><?php echo $list[$k];?></td>
+                                                                <td class="<?php echo $schema['class'];?>"><?php echo $list->$k;?></td>
                                                             <?php elseif($schema['type'] == 2):?>
-                                                                <td class="<?php echo $schema['class'];?>"><img src="<?php echo $list[$k];?>" alt=""/></td>
+                                                                <td class="<?php echo $schema['class'];?>"><img src="<?php echo $list->$k;?>" alt=""/></td>
                                                             <?php elseif($schema['type'] == 3):?>
-                                                                <td class="<?php echo $schema['class'];?>"><a href="<?php echo url($schema['url']);?>"><?php echo $schema['comment'];?></a></td>
+                                                                <?php $button .= '<a href="'.url($schema['url']).'">'.$schema['comment'].'</a>';?>
+                                                                <?php $button .= '<span>|</span>';?>
                                                             <?php endif;?>
                                                         <?php endforeach;?>
+                                                        <td>
+                                                            <?php if($bottons):?>
+                                                            <?php $button = '';?>
+                                                            <?php foreach($bottons as $v):?>
+                                                                <?php if($v['']):?>
+                                                                <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.url($v['url']).'">'.$v['name'].'</a>';?>
+                                                                <?php $button .= '<span>|</span>';?>
+                                                            <?php endforeach;?>
+                                                            <?php echo $button;?>
+                                                            <?php endif;?>
+                                                        </td>
                                                     <?php endif;?>
                                                 </tr>
                                             <?php endforeach;?>
@@ -58,6 +73,7 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="<?php echo count($schemas);?>">
+                                            <?php echo  $data['pages'] ;?>
                                                 <div class="pagination pagination-centered"></div>
                                             </td>
                                         </tr>

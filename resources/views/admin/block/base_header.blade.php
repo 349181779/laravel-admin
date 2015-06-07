@@ -1,6 +1,5 @@
 <?php echo Html::style('/assets/css/loader-style.css');?>
 <?php echo Html::style('/assets/css/bootstrap.css');?>
-<?php echo Html::style('/assets/css/signin.css');?>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <?php echo Html::script('http://html5shim.googlecode.com/svn/trunk/html5.js');?>

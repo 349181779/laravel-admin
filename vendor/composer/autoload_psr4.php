@@ -14,8 +14,9 @@ return array(
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'Overtrue\\LaravelWechat\\' => array($vendorDir . '/overtrue/laravel-wechat/src'),
     'Overtrue\\LaravelPinyin\\' => array($vendorDir . '/overtrue/laravel-pinyin/src'),
-    'Overtrue\\' => array($vendorDir . '/overtrue/pinyin/src', $vendorDir . '/overtrue/wechat/src'),
+    'Overtrue\\' => array($vendorDir . '/overtrue/pinyin/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'League\\Fractal\\' => array($vendorDir . '/league/fractal/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Jenssegers\\Agent\\' => array($vendorDir . '/jenssegers/agent/src'),
     'Illuminate\\Html\\' => array($vendorDir . '/illuminate/html'),
@@ -24,6 +25,7 @@ return array(
     'GuzzleHttp\\Ring\\' => array($vendorDir . '/guzzlehttp/ringphp/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Eva\\EvaOAuth\\' => array($vendorDir . '/evaengine/eva-oauth/src/EvaOAuth'),
+    'Dingo\\Api\\' => array($vendorDir . '/dingo/api/src'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'App\\' => array($baseDir . '/app'),
 );

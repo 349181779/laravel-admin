@@ -52,7 +52,7 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'zh',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -153,6 +153,7 @@ return [
         'Maatwebsite\Excel\ExcelServiceProvider',
         'Overtrue\LaravelWechat\ServiceProvider',
         'Overtrue\LaravelPinyin\ServiceProvider',
+        //'Dingo\Api\Provider\ApiServiceProvider'
 
 	],
 

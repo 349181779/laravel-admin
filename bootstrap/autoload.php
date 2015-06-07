@@ -35,3 +35,6 @@ elseif (file_exists($compiledPath = __DIR__.'/../storage/framework/compiled.php'
 {
 	require $compiledPath;
 }
+
+define('APP_PATH',realpath(dirname('../../')) . '/');
+require __DIR__.'/../app/libraries/base.func.php'; // 引入自定义函数库

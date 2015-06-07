@@ -150,7 +150,7 @@
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi, Dave Mattew <b class="caret"></b>
+                            <img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi, {{ Session::get('admin_info.email') }} <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>
@@ -169,6 +169,10 @@
                             <li>
                                 <a href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&WT.z_author=themesmile">
                                     <span class="entypo-basket"></span>&#160;&#160; Purchase</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="javascript:viod(0)" onclick="logout()"><span class="glyphicon glyphicon-remove-sign"></span>&#160;&#160; 退出</a>
                             </li>
                         </ul>
                     </li>

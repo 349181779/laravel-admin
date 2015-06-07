@@ -13,6 +13,7 @@
 
 Route::get('/', 'WelcomeController@index');
 
+
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
@@ -26,6 +27,8 @@ Route::group(['prefix'=>'admin','namespace' => 'Admin'],function(){
     Route::controller('login','LoginController');
     //首页
     Route::controller('home','AdminHomeController');
+    //菜单
+    Route::controller('access','AdminAssessController');
 });
 
 //Tools
@@ -36,4 +39,6 @@ Route::group(['prefix'=>'tools','namespace' => 'Tools'],function(){
     Route::controller('filter','FilterController');
     //Agent Route
     Route::controller('agent','AgentController');
+    //Pinyin Route
+    Route::controller('pinyin','PinyinController');
 });

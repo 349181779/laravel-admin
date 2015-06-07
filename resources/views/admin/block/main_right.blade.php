@@ -4,7 +4,7 @@
   <div class="right-wrapper">
     <div class="body-nest" id="basic">
       <div class="form_center">
-        <form role="form" action="{{ Route::currentRouteName(); }}">
+        <form role="form" action="">
           <div class="form-group">
             <label for="user_name">用户名</label>
             <input type="text" placeholder="会员用户名" id="user_name" class="form-control">
