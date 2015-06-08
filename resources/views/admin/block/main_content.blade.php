@@ -57,9 +57,13 @@
                                                             <?php if($bottons):?>
                                                             <?php $button = '';?>
                                                             <?php foreach($bottons as $v):?>
-                                                                <?php if($v['']):?>
-                                                                <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.url($v['url']).'">'.$v['name'].'</a>';?>
-                                                                <?php $button .= '<span>|</span>';?>
+                                                                <?php if($v['placeholder']):?>
+                                                                    <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'">'.$v['name'].'</a>';?>
+                                                                    <?php $button .= '<span>|</span>';?>
+                                                                <?php else:?>
+                                                                    <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'">'.$v['name'].'</a>';?>
+                                                                    <?php $button .= '<span>|</span>';?>
+                                                                <?php endif;?>
                                                             <?php endforeach;?>
                                                             <?php echo $button;?>
                                                             <?php endif;?>

@@ -25,9 +25,14 @@ class AdminHtmlBuilderController extends AdminBaseController {
     protected $title;//网站标题
     protected $description;//网站描述
     protected $keywords;//网站关键字
-    protected $bottuns = '';//按钮
+    protected $bottuns = [];//按钮
 
 
+    /**
+     * 构造方法
+     *
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
     public function __construct(){
         parent::__construct();
     }
@@ -40,6 +45,7 @@ class AdminHtmlBuilderController extends AdminBaseController {
 	 */
 	public function builderList($data = [], $urls = [])
 	{
+
         return View('admin/html_builder/index',[
             'schemas'       => $this->schemas,//字段
             'data'          => $data,
@@ -93,6 +99,7 @@ class AdminHtmlBuilderController extends AdminBaseController {
 	 * @param  $name    按钮中文名字
      * @param  $class   按钮class
      * @param  $url     按钮跳转url
+     * @param  $placeholder 站位
 	 * @return Response
 	 */
 	public function builderBotton($name, $url, $class = '', $placeholder = '')
@@ -103,12 +110,6 @@ class AdminHtmlBuilderController extends AdminBaseController {
             'class'         => $class,
             'placeholder'   => $placeholder,
         ]);
-        if($placeholder == '###'){
-            //$this->bottuns .= '<a target="_blank" class="'.$class.'" href="'.url($url, ['role_id'=>]).'">'.$name.'</a>';
-        }else{
-            $this->bottuns .= '<a target="_blank" class="'.$class.'" href="'.url($url).'">'.$name.'</a>';
-        }
-
         return $this;
 	}
 
