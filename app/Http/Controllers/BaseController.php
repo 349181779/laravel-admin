@@ -33,10 +33,14 @@ class BaseController extends Controller {
     /**
      * 响应
      *
+     * @param $code     状态码
+     * @param $msg      提示文字
+     * @param $data     数据
+     * @param $target   是否跳转到新页面
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-	protected function response($code = 200, $msg = '', $data = []){
-        die(json_encode(compact('code', 'msg', 'data')));
+	protected function response($code = 200, $msg = '', $data = [], $target = true){
+        die(json_encode(compact('code', 'msg', 'data', 'target')));
     }
 
 }

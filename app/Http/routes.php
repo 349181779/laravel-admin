@@ -27,8 +27,10 @@ Route::group(['prefix'=>'admin','namespace' => 'Admin'],function(){
     Route::controller('login','LoginController');
     //首页
     Route::controller('home','AdminHomeController');
-    //菜单
+    //权限
     Route::controller('access','AdminAssessController');
+    //后台菜单
+    Route::controller('menu','MenuController');
 });
 
 //Tools

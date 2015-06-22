@@ -64,7 +64,7 @@
     
     <!-- main_content --> 
     @section('main_content')
-    @include('admin.html_builder.edit_form')
+    @include('admin.html_builder.add_form')
     @show 
     <!-- END OF main_content --> 
     

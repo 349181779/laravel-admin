@@ -14,4 +14,9 @@ return [
     'unauthorized'=>'Unauthorized',
     'admin_not_exists' => '用户不存在或者密码错误！',
     'admin_disable'=>'当前用户已被禁用，请联系管理员yangyifan@fengqianqian.com！',
+    'update_success'=>'更新成功',
+    'add_success'=> '增加成功',
+    'add_error'=>'增加失败',
+    'on'=>'开启',
+    'off'=>'关闭',
 ];

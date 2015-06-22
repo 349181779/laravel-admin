@@ -17,29 +17,29 @@
   <div id="status">&nbsp;</div>
 </div>
 
-<!-- TOP NAVBAR -->
+<!-- TOP NAVBAR --> 
 @section('top_side')
     @include('admin.block.top_side')
-@show
-<!-- /END OF TOP NAVBAR -->
+@show 
+<!-- /END OF TOP NAVBAR --> 
 
-<!-- SIDE MENU -->
+<!-- SIDE MENU --> 
 @section('side_menu')
     @include('admin.block.side_menu')
-@show
-<!-- END OF SIDE MENU -->
+@show 
+<!-- END OF SIDE MENU --> 
 
 <!--  PAPER WRAP -->
 <div class="wrap-fluid">
-  <div class="container-fluid paper-wrap bevel tlbr">
-    <!-- CONTENT -->
-
-    <!--TITLE -->
+  <div class="container-fluid paper-wrap bevel tlbr"> 
+    <!-- CONTENT --> 
+    
+    <!--TITLE --> 
     @section('main_title')
-    	@include('admin.block.main_title')
-    @show
-    <!--/ TITLE -->
-
+    @include('admin.block.main_title')
+    @show 
+    <!--/ TITLE --> 
+    
     <!-- BREADCRUMB -->
     <ul id="breadcrumb">
       <li> <span class="entypo-home"></span> </li>
@@ -53,51 +53,51 @@
         </div>
       </li>
     </ul>
-    <!-- END OF BREADCRUMB -->
-
-    <!-- main_content -->
+    <!-- END OF BREADCRUMB --> 
+    
+    <!-- main_content --> 
     @section('main_content')
-    	@include('admin.block.main_content')
-    @show
-    <!-- END OF main_content -->
-
-    <!-- /END OF CONTENT -->
-
-    <!-- FOOTER -->
+    @include('admin.html_builder.list_table')
+    @show 
+    <!-- END OF main_content --> 
+    
+    <!-- /END OF CONTENT --> 
+    
+    <!-- FOOTER --> 
     @section('footer')
-    	@include('admin.block.footer')
-    @show
-    <!-- / END OF FOOTER -->
-
+    @include('admin.block.footer')
+    @show 
+    <!-- / END OF FOOTER --> 
+    
   </div>
 </div>
-<!--  END OF PAPER WRAP -->
+<!--  END OF PAPER WRAP --> 
 
-<!-- RIGHT SLIDER CONTENT -->
+<!-- RIGHT SLIDER CONTENT --> 
 @section('right')
     @include('admin.block.main_right')
-@show
+@show 
 
-<!-- END OF RIGHT SLIDER CONTENT-->
+<!-- END OF RIGHT SLIDER CONTENT--> 
 
-<!-- MAIN EFFECT -->
+<!-- MAIN EFFECT --> 
 @section('js')
 	@include('admin.block.footer_js')
-@show
-<!-- /MAIN EFFECT -->
+@show 
+<!-- /MAIN EFFECT --> 
 
-<!-- GAGE -->
-<script type="text/javascript" src="/assets/js/toggle_close.js"></script>
-<script src="/assets/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script>
-<script src="/assets/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
-<script src="/assets/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script>
-<script src="/assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
-<script src="/assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
+<!-- GAGE --> 
+<script type="text/javascript" src="/assets/js/toggle_close.js"></script> 
+<script src="/assets/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script> 
+<script src="/assets/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script> 
+<script src="/assets/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script> 
+<script src="/assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script> 
+<script src="/assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script> 
 <script type="text/javascript">
     $(function() {
         $('.footable-res').footable();
     });
-    </script>
+    </script> 
 <script type="text/javascript">
     $(function() {
         $('#footable-res2').footable().bind('footable_filtering', function(e) {

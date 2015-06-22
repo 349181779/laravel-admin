@@ -17,6 +17,8 @@ use DB;
 
 use Config;
 
+use Lang;
+
 use Illuminate\Pagination\Paginator;
 
 class AdminAccessModel extends Model {
@@ -35,9 +37,33 @@ class AdminAccessModel extends Model {
         $pages = $role->render();
         $role = $role->toArray();
         return array(
-            'data' => $role['data'],
+            'data' => self::mergeRoleData($role['data']),
             'pages'=> $pages
         );
+    }
+
+    /**
+     * 组合角色数据
+     *
+     * @param $roles
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function mergeRoleData($roles){
+        if(!empty($roles)){
+            foreach($roles as $role){
+                switch($role->status){
+                    case 1:
+                        $role->status = Lang::get('response.on');
+                        break;
+                    case 2:
+                        $role->status = Lang::get('response.off');
+                        break;
+                }
+
+            }
+        }
+        return $roles;
     }
 
     /**

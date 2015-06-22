@@ -23,7 +23,7 @@
         <div class="skin-part">
             <div id="tree-wrap">
                 <div class="side-bar">
-                <?php if(!empty($data['all_menu']) && is_array($data['all_menu'])):?>
+                <?php if(!empty($data->all_menu)):?>
                 <?php foreach($data['all_menu'] as $menu):?>
                     <ul class="topnav menu-left-nest">
                         <li>

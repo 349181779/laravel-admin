@@ -51,3 +51,47 @@ if(!function_exists('is_login')){
         return hash_user_sign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.id') : false;
     }
 }
+
+if(!function_exists('merge_tree_node')){
+    /**
+     * 组合tree节点
+     *
+     * @param $data
+     * @param $pid
+     * @param $level
+     * @param $parent_id
+     * @param $current_id
+     * @return array
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    function merge_tree_node($data, $pid = 0, $level = 0, $parent_id = 0, $current_id = 0){
+        $array = [];
+        if(!empty($data)){
+            foreach($data as $k=>$v){
+                if($v['pid'] == $pid){
+                    $v['parent_id']     = $v['pid'] == 0 ? '' : ltrim($parent_id .'-'. $v['pid'], '-');
+                    $v['current_id']    = $v['pid'] == 0 ? $v['id'] : $current_id.'-'. $v['id'];
+                    $v['level']         = $level;
+                    $array[] = $v;
+                    unset($data[$k]);
+                    $array = array_merge($array, merge_tree_node($data, $v['id'], $level+1, $v['parent_id'], $v['current_id']));
+                }
+            }
+        }
+        return $array;
+    }
+}
+
+if(!function_exists('p')){
+    /**
+     * 另一个打印函数
+     *
+     * @param array $array
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    function p(Array $array){
+        echo '<pre>';
+        var_dump($array);
+        echo '</pre>';die;
+    }
+}

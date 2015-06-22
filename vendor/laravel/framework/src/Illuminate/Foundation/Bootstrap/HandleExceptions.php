@@ -24,7 +24,7 @@ class HandleExceptions {
 	{
 		$this->app = $app;
 
-		error_reporting(-1);
+		error_reporting(E_ALL ^ E_NOTICE);
 
 		set_error_handler([$this, 'handleError']);
 
@@ -34,7 +34,7 @@ class HandleExceptions {
 
 		if ( ! $app->environment('testing'))
 		{
-			ini_set('display_errors', 'Off');
+			ini_set('display_errors', 'On');
 		}
 	}
 

@@ -3,17 +3,27 @@
 // +----------------------------------------------------------------------
 // | date: 2015-06-22
 // +----------------------------------------------------------------------
-// | LoginFormRequest.php: 后端登录表单验证
+// | BaseFormRequest.php: 后端表单验证基础
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-
 namespace App\Http\Requests\Admin;
 
-use App\Http\Requests\Admin\BaseFormRequest AS BaseFormRequest;
+use App\Http\Requests\Request;
 
-class LoginFormRequest extends BaseFormRequest  {
+class BaseFormRequest extends Request {
+
+
+    /**
+	 * Determine if the user is authorized to make this request.
+	 *
+	 * @return bool
+	 */
+	public function authorize()
+	{
+		return true;
+	}
 
 	/**
 	 * Get the validation rules that apply to the request.
@@ -23,8 +33,7 @@ class LoginFormRequest extends BaseFormRequest  {
 	public function rules()
 	{
 		return [
-            'email' => ['required', 'unique:permissions,name'],
-            'password' => []
+			//
 		];
 	}
 

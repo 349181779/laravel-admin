@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-@include('admin.block.base_header')<?php echo Html::style('/assets/css/signin.css');?>
+@include('admin.block.base_header')
+<?php echo Html::style('/assets/css/signin.css');?>
 <link rel="stylesheet" href="http://static.womenshuo.com/@/womenshuo/lib/notice/toastr/toastr.css"/>
 <script>
     $(function(){
@@ -17,6 +18,7 @@
             tiptype:3
 
         });
+        //验证表单
 
         //提交表单
         $('form').ajaxForm({
@@ -26,6 +28,7 @@
                 parseResponseJson(data);
             }
         })
+        //提交表单
 
     })
     </script>

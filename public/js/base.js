@@ -26,10 +26,11 @@ toastr.options = {
 function parseResponseJson(data){
     var _data = eval("("+data+")");
     if(_data.code == 200){
-
+        //弹出提示框
         toastr.success(_data.msg);
 
-        setTimeout(function(){
+        //如果为true表示跳转到新连接
+        _data.target == true && setTimeout(function(){
             location.href = _data.data.href;
         },1000)
 
