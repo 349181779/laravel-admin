@@ -24,7 +24,7 @@
                             <div class="row" style="margin: 10px 0;">
 
                                   <div class="col-sm-2">
-                                      <a href="" class="btn btn-success">
+                                      <a href="<?php echo url('admin/menu/menuadd') ;?>" class="btn btn-success">
                                           <span class="entypo-plus-circled margin-iconic"></span>
                                           增加菜单
                                       </a>

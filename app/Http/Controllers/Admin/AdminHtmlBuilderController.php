@@ -149,18 +149,18 @@ class AdminHtmlBuilderController extends AdminBaseController {
      * @return $this
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value = ''){
+    public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = ''){
         array_push($this->form_schema, [
-            'name'          => $name,
-            'title'         => $title,
-            'type'          => $type,
-            'default'       => $default,
-            'notice'        => $notice,
-            'class'         => $class,
-            'rule'          => $rule,
-            'err_message'   => $err_message,
-            'option'        => $option,
-            'option_value'  => $option_value,
+            'name'                  => $name,
+            'title'                 => $title,
+            'type'                  => $type,
+            'default'               => $default,
+            'notice'                => $notice,
+            'class'                 => $class,
+            'rule'                  => $rule,
+            'err_message'           => $err_message,
+            'option'                => $option,
+            'option_value_schema'   => $option_value_schema,
         ]);
         return $this;
     }

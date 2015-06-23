@@ -72,9 +72,34 @@ if(!function_exists('merge_tree_node')){
                     $v['parent_id']     = $v['pid'] == 0 ? '' : ltrim($parent_id .'-'. $v['pid'], '-');
                     $v['current_id']    = $v['pid'] == 0 ? $v['id'] : $current_id.'-'. $v['id'];
                     $v['level']         = $level;
-                    $array[] = $v;
+                    $array[]            = $v;
                     unset($data[$k]);
                     $array = array_merge($array, merge_tree_node($data, $v['id'], $level+1, $v['parent_id'], $v['current_id']));
+                }
+            }
+        }
+        return $array;
+    }
+}
+
+if(!function_exists('merge_tree_child_node')){
+    /**
+     * 组合tree节点
+     *
+     * @param $data
+     * @param $pid
+     * @param $level
+     * @return array
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    function merge_tree_child_node($data, $pid = 0, $level = 0){
+        $array = [];
+        if(!empty($data)){
+            foreach($data as $v){
+                if($v['pid'] == $pid){
+                    $v['level']         = $level;
+                    $v['child']         = merge_tree_child_node($data, $v['id'], $level+1);
+                    $array[]            = $v;
                 }
             }
         }

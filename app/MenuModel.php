@@ -37,7 +37,7 @@ class MenuModel extends Model {
     }
 
     /**
-     * 获得全部菜单（编辑菜单时选项）
+     * 获得全部菜单--无限极分类（编辑菜单时选项）
      *
      * @return array
      * @auther yangyifan <yangyifanphp@gmail.com>
@@ -45,20 +45,19 @@ class MenuModel extends Model {
     public static function getAllForSchemaOption(){
         //加载函数库
         load_func('common');
-        $data = merge_tree_node(obj_to_array(DB::table('menu')->get()));
+        return merge_tree_node(obj_to_array(DB::table('menu')->get()));
+    }
 
-        $ids    = [];
-        $menus  = [];
-        if(!empty($data)){
-            foreach($data as $v){
-                array_push($ids, $v['id']);
-                array_push($menus, $v['menu_name']);
-            }
-        }
-        return [
-            'ids'   => implode('|', $ids),
-            'menus' => implode('|', $menus),
-        ];
+    /**
+     * 获得全部菜单--递归（左侧菜单显示）
+     *
+     * @return array
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getAllForMenuSide(){
+        //加载函数库
+        load_func('common');
+        return merge_tree_child_node(obj_to_array(DB::table('menu')->get()));
     }
 
 

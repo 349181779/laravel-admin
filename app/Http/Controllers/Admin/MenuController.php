@@ -55,14 +55,11 @@ class MenuController extends AdminBaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public function getMenuedit($id){
-        //获得菜单信息
-        $menu_info = MenuModel::getAllForSchemaOption();
-
         return  $this->html_builder->
                 builderTitle('编辑菜单')->
                 builderFormSchema('id', 'id', 'hidden')->
                 builderFormSchema('menu_name', '菜单名称')->
-                builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $menu_info['ids'], $menu_info['menus'])->
+                builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', MenuModel::getAllForSchemaOption(), 'menu_name')->
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', '1:开启|2:关闭', '2')->
                 builderFormSchema('icon', '菜单icon')->
                 builderFormSchema('url', '菜单url')->
@@ -105,11 +102,15 @@ class MenuController extends AdminBaseController {
      */
     public function getMenuadd(){
         return  $this->html_builder->
-        builderTitle('增加菜单')->
-        builderFormSchema('role_name', '角色名称')->
-        builderFormSchema('status', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', '1:开启|2:关闭', '2')->
-        builderConfirmBotton('确认', url('admin/access/roleadd'), 'btn btn-success')->
-        builderAdd();
+                builderTitle('增加菜单')->
+                builderFormSchema('menu_name', '菜单名称')->
+                builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', MenuModel::getAllForSchemaOption(), 'menu_name')->
+                builderFormSchema('status', '状态', 'radio', '', '', '', '', '', '1:开启|2:关闭', '2')->
+                builderFormSchema('icon', '菜单icon')->
+                builderFormSchema('url', '菜单url')->
+                builderFormSchema('sort', '菜单排序', 'text', 255)->
+                builderConfirmBotton('确认', url('admin/menu/menuadd'), 'btn btn-success')->
+                builderAdd();
     }
 
     /**
@@ -117,13 +118,21 @@ class MenuController extends AdminBaseController {
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postMenuadd(RoleRequest $request){
-        $role_name  = $request->get('role_name');
+    public function postMenuadd(Request $request){
+        $menu_name  = $request->get('menu_name');
+        $pid        = $request->get('pid');
         $status     = $request->get('status');
+        $icon       = $request->get('icon');
+        $url        = $request->get('url');
+        $sort       = $request->get('sort');
 
-        $affected_number = DB::table('role')->insertGetId([
-            'role_name' => $role_name,
+        $affected_number = DB::table('menu')->insertGetId([
+            'menu_name' => $menu_name,
+            'pid'       => $pid,
             'status'    => $status,
+            'icon'      => $icon,
+            'url'       => $url,
+            'sort'      => $sort,
         ]);
         return $affected_number > 0 ? $this->response(200, Lang::get('response.add_success'), [], false) : $this->response(400, Lang::get('response.add_error'), [], false);
     }

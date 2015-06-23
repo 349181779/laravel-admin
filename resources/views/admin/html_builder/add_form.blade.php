@@ -21,7 +21,7 @@
                           <div class="form-group">
                             <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
                             <div class="col-sm-3">
-                                <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>"  datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>">
+                                <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>">
                                 <span class="help-block"><?php echo $schema['notice'] ;?></span>
 
                                 <div class="alert alert-danger hide" role="alert">
@@ -69,6 +69,28 @@
                                             </label>
                                         <?php endforeach;?>
                                         <?php endif;?>
+                                        <span class="help-block"><?php echo $schema['notice'] ;?></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php elseif($schema['type'] == 'select'):?>
+                        {{-- 下拉选择框 --}}
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><?php echo $schema['title'] ;?>：</label>
+                                <div class="col-sm-3">
+                                    <div class="skin skin-flat">
+                                        <select name="<?php echo $schema['name'] ;?>" >
+                                            <?php if($schema['option']):?>
+                                                <option value="">请选择</option>
+                                                <?php foreach($schema['option'] as $k=>$option):?>
+                                                        <option value="<?php echo $option['id'];?>"   >
+                                                            <?php if($option['level'] > 0 ){echo str_repeat('&nbsp;==', $option['level']);}?>
+                                                            <?php echo $option[$schema['option_value_schema']];?>
+                                                        </option>
+                                                <?php endforeach;?>
+                                            <?php endif;?>
+                                        </select>
                                         <span class="help-block"><?php echo $schema['notice'] ;?></span>
                                     </div>
                                 </div>
