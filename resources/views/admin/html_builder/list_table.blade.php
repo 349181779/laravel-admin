@@ -54,8 +54,8 @@
                         <td><?php if($bottons):?>
                           <?php $button = '';?>
                           <?php foreach($bottons as $v):?>
-                          <?php if($v['placeholder']):?>
-                          <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'">'.$v['name'].'</a>';?>
+                          <?php if(!empty($v['placeholder'])):?>
+                          <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'/'.$list->id.'">'.$v['name'].'</a>';?>
                           <?php $button .= '<span>|</span>';?>
                           <?php else:?>
                           <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'">'.$v['name'].'</a>';?>

@@ -16,7 +16,7 @@ use Session;
 
 use DB;
 
-use Crypt;
+use Lang;
 
 class AdminInfoModel extends Model {
 
@@ -76,10 +76,67 @@ class AdminInfoModel extends Model {
 
     /**
      * 用户退出
+     *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public static function logout(){
         Session::flush();
     }
+
+    /**
+     * 获得后台用户列表
+     *
+     * @return object
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getAdminList(){
+        $data   =   DB::table('admin_info AS a')->
+                    join('role AS r', 'a.role_id', '=', 'r.id')->
+                    select('a.id','a.email', 'a.mobile', 'a.status', 'a.face', 'r.role_name', 'a.created_at', 'a.updated_at')->
+                    orderBy('id', 'DESC')->
+                    paginate(config('page.page_limit'));
+        $pages  = $data->render();
+        $data   = $data->toArray();
+        return array(
+            'data' => self::mergeData($data['data']),
+            'pages'=> $pages
+        );
+    }
+
+    /**
+     * 组合角色数据
+     *
+     * @param $roles
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function mergeData($roles){
+        if(!empty($roles)){
+            foreach($roles as $role){
+                switch($role->status){
+                    case 1:
+                        $role->status = Lang::get('response.on');
+                        break;
+                    case 2:
+                        $role->status = Lang::get('response.off');
+                        break;
+                }
+
+            }
+        }
+        return $roles;
+    }
+
+    /**
+     * 获取单个菜单
+     *
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function findAdminInfo($id){
+        return DB::table('admin_info')->where('id', '=', $id)->first();
+    }
+
+
 
 }

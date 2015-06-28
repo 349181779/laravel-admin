@@ -15,6 +15,7 @@ return array(
     $vendorDir . '/psy/psysh/src/Psy/functions.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
+    $vendorDir . '/qiniu/php-sdk/src/Qiniu/functions.php',
     $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/overtrue/laravel-pinyin/src/helpers.php',
 );

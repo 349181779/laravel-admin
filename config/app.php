@@ -153,6 +153,7 @@ return [
         'Maatwebsite\Excel\ExcelServiceProvider',
         'Overtrue\LaravelWechat\ServiceProvider',
         'Overtrue\LaravelPinyin\ServiceProvider',
+        'zgldh\QiniuStorage\QiniuFilesystemServiceProvider',//七牛
         //'Dingo\Api\Provider\ApiServiceProvider'
 
 	],

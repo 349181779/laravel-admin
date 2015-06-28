@@ -122,7 +122,6 @@ class AdminHtmlBuilderController extends AdminBaseController {
 	 */
 	public function builderList($data = [], $urls = [])
 	{
-
         return View('admin/html_builder/index',[
             'schemas'       => $this->schemas,//字段
             'data'          => $data,

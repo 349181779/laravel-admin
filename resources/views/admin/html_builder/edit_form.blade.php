@@ -32,19 +32,50 @@
                             </div>
                           </div>
 
+                       <?php elseif($schema['type'] == 'password'):?>
+                      {{-- 密码框 --}}
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
+                          <div class="col-sm-3">
+                              <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" value="" autocomplete="false" datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>">
+                              <span class="help-block"><?php echo $schema['notice'] ;?></span>
+
+                              <div class="alert alert-danger hide" role="alert">
+                                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                  <span class="sr-only">Error:</span>
+                                  <span class="err_message"></span>
+                              </div>
+                          </div>
+                        </div>
+
+                      <?php elseif($schema['type'] == 'date'):?>
+                        {{-- 日期框 --}}
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
+                            <div class="col-sm-3">
+                                <input type="text" name="<?php echo $schema['name'] ;?>" value="<?php echo $data->$schema['name'] == '' ? $schema['default'] : $data->$schema['name']; ;?>" datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>" onclick="laydate()" >
+                                <span class="help-block"><?php echo $schema['notice'] ;?></span>
+
+                                <div class="alert alert-danger hide" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span>
+                                    <span class="err_message"></span>
+                                </div>
+                            </div>
+                          </div>
+
+
                         <?php elseif($schema['type'] == 'radio'):?>
                         {{-- 单选框 --}}
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo $schema['title'] ;?>：</label>
                                 <div class="col-sm-3">
                                     <div class="skin skin-flat">
-                                        <?php $options = explode('|', $schema['option']);?>
-                                        <?php if($options):?>
-                                        <?php foreach($options as $option):?>
-                                                <?php $params = explode(':', $option);?>
+                                        <?php if($schema['option']):?>
+                                        <?php foreach($schema['option'] as $key=>$option):?>
                                                 <label for="square-radio-1" class="radio-inline">
-                                                    <?php echo $params[1];?>
-                                                    <input type="radio" id="square-radio-1" name="<?php echo $schema['name'] ;?>" value="<?php echo $params[0];?>" <?php if($data->$schema['name'] ==$params[0] ){echo 'checked="checked"';}?> aria-describedby="help-block" tabindex="11" />
+                                                    <?php echo $option;?>
+                                                    <input type="radio" id="square-radio-1" name="<?php echo $schema['name'] ;?>" value="<?php echo $key;?>" <?php if($data->$schema['name'] == $key ){echo 'checked="checked"';}?> aria-describedby="help-block" tabindex="11" />
                                                 </label>
                                         <?php endforeach;?>
                                         <?php endif;?>
@@ -59,13 +90,11 @@
                                 <label class="col-sm-3 control-label"><?php echo $schema['title'] ;?>：</label>
                                 <div class="col-sm-3">
                                     <div class="skin skin-flat">
-                                        <?php $options = explode('|', $schema['option']);?>
-                                        <?php if($options):?>
-                                        <?php foreach($options as $option):?>
-                                            <?php $params = explode(':', $option);?>
+                                        <?php if($schema['option']):?>
+                                        <?php foreach($schema['option'] as $key => $option):?>
                                             <label for="flat-checkbox-1" class="checkbox-inline">
-                                                <?php echo $params[1];?>
-                                                <input type="checkbox" name="<?php echo $schema['name'] ;?>" value="<?php echo $params[0];?>" aria-describedby="help-block" tabindex="11" id="flat-checkbox-1" />
+                                                <?php echo $option;?>
+                                                <input type="checkbox" name="<?php echo $schema['name'] ;?>" value="<?php echo $key;?>" aria-describedby="help-block" tabindex="11" id="flat-checkbox-1" />
                                             </label>
                                         <?php endforeach;?>
                                         <?php endif;?>

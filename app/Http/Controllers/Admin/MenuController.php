@@ -60,7 +60,7 @@ class MenuController extends AdminBaseController {
                 builderFormSchema('id', 'id', 'hidden')->
                 builderFormSchema('menu_name', '菜单名称')->
                 builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', MenuModel::getAllForSchemaOption(), 'menu_name')->
-                builderFormSchema('status', '状态', 'radio', '', '', '', '', '', '1:开启|2:关闭', '2')->
+                builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('icon', '菜单icon')->
                 builderFormSchema('url', '菜单url')->
                 builderFormSchema('sort', '菜单排序')->
@@ -105,7 +105,7 @@ class MenuController extends AdminBaseController {
                 builderTitle('增加菜单')->
                 builderFormSchema('menu_name', '菜单名称')->
                 builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', MenuModel::getAllForSchemaOption(), 'menu_name')->
-                builderFormSchema('status', '状态', 'radio', '', '', '', '', '', '1:开启|2:关闭', '2')->
+                builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('icon', '菜单icon')->
                 builderFormSchema('url', '菜单url')->
                 builderFormSchema('sort', '菜单排序', 'text', 255)->

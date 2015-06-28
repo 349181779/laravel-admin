@@ -65,6 +65,13 @@ return [
 			'region'    => 'IAD',
 			'url_type'  => 'publicURL'
 		],
+        'qiniu' => [
+            'driver' => 'qiniu',
+            'domain' => 'xxxxx.com1.z0.glb.clouddn.com',   //你的七牛域名
+            'access_key'    => '',                          //AccessKey
+            'secret_key' => '',                             //SecretKey
+            'bucket' => '',                                 //Bucket名字
+        ],
 
 	],
 

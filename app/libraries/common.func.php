@@ -120,3 +120,16 @@ if(!function_exists('p')){
         echo '</pre>';die;
     }
 }
+
+if(!function_exists('password_encrypt')){
+    /**
+     * 加密密码
+     *
+     * @param $password
+     * @return bool|false|string
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    function password_encrypt($password){
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+}

@@ -26,11 +26,15 @@ Route::group(['prefix'=>'admin','namespace' => 'Admin'],function(){
     //登录
     Route::controller('login','LoginController');
     //首页
-    Route::controller('home','AdminHomeController');
+    Route::controller('index','AdminHomeController');
     //权限
-    Route::controller('access','AdminAssessController');
+    Route::controller('role','AdminRoleController');
     //后台菜单
     Route::controller('menu','MenuController');
+    //后台用户
+    Route::controller('admininfo','AdmininfoController');
+    //会员用户
+    Route::controller('userinfo','UserinfoController');
 });
 
 //Tools

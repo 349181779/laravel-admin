@@ -7,4 +7,5 @@
 <!-- base -->
 <script src="http://static.womenshuo.com/@/womenshuo/lib/notice/toastr/toastr.js"></script>
 <script type="text/javascript" src="/js/base.js"></script>
+<script type="text/javascript" src="/laydate-v1.1 2/laydate/laydate.js"></script>
 <!-- base -->
