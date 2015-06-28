@@ -48,7 +48,7 @@ class AdminHomeController extends AdminBaseController {
 	public function getLogout()
 	{
         AdminInfo::logout();
-        $this->response(200, Lang::get('response.success'), ['href'=>url('admin/login')]);
+        $this->response(200, Lang::get('response.success'), ['href'=>url('admin/index/login')]);
 	}
 
 }
