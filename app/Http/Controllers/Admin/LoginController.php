@@ -63,7 +63,7 @@ class LoginController extends BaseController {
 
         switch($login_status){
             case 1:
-                return $this->response(200, Lang::get('response.success'),['href'=>url('admin/index')]);
+                return $this->response(200, Lang::get('response.success'),['href'=>url('admin/home')]);
             case -1:
             case -3:
                 return $this->response(401, Lang::get('response.admin_not_exists'));
