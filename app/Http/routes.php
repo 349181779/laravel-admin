@@ -34,7 +34,7 @@ Route::group(['prefix'=>'admin','namespace' => 'Admin'],function(){
     //后台用户
     Route::controller('admininfo','AdmininfoController');
     //会员用户
-    Route::controller('userinfo','UserinfoController');
+    Route::controller('userinfo','UserInfoController');
 });
 
 //Tools
