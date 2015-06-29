@@ -7,6 +7,7 @@
 <!-- Le styles -->
 @section('header')
     	@include('admin.block.header')
+    	@include('UEditor::head');
     	@parent
 <link href="/assets/js/iCheck/flat/all.css" rel="stylesheet">
 <link href="/assets/js/iCheck/line/all.css" rel="stylesheet">
@@ -18,7 +19,6 @@
 </head>
 
 <body>
-<div id="awwwards" class="right black"><a href="http://www.awwwards.com/best-websites/apricot-navigation-admin-dashboard-template" target="_blank">best websites of the world</a></div>
 <!-- Preloader -->
 <div id="preloader">
   <div id="status">&nbsp;</div>

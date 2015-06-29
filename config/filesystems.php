@@ -65,12 +65,13 @@ return [
 			'region'    => 'IAD',
 			'url_type'  => 'publicURL'
 		],
+
         'qiniu' => [
-            'driver' => 'qiniu',
-            'domain' => 'xxxxx.com1.z0.glb.clouddn.com',   //你的七牛域名
-            'access_key'    => '',                          //AccessKey
-            'secret_key' => '',                             //SecretKey
-            'bucket' => '',                                 //Bucket名字
+            'driver'        => 'qiniu',
+            'domain'        => '7xk0dl.com1.z0.glb.clouddn.com',//你的七牛域名
+            'access_key'    => 'gIx7sI3Ak7LIXT-EDPPvF8imSUyP85ErXK5xhNoc',//AccessKey
+            'secret_key'    => 'KqP9ABmUZDfTS27WGBhSqVMiE4AjTFLU0fT5vMR9',//SecretKey
+            'bucket'        => 'test',//Bucket名字
         ],
 
 	],

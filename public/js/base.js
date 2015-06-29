@@ -2,6 +2,19 @@
  * Created by anywhere1000 on 15/6/7.
  */
 
+$(function(){
+    layer.config({
+        skin:'layer-ext-moon',
+        extend:'./skin/mono/style.css',
+        closeBtn:1,//关闭按钮
+        shift:1,//动画
+        shade:[0.9, '#fff'],//遮罩
+        shadeClose:true,//是否点击遮罩关闭
+        maxmin:true,//最大最小化。
+        scrollbar:false//是否禁用浏览器滚动条
+    });
+})
+
 toastr.options = {
     "closeButton": true,
     "debug": false,

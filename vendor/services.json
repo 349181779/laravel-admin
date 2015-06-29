@@ -34,7 +34,8 @@
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Overtrue\\LaravelWechat\\ServiceProvider",
         "Overtrue\\LaravelPinyin\\ServiceProvider",
-        "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider"
+        "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider",
+        "Stevenyangecho\\UEditor\\UEditorServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -58,7 +59,8 @@
         "Jenssegers\\Agent\\AgentServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Overtrue\\LaravelPinyin\\ServiceProvider",
-        "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider"
+        "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider",
+        "Stevenyangecho\\UEditor\\UEditorServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
@@ -177,18 +179,44 @@
         "Overtrue\\Wechat\\Server": "Overtrue\\LaravelWechat\\ServiceProvider"
     },
     "when": {
-        "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
-        "Illuminate\\Bus\\BusServiceProvider": [],
-        "Illuminate\\Cache\\CacheServiceProvider": [],
-        "Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider": [],
-        "Illuminate\\Hashing\\HashServiceProvider": [],
-        "Illuminate\\Mail\\MailServiceProvider": [],
-        "Illuminate\\Pipeline\\PipelineServiceProvider": [],
-        "Illuminate\\Queue\\QueueServiceProvider": [],
-        "Illuminate\\Redis\\RedisServiceProvider": [],
-        "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
-        "Illuminate\\Translation\\TranslationServiceProvider": [],
-        "Illuminate\\Html\\HtmlServiceProvider": [],
-        "Overtrue\\LaravelWechat\\ServiceProvider": []
+        "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [
+
+        ],
+        "Illuminate\\Bus\\BusServiceProvider": [
+
+        ],
+        "Illuminate\\Cache\\CacheServiceProvider": [
+
+        ],
+        "Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider": [
+
+        ],
+        "Illuminate\\Hashing\\HashServiceProvider": [
+
+        ],
+        "Illuminate\\Mail\\MailServiceProvider": [
+
+        ],
+        "Illuminate\\Pipeline\\PipelineServiceProvider": [
+
+        ],
+        "Illuminate\\Queue\\QueueServiceProvider": [
+
+        ],
+        "Illuminate\\Redis\\RedisServiceProvider": [
+
+        ],
+        "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [
+
+        ],
+        "Illuminate\\Translation\\TranslationServiceProvider": [
+
+        ],
+        "Illuminate\\Html\\HtmlServiceProvider": [
+
+        ],
+        "Overtrue\\LaravelWechat\\ServiceProvider": [
+
+        ]
     }
 }

@@ -2,6 +2,8 @@
 
 > 注意：此版本为 2.x 版本，不兼容 1.x，已经移除外观，与 [overtrue/wechat 2.0](https://github.com/overtrue/wechat) 同步
 
+> 1.x 的配置文件里面的项目为驼峰，2.x 系列已经改为下划线，请参考: [src/config.php](https://github.com/overtrue/laravel-wechat/blob/master/src/config.php)
+
 微信 SDK for Laravel 5， 基于 [overtrue/wechat](https://github.com/overtrue/wechat)
 
 本项目只适用于，只有一个固定的账号，如果是开发微信公众号管理系统就不要使用了，直接用 [overtrue/wechat](https://github.com/overtrue/wechat) 更方便些。
@@ -19,9 +21,14 @@
   'Overtrue\LaravelWechat\ServiceProvider',
   ```
 
-3. 请修改 `config/wechat.php` 中对应的项即可。
+3. 创建配置文件：
 
-4. （可选）添加外观到 `config/app.php` 中的 `aliases` 部分:
+  ```shell
+  php artisan vendor:publish  --provider=Overtrue\\LaravelWechat\\ServiceProvider
+  ```
+4. 请修改应用根目录下的 `config/wechat.php` 中对应的项即可；
+
+5. （可选）添加外观到 `config/app.php` 中的 `aliases` 部分:
 
   ```php
   'Wechat' => 'Overtrue\LaravelWechat\Facade',
@@ -51,6 +58,8 @@
     'wechat.url'       => 'Overtrue\Wechat\Url',
     'wechat.media'     => 'Overtrue\Wechat\Media',
     'wechat.image'     => 'Overtrue\Wechat\Image',
+    'wechat.notice'     => 'Overtrue\Wechat\Notice',
+    'wechat.media'     => 'Overtrue\Wechat\Media',
 
 下面以接收普通消息为例写一个例子：
 

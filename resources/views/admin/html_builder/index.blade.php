@@ -7,11 +7,15 @@
 <!-- Le styles -->
 @section('header')
     	@include('admin.block.header')
+        <?php echo Html::style('/assets/js/footable/css/footable.core.css?v=2-0-1');?>
+        <?php echo Html::style('/assets/js/footable/css/footable.standalone.css');?>
+        <?php echo Html::style('/assets/js/footable/css/footable-demos.css');?>
+        <?php echo Html::style('/assets/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css');?>
+        <?php echo Html::style('/assets/js/dataTable/css/datatables.responsive.css');?>
 @show
 </head>
 
 <body>
-<div id="awwwards" class="right black"><a href="http://www.awwwards.com/best-websites/apricot-navigation-admin-dashboard-template" target="_blank">best websites of the world</a></div>
 <!-- Preloader -->
 <div id="preloader">
   <div id="status">&nbsp;</div>

@@ -16,7 +16,9 @@
         "overtrue/laravel-pinyin": "dev-master",
         "barryvdh/laravel-ide-helper" : "*",
         "dingo/api": "*",
-        "zgldh/qiniu-laravel-storage": "dev-master"
+        "zgldh/qiniu-laravel-storage": "dev-master",
+        "stevenyangecho/laravel-u-editor": "~1.1",
+        "ender/laravel-ueditor":"0.8.*"
 
 	},
 	"require-dev": {

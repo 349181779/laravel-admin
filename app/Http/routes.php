@@ -17,34 +17,38 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+	'auth'      => 'Auth\AuthController',
+	'password'  => 'Auth\PasswordController',
 ]);
 
 //后台
-Route::group(['prefix'=>'admin','namespace' => 'Admin'],function(){
+Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     //登录
-    Route::controller('login','LoginController');
+    Route::controller('login', 'LoginController');
     //首页
-    Route::controller('home','AdminHomeController');
+    Route::controller('home', 'AdminHomeController');
     //权限
-    Route::controller('role','AdminRoleController');
+    Route::controller('role', 'AdminRoleController');
     //后台菜单
-    Route::controller('menu','MenuController');
+    Route::controller('menu', 'MenuController');
     //后台用户
-    Route::controller('admininfo','AdmininfoController');
+    Route::controller('admininfo', 'AdmininfoController');
     //会员用户
-    Route::controller('userinfo','UserInfoController');
+    Route::controller('userinfo', 'UserInfoController');
+    //资源
+    Route::controller('resource', 'ResourceController');
 });
 
 //Tools
-Route::group(['prefix'=>'tools','namespace' => 'Tools'],function(){
+Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     //MarkDown Route
-    Route::controller('mark','MarkDownController');
+    Route::controller('mark', 'MarkDownController');
     //Filter Route
-    Route::controller('filter','FilterController');
+    Route::controller('filter', 'FilterController');
     //Agent Route
-    Route::controller('agent','AgentController');
+    Route::controller('agent', 'AgentController');
     //Pinyin Route
-    Route::controller('pinyin','PinyinController');
+    Route::controller('pinyin', 'PinyinController');
+    //上传组件
+    Route::controller('upload', 'UploadController');
 });

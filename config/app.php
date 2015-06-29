@@ -154,6 +154,7 @@ return [
         'Overtrue\LaravelWechat\ServiceProvider',
         'Overtrue\LaravelPinyin\ServiceProvider',
         'zgldh\QiniuStorage\QiniuFilesystemServiceProvider',//七牛
+        'Stevenyangecho\UEditor\UEditorServiceProvider',//ueditor
         //'Dingo\Api\Provider\ApiServiceProvider'
 
 	],

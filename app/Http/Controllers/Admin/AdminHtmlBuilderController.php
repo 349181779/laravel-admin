@@ -16,6 +16,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use UEditor;
+
 class AdminHtmlBuilderController extends AdminBaseController {
 
     const SCHAME_STRING = 1;//字符串
