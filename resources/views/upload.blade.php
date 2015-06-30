@@ -20,7 +20,7 @@
             shade:[0.9, '#fff'],//遮罩
             shadeClose:true,//是否点击遮罩关闭
             maxmin:true,//最大最小化。
-            area:['800px', '500px'],
+            area:['1024px', '700px'],
             scrollbar:true//是否禁用浏览器滚动条
         });
 

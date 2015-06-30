@@ -133,3 +133,33 @@ if(!function_exists('password_encrypt')){
         return password_hash($password, PASSWORD_DEFAULT);
     }
 }
+
+if(!function_exists('safe_base64_encode')){
+    /**
+     * 安全的base64编码
+     *
+     * @param $str
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    function safe_base64_encode($str){
+        $find = array("+", "/");
+        $replace = array("-", "_");
+        return str_replace($find, $replace, base64_encode($str));
+    }
+}
+
+if(!function_exists('safe_base64_decode')){
+    /**
+     * 安全的base64解码
+     *
+     * @param $str
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    function safe_base64_decode($str){
+        $find = array("-", "_");
+        $replace = array("+", "/");
+        return base64_decode(str_replace($find, $replace, $str));
+    }
+}
