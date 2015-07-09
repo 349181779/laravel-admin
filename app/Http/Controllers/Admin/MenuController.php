@@ -16,13 +16,9 @@ use Illuminate\Http\Request;
 
 use App\MenuModel as MenuModel;
 
-use App\Http\Requests\Admin\RoleRequest;
+use App\Http\Requests\Admin\MenuRequest;
 
-use DB;
-
-use Lang;
-
-class MenuController extends AdminBaseController {
+class MenuController extends BaseController {
 
     protected $html_builder;
 
@@ -31,25 +27,24 @@ class MenuController extends AdminBaseController {
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function __construct(AdminHtmlBuilderController $html_builder){
+    public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
     }
 
 	/**
-	 * 获得角色列表
+	 * 获得菜单列表
 	 *
 	 * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function getIndex()
-	{
+	public function getIndex(){
         //加载函数库
         load_func('common');
-        return View('admin.menu.index',['all_menu'=> merge_tree_node(obj_to_array(MenuModel::all())) ]);
+        return View('admin.menu.index', ['all_menu'=> merge_tree_node(obj_to_array(MenuModel::all())) ]);
 	}
 
     /**
-     * 编辑角色
+     * 编辑菜单
      *
      * @param  int  $id
      * @auther yangyifan <yangyifanphp@gmail.com>
@@ -69,33 +64,19 @@ class MenuController extends AdminBaseController {
     }
 
     /**
-     * 处理更新角色
+     * 处理更新菜单
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postMenuupdate(Request $request){
-        $id         = $request->get('id');
-        $menu_name  = $request->get('menu_name');
-        $pid        = $request->get('pid');
-        $status     = $request->get('status');
-        $icon       = $request->get('icon');
-        $url        = $request->get('url');
-        $sort       = $request->get('sort');
-
-        $affected_number = DB::table('menu')->where('id', '=', $id)->update([
-            'menu_name' => $menu_name,
-            'pid'       => $pid,
-            'status'    => $status,
-            'icon'      => $icon,
-            'url'       => $url,
-            'sort'      => $sort,
-        ]);
+    public function postMenuupdate(MenuRequest $request){
+        $Model = MenuModel::findOrFail($request->get('id'));
+        $Model->update($request->all());
         //更新成功
-        return $this->response(200, Lang::get('response.update_success'), [], false);
+        return $this->response(200, trans('response.update_success'), [], true , url('admin/menu/index'));
     }
 
     /**
-     * 增加角色
+     * 增加菜单
      *
      * @param  int  $id
      * @auther yangyifan <yangyifanphp@gmail.com>
@@ -114,27 +95,13 @@ class MenuController extends AdminBaseController {
     }
 
     /**
-     * 处理新增角色
+     * 处理新增菜单
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postMenuadd(Request $request){
-        $menu_name  = $request->get('menu_name');
-        $pid        = $request->get('pid');
-        $status     = $request->get('status');
-        $icon       = $request->get('icon');
-        $url        = $request->get('url');
-        $sort       = $request->get('sort');
-
-        $affected_number = DB::table('menu')->insertGetId([
-            'menu_name' => $menu_name,
-            'pid'       => $pid,
-            'status'    => $status,
-            'icon'      => $icon,
-            'url'       => $url,
-            'sort'      => $sort,
-        ]);
-        return $affected_number > 0 ? $this->response(200, Lang::get('response.add_success'), [], false) : $this->response(400, Lang::get('response.add_error'), [], false);
+    public function postMenuadd(MenuRequest $request){
+        $affected_number = MenuModel::create($request->all());
+        return $affected_number > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/menu/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/menu/index'));
     }
 
 }

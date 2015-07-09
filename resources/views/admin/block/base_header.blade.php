@@ -9,3 +9,9 @@
 <?php echo Html::script('/assets/js/jquery.min.js');?>
 <link rel="stylesheet" href="http://static.womenshuo.com/@/womenshuo/lib/notice/toastr/toastr.css"/>
 {{--<link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600&subset=latin,latin-ext' rel='stylesheet'>--}}
+
+<script>
+    //定义全局url
+    fileUrl             = '<?php echo config("config.file_url");?>';//资源网址
+    choseImageDialog    = "<?php echo url('admin/resource/chose-image-dialog');?>";//弹出选择图片提示框 url
+</script>

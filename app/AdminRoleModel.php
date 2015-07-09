@@ -10,34 +10,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 use DB;
 
-use Lang;
-
-use Illuminate\Pagination\Paginator;
-
-class AdminRoleModel extends Model {
+class AdminRoleModel extends BaseModel {
 
     protected $table    = 'role';//定义表名
-    protected $guarded  = ['*'];//阻挡所有属性被批量赋值
-
-    /**
-     * 获取角色
-     *
-     * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
-     */
-    public static function role(){
-        $data   =  DB::table('role')->paginate(config('page.page_limit'));
-        $pages  = $data->render();
-        $data   = $data->toArray();
-        return array(
-            'data' => self::mergeRoleData($data['data']),
-            'pages'=> $pages
-        );
-    }
+    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 组合角色数据
@@ -46,21 +24,20 @@ class AdminRoleModel extends Model {
      * @return mixed
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public static function mergeRoleData($roles){
-        if(!empty($roles)){
-            foreach($roles as $role){
-                switch($role->status){
-                    case 1:
-                        $role->status = Lang::get('response.on');
-                        break;
-                    case 2:
-                        $role->status = Lang::get('response.off');
-                        break;
-                }
+    public static function mergeData($data){
+        if(!empty($data)){
+            foreach($data as $v){
+                //组合状态
+                $v->status = self::mergeStatus($v->status);
+
+                //组合编辑操作
+                $v->handle  = '<a href="'.url('admin/role/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle .= '&nbsp;';
+                $v->handle .= '<a href="'.url('admin/role/edit', [$v->id]).'" target="_blank" >权限</a>';
 
             }
         }
-        return $roles;
+        return $data;
     }
 
     /**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bfa9292d781a297fff45aedcf2983349",
+    "hash": "7b8f2750620c1f11b7d1cb402ab5657a",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1652,16 +1652,16 @@
         },
         {
             "name": "overtrue/pinyin",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/pinyin.git",
-                "reference": "675c5da6ccba410dd85aaa22fa43ee0245bb06f8"
+                "reference": "a89c05ff7c0d51243dd445faf6717ef15a8b37c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/675c5da6ccba410dd85aaa22fa43ee0245bb06f8",
-                "reference": "675c5da6ccba410dd85aaa22fa43ee0245bb06f8",
+                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/a89c05ff7c0d51243dd445faf6717ef15a8b37c7",
+                "reference": "a89c05ff7c0d51243dd445faf6717ef15a8b37c7",
                 "shasum": ""
             },
             "type": "library",
@@ -1687,20 +1687,20 @@
                 "Pinyin",
                 "cn2pinyin"
             ],
-            "time": "2015-06-01 13:13:06"
+            "time": "2015-07-02 03:32:01"
         },
         {
             "name": "overtrue/wechat",
-            "version": "2.0.20",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/wechat.git",
-                "reference": "2f7b7ce3bb4e266163b1e2985fee394c8e65a82d"
+                "reference": "b88a4f74759e6ecdee327c1b5776fd45ae0681d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/wechat/zipball/2f7b7ce3bb4e266163b1e2985fee394c8e65a82d",
-                "reference": "2f7b7ce3bb4e266163b1e2985fee394c8e65a82d",
+                "url": "https://api.github.com/repos/overtrue/wechat/zipball/b88a4f74759e6ecdee327c1b5776fd45ae0681d3",
+                "reference": "b88a4f74759e6ecdee327c1b5776fd45ae0681d3",
                 "shasum": ""
             },
             "require": {
@@ -1730,7 +1730,7 @@
                 "weixin",
                 "weixin-sdk"
             ],
-            "time": "2015-06-13 10:29:55"
+            "time": "2015-06-30 07:32:28"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1999,17 +1999,59 @@
             "time": "2015-04-18 08:18:19"
         },
         {
-            "name": "react/promise",
-            "version": "v2.2.0",
+            "name": "rcrowe/turbo",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/reactphp/promise.git",
-                "reference": "365fcee430dfa4ace1fbc75737ca60ceea7eeeef"
+                "url": "https://github.com/rcrowe/Turbo.git",
+                "reference": "f870d6bbfb969a30841de67e62df2cfa3426c739"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/365fcee430dfa4ace1fbc75737ca60ceea7eeeef",
-                "reference": "365fcee430dfa4ace1fbc75737ca60ceea7eeeef",
+                "url": "https://api.github.com/repos/rcrowe/Turbo/zipball/f870d6bbfb969a30841de67e62df2cfa3426c739",
+                "reference": "f870d6bbfb969a30841de67e62df2cfa3426c739",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Turbo": "src/"
+                }
+            },
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Crowe",
+                    "email": "hello@vivalacrowe.com",
+                    "homepage": "http://vivalacrowe.com"
+                }
+            ],
+            "description": "Think turbolinks but for your PHP application. Powered by pjax.",
+            "keywords": [
+                "laravel",
+                "pjax",
+                "turbolinks"
+            ],
+            "time": "2013-06-06 16:44:35"
+        },
+        {
+            "name": "react/promise",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise.git",
+                "reference": "3b6fca09c7d56321057fa8867c8dbe1abf648627"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/3b6fca09c7d56321057fa8867c8dbe1abf648627",
+                "reference": "3b6fca09c7d56321057fa8867c8dbe1abf648627",
                 "shasum": ""
             },
             "require": {
@@ -2036,11 +2078,11 @@
             "authors": [
                 {
                     "name": "Jan Sorgalla",
-                    "email": "jsorgalla@googlemail.com"
+                    "email": "jsorgalla@gmail.com"
                 }
             ],
             "description": "A lightweight implementation of CommonJS Promises/A for PHP",
-            "time": "2014-12-30 13:32:42"
+            "time": "2015-07-03 13:48:55"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -3470,16 +3512,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.1.6",
+            "version": "2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "631e365cf26bb2c078683e8d9bcf8bc631ac4d44"
+                "reference": "07e27765596d72c378a6103e80da5d84e802f1e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/631e365cf26bb2c078683e8d9bcf8bc631ac4d44",
-                "reference": "631e365cf26bb2c078683e8d9bcf8bc631ac4d44",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/07e27765596d72c378a6103e80da5d84e802f1e4",
+                "reference": "07e27765596d72c378a6103e80da5d84e802f1e4",
                 "shasum": ""
             },
             "require": {
@@ -3528,7 +3570,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-06-19 07:11:55"
+            "time": "2015-06-30 06:52:35"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3710,16 +3752,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.7.5",
+            "version": "4.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f6701ef3faea759acd1910a7751d8d102a7fd5bc"
+                "reference": "0ebabb4cda7d066be8391dfdbaf57fe70ac9a99b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f6701ef3faea759acd1910a7751d8d102a7fd5bc",
-                "reference": "f6701ef3faea759acd1910a7751d8d102a7fd5bc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0ebabb4cda7d066be8391dfdbaf57fe70ac9a99b",
+                "reference": "0ebabb4cda7d066be8391dfdbaf57fe70ac9a99b",
                 "shasum": ""
             },
             "require": {
@@ -3778,20 +3820,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-06-21 07:23:36"
+            "time": "2015-06-30 06:53:57"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.4",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "92408bb1968a81b3217a6fdf6c1a198da83caa35"
+                "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/92408bb1968a81b3217a6fdf6c1a198da83caa35",
-                "reference": "92408bb1968a81b3217a6fdf6c1a198da83caa35",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/1c330b1b6e1ea8fd15f2fbea46770576e366855c",
+                "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c",
                 "shasum": ""
             },
             "require": {
@@ -3833,7 +3875,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-06-11 15:55:48"
+            "time": "2015-07-04 05:41:32"
         },
         {
             "name": "sebastian/comparator",

@@ -19,4 +19,9 @@ return [
     'add_error'=>'增加失败',
     'on'=>'开启',
     'off'=>'关闭',
+    'upload_file_error' => '上传文件错误',
+    'file_unkown'=>'未知文件',
+    'sex_1' => '男',
+    'sex_2' => '女',
+    'sex_3' => '未知',
 ];

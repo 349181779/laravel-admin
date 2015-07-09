@@ -11,7 +11,7 @@
 
         <div class="body-nest" id="element">
           <div class="panel-body">
-            <form method="post" class="form-horizontal bucket-form" >
+            <form method="post" class="form-horizontal bucket-form"  >
 
                <?php if(!empty($schemas)):?>
                     <?php foreach($schemas as $schema):?>
@@ -21,7 +21,7 @@
                           <div class="form-group">
                             <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
                             <div class="col-sm-3">
-                                <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>">
+                                <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  <?php if(empty($schema['rule'])){echo 'ignore="ignore"';}else{echo 'datatype='. $schema['rule'];} ;?> errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>">
                                 <span class="help-block"><?php echo $schema['notice'] ;?></span>
 
                                 <div class="alert alert-danger hide" role="alert">
@@ -37,7 +37,7 @@
                         <div class="form-group">
                           <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
                           <div class="col-sm-3">
-                              <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>">
+                              <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  <?php if(empty($schema['rule'])){echo 'ignore="ignore"';}else{echo 'datatype='. $schema['rule'];} ;?> errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>" autocomplete="false">
                               <span class="help-block"><?php echo $schema['notice'] ;?></span>
 
                               <div class="alert alert-danger hide" role="alert">
@@ -53,7 +53,7 @@
                         <div class="form-group">
                           <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
                           <div class="col-sm-3">
-                              <input type="text" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  datatype="<?php echo $schema['rule'] ;?>" errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>" onclick="laydate()" >
+                              <input type="text" name="<?php echo $schema['name'] ;?>" value="<?php echo $schema['default'] ;?>"  <?php if(empty($schema['rule'])){echo 'ignore="ignore"';}else{echo 'datatype='. $schema['rule'];} ;?> errormsg="<?php echo $schema['err_message'] ;?>" class="form-control <?php echo $schema['class'] ;?>" onclick="laydate()" >
 
 
                               <span class="help-block"><?php echo $schema['notice'] ;?></span>
@@ -65,6 +65,32 @@
                               </div>
                           </div>
                         </div>
+
+                        <?php elseif($schema['type'] == 'image'):?>
+                          {{-- 图片框 --}}
+                            <div class="form-group">
+                              <label class="col-sm-3 control-label"><strong><?php echo $schema['title'] ;?>：</strong></label>
+                              <div class="col-sm-3">
+                                  <div class="col-xs-6 col-md-6">
+                                    <a href="javascript:void(0)" class="thumbnail">
+                                         <img src="<?php echo $data->$schema['name'] == '' ? config('config.default_image') : config('config.file_url').$data->$schema['name'];?>" width="150" height="150" style="border:1px solid #000;padding: 5px;" />
+                                    </a>
+                                  </div>
+                                  <div style="margin:10px 0;">
+                                        <button onclick="showChoseImageDialog(this)" type="button" class="btn btn-info btn-lg">
+                                            <span class="entypo-picture"></span>&nbsp;&nbsp;选 择 图 片
+                                        </button>
+                                  </div>
+                                  <input type="hidden" name="<?php echo $schema['name'] ;?>" value="<?php echo $data->$schema['name'] == '' ? $schema['default'] : $data->$schema['name']; ?>" />
+                                  <span class="help-block"><?php echo $schema['notice'] ;?></span>
+
+                                  <div class="alert alert-danger hide" role="alert">
+                                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                      <span class="sr-only">Error:</span>
+                                      <span class="err_message"></span>
+                                  </div>
+                              </div>
+                            </div>
 
                         <?php elseif($schema['type'] == 'ueditor'):?>
                           {{-- 百度富文本编辑器 --}}

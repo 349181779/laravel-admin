@@ -10,18 +10,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 use Session;
 
 use DB;
 
 use Lang;
 
-class AdminInfoModel extends Model {
+class AdminInfoModel extends BaseModel {
 
     protected $table    = 'admin_info';//定义表名
-    protected $guarded  = ['*'];//阻挡所有属性被批量赋值
+    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 用户登录
@@ -30,7 +28,7 @@ class AdminInfoModel extends Model {
      * @return int
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public static function login($params){
+    public static function login($params){;
         //查找用户
         $user_info = DB::table('admin_info')->where('email', '=', $params['email'])->first();
 
@@ -50,7 +48,7 @@ class AdminInfoModel extends Model {
         }
 
         //保存用户session信息
-        self::_saveUserSession($user_info);
+        self::saveUserSession($user_info);
         return 1;
     }
 
@@ -60,7 +58,7 @@ class AdminInfoModel extends Model {
      * @param $user_info
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    private static function _saveUserSession($user_info){
+    private static function saveUserSession($user_info){
         //引入函数库
         load_func('common');
         $user_info = obj_to_array($user_info);
@@ -84,51 +82,52 @@ class AdminInfoModel extends Model {
     }
 
     /**
-     * 获得后台用户列表
+     * 搜索
      *
-     * @return object
+     * @param $map
+     * @param $sort
+     * @param $order
+     * @param $offset
+     * @return mixed
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAdminList(){
-        $data   =   DB::table('admin_info AS a')->
-                    join('role AS r', 'a.role_id', '=', 'r.id')->
-                    select('a.id','a.email', 'a.mobile', 'a.status', 'a.face', 'r.role_name', 'a.created_at', 'a.updated_at')->
-                    orderBy('id', 'DESC')->
-                    paginate(config('page.page_limit'));
-        $pages  = $data->render();
-        $data   = $data->toArray();
-        return array(
-            'data' => self::mergeData($data['data']),
-            'pages'=> $pages
-        );
+    protected static function search($map, $sort, $order, $limit, $offset){
+        return [
+            'data' => self::mergeData(
+                self::multiwhere($map)->
+                join('role as r', 'admin_info.role_id', '=', 'r.id')->
+                orderBy('admin_info.'.$sort, $order)->
+                skip($offset)->
+                take($limit)->
+                get()
+            ),
+            'count' => self::multiwhere($map)->join('role as r', 'admin_info.role_id', '=', 'r.id')->count(),
+        ];
     }
 
     /**
-     * 组合角色数据
+     * 组合数据
      *
      * @param $roles
      * @return mixed
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public static function mergeData($roles){
-        if(!empty($roles)){
-            foreach($roles as $role){
-                switch($role->status){
-                    case 1:
-                        $role->status = Lang::get('response.on');
-                        break;
-                    case 2:
-                        $role->status = Lang::get('response.off');
-                        break;
-                }
-
+    public static function mergeData($data){
+        if(!empty($data)){
+            foreach($data as &$v){
+                //组合状态
+                $v->status = self::mergeStatus($v->status);
+                //组合操作
+                $v->handle  = '<a href="'.url('admin/admininfo/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                //组合角色
+                $v->role_name = DB::table('role')->where('id', '=', $v->role_id)->pluck('role_name');
             }
         }
-        return $roles;
+        return $data;
     }
 
     /**
-     * 获取单个菜单
+     * 获取后台用户详细信息
      *
      * @return mixed
      * @auther yangyifan <yangyifanphp@gmail.com>

@@ -13,7 +13,6 @@
 <link href="/assets/js/iCheck/line/all.css" rel="stylesheet">
 <link href="/assets/js/colorPicker/bootstrap-colorpicker.css" rel="stylesheet">
 <link href="/assets/js/switch/bootstrap-switch.css" rel="stylesheet">
-<link href="/assets/js/validate/validate.css" rel="stylesheet">
 <link href="/assets/js/idealform/css/jquery.idealforms.css" rel="stylesheet">
 @show
 </head>
@@ -98,6 +97,8 @@
 
 <!--  PLUGIN --> 
 <script>
+
+
     $(document).ready(function() {
 
         //CHECKBOX PRETTYFY

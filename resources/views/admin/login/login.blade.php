@@ -12,12 +12,12 @@
 <script>
     $(function(){
         //验证表单
-        $('form').Validform({
-            label:".label",
-            showAllError:true,
-            tiptype:3
-
-        });
+//        $('form').Validform({
+//            label:".label",
+//            showAllError:true,
+//            tiptype:3
+//
+//        });
         //验证表单
 
         //提交表单
@@ -92,7 +92,7 @@
     </div>
   </div>
 </div>
-@include('admin.block.base_js') 
+@include('admin.block.footer_js')
 <script src="http://static.womenshuo.com/jquery.form-3.50.min.js"></script> 
 <script src="http://static.womenshuo.com/@/womenshuo/lib/validateValidform_v5.3.2_min.js"></script>
 </body>

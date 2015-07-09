@@ -10,21 +10,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\BaseController as BaseController;
-
 use App\Http\Requests;
 
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use Input;
-
-use Lang;
-
-use Validator;
-
 use App\AdminInfoModel as AdminInfo;
+
+use App\Http\Requests\Admin\LoginFormRequest;
+
+use App\Http\Controllers\BaseController;
 
 class LoginController extends BaseController {
 
@@ -34,8 +30,7 @@ class LoginController extends BaseController {
 	 * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function getIndex()
-	{
+	public function getIndex(){
         return view('admin.login.login');
 	}
 
@@ -45,35 +40,23 @@ class LoginController extends BaseController {
 	 * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function postLogin()
-	{
-        $rules = [
-            'email'     => ['required'],
-            'password'  => ['required'],
-            '_token'    => ['required'],
-        ];
-        $payload    = Input::only('email', 'password', 'remember_me','_token');
-        $validator  = Validator::make($payload, $rules);
+	public function postLogin(LoginFormRequest $request){
 
-        if ($validator->fails()) {
-            return $this->response(400, $validator->errors()->getMessages());
-        }
-
-        $login_status = AdminInfo::login($payload);
+        $login_status = AdminInfo::login($request->all());
 
         switch($login_status){
             case 1:
-                return $this->response(200, Lang::get('response.success'),['href'=>url('admin/home')]);
+                return $this->response(200, trans('response.success'),[], true, url('admin/home'));
             case -1:
             case -3:
-                return $this->response(401, Lang::get('response.admin_not_exists'));
+                return $this->response(401, trans('response.admin_not_exists'));
             case -2:
-                return $this->response(401, Lang::get('response.admin_disable'));
+                return $this->response(401, trans('response.admin_disable'));
 
         }
 
         //登陆失败
-        return $this->response(401, Lang::get('response.unauthorized'));
+        return $this->response(401, trans('response.unauthorized'));
 	}
 
 }

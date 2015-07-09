@@ -1,6 +1,4 @@
 <?php
-
-
 // +----------------------------------------------------------------------
 // | date: 2015-06-06
 // +----------------------------------------------------------------------
@@ -117,7 +115,7 @@ if(!function_exists('p')){
     function p(Array $array){
         echo '<pre>';
         var_dump($array);
-        echo '</pre>';die;
+        echo '</pre>';
     }
 }
 
@@ -161,5 +159,52 @@ if(!function_exists('safe_base64_decode')){
         $find = array("-", "_");
         $replace = array("+", "/");
         return base64_decode(str_replace($find, $replace, $str));
+    }
+}
+
+if(!function_exists('curl_post')){
+    /**
+     * curl_post
+     * @author aaron
+     * @param string $url
+     * @param string $str_params
+     */
+    function curl_post($url,$str_params = ''){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);                                    // 设置访问链接
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);                         // 是否返回信息
+        curl_setopt($ch, CURLOPT_HEADER, 'Content-type: application/json');     // 设置返回信息数据格式 application/json
+        curl_setopt($ch, CURLOPT_POST, TRUE);                                   // 设置post方式提交
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $str_params);                      // POST提交数据
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);                                   // 响应时间 5s
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return $result;
+    }
+}
+
+if(!function_exists('curl_get')){
+    /**
+     * curl_get
+     * @author aaron
+     * @param string $url
+     * @param string $str_params
+     */
+    function curl_get($url,$str_params = ''){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);                                    // 设置访问链接
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);                         // 是否返回信息
+        curl_setopt($ch, CURLOPT_HEADER, 'Content-type: application/json');     // 设置返回信息数据格式 application/json
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);                                   // 响应时间 5s
+        $http_head = mb_substr($url,0,5);
+        if($http_head == 'https'){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);                    // https请求 不验证证书和hosts
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        }
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return $result;
     }
 }

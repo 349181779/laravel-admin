@@ -20,8 +20,7 @@ class BaseFormRequest extends Request {
 	 *
 	 * @return bool
 	 */
-	public function authorize()
-	{
+	public function authorize(){
 		return true;
 	}
 
@@ -36,5 +35,24 @@ class BaseFormRequest extends Request {
 			//
 		];
 	}
+
+    /**
+     * 重写validate 响应
+     *
+     * @param array $errors
+     * @return \Symfony\Component\HttpFoundation\Response|void
+     */
+    public function response(array $errors){
+
+        $errors = array_values($errors);
+
+        die(json_encode([
+            'code'  => 422,
+            'msg'   => $errors[0][0],
+            'data'  => [],
+            'target'=> false,
+            'href'  => ''
+        ]));
+    }
 
 }

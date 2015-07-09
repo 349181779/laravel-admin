@@ -23,59 +23,97 @@
 
           </div>
 
-           <table class="table-striped footable-res footable metro-blue" data-page-size="6">
-            <thead>
-              <tr>
-                <?php if(!empty($schemas) && is_array($schemas)):?>
-                <?php foreach($schemas as $k=>$schema):?>
-                <?php if($schema['type'] != 3):?>
-                <th><?php echo $schema['comment'];?></th>
-                <?php endif;?>
-                <?php endforeach;?>
-                <th>操作</th>
-                <?php endif;?>
-              </tr>
-            </thead>
-            <tbody>
-              <?php if(!empty($data['data'])):?>
-              <?php foreach($data['data'] as $list):?>
-              <tr>
-                <?php if(!empty($schemas) && is_array($schemas)):?>
-                    <?php foreach($schemas as $k=>$schema):?>
-                        <?php if($schema['type'] == 1):?>
-                            <td class="<?php echo $schema['class'];?>"><?php echo $list->$k;?></td>
-                        <?php elseif($schema['type'] == 2):?>
-                            <td class="<?php echo $schema['class'];?>"><img src="<?php echo $list->$k;?>" alt=""/></td>
-                        <?php elseif($schema['type'] == 3):?>
-                            <?php $button .= '<a href="'.url($schema['url']).'">'.$schema['comment'].'</a>';?>
-                            <?php $button .= '<span>|</span>';?>
+          <div class="container-fluid">
+
+                <!-- 工具栏 -->
+                <div id="toolbar" class="form-inline">
+
+                    <!-- 搜索表单 -->
+                    <form class="form-inline search_form" onsubmit="return false;">
+                        <?php if(!empty($search_schema)):?>
+                            <?php foreach($search_schema as $schema):?>
+
+                                <?php if($schema['type'] == 'text'):?>
+                                        {{-- 文本框 --}}
+                                      <div class="form-group">
+                                        <label for="<?php echo $schema['name'] ;?>"><?php echo $schema['title'] ;?>：</label>
+                                        <input type="<?php echo $schema['type'] ;?>" name="<?php echo $schema['name'] ;?>" class="form-control <?php echo $schema['class'] ;?>" >
+                                      </div>
+
+                                <?php elseif($schema['type'] == 'date'):?>
+                                 {{-- 日期框 --}}
+                                   <div class="form-group">
+                                     <label for="<?php echo $schema['name'] ;?>"><?php echo $schema['title'] ;?>：</label>
+                                     <input type="text" name="<?php echo $schema['name'] ;?>" class="form-control <?php echo $schema['class'] ;?>" onclick="laydate()" >
+                                  </div>
+
+                                <?php elseif($schema['type'] == 'select'):?>
+                                {{-- 下拉选择框 --}}
+                                    <div class="form-group">
+                                        <label for="<?php echo $schema['name'] ;?>"><?php echo $schema['title'] ;?>：</label>
+                                        <select name="<?php echo $schema['name'] ;?>" >
+                                            <?php if($schema['option']):?>
+                                                <option value="">请选择</option>
+                                                <?php foreach($schema['option'] as $k=>$option):?>
+                                                        <option value="<?php echo $k;?>" <?php if($schema['option_value_schema'] == $k){echo "selected='selected'";}?>  >
+                                                            <?php echo $option;?>
+                                                        </option>
+                                                <?php endforeach;?>
+                                            <?php endif;?>
+                                        </select>
+                                    </div>
+
+                                <?php endif;?>
+
+                            <?php endforeach;?>
                         <?php endif;?>
-                        <?php endforeach;?>
-                        <td><?php if($bottons):?>
-                          <?php $button = '';?>
-                          <?php foreach($bottons as $v):?>
-                          <?php if(!empty($v['placeholder'])):?>
-                          <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'/'.$list->id.'">'.$v['name'].'</a>';?>
-                          <?php $button .= '<span>|</span>';?>
-                          <?php else:?>
-                          <?php $button .= '<a target="_blank" class="'.$v['class'].'" href="'.$v['url'].'">'.$v['name'].'</a>';?>
-                          <?php $button .= '<span>|</span>';?>
+                      <button type="submit" class="btn btn-default search_btn">搜索</button>
+                    </form>
+                    <!-- 搜索表单 -->
+
+                </div>
+                <!-- 工具栏 -->
+
+                <table id="table"
+                         data-toolbar="#toolbar"
+                         data-toolbar-align="left"
+                         data-search="true"
+                         data-show-refresh="true"
+                         data-show-toggle="true"
+                         data-show-columns="true"
+                         data-show-export="true"
+                         data-detail-view="true"
+                         data-detail-formatter="detailFormatter"
+                         data-minimum-count-columns="2"
+                         data-show-pagination-switch="true"
+                         data-pagination="true"
+                         data-page-list="[10, 25, 50, 100, ALL]"
+                         data-show-footer="true"
+                         data-side-pagination="server"
+                         data-url="<?php echo $get_json_url ;?>"
+                         data-query-params="queryParams">
+
+
+                 <thead>
+                      <tr>
+                          <?php if(!empty($schemas) && is_array($schemas)):?>
+                          <?php foreach($schemas as $k=>$schema):?>
+                          <?php if($schema['type'] != 3):?>
+                          <th
+                            data-field="<?php echo $k;?>"
+                            data-sortable=true
+                            data-class="<?php echo $schema['class'];?>"
+                            ><?php echo $schema['comment'];?></th>
                           <?php endif;?>
-                      <?php endforeach;?>
-                      <?php echo $button;?>
-                  <?php endif;?></td>
-                <?php endif;?>
-              </tr>
-              <?php endforeach;?>
-              <?php endif;?>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="<?php echo count($schemas);?>"><?php echo  $data['pages'] ;?>
-                  <div class="pagination pagination-centered"></div></td>
-              </tr>
-            </tfoot>
-          </table>
+                          <?php endforeach;?>
+                          <?php endif;?>
+                       </tr>
+                  </thead>
+
+            </table>
+              </div>
+
+
         </div>
       </div>
     </div>

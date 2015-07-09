@@ -18,7 +18,8 @@
         "dingo/api": "*",
         "zgldh/qiniu-laravel-storage": "dev-master",
         "stevenyangecho/laravel-u-editor": "~1.1",
-        "ender/laravel-ueditor":"0.8.*"
+        "ender/laravel-ueditor":"0.8.*",
+        "rcrowe/turbo": "0.2.*"
 
 	},
 	"require-dev": {

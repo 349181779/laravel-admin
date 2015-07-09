@@ -24,6 +24,10 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
+//        die(json_encode([
+//            'code'=>$e->getCode(),
+//            'msg'=>'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
+//        ]));
         return parent::report($e);
 	}
 

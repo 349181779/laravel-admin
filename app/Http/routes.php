@@ -26,9 +26,9 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     //登录
     Route::controller('login', 'LoginController');
     //首页
-    Route::controller('home', 'AdminHomeController');
+    Route::controller('home', 'HomeController');
     //权限
-    Route::controller('role', 'AdminRoleController');
+    Route::controller('role', 'RoleController');
     //后台菜单
     Route::controller('menu', 'MenuController');
     //后台用户
@@ -51,4 +51,6 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('pinyin', 'PinyinController');
     //上传组件
     Route::controller('upload', 'UploadController');
+    //swoole
+    Route::controller('swoole', 'SwooleController');
 });

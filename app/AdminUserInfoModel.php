@@ -10,54 +10,33 @@
 
 namespace App;
 
-use DB;
-
-use Lang;
-
-use Illuminate\Database\Eloquent\Model;
-
-class AdminUserInfoModel extends Model {
+class AdminUserInfoModel extends BaseModel {
 
     protected $table    = 'user_info';//定义表名
-    protected $guarded  = ['*'];//阻挡所有属性被批量赋值
+    protected $guarded  = ['id','open_id', 'is_validate_email', 'is_validate_mobile'];//阻挡所有属性被批量赋值
 
     /**
-     * 获得用户列表
-     *
-     * @return mixed
-     */
-    public static function getUser(){
-        $data   =   DB::table('user_info')->orderBy('id', 'DESC')->paginate(config('page.page_limit'));
-        $pages  = $data->render();
-        $data   = $data->toArray();
-        return array(
-            'data' => self::mergeData($data['data']),
-            'pages'=> $pages
-        );
-    }
-
-    /**
-     * 组合角色数据
+     * 组合会员数据
      *
      * @param $roles
      * @return mixed
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public static function mergeData($roles){
-        if(!empty($roles)){
-            foreach($roles as $role){
-                switch($role->status){
-                    case 1:
-                        $role->status = Lang::get('response.on');
-                        break;
-                    case 2:
-                        $role->status = Lang::get('response.off');
-                        break;
-                }
+    public static function mergeData($data){
+        if(!empty($data)){
+            foreach($data as $v){
+                //组合性别
+                $v->sex     = self::mergeUserSex($v->sex);
+                //组合状态
+                $v->status  = self::mergeStatus($v->status);
+                //组合图片
+                $v->face    = '<img src="'.config('config.file_url').$v->face.'" width="100" height="100" />';
+                //组合方法
+                $v->handle  = '<a href="'.url('admin/userinfo/edit', [$v->id]).'" target="_blank" >编辑</a>';
 
             }
         }
-        return $roles;
+        return $data;
     }
 
 }

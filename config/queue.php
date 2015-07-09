@@ -89,4 +89,11 @@ return [
 		'database' => 'mysql', 'table' => 'failed_jobs',
 	],
 
+    /**
+     * 队列名称
+     *
+     */
+    'queue_name' => [
+        'qiniu_persistentFop' => 'qiniu_persistentFop',//七牛查看持久化数据处理的状态 队列名称
+    ]
 ];

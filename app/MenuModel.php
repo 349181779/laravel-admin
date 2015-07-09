@@ -24,7 +24,7 @@ use Illuminate\Pagination\Paginator;
 class MenuModel extends Model {
 
     protected $table    = 'menu';//定义表名
-    protected $guarded  = ['*'];//阻挡所有属性被批量赋值
+    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 获取单个菜单
@@ -45,7 +45,9 @@ class MenuModel extends Model {
     public static function getAllForSchemaOption(){
         //加载函数库
         load_func('common');
-        return merge_tree_node(obj_to_array(DB::table('menu')->get()));
+        $data = obj_to_array(DB::table('menu')->get());
+        array_unshift($data, ['id' => '0', 'menu_name' => '顶级分类']);
+        return merge_tree_node($data);
     }
 
     /**

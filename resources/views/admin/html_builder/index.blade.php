@@ -7,12 +7,11 @@
 <!-- Le styles -->
 @section('header')
     	@include('admin.block.header')
-        <?php echo Html::style('/assets/js/footable/css/footable.core.css?v=2-0-1');?>
-        <?php echo Html::style('/assets/js/footable/css/footable.standalone.css');?>
-        <?php echo Html::style('/assets/js/footable/css/footable-demos.css');?>
-        <?php echo Html::style('/assets/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css');?>
-        <?php echo Html::style('/assets/js/dataTable/css/datatables.responsive.css');?>
+        <?php echo Html::style('/bootstrap-table/src/bootstrap-table.css');?>
 @show
+<style>
+.fixed-table-toolbar .search{padding:0;width: auto;}
+</style>
 </head>
 
 <body>
@@ -92,55 +91,59 @@
 
 <!-- GAGE --> 
 <script type="text/javascript" src="/assets/js/toggle_close.js"></script> 
-<script src="/assets/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script> 
-<script src="/assets/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script> 
-<script src="/assets/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script> 
-<script src="/assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script> 
-<script src="/assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script> 
-<script type="text/javascript">
-    $(function() {
-        $('.footable-res').footable();
-    });
-    </script> 
-<script type="text/javascript">
-    $(function() {
-        $('#footable-res2').footable().bind('footable_filtering', function(e) {
-            var selected = $('.filter-status').find(':selected').text();
-            if (selected && selected.length > 0) {
-                e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
-                e.clear = !e.filter;
-            }
-        });
+<script src="/bootstrap-table/src/bootstrap-table.js"></script>
+    <script src="/bootstrap-table/src/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
+    <script src="/bootstrap-table/src/extensions/export/tableExport.js"></script>
+    <script src="/bootstrap-table/src/extensions/editable/bootstrap-table-editable.js"></script>
+    <script src="/bootstrap-table/src/extensions/editable/bootstrap-editable.js"></script>
+	<script>
 
-        $('.clear-filter').click(function(e) {
-            e.preventDefault();
-            $('.filter-status').val('');
-            $('table.demo').trigger('footable_clear_filter');
-        });
+    /**
+     * 弹出上传提示框
+     */
+	function showUploadDialog(){
+       layer.open({
+            type: 2,
+            content: "<?php echo url('tools/upload/uploadview');?>" //这里content是一个普通的String
+       });
+    }
 
-        $('.filter-status').change(function(e) {
-            e.preventDefault();
-            $('table.demo').trigger('footable_filter', {
-                filter: $('#filter').val()
-            });
-        });
+   /**
+    *   初始化表格
+    *
+    */
+    $(function(){
+        $('#table').bootstrapTable()
+    })
 
-        $('.filter-api').click(function(e) {
-            e.preventDefault();
+    /**
+     * 组合query params
+     *
+     * @param params
+     * @returns {*}
+     */
+    function queryParams(params){
+        var seach_map = {};
+        <?php if(!empty($search_schema)):?>
+            <?php foreach($search_schema as $schema):?>
+                 <?php if($schema['type'] == 'text'):?>
+                    //文本框
+                    seach_map.<?php echo $schema['name'] ;?> = $('input[name=<?php echo $schema['name'] ;?>]').val();
+                 <?php elseif($schema['type'] == 'date'):?>
+                    //时间
+                    seach_map.<?php echo $schema['name'] ;?> = $('input[name=<?php echo $schema['name'] ;?>]').val();
+                 <?php elseif($schema['type'] == 'select'):?>
+                    //下拉列表框
+                    seach_map.<?php echo $schema['name'] ;?> = $('select[name=<?php echo $schema['name'] ;?>]').val();
+                 <?php endif;?>
 
-            //get the footable filter object
-            var footableFilter = $('table').data('footable-filter');
-
-            alert('about to filter table by "tech"');
-            //filter by 'tech'
-            footableFilter.filter('tech');
-
-            //clear the filter
-            if (confirm('clear filter now?')) {
-                footableFilter.clearFilter();
-            }
-        });
-    });
-    </script>
+            <?php endforeach;?>
+        <?php endif;?>
+        params.search = $.param(seach_map)
+        console.log(params);
+        return params;
+    }
+	</script>
 </body>
 </html>
