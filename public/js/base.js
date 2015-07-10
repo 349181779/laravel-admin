@@ -3,6 +3,9 @@
  */
 
 $(function(){
+    /**
+     * 初始化弹出框属性
+     */
     layer.config({
         skin:'layer-ext-moon',
         extend:'./skin/mono/style.css',
@@ -14,22 +17,75 @@ $(function(){
         area:['1024px', '700px'],
         scrollbar:true//是否禁用浏览器滚动条
     });
+
+    /**
+     * 初始化 消息提示框信息
+     * @type {{closeButton: boolean, debug: boolean, positionClass: string, onclick: null, showDuration: string, hideDuration: string, timeOut: string, extendedTimeOut: string, showEasing: string, hideEasing: string, showMethod: string, hideMethod: string}}
+     */
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "1500",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    /**
+     * ajax-form
+     * 通过ajax提交表单，通过oneplus提示消息
+     * 示例：<form class="ajax-form" method="post" action="xxx">
+     */
+    $(document).on('submit', 'form.ajax-form', function (e) {
+        //取消默认动作，防止表单两次提交
+        e.preventDefault();
+
+        //禁用提交按钮，防止重复提交
+        var form = $(this);
+        $('[type=submit]', form).addClass('disabled');
+
+        //获取提交地址，方式
+        var action = $(this).attr('action');
+        var method = $(this).attr('method');
+
+        //检测提交地址
+        if (!action) {
+            return false;
+        }
+
+        //默认提交方式为get
+        if (!method) {
+            method = 'get';
+        }
+
+        //获取表单内容
+        var formContent = $(this).serialize();
+
+        //发送提交请求
+        var callable;
+        if (method == 'post') {
+            callable = $.post;
+        } else {
+            callable = $.get;
+        }
+        console.log(action);
+        callable(action, formContent, function (data) {
+            parseResponseJson(data);
+            $('[type=submit]', form).removeClass('disabled');
+        });
+
+        //返回
+        return false;
+    });
 })
 
-toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "positionClass": "toast-top-right",
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "1000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-}
+
 
 
 /**
@@ -92,7 +148,7 @@ function showChoseImageDialog(obj){
 
         },
         cancel: function(layero, index){
-            layer.closeAll(type)
+            layer.closeAll()
         }
     });
 }

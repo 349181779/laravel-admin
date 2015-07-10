@@ -18,22 +18,22 @@ $.fn.extend({
 
     _enableAria: function (enable)
     {
-        return (enable == null || enable) ? 
-            this.removeClass("disabled")._aria("disabled", "false") : 
+        return (enable == null || enable) ?
+            this.removeClass("disabled")._aria("disabled", "false") :
             this.addClass("disabled")._aria("disabled", "true");
     },
 
     _showAria: function (show)
     {
-        return (show == null || show) ? 
-            this.show()._aria("hidden", "false") : 
+        return (show == null || show) ?
+            this.show()._aria("hidden", "false") :
             this.hide()._aria("hidden", "true");
     },
 
     _selectAria: function (select)
     {
-        return (select == null || select) ? 
-            this.addClass("current")._aria("selected", "true") : 
+        return (select == null || select) ?
+            this.addClass("current")._aria("selected", "true") :
             this.removeClass("current")._aria("selected", "false");
     },
 

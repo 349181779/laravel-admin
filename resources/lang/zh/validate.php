@@ -33,4 +33,7 @@ return [
     //后台菜单
     'menu_name_require' => '菜单名称不能为空',
 
+    //后台文章分类
+    'cat_name_require'  => '文章分类名称不能为空',
+
 ];

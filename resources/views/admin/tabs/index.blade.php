@@ -1,3 +1,5 @@
+{{var_dump($schemas)}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +9,9 @@
 <!-- Le styles -->
 @section('header')
     	@include('admin.block.header')
-    	@include('UEditor::head');
-    	@parent
-<link href="/assets/js/iCheck/flat/all.css" rel="stylesheet">
+    	<?php echo Html::style('/assets/js/wizard/css/jquery.steps.css');?>
+    	<?php echo Html::style('/assets/js/wizard/jquery.stepy.css');?>
+        <?php echo Html::style('/assets/js/tabs/acc-wizard.min.css');?>
 @show
 </head>
 
@@ -38,7 +40,7 @@
     
     <!--TITLE --> 
     @section('main_title')
-    @parent
+    @include('admin.block.main_title')
     @show 
     <!--/ TITLE --> 
     
@@ -59,26 +61,7 @@
     
     <!-- main_content --> 
     @section('main_content')
-    <div class="content-wrap">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="nest" id="elementClose">
-
-            <div class="title-alt">
-              <h6><?php echo $title; ?></h6>
-              <div class="titleClose"> <a class="gone" href="#elementClose"> <span class="entypo-cancel"></span> </a> </div>
-              <div class="titleToggle"> <a class="nav-toggle-alt" href="#element"> <span class="entypo-up-open"></span> </a> </div>
-            </div>
-
-            <div class="body-nest" id="element">
-              <div class="panel-body">
-              @include('admin.html_builder.edit_form')
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    @include('admin.config.tab')
     @show 
     <!-- END OF main_content --> 
     
@@ -104,46 +87,44 @@
 <!-- MAIN EFFECT --> 
 @section('js')
 	@include('admin.block.footer_js')
-	@parent 
-    <script type="text/javascript" src="/assets/js/iCheck/jquery.icheck.js"></script>
-    <script src="/jquery.form-3.50/jquery.form-3.50.min.js"></script>
-    <script src="/Validform-v5.3.2/Validform_v5.3.2.js"></script>
+	<script src="/assets/js/wizard/lib/jquery.cookie-1.3.1.js"></script>
+	<script src="/assets/js/wizard/build/jquery.steps.js"></script>
+    <script src="/assets/js/wizard/jquery.stepy.js"></script>
+	<script>
+        $(function() {
+            $("#wizard").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "slideLeft"
+            });
 
-<!--  PLUGIN --> 
-<script>
+            $("#wizard_vertical").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                stepsOrientation: "vertical"
+            });
 
+            $("#wizard-tab").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "none",
+                enableFinishButton: false,
+                enablePagination: false,
+                enableAllSteps: true,
+                titleTemplate: "#title#",
+                cssClass: "tabcontrol"
+            });
 
-    $(function(){
+            //stepy
+            $('#transition-duration-demo').stepy({
+                duration: 400,
+                transition: 'fade'
+            });
 
-        //重置radio
-        $('.skin-flat input').iCheck({
-            checkboxClass: 'icheckbox_flat-red',
-            radioClass: 'iradio_flat-red'
         });
-        //重置radio
-
-        //验证表单
-        $("form").Validform({
-            tiptype:function(msg, o, cssctl){
-                switch(o.type){
-                    case 3:
-                        o.obj.parents('.form-group').find('.alert').removeClass('hide').find('.err_message').text(msg);
-                        break;
-                    case 2:
-                        o.obj.parents('.form-group').find('.alert').addClass('hide').find('.err_message').text('');
-                        break;
-                }
-            }
-
-        });
-        //验证表单
-
-
-
-    });
-    </script> 
+        </script>
 @show 
 <!-- /MAIN EFFECT -->
-
 </body>
 </html>

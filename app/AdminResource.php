@@ -57,6 +57,10 @@ class AdminResource extends BaseModel {
         switch($file_type){
             case 1:
                 return '<img src="'.self::$url.$file_name.'" data-src="'.$file_name.'" style="width:100px;height:100px;" onclick="choseImage(this)" />';
+            case 2:
+                return '<span class="entypo-note"></span>';
+            case 3:
+                return '<img src="/images/video.png" data-src="'.$file_name.'" style="width:100px;height:100px;" onclick="choseImage(this)" />';
         }
     }
 }

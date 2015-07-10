@@ -24,4 +24,5 @@ return [
     'sex_1' => '男',
     'sex_2' => '女',
     'sex_3' => '未知',
+    'top_classification' => '顶级分类',
 ];

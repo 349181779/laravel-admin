@@ -60,7 +60,7 @@
     
     <!-- main_content --> 
     @section('main_content')
-    @include('admin.html_builder.list_table')
+    @include('admin.html_builder.list_form')
     @show 
     <!-- END OF main_content --> 
     
@@ -90,8 +90,8 @@
 <!-- /MAIN EFFECT --> 
 
 <!-- GAGE --> 
-<script type="text/javascript" src="/assets/js/toggle_close.js"></script> 
-<script src="/bootstrap-table/src/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/assets/js/toggle_close.js"></script>
+    <script src="/bootstrap-table/src/bootstrap-table.js"></script>
     <script src="/bootstrap-table/src/locale/bootstrap-table-zh-CN.js"></script>
     <script src="/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
     <script src="/bootstrap-table/src/extensions/export/tableExport.js"></script>
@@ -124,24 +124,7 @@
      * @returns {*}
      */
     function queryParams(params){
-        var seach_map = {};
-        <?php if(!empty($search_schema)):?>
-            <?php foreach($search_schema as $schema):?>
-                 <?php if($schema['type'] == 'text'):?>
-                    //文本框
-                    seach_map.<?php echo $schema['name'] ;?> = $('input[name=<?php echo $schema['name'] ;?>]').val();
-                 <?php elseif($schema['type'] == 'date'):?>
-                    //时间
-                    seach_map.<?php echo $schema['name'] ;?> = $('input[name=<?php echo $schema['name'] ;?>]').val();
-                 <?php elseif($schema['type'] == 'select'):?>
-                    //下拉列表框
-                    seach_map.<?php echo $schema['name'] ;?> = $('select[name=<?php echo $schema['name'] ;?>]').val();
-                 <?php endif;?>
-
-            <?php endforeach;?>
-        <?php endif;?>
-        params.search = $.param(seach_map)
-        console.log(params);
+        params.search = $('.search_form').serialize()
         return params;
     }
 	</script>

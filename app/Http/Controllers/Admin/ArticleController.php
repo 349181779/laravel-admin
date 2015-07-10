@@ -1,9 +1,9 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-06-28
+// | date: 2015-07-10
 // +----------------------------------------------------------------------
-// | AdmininfoController.php: 后端用户控制器
+// | ArticleController.php: 后端文章控制器
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
@@ -22,7 +22,7 @@ use App\AdminInfoModel;
 
 use App\AdminRoleModel;
 
-class AdmininfoController extends BaseController {
+class ArticleController extends BaseController {
 
     protected $html_builder;
 

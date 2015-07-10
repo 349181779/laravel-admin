@@ -72,15 +72,7 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
 
-                                    <div class="btn-group pull-right" style="margin-right:10px;">
-                                        <button type="button" class="btn">总共： 11条</button>
-
-
-                                    </div>
-
-                                </div>
 
 
                             </div>
@@ -90,15 +82,21 @@
                         <div id="content-mail">
 
                         <div class="container-fluid">
-                              <div id="toolbar" class="form-inline">
+                            <div id="toolbar" class="form-inline">
 
-                            <button id="remove" class="btn btn-danger" disabled> <i class="glyphicon glyphicon-remove"></i> Delete </button>
-                            <div class="form-group" style="display: inline-block;">
-                                    <label for="exampleInputName2">文件类型</label>
-                                    <select name="" id="" class="form-control">
-                                          <option value="">图片</option>
-                                    </select>
-                            </div>
+                            <!-- 搜索表单 -->
+                            <form class="form-inline search_form" onsubmit="return false;">
+
+                                <div class="form-group">
+                                    <label for="file_name">文件名称：</label>
+                                    <input type="text" name="file_name" class="form-control" >
+                                </div>
+
+
+                              <button type="submit" class="btn btn-default search_btn">搜索</button>
+                            </form>
+                            <!-- 搜索表单 -->
+
                           </div>
                               <table id="table"
                                        data-toolbar="#toolbar"
@@ -116,8 +114,22 @@
                                        data-show-footer="true"
                                        data-side-pagination="server"
                                        data-url="<?php echo url('admin/resource/search') ;?>"
-                                       data-response-handler="responseHandler">
-                          </table>
+                                       data-query-params="queryParams"
+                                       >
+                                <thead>
+                                      <tr>
+                                          <th data-field="id">id</th>
+                                          <th data-field="file_name">文件名称</th>
+                                          <th data-field="file_type">文件类型</th>
+                                          <th data-field="status">文件状态</th>
+                                          <th data-field="sort">排序</th>
+                                          <th data-field="created_at">创建时间</th>
+                                          <th data-field="handle">操作</th>
+
+                                       </tr>
+                                  </thead>
+
+                            </table>
                             </div>
 
                         </div>

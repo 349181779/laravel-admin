@@ -95,6 +95,7 @@ class AdminInfoModel extends BaseModel {
         return [
             'data' => self::mergeData(
                 self::multiwhere($map)->
+                select('r.role_name', 'admin_info.*')->
                 join('role as r', 'admin_info.role_id', '=', 'r.id')->
                 orderBy('admin_info.'.$sort, $order)->
                 skip($offset)->

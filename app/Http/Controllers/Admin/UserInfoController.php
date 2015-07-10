@@ -16,10 +16,6 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use DB;
-
-use Lang;
-
 use App\AdminUserInfoModel;
 
 class UserInfoController extends BaseController {
@@ -128,7 +124,8 @@ class UserInfoController extends BaseController {
                 builderFormSchema('birthday', '生日', 'date')->
                 builderFormSchema('face', '头像', 'image')->
                 builderConfirmBotton('确认', url('admin/userinfo/edit'), 'btn btn-success')->
-                builderEdit(AdminUserInfoModel::find($id));
+                builderEditData(AdminUserInfoModel::find($id))->
+                builderEdit();
     }
 
     /**
@@ -146,7 +143,7 @@ class UserInfoController extends BaseController {
         $Model->save();
 
         //更新成功
-        return $this->response(200, Lang::get('response.update_success'), [], true, url('admin/userinfo/index'));
+        return $this->response(200, trans('response.update_success'), [], true, url('admin/userinfo/index'));
     }
 
     /**
@@ -183,6 +180,6 @@ class UserInfoController extends BaseController {
         //写入数据
         $affected_number = AdminUserInfoModel::create($data);
 
-        return $affected_number->id > 0 ? $this->response(200, Lang::get('response.add_success'), [], true, url('admin/userinfo/index')) : $this->response(400, Lang::get('response.add_error'), [], true);
+        return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/userinfo/index')) : $this->response(400, trans('response.add_error'), [], true);
     }
 }

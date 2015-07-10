@@ -98,7 +98,8 @@ class RoleController extends BaseController {
                 builderFormSchema('role_name', '角色名称')->
                 builderFormSchema('status', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderConfirmBotton('确认', url('admin/role/edit'), 'btn btn-success')->
-                builderEdit(AdminRoleModel::getRoleInfo($id));
+                builderEditData(AdminRoleModel::getRoleInfo($id))->
+                builderEdit();
 	}
 
     /**

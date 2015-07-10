@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+	<title>选择图片</title>
 	<?php echo Html::script('/assets/js/jquery.min.js');?>
 	<?php echo Html::style('/assets/css/bootstrap.css');?>
 	<?php echo Html::style('/bootstrap-table/src/bootstrap-table.css');?>

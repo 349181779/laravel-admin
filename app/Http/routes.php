@@ -37,6 +37,12 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('userinfo', 'UserInfoController');
     //资源
     Route::controller('resource', 'ResourceController');
+    //网站设置
+    Route::controller('config', 'ConfigController');
+    //文章分类
+    Route::controller('article-cat', 'ArticleCatController');
+    //文章
+    Route::controller('article', 'ArticleController');
 });
 
 //Tools

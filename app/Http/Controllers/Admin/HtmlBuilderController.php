@@ -23,16 +23,25 @@ class HtmlBuilderController extends BaseController {
     const SCHAME_STRING = 1;//字符串
     const SCHAME_IMAGE  = 2;//图片
 
-    protected $schemas          = [];//字段
-    protected $title            = '';//网站标题
-    protected $description      = '';//网站描述
-    protected $keywords         = '';//网站关键字
-    protected $bottuns          = [];//按钮
-    protected $form_schema      = [];//form表单字段
-    protected $confirm_button   = '';//确认按钮
-    protected $add_button       = '';//增加按钮
-    protected $json_url         = '';//列表页获得json数据url
-    protected $search_schema    = [];//列表页搜索字段
+    public $schemas             = [];//字段
+    public $title               = '';//网站标题
+    public $description         = '';//网站描述
+    public $keywords            = '';//网站关键字
+    public $search_schema       = [];//列表页搜索字段
+
+    public $bottuns             = [];//按钮
+    public $form_schema         = [];//form表单字段
+    public $confirm_button      = '';//确认按钮
+    public $add_button          = '';//增加按钮
+    public $json_url            = '';//列表页获得json数据url
+    public $edit_data           = [];//编辑页面数据
+
+    public $tab_schema          = [];//选项卡字段
+    public $tab_data            = [];//选项卡数据
+    public $tab_confirm_button  = [];//选项卡确认按钮数据
+
+    public $tree_data           = [];//tree 数据
+
 
 
     /**
@@ -65,15 +74,17 @@ class HtmlBuilderController extends BaseController {
      * @param $type     字段类型
      * @param $class    class名称
      * @param $url      url
+     * @param $is_sort  是否允许排序
      * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderSchema($schame, $comment, $type = self::SCHAME_STRING, $class = '', $url = ''){
+    public function builderSchema($schame, $comment, $type = self::SCHAME_STRING, $class = '', $url = '', $is_sort = 'false'){
         $this->schemas[$schame]  = [
             'comment'   => $comment,
             'type'      => $type,
             'class'     => $class,
             'url'       => $url,
+            'is_sort'   => $is_sort
         ];
         return $this;
     }
@@ -137,18 +148,14 @@ class HtmlBuilderController extends BaseController {
         return $this;
     }
 
-    public function builderSearch(){
-
-    }
-
-	/**
+    /**
 	 * 构建HTML列表页
 	 *
 	 * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function builderList($data = [], $urls = []){
-        return View('admin/html_builder/index',[
+        return View('admin/html_builder/list',[
             'schemas'       => $this->schemas,//字段
             'search_schema' => $this->search_schema,//搜索字段
             'urls'          => $urls,
@@ -210,15 +217,26 @@ class HtmlBuilderController extends BaseController {
     }
 
     /**
+     * 构建编辑页面数据
+     *
+     * @param array $data
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderEditData($data = []){
+        $this->edit_data = $data;
+        return $this;
+    }
+
+    /**
      * 构建HTML编辑页
      *
      * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderEdit($data = [], $urls = []){
+    public function builderEdit($urls = []){
         return View('admin/html_builder/edit',[
             'schemas'           => $this->form_schema,//字段
-            'data'              => $data,
+            'data'              => $this->edit_data,
             'urls'              => $urls,
             'title'             => $this->title,//网站标题
             'description'       => $this->description,//网站描述
@@ -242,6 +260,81 @@ class HtmlBuilderController extends BaseController {
             'description'       => $this->description,//网站描述
             'keywords'          => $this->keywords,//网站关键字
             'confirm_button'    => $this->confirm_button,//确认按钮按钮
+        ]);
+    }
+
+    /**
+     * 构建Tab 字段
+     *
+     * @param $obj
+     * @return $this
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderTabSchema($obj){
+        //写入数据
+        array_push($this->tab_schema, serialize($obj));
+        array_push($this->tab_data, $this->edit_data);
+        array_push($this->tab_confirm_button, $this->confirm_button);
+
+        //销毁数据
+        $this->form_schema      = [];
+        $this->edit_data        = [];
+        $this->confirm_button   = [];
+
+        return $this;
+    }
+
+    /**
+     * 构建Tab HTML页面
+     *
+     * @param array $data
+     * @param array $urls
+     * @return \Illuminate\View\View
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderTabHtml($data = [], $urls = []){
+        return View('admin/html_builder/tab',[
+            'tabs_schemas'      => $this->tab_schema,//tab 字段
+            'tab_data'          => $this->tab_data,//tab 数据
+            'urls'              => $urls,
+            'title'             => $this->title,//网站标题
+            'description'       => $this->description,//网站描述
+            'keywords'          => $this->keywords,//网站关键字
+            'tab_confirm_button'=> $this->tab_confirm_button,//tab 确认按钮按钮
+        ]);
+    }
+
+    /**
+     * 构建tree数据
+     *
+     * @param $data
+     * @return \Illuminate\View\View
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderTreeData($data){
+        //加载函数库
+        load_func('common');
+        $this->tree_data =  merge_tree_node(obj_to_array($data));
+        return $this;
+    }
+
+    /**
+     * 构建 tree 页面
+     *
+     * @param array $data
+     * @param array $urls
+     * @return \Illuminate\View\View
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderTree($data = [], $urls = []){
+        return View('admin/html_builder/tree',[
+            'tree_schemas'      => $this->schemas,//tree 字段
+            'tree_data'         => $this->tree_data,//tree 数据
+            'urls'              => $urls,
+            'title'             => $this->title,//网站标题
+            'description'       => $this->description,//网站描述
+            'keywords'          => $this->keywords,//网站关键字
+            'add_button'        => $this->add_button,//增加按钮
         ]);
     }
 

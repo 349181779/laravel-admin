@@ -10,10 +10,6 @@
     	@include('UEditor::head');
     	@parent
 <link href="/assets/js/iCheck/flat/all.css" rel="stylesheet">
-<link href="/assets/js/iCheck/line/all.css" rel="stylesheet">
-<link href="/assets/js/colorPicker/bootstrap-colorpicker.css" rel="stylesheet">
-<link href="/assets/js/switch/bootstrap-switch.css" rel="stylesheet">
-<link href="/assets/js/idealform/css/jquery.idealforms.css" rel="stylesheet">
 @show
 </head>
 
@@ -91,36 +87,20 @@
 @section('js')
 	@include('admin.block.footer_js')
 	@parent 
-<script type="text/javascript" src="/assets/js/iCheck/jquery.icheck.js"></script> 
-<script type="text/javascript" src="/assets/js/switch/bootstrap-switch.js"></script>
-<script src="http://static.womenshuo.com/jquery.form-3.50.min.js"></script>
-<script src="http://static.womenshuo.com/@/womenshuo/lib/validateValidform_v5.3.2_min.js"></script>
+<script type="text/javascript" src="/assets/js/iCheck/jquery.icheck.js"></script>
+<script src="/jquery.form-3.50/jquery.form-3.50.min.js"></script>
+<script src="/Validform-v5.3.2/Validform_v5.3.2.js"></script>
 
 <!--  PLUGIN --> 
 <script>
     $(document).ready(function() {
 
-        //CHECKBOX PRETTYFY
+        //重置radio
         $('.skin-flat input').iCheck({
             checkboxClass: 'icheckbox_flat-red',
             radioClass: 'iradio_flat-red'
         });
-
-        $('.skin-line input').each(function() {
-            var self = $(this),
-                label = self.next(),
-                label_text = label.text();
-
-            label.remove();
-            self.iCheck({
-                checkboxClass: 'icheckbox_line-blue',
-                radioClass: 'iradio_line-blue',
-                insert: '<div class="icheck_line-icon"></div>' + label_text
-            });
-        });
-
-        //Switch Button
-        $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-small');
+        //重置radio
 
         //验证表单
         $("form").Validform({
@@ -137,16 +117,6 @@
 
         });
         //验证表单
-
-        //提交数据
-        $('form').ajaxForm({
-            url : '<?php echo $confirm_button["url"] ;?>',
-            type : 'post',
-            success : function(data){
-                parseResponseJson(data);
-            }
-        })
-        //提交数据
 
     });
     </script> 

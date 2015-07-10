@@ -48,20 +48,22 @@ class ResourceController extends BaseController {
      */
     public function getSearch(Request $request){
         //接受参数
-        $file_type  = $request->get('type');
-        $file_name  = $request->get('search', '');
+        $search     = $request->get('search');
         $sort       = $request->get('sort', 'id');
         $order      = $request->get('order', 'asc');
         $limit      = $request->get('limit',0);
         $offset     = $request->get('offset', config('config.page_limit'));
 
+        //解析params
+        parse_str($search);
+
         //组合查询条件
         $map = [];
+        if(!empty($file_name)){
+            $map['file_name'] = ['like', '%'.$file_name.'%'];
+        }
         if(!empty($file_type)){
             $map['file_type'] = $file_type;
-        }
-        if(!empty($file_name)){
-            $map['file_name'] = ['like','%'.$file_name.'%'];
         }
 
         $data = AdminResource::search($map, $sort, $order, $limit, $offset);
