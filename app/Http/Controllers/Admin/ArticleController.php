@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\AdminInfoRequest;
 
-use App\AdminInfoModel;
+use App\ArticleModel;
 
 use App\AdminRoleModel;
 
@@ -43,21 +43,22 @@ class ArticleController extends BaseController {
      */
     public function getIndex(){
         return  $this->html_builder->
-                builderTitle('后台用户列表')->
+                builderTitle('后台文章列表')->
                 builderSchema('id', 'id')->
-                builderSchema('email', '登录名')->
-                builderSchema('mobile','手机号码')->
+                builderSchema('title', '文章标题')->
+                builderSchema('cat_name', '所属分类')->
+                builderSchema('admin_name', '作者')->
                 builderSchema('status', '状态')->
-                builderSchema('role_name', '角色')->
+                builderSchema('sort', '排序')->
                 builderSchema('created_at', '创建时间')->
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
-                builderSearchSchema('email', '登录名')->
-                builderSearchSchema('mobile', '手机号码')->
+                builderSearchSchema('title', '文章标题')->
+                builderSearchSchema('cat_name', '所属分类')->
+                builderSearchSchema('admin_name', '作者')->
                 builderSearchSchema($name = 'status', $title = '状态', $type = 'select', $class = '', $option = [1=>'开启', '2'=>'关闭'], $option_value_schema = '0')->
-                builderSearchSchema('role_name', '角色')->
-                builderAddBotton('增加后台用户', url('admin/admininfo/add'))->
-                builderJsonDataUrl(url('admin/admininfo/search'))->
+                builderAddBotton('增加文章', url('admin/article/add'))->
+                builderJsonDataUrl(url('admin/article/search'))->
                 builderList();
     }
 
@@ -81,7 +82,7 @@ class ArticleController extends BaseController {
         //组合查询条件
         $map = [];
         if(!empty($email)){
-            $map['admin_info.email'] = ['like','%'.$email.'%'];
+            $map['article.email'] = ['like','%'.$email.'%'];
         }
         if(!empty($mobile)){
             $map['admin_info.mobile'] = ['like','%'.$mobile.'%'];
@@ -93,7 +94,7 @@ class ArticleController extends BaseController {
             $map['admin_info.status'] = $status;
         }
 
-        $data = AdminInfoModel::search($map, $sort, $order, $limit, $offset);
+        $data = ArticleModel::search($map, $sort, $order, $limit, $offset);
 
         echo json_encode([
             'total' => $data['count'],
@@ -119,7 +120,7 @@ class ArticleController extends BaseController {
                 builderFormSchema('face', '头像', 'image')->
                 builderFormSchema('role_id', '所属角色', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', AdminRoleModel::getRoleList(), 'role_name')->
                 builderConfirmBotton('确认', url('admin/admininfo/edit'), 'btn btn-success')->
-                builderEditData(AdminInfoModel::findAdminInfo($id))->
+                builderEditData(AdminInfoModel::findOrFail($id))->
                 builderEdit();
     }
 

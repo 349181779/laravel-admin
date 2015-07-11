@@ -127,16 +127,6 @@ class AdminInfoModel extends BaseModel {
         return $data;
     }
 
-    /**
-     * 获取后台用户详细信息
-     *
-     * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
-     */
-    public static function findAdminInfo($id){
-        return DB::table('admin_info')->where('id', '=', $id)->first();
-    }
-
 
 
 }

@@ -119,7 +119,7 @@ class AdmininfoController extends BaseController {
                 builderFormSchema('face', '头像', 'image')->
                 builderFormSchema('role_id', '所属角色', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', AdminRoleModel::getRoleList(), 'role_name')->
                 builderConfirmBotton('确认', url('admin/admininfo/edit'), 'btn btn-success')->
-                builderEditData(AdminInfoModel::findAdminInfo($id))->
+                builderEditData(AdminInfoModel::findOrFail($id))->
                 builderEdit();
     }
 

@@ -59,7 +59,7 @@ class MenuController extends BaseController {
      * @param  int  $id
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function getMenuedit($id){
+    public function getEdit($id){
         return  $this->html_builder->
                 builderTitle('编辑菜单')->
                 builderFormSchema('id', 'id', 'hidden')->
@@ -69,7 +69,7 @@ class MenuController extends BaseController {
                 builderFormSchema('icon', '菜单icon')->
                 builderFormSchema('url', '菜单url')->
                 builderFormSchema('sort', '菜单排序')->
-                builderConfirmBotton('确认', url('admin/menu/menuupdate'), 'btn btn-success')->
+                builderConfirmBotton('确认', url('admin/menu/edit'), 'btn btn-success')->
                 builderEditData(MenuModel::find($id))->
                 builderEdit();
     }
@@ -79,7 +79,7 @@ class MenuController extends BaseController {
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postMenuupdate(MenuRequest $request){
+    public function postEdit(MenuRequest $request){
         $Model = MenuModel::findOrFail($request->get('id'));
         $Model->update($request->all());
         //更新成功
@@ -92,7 +92,7 @@ class MenuController extends BaseController {
      * @param  int  $id
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function getMenuadd(){
+    public function getAdd(){
         return  $this->html_builder->
                 builderTitle('增加菜单')->
                 builderFormSchema('menu_name', '菜单名称')->
@@ -101,7 +101,7 @@ class MenuController extends BaseController {
                 builderFormSchema('icon', '菜单icon')->
                 builderFormSchema('url', '菜单url')->
                 builderFormSchema('sort', '菜单排序', 'text', 255)->
-                builderConfirmBotton('确认', url('admin/menu/menuadd'), 'btn btn-success')->
+                builderConfirmBotton('确认', url('admin/menu/add'), 'btn btn-success')->
                 builderAdd();
     }
 
@@ -110,7 +110,7 @@ class MenuController extends BaseController {
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postMenuadd(MenuRequest $request){
+    public function postAdd(MenuRequest $request){
         $affected_number = MenuModel::create($request->all());
         return $affected_number > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/menu/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/menu/index'));
     }
