@@ -3,14 +3,16 @@
 // +----------------------------------------------------------------------
 // | date: 2015-06-28
 // +----------------------------------------------------------------------
-// | AdminUserInfoModel.php: 后端会员模型
+// | UserInfoModel.php: 后端会员模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App;
+namespace App\Model\Admin;
 
-class AdminUserInfoModel extends BaseModel {
+use App\Model\Admin\BaseModel;
+
+class UserInfoModel extends BaseModel {
 
     protected $table    = 'user_info';//定义表名
     protected $guarded  = ['id','open_id', 'is_validate_email', 'is_validate_mobile'];//阻挡所有属性被批量赋值

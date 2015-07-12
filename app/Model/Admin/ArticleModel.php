@@ -8,13 +8,9 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App;
+namespace App\Model\Admin;
 
-use Session;
-
-use DB;
-
-use Lang;
+use App\Model\Admin\BaseModel;
 
 class ArticleModel extends BaseModel {
 
@@ -35,10 +31,10 @@ class ArticleModel extends BaseModel {
         return [
             'data' => self::mergeData(
                 self::multiwhere($map)->
-                select('c.cat_name', 'a.email', 'admin_info.*')->
+                select('c.cat_name', 'a.email', 'article.*')->
                 join('article_cat as c', 'article.article_cat_id', '=', 'c.id')->
                 join('admin_info as a', 'article.admin_info_id', '=', 'a.id')->
-                orderBy('admin_info.'.$sort, $order)->
+                orderBy('article.'.$sort, $order)->
                 skip($offset)->
                 take($limit)->
                 get()

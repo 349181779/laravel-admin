@@ -16,9 +16,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\AdminInfoModel as AdminInfo;
-
-use Illuminate\Support\Facades\Session;
+use App\Model\Admin\AdminInfoModel;
 
 class HomeController extends BaseController {
 
@@ -43,7 +41,7 @@ class HomeController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getLogout(){
-        AdminInfo::logout();
+        AdminInfoModel::logout();
         $this->response(200, trans('response.success'), [], true, url('admin/login'));
 	}
 

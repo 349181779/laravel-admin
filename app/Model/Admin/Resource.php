@@ -3,16 +3,16 @@
 // +----------------------------------------------------------------------
 // | date: 2015-07-04
 // +----------------------------------------------------------------------
-// | AdminResource.php: 后端资源模型
+// | Resource.php: 后端资源模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App;
+namespace App\Model\Admin;
 
-use DB;
+use App\Model\Admin\BaseModel;
 
-class AdminResource extends BaseModel {
+class Resource extends BaseModel {
 
     protected $table    = 'resource';//定义表名
     protected $guarded  = ['*'];//阻挡所有属性被批量赋值

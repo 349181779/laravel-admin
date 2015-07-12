@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\AdminRoleModel;
+use App\Model\Admin\RoleModel;
 
 use App\Http\Requests\Admin\RoleRequest;
 
@@ -78,7 +78,7 @@ class RoleController extends BaseController {
             $map['status'] = $status;
         }
 
-        $data = AdminRoleModel::search($map, $sort, $order, $limit, $offset);
+        $data = RoleModel::search($map, $sort, $order, $limit, $offset);
         echo json_encode([
             'total' => $data['count'],
             'rows'  => $data['data'],
@@ -98,7 +98,7 @@ class RoleController extends BaseController {
                 builderFormSchema('role_name', '角色名称')->
                 builderFormSchema('status', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderConfirmBotton('确认', url('admin/role/edit'), 'btn btn-success')->
-                builderEditData(AdminRoleModel::getRoleInfo($id))->
+                builderEditData(RoleModel::getRoleInfo($id))->
                 builderEdit();
 	}
 
@@ -108,9 +108,8 @@ class RoleController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(RoleRequest $request){
-        $data   = $request->all();
-        $Model  = AdminRoleModel::findOrFail($data['id']);
-        $Model->fill($data);
+        $Model  = RoleModel::findOrFail($request->get('id'));
+        $Model->fill($request->all());
         $Model->save();
         //更新成功
         return $this->response(200, trans('response.update_success'), [], true, url('admin/role/index'));
@@ -136,7 +135,7 @@ class RoleController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(RoleRequest $request){
-        $affected_number    = AdminRoleModel::create($request->all());
+        $affected_number    = RoleModel::create($request->all());
         return $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/role/index')) : $this->response(400, trans('response.add_error'), [], false);
     }
 

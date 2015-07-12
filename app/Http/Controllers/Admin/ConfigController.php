@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\ConfigModel;
+use App\Model\Admin\ConfigModel;
 
 use DB;
 

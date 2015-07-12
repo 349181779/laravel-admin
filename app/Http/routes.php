@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');
 
 
 Route::get('home', 'HomeController@index');
@@ -43,6 +43,10 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('article-cat', 'ArticleCatController');
     //文章
     Route::controller('article', 'ArticleController');
+    //网址分类
+    Route::controller('site-cat', 'SiteCatController');
+    //网址
+    Route::controller('site', 'SiteController');
 });
 
 //Tools
@@ -59,4 +63,14 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('upload', 'UploadController');
     //swoole
     Route::controller('swoole', 'SwooleController');
+});
+
+//前台
+Route::group(['domain'=> 'www.mylaravel.com', 'namespace' => 'Home'], function(){
+    //首页跳转
+    Route::get('/', function(){
+        return redirect('index');
+    });
+    //首页
+    Route::controller('index', 'IndexController');
 });

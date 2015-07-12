@@ -8,13 +8,15 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App;
+namespace App\Model\Admin;
 
 use Session;
 
 use DB;
 
 use Lang;
+
+use App\Model\Admin\BaseModel;
 
 class AdminInfoModel extends BaseModel {
 

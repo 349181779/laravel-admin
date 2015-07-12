@@ -8,7 +8,9 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App;
+namespace App\Model\Admin;
+
+use App\Model\Admin\BaseModel;
 
 class ConfigModel extends BaseModel {
 

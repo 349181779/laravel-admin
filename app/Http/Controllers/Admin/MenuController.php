@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\MenuModel;
+use App\Model\Admin\MenuModel;
 
 use App\Http\Requests\Admin\MenuRequest;
 

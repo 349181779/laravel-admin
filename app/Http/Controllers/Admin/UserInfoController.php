@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\AdminUserInfoModel;
+use App\Model\Admin\UserInfoModel;
 
 class UserInfoController extends BaseController {
 
@@ -98,7 +98,7 @@ class UserInfoController extends BaseController {
             $map['birthday'] = $birthday;
         }
 
-        $data = AdminUserInfoModel::search($map, $sort, $order, $limit, $offset);
+        $data = UserInfoModel::search($map, $sort, $order, $limit, $offset);
         echo json_encode([
             'total' => $data['count'],
             'rows'  => $data['data'],
@@ -124,7 +124,7 @@ class UserInfoController extends BaseController {
                 builderFormSchema('birthday', '生日', 'date')->
                 builderFormSchema('face', '头像', 'image')->
                 builderConfirmBotton('确认', url('admin/userinfo/edit'), 'btn btn-success')->
-                builderEditData(AdminUserInfoModel::find($id))->
+                builderEditData(UserInfoModel::find($id))->
                 builderEdit();
     }
 
@@ -135,7 +135,7 @@ class UserInfoController extends BaseController {
      */
     public function postEdit(Request $request){
         $data = $request->all();
-        $Model = AdminUserInfoModel::findOrFail($data['id']);
+        $Model = UserInfoModel::findOrFail($data['id']);
         if(empty($Model->password)){
             unset($data['password']);
         }
@@ -178,7 +178,7 @@ class UserInfoController extends BaseController {
         load_func('common');
         $data['password'] = password_encrypt($data['password']);
         //写入数据
-        $affected_number = AdminUserInfoModel::create($data);
+        $affected_number = UserInfoModel::create($data);
 
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/userinfo/index')) : $this->response(400, trans('response.add_error'), [], true);
     }

@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\AdminInfoModel as AdminInfo;
+use App\Model\Admin\AdminInfoModel;
 
 use App\Http\Requests\Admin\LoginFormRequest;
 
@@ -42,7 +42,7 @@ class LoginController extends BaseController {
 	 */
 	public function postLogin(LoginFormRequest $request){
 
-        $login_status = AdminInfo::login($request->all());
+        $login_status = AdminInfoModel::login($request->all());
 
         switch($login_status){
             case 1:

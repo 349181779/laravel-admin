@@ -18,9 +18,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\AdminInfoRequest;
 
-use App\AdminInfoModel;
+use App\Model\Admin\AdminInfoModel;
 
-use App\AdminRoleModel;
+use App\Model\Admin\RoleModel;
 
 class AdmininfoController extends BaseController {
 
@@ -117,7 +117,7 @@ class AdmininfoController extends BaseController {
                 builderFormSchema('mobile', '手机号码', $type = 'text', $default = '',  $notice = '', $class = '', $rule = 'm', $err_message = '', $option = '', $option_value_schema = '')->
                 builderFormSchema('status', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('face', '头像', 'image')->
-                builderFormSchema('role_id', '所属角色', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', AdminRoleModel::getRoleList(), 'role_name')->
+                builderFormSchema('role_id', '所属角色', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', RoleModel::getRoleList(), 'role_name')->
                 builderConfirmBotton('确认', url('admin/admininfo/edit'), 'btn btn-success')->
                 builderEditData(AdminInfoModel::findOrFail($id))->
                 builderEdit();
@@ -155,7 +155,7 @@ class AdmininfoController extends BaseController {
                 builderFormSchema('mobile', '手机号码', $type = 'text', $default = '',  $notice = '', $class = '', $rule = 'm', $err_message = '', $option = '', $option_value_schema = '')->
                 builderFormSchema('status', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('face', '头像', 'image')->
-                builderFormSchema('role_id', '所属角色', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', AdminRoleModel::getRoleList(), 'role_name')->
+                builderFormSchema('role_id', '所属角色', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', RoleModel::getRoleList(), 'role_name')->
                 builderConfirmBotton('确认', url('admin/admininfo/add'), 'btn btn-success')->
                 builderAdd();
     }

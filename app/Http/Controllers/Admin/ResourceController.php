@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\AdminResource;
+use App\Model\Admin\Resource;
 
 class ResourceController extends BaseController {
 
@@ -66,7 +66,7 @@ class ResourceController extends BaseController {
             $map['file_type'] = $file_type;
         }
 
-        $data = AdminResource::search($map, $sort, $order, $limit, $offset);
+        $data = Resource::search($map, $sort, $order, $limit, $offset);
         echo json_encode([
             'total' => $data['count'],
             'rows'  => $data['data'],
@@ -100,7 +100,7 @@ class ResourceController extends BaseController {
             $map['file_name'] = ['like','%'.$file_name.'%'];
         }
 
-        $data = AdminResource::search($map, $sort, $order, $limit, $offset);
+        $data = Resource::search($map, $sort, $order, $limit, $offset);
         echo json_encode([
             'total' => $data['count'],
             'rows'  => $data['data'],

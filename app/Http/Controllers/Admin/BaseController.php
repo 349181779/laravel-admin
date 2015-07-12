@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 
 use Session;
 
-use App\MenuModel;
+use App\Model\Admin\MenuModel;
 
 class BaseController extends \App\Http\Controllers\BaseController {
 

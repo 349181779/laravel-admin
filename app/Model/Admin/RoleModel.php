@@ -3,16 +3,18 @@
 // +----------------------------------------------------------------------
 // | date: 2015-06-06
 // +----------------------------------------------------------------------
-// | AdminRoleModel.php: 后端权限模型
+// | RoleModel.php: 后端权限模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App;
+namespace App\Model\Admin;
+
+use App\Model\Admin\BaseModel;
 
 use DB;
 
-class AdminRoleModel extends BaseModel {
+class RoleModel extends BaseModel {
 
     protected $table    = 'role';//定义表名
     protected $guarded  = ['id'];//阻挡所有属性被批量赋值
