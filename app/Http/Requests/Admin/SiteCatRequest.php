@@ -10,6 +10,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\BaseFormRequest;
+
 class SiteCatRequest extends BaseFormRequest {
 
     /**

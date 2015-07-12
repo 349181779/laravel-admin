@@ -8,7 +8,7 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 

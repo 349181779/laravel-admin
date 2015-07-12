@@ -1,18 +1,18 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-06-22
+// | date: 2015-07-12
 // +----------------------------------------------------------------------
-// | RoleRequest.php: 后端角色表单验证
+// | UserLoginRequest.php: 前端会员登录表单验证
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Home;
 
 use App\Http\Requests\BaseFormRequest;
 
-class RoleRequest extends BaseFormRequest {
+class UserLoginRequest extends BaseFormRequest {
 
     /**
      * 验证错误规则
@@ -21,8 +21,8 @@ class RoleRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'role_name'     => ['required'],
-            'status'        => ['required', 'in:1,2'],
+            'email'     => ['required', 'email'],
+            'password'  => ['required'],
         ];
     }
 
@@ -33,9 +33,9 @@ class RoleRequest extends BaseFormRequest {
      */
     public function messages(){
         return [
-            'role_name.required'    => trans('validate.role_name_require'),
-            'status.required'       => trans('validate.status_require'),
-            'status.in'             => trans('validate.status_error'),
+            'email.required'        => trans('validate.user_name_reuqire'),
+            'email.email'           => trans('validate.email_error'),
+            'password.required'     => trans('validate.password_reuqre'),
         ];
     }
 
