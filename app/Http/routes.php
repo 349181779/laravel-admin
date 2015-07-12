@@ -11,7 +11,10 @@
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
+//首页跳转
+Route::get('/', function(){
+    return redirect()->action('Home\IndexController@getIndex');
+});
 
 
 Route::get('home', 'HomeController@index');
@@ -66,11 +69,7 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
 });
 
 //前台
-Route::group(['domain'=> 'www.mylaravel.com', 'namespace' => 'Home'], function(){
-    //首页跳转
-    Route::get('/', function(){
-        return redirect('index');
-    });
+Route::group(['prefix'=> 'home', 'namespace' => 'Home'], function(){
     //首页
     Route::controller('index', 'IndexController');
 });
