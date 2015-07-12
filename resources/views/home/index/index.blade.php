@@ -9,23 +9,9 @@
 <body>
 <!-- top -->
 <div class="top">
-   <div class="header">
-      <div class="wrap">
-	        <div class="nav">
-			      <a href="">导航</a>
-				  <a href="">新闻</a>
-				  <a href="">查询</a>
-				  <a href="">邮箱</a>
-				  <a href="">搜索</a>
-				  <a href="">应用</a>
-			</div>
-			<div class="set">
-				<span class="shezhi">设置</span>
-				<span>退出</span>
-				<span>登录</span>
-			</div>
-	  </div>
-    </div> 
+    @section('header')
+    @include('home.block.header')
+    @show
 	<div class="tpcont">
 	   <div class="tp_ct wrap">
 	           <div class="logo"><a href=""><img src="/site/images/indexlogo.png" width="278" height="52" /></a></div>

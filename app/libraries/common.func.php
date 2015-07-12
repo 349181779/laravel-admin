@@ -50,6 +50,18 @@ if(!function_exists('is_login')){
     }
 }
 
+/**
+ * 判断前台是否登录
+ *
+ * @return Int
+ * @auther yangyifan <yangyifanphp@gmail.com>
+ */
+if(!function_exists('is_user_login')){
+    function is_user_login(){
+        return hash_user_sign(Session::get('user_info.user_user_data')) == Session::get('user_info.sign') ? Session::get('user_info.id') : false;
+    }
+}
+
 if(!function_exists('merge_tree_node')){
     /**
      * 组合tree节点

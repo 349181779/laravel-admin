@@ -19,7 +19,7 @@ body{background:#f3f3f3;}
 .nav{ width:470px; float:left;}
 .nav a{ margin:0px 15px 0px 15px; line-height:40px; color:#fff; font-size:14px;}
 .set{ width:500px; float:right; text-align:right;}
-.set span{ display:block; float:right; color:#fff; line-height:40px; margin-left:15px;}
+.set span,.set span a{ display:block; float:right; color:#fff; line-height:40px; margin-left:15px;}
 .shezhi{ padding-right:22px; background:url(../images/set.png?__inline) right center no-repeat;}
 .footer{ height:50px;  text-align:center;}
 .footer a{ margin:10px; line-height:50px;}

@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------
 // | date: 2015-07-12
 // +----------------------------------------------------------------------
-// | IndexController.php: 前台首页控制器
+// | QueryController.php: 前台查询控制器
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
@@ -20,7 +20,9 @@ use Illuminate\Http\Request;
 
 use App\Model\Home\IndexModel;
 
-class IndexController extends BaseController {
+use Illuminate\Support\Facades\Session;
+
+class QueryController extends BaseController {
 
 	/**
 	 * 网址首页

@@ -3,14 +3,14 @@
 // +----------------------------------------------------------------------
 // | date: 2015-07-12
 // +----------------------------------------------------------------------
-// | IndexController.php: 前台首页控制器
+// | UserController.php: 前台会员控制器
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Home\BaseController;
 
 use App\Http\Requests;
 
@@ -18,83 +18,78 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Model\Home\IndexModel;
+use App\Model\Home\UserModel;
+
+use App\Http\Requests\Home\UserLoginRequest;
+
+use App\Http\Requests\Home\UserRegisterRequest;
 
 class UserController extends BaseController {
 
 	/**
-	 * 网址首页
+	 * 登录
 	 *
 	 * @return Response
+     * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function getIndex(){
-        return view('Home.Index.index', [
-            'all_site' => IndexModel::getAllSite(),
-        ]);
+	public function getLogin(){
+        return view('home.user.login');
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * 处理登录操作
+     *
+     * @return Response
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postLogin(UserLoginRequest $request){
+        $login_status = UserModel::login($request->only('email', 'password', 'readme'));
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+        switch($login_status){
+            case 1:
+                return $this->response(200, trans('response.success'),[], true, action('Home\IndexController@getIndex'));
+            case -1:
+            case -3:
+                return $this->response(401, trans('response.admin_not_exists'));
+            case -2:
+                return $this->response(401, trans('response.admin_disable'));
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+        }
+        //登陆失败
+        return $this->response(401, trans('response.unauthorized'));
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    /**
+     * 用户退出
+     *
+     * @return Response
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getLogout(){
+        UserModel::logout();
+        $this->response(200, trans('response.success'), [], true, action('Home\IndexController@getIndex'));
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * 注册
+     *
+     * @return Response
+     */
+    public function getRegister(){
+        return view('home.user.register');
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * 处理注册操作
+     *
+     * @return Response
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postRegister(UserRegisterRequest $request){
+        $input = $request->only('email', 'mobile', 'verify', 'password', 'password_confirmation');
+        //写入数据
+        $affected_number = UserModel::register($input);
+        return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, action('Home\UserController@getLogin')) : $this->response(400, trans('response.add_error'), [], true);
+    }
 
 }

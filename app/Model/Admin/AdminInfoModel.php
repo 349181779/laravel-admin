@@ -14,8 +14,6 @@ use Session;
 
 use DB;
 
-use Lang;
-
 use App\Model\Admin\BaseModel;
 
 class AdminInfoModel extends BaseModel {

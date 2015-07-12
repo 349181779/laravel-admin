@@ -45,4 +45,12 @@ return [
     //网址
     'site_name_require' => '网址名称不能为空',
 
+    //会员
+    'user_name_reuqire' => '会员名称不能为空',
+    'password_confirmed_error'  => '两次密码不一致',
+    'password_reuqre'   => '密码不能为空',
+    'verify_reuqire'    => '验证码不能为空',
+    'password_confirmed_require'    => '确认密码不能为空',
+
+
 ];

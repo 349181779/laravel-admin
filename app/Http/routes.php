@@ -72,4 +72,6 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
 Route::group(['prefix'=> 'home', 'namespace' => 'Home'], function(){
     //首页
     Route::controller('index', 'IndexController');
+    //会员
+    Route::controller('user', 'UserController');
 });

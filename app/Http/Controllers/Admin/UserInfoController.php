@@ -136,8 +136,10 @@ class UserInfoController extends BaseController {
     public function postEdit(Request $request){
         $data = $request->all();
         $Model = UserInfoModel::findOrFail($data['id']);
-        if(empty($Model->password)){
-            unset($data['password']);
+        if(empty($data['password'])){
+            $data['password'] =$Model->password;
+        }else{
+            $data['password'] = bcrypt($data['password']);
         }
         $Model->fill($data);
         $Model->save();
@@ -174,9 +176,7 @@ class UserInfoController extends BaseController {
      */
     public function postAdd(Request $request){
         $data = $request->all();
-        //加载函数库
-        load_func('common');
-        $data['password'] = password_encrypt($data['password']);
+        $data['password'] = bcrypt($data['password']);
         //写入数据
         $affected_number = UserInfoModel::create($data);
 

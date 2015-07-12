@@ -19,7 +19,8 @@
         "zgldh/qiniu-laravel-storage": "dev-master",
         "stevenyangecho/laravel-u-editor": "~1.1",
         "ender/laravel-ueditor":"0.8.*",
-        "rcrowe/turbo": "0.2.*"
+        "rcrowe/turbo": "0.2.*",
+        "minimum-stability": "dev"
 
 	},
 	"require-dev": {
