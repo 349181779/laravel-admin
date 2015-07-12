@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------
 // | date: 2015-07-12
 // +----------------------------------------------------------------------
-// | QueryController.php: 前台查询控制器
+// | AppController.php: 前台应用控制器
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
@@ -18,16 +18,16 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class QueryController extends BaseController {
+class AppController extends BaseController {
 
 	/**
-	 * 网址首页
+	 * 应用首页
 	 *
 	 * @return Response
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.query.index');
+        return view('home.app.index');
 	}
 
 }

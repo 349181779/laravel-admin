@@ -74,4 +74,14 @@ Route::group(['prefix'=> 'home', 'namespace' => 'Home'], function(){
     Route::controller('index', 'IndexController');
     //会员
     Route::controller('user', 'UserController');
+    //查询
+    Route::controller('query', 'QueryController');
+    //新闻
+    Route::controller('news', 'NewsController');
+    //邮箱
+    Route::controller('email', 'EmailController');
+    //搜索
+    Route::controller('search', 'SearchController');
+    //应用
+    Route::controller('app', 'AppController');
 });

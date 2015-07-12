@@ -1,12 +1,12 @@
 <div class="header">
       <div class="wrap">
 	        <div class="nav">
-			      <a href="">导航</a>
-				  <a href="">新闻</a>
-				  <a href="">查询</a>
-				  <a href="">邮箱</a>
-				  <a href="">搜索</a>
-				  <a href="">应用</a>
+			      <a href="<?php echo action('Home\IndexController@getIndex') ;?>">导航</a>
+				  <a href="<?php echo action('Home\NewsController@getIndex') ;?>">新闻</a>
+				  <a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a>
+				  <a href="<?php echo action('Home\EmailController@getIndex') ;?>">邮箱</a>
+				  <a href="<?php echo action('Home\SearchController@getIndex') ;?>">搜索</a>
+				  <a href="<?php echo action('Home\AppController@getIndex') ;?>">应用</a>
 			</div>
 			<div class="set">
 			    <?php if(is_user_login() <= 0 ):?>
