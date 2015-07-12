@@ -50,6 +50,10 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('site-cat', 'SiteCatController');
     //网址
     Route::controller('site', 'SiteController');
+    //查询分类
+    Route::controller('query-cat', 'QueryCatController');
+    //查询工具
+    Route::controller('query', 'QueryController');
 });
 
 //Tools

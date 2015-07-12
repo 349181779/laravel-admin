@@ -204,6 +204,10 @@
 #### 下一步计划
 因为还没有使用在真实环境，所以，可以还会有变动，这个只是一个雏形，感兴趣的可以自己先fork一下！谢谢（aligaduo）
 
+#### 数据库
+* [sql](http://static.womenshuo.com/@/other/images/laravel.sql)
+* [workbench 模型](http://static.womenshuo.com/@/other/images/后台设计数据库模型.mwb)
+
 
 # 记得 star哦 摸摸大
 
