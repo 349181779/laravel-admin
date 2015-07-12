@@ -1,9 +1,9 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-07-11
+// | date: 2015-07-12
 // +----------------------------------------------------------------------
-// | SiteModel.php: 前台首页模型
+// | QueryModel.php: 前台查询工具模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
@@ -14,9 +14,9 @@ use App\Model\Home\BaseModel;
 
 use DB;
 
-class IndexModel extends BaseModel {
+class QueryModel extends BaseModel {
 
-    protected $table    = 'site_cat';//定义表名
+    protected $table    = 'query_cat';//定义表名
     protected $guarded  = ['*'];//阻挡所有属性被批量赋值
 
     /**
@@ -26,7 +26,7 @@ class IndexModel extends BaseModel {
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllSite(){
-       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit')));
+       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->take(11)->get());
     }
 
     /**
@@ -40,7 +40,7 @@ class IndexModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->site  = DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->get();
+                $v->query  = DB::table('query')->where('query_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->take(10)->get();
             }
         }
         return $data;

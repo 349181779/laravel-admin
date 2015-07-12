@@ -18,6 +18,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Model\Home\QueryModel;
+
 class QueryController extends BaseController {
 
 	/**
@@ -27,7 +29,9 @@ class QueryController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.query.index');
+        return view('home.query.index', [
+            'all_query' => QueryModel::getAllSite(),
+        ]);
 	}
 
 }

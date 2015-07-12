@@ -24,17 +24,11 @@
 
 				   <table class="chaxun-list" border="1">
 					  <tr class="huise-color">
-						<th scope="col">生活服务</th>
-						<th scope="col">交通出行</th>
-						<th scope="col">金融理财</th>
-						<th scope="col">上网工具</th>
-						<th scope="col">资料检索</th>
-						<th scope="col">健康养生</th>
-						<th scope="col">星座命理</th>
-						<th scope="col">休闲娱乐</th>
-						<th scope="col">算命大全</th>
-						<th scope="col">教育学习</th>
-						<th scope="col">票务预定</th>
+					    <?php if(!empty($all_query)):?>
+					        <?php foreach($all_query as $query_cat):?>
+					            <th scope="col"><?php echo $query_cat->cat_name;?></th>
+					        <?php endforeach;?>
+					    <?php endif;?>
 					  </tr>
 					  <tr class="baise-color">
 						<th scope="row">万年历</th>

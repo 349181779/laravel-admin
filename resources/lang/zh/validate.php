@@ -25,6 +25,9 @@ return [
     'url_error' => '超链接格式不正确',
     'sort_require' => '排序不能为空',
     'sort_error' => '排序格式不正确',
+    'cat_name_require'  => '分类不能为空',
+    'cat_name_error'    => '分类格式不正确',
+    'name_reuqire' => '名称不能为空',
 
     //后台会员
     'role_id_require'   => '角色不能为空',
@@ -36,8 +39,7 @@ return [
     'menu_name_require' => '菜单名称不能为空',
 
     //后台文章分类
-    'cat_name_require'  => '文章分类不能为空',
-    'cat_name_error'    => '分类格式不正确',
+
 
     //文章
     'article_title_require' => '文章标题不能为空',
@@ -51,6 +53,9 @@ return [
     'password_reuqre'   => '密码不能为空',
     'verify_reuqire'    => '验证码不能为空',
     'password_confirmed_require'    => '确认密码不能为空',
+
+    //查询工具
+
 
 
 ];
