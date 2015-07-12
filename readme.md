@@ -196,6 +196,7 @@
 
 #### 项目地址
 * git os [http://git.oschina.net/yangxiansen/laravel-5](http://git.oschina.net/yangxiansen/laravel-5)
+* github [https://github.com/tyua07/laravel-admin](https://github.com/tyua07/laravel-admin)
 
 #### 卖个广告
  一个好的想法，可以使写项目变得更简单，如果写的不好的地方麻烦或者可以改进的地方，希望大家Pull Requests 我！谢谢（aligaduo）
