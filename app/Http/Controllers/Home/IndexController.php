@@ -28,7 +28,7 @@ class IndexController extends BaseController {
 	 * @return Response
 	 */
 	public function getIndex(){
-        return view('Home.Index.index', [
+        return view('home.index.index', [
             'all_site' => IndexModel::getAllSite(),
         ]);
 	}
