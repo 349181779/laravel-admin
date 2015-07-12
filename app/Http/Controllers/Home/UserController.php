@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
 use App\Model\Home\IndexModel;
 
-class IndexController extends BaseController {
+class UserController extends BaseController {
 
 	/**
 	 * 网址首页
