@@ -9,9 +9,9 @@
 <body>
 <!-- top -->
 <div class="top">
-    @section('header')
-    @include('home.block.header')
-    @show
+      @section('header')
+          @include('home.block.header')
+      @show
 	<div class="tpcont">
 	   <div class="tp_ct wrap">
 	           <div class="logo"><a href=""><img src="/site/images/indexlogo.png" width="278" height="52" /></a></div>
