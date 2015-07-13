@@ -1,11 +1,11 @@
 // JavaScript Document
 
           $(function(){
-			   /* ËÑË÷¿òµÄjs */
+			   /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½js */
 
 		         $("#search-input").bind('keyup',function(){
 	    
-				 /* »ñÈ¡·þÎñ¶ËÊý¾Ý */
+				 /* ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 				  /*   var searchText=$("#search-input").val();
 					 $.get('http://api.bing.com/qsonhs.aspx?q='+ searchText,function(d){
 						  var d=d.AS.Results[0].Suggests;
@@ -24,7 +24,7 @@
 						  
 					 },'json');*/
 					 
-					 /* ´Ó·þÎñ¶Ë»ñÈ¡Êý¾Ýºó²»ÐèÒªÕâ¸ö  Õâ¸ö½öÕë¶Ôµ±Ç°¾²Ì¬Ò³Ãæ ÉèÖÃËÑË÷ÌáÊ¾µÄÑùÊ½ */
+					 /* ï¿½Ó·ï¿½ï¿½ï¿½Ë»ï¿½È¡ï¿½ï¿½Ýºï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ç°ï¿½ï¿½Ì¬Ò³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê½ */
 					 $('#search-suggest').show().css({
 							 top:$("#search-form").offset().top() + $("#search-form").height(),
 							 left:$("#search-form").offset().left(),
@@ -34,7 +34,7 @@
 					
 				 })
 				 
-				 /* ´Ó·þÎñ¶Ë»ñÈ¡Êý¾Ýºó²»ÐèÒªÕâ¸ö  Õâ¸ö½öÕë¶Ôµ±Ç°¾²Ì¬Ò³Ãæ µã»÷ËÑË÷ÁÐ±íºóÎÄ×ÖÏÔÊ¾ÔÚËÑË÷¿òÖÐ */
+				 /* ï¿½Ó·ï¿½ï¿½ï¿½Ë»ï¿½È¡ï¿½ï¿½Ýºï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ç°ï¿½ï¿½Ì¬Ò³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 				 $("#search-result li").each(function(i){
 						 $(this).hover(function(){
 							 $(this).css('background','#f8f8f8');
@@ -49,26 +49,26 @@
 				 })
 				 
 				  
-				  /* µã»÷Ò³ÃæÆäËûÎ»ÖÃÒþ²Ø */
+				  /* ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 				/*$(document).bind('click',function(){
 					$('#search-suggest').hide();
 				   
 				})*/
 				
-				/*Îª¶à¸öÔªËØÇÒÓÉjavascript¶¯Ì¬Éú³ÉµÄÔªËØÌí¼ÓÊÂ¼þÊ±Ê¹ÓÃÊÂ¼þ´úÀí µã»÷ËÑË÷ÁÐ±íºóÖ±½ÓÌøµ½ËÑË÷Ò³ */
+				/*Îªï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½javascriptï¿½ï¿½Ì¬ï¿½ï¿½Éµï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ê±Ê¹ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ */
 				/*$(document).delegate('li','click',function(){
 					 var keyword=$(this).text();
 					 location.href='http://cn.bing.com/search?q=' + keyword
 				})*/
 				 
 				 
-				 /* ËÑË÷¿òµÄjs½áÊø */
+				 /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jsï¿½ï¿½ï¿½ï¿½ */
 				 
-				 /*¸öÈËÉçÇø ÅóÓÑ  ÉìËõ */ 
+				 /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ */ 
 				 $(".grsp_l_pep li .grsp_group").click(function(){
 					 		$(this).next().toggle();										
 				})
-			    /*¸öÈËÉçÇø ÇÐ»» */ 
+			    /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð»ï¿½ */ 
 				$(".g_l_nav ul li").each(function(i){
 				     $(this).click(function(){
 					    $(".grsp_left .grsp-box").eq(i).show().siblings().hide();					
@@ -85,8 +85,8 @@
 				})
 				
 				
-				/* ÓÊÏäÑ¡Ôñjs */
-				$(".mailSelect i").click(function(){
+				/* ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½js */
+				$(".mailSelect").click(function(){
 					 var selectem=$(".mailSelect em").html();
 					 $(".mail-list ul li").each(function(i){
 						  var thisval=$(this).html();
@@ -103,6 +103,8 @@
 							 var livals=$(this).html();
 							 $(".mailSelect").find('em').html(livals);
 							 $(".mail-list").hide();
+                             $('select[name=domainss]').html('<option value="'+livals+'">'+livals+'</option>')
+
 						})
 				 })
 				

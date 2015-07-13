@@ -11,57 +11,9 @@
 <div class="top">
       @section('header')
           @include('home.block.header')
+          @include('home.block.top')
       @show
-	<div class="tpcont">
-	   <div class="tp_ct wrap">
-	           <div class="logo"><a href=""><img src="/site/images/indexlogo.png" width="278" height="52" /></a></div>
-			   <div class="clear"></div>
-	   </div>
-	   <div class="tp_daohan">
-	          <!---->
-			<div class="tp_dhdiv">
-			   <ul class="subnav">
-				        <li><a href="" class="liselect">网页</a></li>
-						<li><a href="">新闻</a></li>
-						<li><a href="">帖吧</a></li>
-						<li><a href="">知道</a></li>
-						<li><a href="">音乐</a></li>
-						<li><a href="">图片</a></li>
-						<li><a href="">视频</a></li>
-						<li><a href="">地图</a></li>
-						<li><a href="">文库</a></li>
-				  </ul>
-				  <!--  end subnav -->
-				  <div>
-				     <form method="post" action="" id="search-form">
-				        <div class="so_left">
-						     
-						     <input type="text" class="txt_so" id="search-input" value="" />
-							 <div id="search_hotword" class="" style="display: block;"></div>
-						</div>
-						<input type="submit" class="so_sub" value="搜索一下"  />
-						<div class="clear"></div>
-				     </form>
-					 <div class="search-span" id="search-suggest" style="display:none;">
-							        <ul id="search-result">
-									    <li class="">是的英文</li>
-										<li class="">是的英文1</li>
-										<li class="">是的英文2</li>
-										<li class="">是的英文3</li>
-									</ul>
-					 </div>
-				  </div>
-				  <div  class="so_radio"> 
-				          <span><input type="radio" name="radio" checked="checked" /> 百度 </span>
-						  <span><input type="radio" name="radio"/> 谷歌 </span>
-						  <span><input type="radio" name="radio"/> 搜狗 </span>
-						  <span><input type="radio" name="radio"/> 必应 </span>
-						  <span><input type="radio" name="radio"/> 雅虎</span>
-				  </div>
-			  </div>
-			  <!---->
-	   </div>
-	</div>
+
 	
 </div>
 <!-- end top -->

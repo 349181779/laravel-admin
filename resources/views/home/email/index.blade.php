@@ -22,10 +22,28 @@
 		   <div class="mail">
 		         <div class="m_logo"><img src="/site/images/sologo.png" width="363" height="66" /></div>
 				 <div class="m_conts">
-				      账号：<input type="text" class="m_txt" />
-					  邮箱：<select class="m_sel"><option></option></select>
-					  密码：<input type="text"  class="m_txt" />
-					  <input type="submit" class="sub_m" value="登 录" />
+				      <form name="gomail" id="FrLgn" method="post" onsubmit="return clickMail()" action="">
+				          账号：<input type="text" name="uName" value="" class="m_txt" />
+                          邮箱：<select class="m_txt" name="domainss">
+                                    <option  >请选择邮箱</option>
+                                    <option value="@163.com">@163.com</option>
+                                    <option value="@126.com">@126.com</option>
+                                    <option value="@sina.com">@sina.com</option>
+                                    <option value="@yahoo.com">@yahoo.com.cn</option>
+                                    <option value="@yahoo.cn">@yahoo.cn</option>
+                                    <option value="@gmail.com">@gmail.com</option>
+                                    <option value="@sohu.com">@sohu.com 搜狐</option>
+                                    <option value="@tom.com">@tom.com</option>
+                                    <option value="@188.com">@188.com</option>
+                                    <option value="@21cn.com">@21cn.com</option>
+                                    <option value="@yeah.net">@yeah.net</option>
+                            </select>
+                          密码：<input type="password" name="uPw"  class="m_txt" />
+                          <input type="submit" class="sub_m" value="登 录" />
+                          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				          @include('home.block.email')
+				      </form>
+
 				 </div>
 		   </div>
 		   <!-- end 邮箱 -->

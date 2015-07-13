@@ -26,7 +26,7 @@ window.onload = bgChange;
 <!-- main -->
 <div class="main">
     <div class="wrap">
-	       <div class="chaxun-logo"><a href=""><img src="/site/images/sologo.png" /></a></div>
+	       <div class="chaxun-logo"><a href="/"><img src="/site/images/sologo.png" /></a></div>
 	       <div class="chaxun-box">
 		           <p class="chaxun-p">查询</p>
 					<div class="query">

@@ -220,3 +220,33 @@ if(!function_exists('curl_get')){
         return $result;
     }
 }
+
+if(!function_exists('number_to_ch')){
+    /**
+     * 日期数字转中文
+     * 用于日和月、周
+     * @static
+     * @access public
+     * @param integer $number 日期数字
+     * @return string
+     */
+    function  number_to_ch($number) {
+        $number = intval($number);
+        $array  = array('一','二','三','四','五','六','七','八','九','十');
+        $str = '';
+        if($number  ==0)  { $str .= "十" ;}
+        if($number  <  10){
+            $str .= $array[$number-1] ;
+        }
+        elseif($number  <  20  ){
+            $str .= "十".$array[$number-11];
+        }
+        elseif($number  <  30  ){
+            $str .= "二十".$array[$number-21];
+        }
+        else{
+            $str .= "三十".$array[$number-31];
+        }
+        return $str;
+    }
+}
