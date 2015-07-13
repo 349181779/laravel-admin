@@ -264,11 +264,10 @@ border-right: 0px; float:left;}
 .huise-color{ background-color:#e7e7e7;}
 .baise-color{ background-color:#fff;}
 .query{ border:solid 1px #000;}
-.query .item {position: relative;overflow: hidden;zoom: 1; border-left:solid 1px #ccc;width:100px;float: left;}
-.query .w180{ width:187px; text-align: center; padding:0;}
+.query .item {position: relative;overflow: hidden;zoom: 1; border-left:solid 1px #ccc;width:180px;float: left;}
 .query .item .list li {height: 30px;line-height: 30px; text-align:center; border-bottom:solid 1px #ccc; }
 .query .item .list li a{ font-weight:bold;}
-
+.mt30{ margin-top:30px;}
 
 
 

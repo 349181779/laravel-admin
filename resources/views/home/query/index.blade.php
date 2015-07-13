@@ -30,7 +30,7 @@ window.onload = bgChange;
 	       <div class="chaxun-box">
 		           <p class="chaxun-p">查询</p>
 					<div class="query">
-						<div class="item w180">
+						<div class="item">
 							<ul class="list">
 							  <li><a href="">生活服务</a></li>
 							  <li><a href="">万年历</a></li>
@@ -49,8 +49,8 @@ window.onload = bgChange;
 						<div class="item ">
 							<ul class="list">
 							  <li><a href="">交通出行</a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
+							  <li><a href="">交通违章查询</a></li>
+							  <li><a href="">订火车票</a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
@@ -65,22 +65,6 @@ window.onload = bgChange;
 						<div class="item ">
 							<ul class="list">
 							  <li><a href="">金融理财</a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
-							</ul>
-						</div>
-						<div class="item ">
-							<ul class="list">
-							  <li><a href="">上网工具</a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
@@ -144,7 +128,7 @@ window.onload = bgChange;
 						</div>
 						<div class="item ">
 							<ul class="list">
-							  <li><a href="">休闲娱乐</a></li>
+							  <li><a href="">算命大全</a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
@@ -154,16 +138,34 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
-
-							  <li><a href="">更多</a></li>					
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="query mt30">
+						<div class="item">
+							<ul class="list">
+							  <li><a href="">园艺</a></li>
+							  <li><a href="">万年历</a></li>
+							  <li><a href="">快递查询</a></li>
+							  <li><a href="">话费查询</a></li>
+							  <li><a href="">手机归属地</a></li>
+							  <li><a href="">电话归属地</a></li>
+							  <li><a href="">身份证查询</a></li>
+							  <li><a href="">吉日查询</a></li>
+							  <li><a href="">天气预报</a></li>
+							  <li><a href="">北京时间校对</a></li>
+							  <li><a href="">2014年放假安排</a></li>	
+							  <li><a href="">更多</a></li>		
 							</ul>
 						</div>
 						<div class="item ">
 							<ul class="list">
-							  <li><a href="">算命大全</a></li>
-							  <li><a href=""></a></li>
-							  <li><a href=""></a></li>
+							  <li><a href="">票务预定</a></li>
+							  <li><a href="">交通违章查询</a></li>
+							  <li><a href="">订火车票</a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
@@ -193,7 +195,7 @@ window.onload = bgChange;
 						</div>
 						<div class="item ">
 							<ul class="list">
-							  <li><a href="">票务预定</a></li>
+							  <li><a href="">休闲娱乐</a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
@@ -203,19 +205,67 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">上网工具</a></li>
 							  <li><a href=""></a></li>
-							  <li><a href="">更多</a></li>					
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">星座命理</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">养生</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
 							</ul>
 						</div>
 						<div class="clear"></div>
 					</div>
-				   <table class="chaxun-list" border="1">
+				   <!--<table class="chaxun-list" border="1">
 					  <tr class="huise-color">
-					    <?php if(!empty($all_query)):?>
+					   <?php /*?> <?php if(!empty($all_query)):?>
 					        <?php foreach($all_query as $query_cat):?>
 					            <th scope="col"><?php echo $query_cat->cat_name;?></th>
 					        <?php endforeach;?>
-					    <?php endif;?>
+					    <?php endif;?><?php */?>
 					  </tr>
 					  <tr class="baise-color">
 						<th scope="row">万年历</th>
@@ -361,7 +411,7 @@ window.onload = bgChange;
 						<td>更多</td>
 					  </tr>
 
-					</table>
+					</table>-->
 
 		   </div>
 	</div>
