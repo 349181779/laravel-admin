@@ -263,7 +263,11 @@ border-right: 0px; float:left;}
 .chaxun-list{ width:100%; border-collapse:collapse; line-height:30px; text-align:center;}
 .huise-color{ background-color:#e7e7e7;}
 .baise-color{ background-color:#fff;}
-
+.query{ border:solid 1px #000;}
+.query .item {position: relative;overflow: hidden;zoom: 1; border-left:solid 1px #ccc;width:100px;float: left;}
+.query .w180{ width:187px; text-align: center; padding:0;}
+.query .item .list li {height: 30px;line-height: 30px; text-align:center; border-bottom:solid 1px #ccc; }
+.query .item .list li a{ font-weight:bold;}
 
 
 

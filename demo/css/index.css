@@ -258,7 +258,13 @@ border-right: 0px; float:left;}
 
 .chaxun-logo{ padding:30px 20px;}
 
-.chaxun-box{}
+.query{ border:solid 1px #000;}
+.query .query-nav a {/*float: left;*/ display:inline-block;padding: 0 25px 0 27px;line-height: 30px; height:30px; border:solid 1px #ccc; border-width:0px 1px 1px 0px;}
+.query .query-nav .w180{ width:187px; text-align: center; padding:0;}
+.query .item {position: relative;overflow: hidden;height: 30px;zoom: 1; border-bottom:solid 1px #ccc;}
+.query .item .subtitle {overflow: hidden;z-index: 9;width: 187px;position: relative; float: left;line-height: 30px;font-weight: normal; text-align:center;}
+.query .item .list {}
+.query .item .list li {width:100px;height: 30px;line-height: 30px;float: left;overflow: hidden; border-left:solid 1px #ccc; text-align:center; }
 .chaxun-p{ padding:0px 25px 20px 25px; font-size:14px; }
 .chaxun-list{ width:100%; border-collapse:collapse; line-height:30px; text-align:center;}
 .huise-color{ background-color:#e7e7e7;}

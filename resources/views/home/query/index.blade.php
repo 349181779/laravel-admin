@@ -4,6 +4,14 @@
 @section('base_header')
 @include('home.block.base_header')
 @show
+<script type="text/javascript">
+function bgChange(){
+ var lis= document.getElementsByTagName('li');
+ for(var i=0; i<lis.length; i+=2)
+ lis[i].style.background = '#fff';
+}
+window.onload = bgChange;
+</script>
 </head>
 
 <body>
@@ -21,7 +29,186 @@
 	       <div class="chaxun-logo"><a href=""><img src="/site/images/sologo.png" /></a></div>
 	       <div class="chaxun-box">
 		           <p class="chaxun-p">查询</p>
+					<div class="query">
+						<div class="item w180">
+							<ul class="list">
+							  <li><a href="">生活服务</a></li>
+							  <li><a href="">万年历</a></li>
+							  <li><a href="">快递查询</a></li>
+							  <li><a href="">话费查询</a></li>
+							  <li><a href="">手机归属地</a></li>
+							  <li><a href="">电话归属地</a></li>
+							  <li><a href="">身份证查询</a></li>
+							  <li><a href="">吉日查询</a></li>
+							  <li><a href="">天气预报</a></li>
+							  <li><a href="">北京时间校对</a></li>
+							  <li><a href="">2014年放假安排</a></li>	
+							  <li><a href="">更多</a></li>		
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">交通出行</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>			
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">金融理财</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">上网工具</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">资料检索</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">健康养生</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">星座命理</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">休闲娱乐</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
 
+							  <li><a href="">更多</a></li>					
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">算命大全</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>			
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">教育学习</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>	
+							  <li><a href="">更多</a></li>				
+							</ul>
+						</div>
+						<div class="item ">
+							<ul class="list">
+							  <li><a href="">票务预定</a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href=""></a></li>
+							  <li><a href="">更多</a></li>					
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
 				   <table class="chaxun-list" border="1">
 					  <tr class="huise-color">
 					    <?php if(!empty($all_query)):?>
