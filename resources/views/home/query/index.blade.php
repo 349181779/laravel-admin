@@ -43,7 +43,7 @@ window.onload = bgChange;
 							  <li><a href="">天气预报</a></li>
 							  <li><a href="">北京时间校对</a></li>
 							  <li><a href="">2014年放假安排</a></li>	
-							  <li><a href="">更多</a></li>		
+							  <li><a href="" class="more">更多</a></li>		
 							</ul>
 						</div>
 						<div class="item ">
@@ -59,7 +59,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>			
+							  <li><a href="" class="more">更多</a></li>			
 							</ul>
 						</div>
 						<div class="item ">
@@ -75,7 +75,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>			
 							</ul>
 						</div>
 						<div class="item ">
@@ -91,7 +91,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>			
 							</ul>
 						</div>
 						<div class="item ">
@@ -107,7 +107,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>				
 							</ul>
 						</div>
 						<div class="item ">
@@ -123,7 +123,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>				
 							</ul>
 						</div>
 						<div class="item ">
@@ -139,7 +139,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>			
 							</ul>
 						</div>
 						<div class="clear"></div>
@@ -158,7 +158,7 @@ window.onload = bgChange;
 							  <li><a href="">天气预报</a></li>
 							  <li><a href="">北京时间校对</a></li>
 							  <li><a href="">2014年放假安排</a></li>	
-							  <li><a href="">更多</a></li>		
+							  <li><a href="" class="more">更多</a></li>		
 							</ul>
 						</div>
 						<div class="item ">
@@ -174,7 +174,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>			
+							  <li><a href="" class="more">更多</a></li>			
 							</ul>
 						</div>
 						<div class="item ">
@@ -190,7 +190,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>				
 							</ul>
 						</div>
 						<div class="item ">
@@ -206,7 +206,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>				
 							</ul>
 						</div>
 						<div class="item ">
@@ -222,7 +222,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>			
 							</ul>
 						</div>
 						<div class="item ">
@@ -238,7 +238,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>				
 							</ul>
 						</div>
 						<div class="item ">
@@ -254,7 +254,7 @@ window.onload = bgChange;
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>
 							  <li><a href=""></a></li>	
-							  <li><a href="">更多</a></li>				
+							  <li><a href="" class="more">更多</a></li>				
 							</ul>
 						</div>
 						<div class="clear"></div>
