@@ -1,9 +1,9 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-06-22
+// | date: 2015-07-13
 // +----------------------------------------------------------------------
-// | RoleRequest.php: 后端角色表单验证
+// | NewsCatRequest.php: 后端新闻分类表单验证
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\BaseFormRequest;
 
-class RoleRequest extends BaseFormRequest {
+class NewsCatRequest extends BaseFormRequest {
 
     /**
      * 验证错误规则
@@ -21,9 +21,10 @@ class RoleRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'role_name'     => ['required'],
-            'status'        => ['required', 'in:1,2'],
-            'sort'          => ['required', 'digits_between:0,255'],
+            'cat_name'  => ['required'],
+            'pid'       => ['required', 'numeric'],
+            'status'    => ['required', 'in:1,2'],
+            'sort'      => ['required', 'digits_between:0,255'],
         ];
     }
 
@@ -34,7 +35,8 @@ class RoleRequest extends BaseFormRequest {
      */
     public function messages(){
         return [
-            'role_name.required'    => trans('validate.role_name_require'),
+            'cat_name.required'     => trans('validate.cat_name_require'),
+            'pid.required'          => trans('validate.pid_require'),
             'status.required'       => trans('validate.status_require'),
             'status.in'             => trans('validate.status_error'),
             'sort.require'          => trans('validate.sort_require'),

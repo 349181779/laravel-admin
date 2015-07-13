@@ -16,14 +16,6 @@ Route::get('/', function(){
     return redirect()->action('Home\IndexController@getIndex');
 });
 
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth'      => 'Auth\AuthController',
-	'password'  => 'Auth\PasswordController',
-]);
-
 //后台
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     //登录
@@ -54,6 +46,10 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('query-cat', 'QueryCatController');
     //查询工具
     Route::controller('query', 'QueryController');
+    //新闻分类
+    Route::controller('news-cat', 'NewsCatController');
+    //新闻
+    Route::controller('news', 'NewsController');
 });
 
 //Tools

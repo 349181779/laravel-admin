@@ -58,10 +58,10 @@ class SiteController extends BaseController {
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
                 builderSearchSchema('site_name', '文章标题')->
-                builderSearchSchema('cat_name', '所属分类')->
+                builderSearchSchema('site_cat_id', '所属分类', 'select', $class = '', $option = SiteCatModel::lists('cat_name', 'id'), $option_value_schema = '')->
                 builderSearchSchema('admin_name', '作者')->
                 builderSearchSchema($name = 'status', $title = '状态', $type = 'select', $class = '', $option = [1=>'开启', '2'=>'关闭'], $option_value_schema = '0')->
-                builderAddBotton('增加文章', url('admin/site/add'))->
+                builderAddBotton('增加网址', url('admin/site/add'))->
                 builderJsonDataUrl(url('admin/site/search'))->
                 builderList();
     }
@@ -91,8 +91,8 @@ class SiteController extends BaseController {
         if(!empty($email)){
             $map['a.email'] = ['like', '%'.$email.'%'];
         }
-        if(!empty($cat_name)){
-            $map['c.cat_name'] = ['like', '%'.$cat_name.'%'];
+        if(!empty($site_cat_id)){
+            $map['site.site_cat_id'] = $site_cat_id;
         }
         if(!empty($status)){
             $map['article.status'] = $status;

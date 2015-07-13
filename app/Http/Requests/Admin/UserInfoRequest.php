@@ -1,9 +1,9 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-07-08
+// | date: 2015-07-13
 // +----------------------------------------------------------------------
-// | AdminInfoRequest.php: 后端用户表单验证
+// | UserInfoRequest.php: 后端用户表单验证
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\BaseFormRequest;
 
-class AdminInfoRequest extends BaseFormRequest {
+class UserInfoRequest extends BaseFormRequest {
 
     /**
      * 验证错误规则
@@ -22,12 +22,14 @@ class AdminInfoRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
+            'user_name' => ['required'],
             'email'     => ['required', 'email'],
             'password'  => ['required', 'size:6'],
             'mobile'    => ['required', 'digits:11'],
             'status'    => ['required', 'in:1,2'],
             'sort'      => ['required', 'digits_between:0,255'],
-            'role_id'   => ['required', 'numeric'],
+            'sex'       => ['required', 'in:1,2,3'],
+            'birthday'  => ['required', 'date_format:Y-m-d'],
         ];
     }
 
@@ -47,10 +49,10 @@ class AdminInfoRequest extends BaseFormRequest {
             'mobile.digits'         => trans('validate.mobile_error'),
             'status.required'       => trans('validate.status_require'),
             'status.in'             => trans('validate.status_error'),
-            'sort.require'          => trans('validate.sort_require'),
-            'sort.digits_between'   => trans('validate.sort_error'),
-            'role_id.required'      => trans('validate.role_id_require'),
-            'role_id.numeric'       => trans('validate.role_id_error'),
+            'sex.required'          => trans('validate.sex_require'),
+            'sex.in'                => trans('validate.sex_error'),
+            'birthday.required'     => trans('validate.birthday_require'),
+            'birthday.date_format'  => trans('validate.birthday_error')
         ];
     }
 

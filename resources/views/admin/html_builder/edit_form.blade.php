@@ -170,7 +170,6 @@
                         <div class="skin skin-flat">
                             <select name="<?php echo $schema['name'] ;?>" >
                                 <?php if($schema['option']):?>
-                                    <option value="">请选择</option>
                                     <?php foreach($schema['option'] as $k=>$option):?>
                                             <option value="<?php echo $option['id'];?>" <?php if($data->$schema['name'] == $option['id']){echo "selected='selected'";}?>  >
                                                 <?php if($option['level'] > 0 ){echo str_repeat('&nbsp;&nbsp;', $option['level']);}?>

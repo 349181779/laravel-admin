@@ -48,11 +48,15 @@ return [
     'site_name_require' => '网址名称不能为空',
 
     //会员
+    'sex_require'   => '性别不能为空',
+    'sex_error' => '性别格式不正确',
     'user_name_reuqire' => '会员名称不能为空',
     'password_confirmed_error'  => '两次密码不一致',
     'password_reuqre'   => '密码不能为空',
     'verify_reuqire'    => '验证码不能为空',
     'password_confirmed_require'    => '确认密码不能为空',
+    'birthday_require'  => '生日不能空',
+    'birthday_error'    => '生日格式不正确',
 
     //查询工具
 

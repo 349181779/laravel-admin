@@ -16,6 +16,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\Admin\UserInfoRequest;
+
 use App\Model\Admin\UserInfoModel;
 
 class UserInfoController extends BaseController {
@@ -133,7 +135,7 @@ class UserInfoController extends BaseController {
      *
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postEdit(Request $request){
+    public function postEdit(UserInfoRequest $request){
         $data = $request->all();
         $Model = UserInfoModel::findOrFail($data['id']);
         if(empty($data['password'])){
@@ -174,7 +176,7 @@ class UserInfoController extends BaseController {
      * @param Request $request
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
-    public function postAdd(Request $request){
+    public function postAdd(UserInfoRequest $request){
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
         //写入数据

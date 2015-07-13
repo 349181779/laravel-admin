@@ -42,16 +42,51 @@ class SiteCatController extends BaseController {
                 builderTitle('网址分类')->
                 builderSchema('id', 'id')->
                 builderSchema('cat_name', '分类名称')->
-                builderSchema('pid_name','父级栏目')->
                 builderSchema('status', '状态')->
                 builderSchema('sort', '排序')->
                 builderSchema('created_at', '创建时间')->
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
+                builderSearchSchema('cat_name', '分类名称')->
+                builderSearchSchema($name = 'status', $title = '状态', $type = 'select', $class = '', $option = [1=>'开启', '2'=>'关闭'], $option_value_schema = '0')->
                 builderAddBotton('增加网址分类', url('admin/site-cat/add'))->
-                builderTreeData(SiteCatModel::getAll())->
-                builderTree();
+                builderJsonDataUrl(url('admin/site-cat/search'))->
+                builderList();
 	}
+
+    /**
+     * 搜索
+     *
+     * @param Request $request
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getSearch(Request $request){
+        //接受参数
+        $search = $request->get('search', '');
+        $sort   = $request->get('sort', 'id');
+        $order  = $request->get('order', 'asc');
+        $limit  = $request->get('limit', 0);
+        $offset = $request->get('offset', config('config.page_limit'));
+
+        //解析params
+        parse_str($search);
+
+        //组合查询条件
+        $map = [];
+        if(!empty($cat_name)){
+            $map['cat_name'] = ['like', '%'.$cat_name.'%'];
+        }
+        if(!empty($status)){
+            $map['status'] = $status;
+        }
+
+        $data = SiteCatModel::search($map, $sort, $order, $limit, $offset);
+
+        echo json_encode([
+            'total' => $data['count'],
+            'rows'  => $data['data'],
+        ]);
+    }
 
     /**
      * 编辑文章分类
@@ -66,7 +101,6 @@ class SiteCatController extends BaseController {
                 builderFormSchema('cat_name', '分类名称')->
                 builderFormSchema('keywords', '分类关键字')->
                 builderFormSchema('description', '分类描述', 'textarea')->
-                builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', SiteCatModel::getAllForSchemaOption('cat_name', $id), 'cat_name')->
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
                 builderFormSchema('sort', '菜单排序')->
                 builderConfirmBotton('确认', url('admin/site-cat/edit'), 'btn btn-success')->
@@ -98,7 +132,6 @@ class SiteCatController extends BaseController {
                 builderFormSchema('cat_name', '分类名称')->
                 builderFormSchema('keywords', '分类关键字')->
                 builderFormSchema('description', '分类描述', 'textarea')->
-                builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', SiteCatModel::getAllForSchemaOption('cat_name'), 'cat_name')->
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
                 builderFormSchema('sort', '菜单排序', 'text', 255)->
                 builderConfirmBotton('确认', url('admin/site-cat/add'), 'btn btn-success')->

@@ -54,7 +54,7 @@ class QueryController extends BaseController {
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
                 builderSearchSchema('name', '查询工具名称')->
-                builderSearchSchema('cat_name', '所属分类')->
+                builderSearchSchema('query_cat_id', '所属分类', 'select', $class = '', $option = QueryCatModel::lists('cat_name', 'id'), $option_value_schema = '')->
                 builderSearchSchema($name = 'status', $title = '状态', $type = 'select', $class = '', $option = [1=>'开启', '2'=>'关闭'], $option_value_schema = '0')->
                 builderAddBotton('增加查询工具', url('admin/query/add'))->
                 builderJsonDataUrl(url('admin/query/search'))->
@@ -83,8 +83,8 @@ class QueryController extends BaseController {
         if(!empty($name)){
             $map['query.name'] = ['like', '%'.$name.'%'];
         }
-        if(!empty($cat_name)){
-            $map['c.cat_name'] = ['like', '%'.$cat_name.'%'];
+        if(!empty($query_cat_id)){
+            $map['query.query_cat_id'] = $query_cat_id;
         }
         if(!empty($status)){
             $map['article.status'] = $status;
