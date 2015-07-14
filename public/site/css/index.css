@@ -118,7 +118,7 @@ bottom: 3px;
 
 .c_qiehuan{ width:1198px; height:auto;border:1px solid #cecece; margin:10px auto; }
 .c_q_title{ height:40px; background-color:#f7f7f7; line-height:40px;}
-.c_q_title ul{ float:left;}
+.c_q_title ul{ float:left; height:40px;}
 .c_q_set{ float:right; padding-right:10px;}
 .c_q_set span{}
 .c_q_title ul li{ text-align:center; float:left; }
