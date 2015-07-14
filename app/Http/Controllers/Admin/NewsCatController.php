@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 use App\Model\Admin\NewsCatModel;
 
-use App\Http\Requests\Admin\ArticleCatRequest;
+use App\Http\Requests\Admin\NewsCatRequest;
 
 class NewsCatController extends BaseController {
 

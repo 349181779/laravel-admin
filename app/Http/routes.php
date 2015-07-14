@@ -50,6 +50,10 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('news-cat', 'NewsCatController');
     //新闻
     Route::controller('news', 'NewsController');
+    //搜索工具分类
+    Route::controller('search-cat', 'SearchCatController');
+    //搜索工具导航
+    Route::controller('search', 'SearchController');
 });
 
 //Tools
