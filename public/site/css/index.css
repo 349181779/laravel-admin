@@ -117,15 +117,15 @@ bottom: 3px;
 .tp_dhdiv{ width:767px; margin:10px auto;}
 
 .c_qiehuan{ width:1198px; height:auto;border:1px solid #cecece; margin:10px auto; }
-.c_q_title{ height:40px; background-color:#f7f7f7; line-height:40px; border-bottom:1px solid #cecece;}
-.c_q_title ul{ float:left;}
+.c_q_title{ height:40px; background-color:#f7f7f7; line-height:40px;}
+.c_q_title ul{ float:left; height:40px;}
 .c_q_set{ float:right; padding-right:10px;}
 .c_q_set span{}
-.c_q_title ul li{ text-align:center; float:left; border-right:1px dashed #c9cbce; }
-.c_q_title ul li a{ display:block;  height:41px; padding:0px 20px; margin-top:-1px;}
+.c_q_title ul li{ text-align:center; float:left; }
+.c_q_title ul li a{ display:block;  height:41px; padding:0px 20px; margin-top:-1px;border: solid 1px #ccc;border-width: 0px 1px 1px 0;}
 
-.c_q_title ul li .select_a{ border-top:1px solid #3ab813;}
-.cq_cent{ padding:5px;}
+.c_q_title ul li .select_a{ border-top:1px solid #3ab813;border-bottom: none;}
+.cq_cent{ /*padding:5px;*/}
 
 .l_h_tl{ width:80px; padding-right:10px; text-align:right; float:left; color:#3ab813; font-size:14px;}
 .list_hf li{ padding:10px 0px; line-height:23px; border-bottom:1px solid #c9cbce;}
@@ -270,6 +270,9 @@ border-right: 0px; float:left;}
 .mt30{ margin-top:30px;}
 .more{ color:#ccc;}
 
+.seaou,.email{line-height:40px; border:solid 1px #c9cbce; border-width:1px 0;}
+.seaou a{ padding:0 40px; font-size:14px;}
+.email li{ float:left; width:100px; padding-left:20px;}
 
 
 

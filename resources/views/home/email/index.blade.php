@@ -45,8 +45,21 @@
 				      </form>
 
 				 </div>
-		   </div>
+		   </div>         
 		   <!-- end 邮箱 -->
+		   <ul class="email">
+		   <li><a href="">QQ邮箱</a></li>
+		   <li><a href="">阿里云邮箱</a></li>
+		   <li><a href="">163邮箱</a></li>
+		   <li><a href="">162邮箱</a></li>
+		   <li><a href="">搜狐邮箱</a></li>
+		   <li><a href="">新浪邮箱</a></li>
+		   <li><a href="">TOM邮箱</a></li>
+		   <li><a href="">Hotmail</a></li>
+		   <li><a href="">Outlook</a></li>
+		   <li><a href="">263邮箱</a></li>
+		    <div class="clear"></div>
+		   </ul>
 	</div>
 </div>
 <!-- end main -->
