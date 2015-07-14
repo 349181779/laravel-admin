@@ -355,8 +355,9 @@ border-radius: 4px;}
 .mod-useragreement{ border:solid 1px #c9cbce; padding:20px; background:#fff; width:1000px; margin:0 auto; line-height:22px;}
 .mod-useragreement h2{color: #444;font-size: 16px;height: 40px;font-weight: bold;line-height: 40px;border-bottom: 1px solid #e8e8e8;margin-bottom: 20px;}
 .mod-useragreement h5 {font-size: 14px;font-weight: bold;padding: 1em 0px;}
-.seaou{ line-height:40px; border:solid 1px #c9cbce; border-width:1px 0;}
+.seaou ,.email{ line-height:40px; border:solid 1px #c9cbce; border-width:1px 0;}
 .seaou a{ padding:0 40px; font-size:14px;}
+.email li{ float:left; width:120px;}
 
 
 .tab_rgst tr td {height: 38px;}
