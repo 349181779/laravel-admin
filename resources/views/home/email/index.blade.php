@@ -58,6 +58,7 @@
 		   <li><a href="">Hotmail</a></li>
 		   <li><a href="">Outlook</a></li>
 		   <li><a href="">263邮箱</a></li>
+		    <div class="clear"></div>
 		   </ul>
 	</div>
 </div>
