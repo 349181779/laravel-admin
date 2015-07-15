@@ -48,16 +48,15 @@
 		   </div>         
 		   <!-- end 邮箱 -->
 		   <ul class="email">
-		   <li><a href="">QQ邮箱</a></li>
-		   <li><a href="">阿里云邮箱</a></li>
-		   <li><a href="">163邮箱</a></li>
-		   <li><a href="">162邮箱</a></li>
-		   <li><a href="">搜狐邮箱</a></li>
-		   <li><a href="">新浪邮箱</a></li>
-		   <li><a href="">TOM邮箱</a></li>
-		   <li><a href="">Hotmail</a></li>
-		   <li><a href="">Outlook</a></li>
-		   <li><a href="">263邮箱</a></li>
+		   <li><a target="_blank" href="https://mail.qq.com/cgi-bin/loginpage">QQ邮箱</a></li>
+		   <li><a target="_blank" href="https://mail.aliyun.com/alimail/auth/login?reurl=%2Falimail%2F">阿里云邮箱</a></li>
+		   <li><a target="_blank" href="http://mail.163.com/">163邮箱</a></li>
+		   <li><a target="_blank" href="http://www.126.com/">126邮箱</a></li>
+		   <li><a target="_blank" href="http://mail.sohu.com/">搜狐邮箱</a></li>
+		   <li><a target="_blank" href="https://mail.sina.com.cn">新浪邮箱</a></li>
+		   <li><a target="_blank" href="http://web.mail.tom.com/webmail/login/index.action">TOM邮箱</a></li>
+		   <li><a target="_blank" href="http://www.outlook.com">Outlook</a></li>
+		   <li><a target="_blank" href="http://www.263.net/">263邮箱</a></li>
 		    <div class="clear"></div>
 		   </ul>
 	</div>

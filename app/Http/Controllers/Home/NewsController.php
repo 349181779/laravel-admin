@@ -33,7 +33,11 @@ class NewsController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.news.index');
+        return view('home.news.index', [
+			'title'         => '新闻',
+			'keywords'      => '新闻',
+			'description'   => '新闻',
+		]);
 	}
 
 

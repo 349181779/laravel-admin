@@ -27,7 +27,11 @@ class AppController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.app.index');
+        return view('home.app.index', [
+			'title'         => '应用',
+			'keywords'      => '应用',
+			'description'   => '应用',
+		]);
 	}
 
 }

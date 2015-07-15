@@ -27,7 +27,11 @@ class EmailController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.email.index');
+        return view('home.email.index', [
+			'title'         => '邮箱',
+			'keywords'      => '邮箱',
+			'description'   => '邮箱',
+		]);
 	}
 
 }

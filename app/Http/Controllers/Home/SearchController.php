@@ -29,7 +29,11 @@ class SearchController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.search.index');
+        return view('home.search.index', [
+            'title'         => '搜索',
+            'keywords'      => '搜索',
+            'description'   => '搜索',
+        ]);
 	}
 
     /**

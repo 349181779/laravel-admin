@@ -33,7 +33,11 @@ class UserController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getLogin(){
-        return view('home.user.login');
+        return view('home.user.login', [
+            'title'         => '登录',
+            'keywords'      => '登录',
+            'description'   => '登录',
+        ]);
 	}
 
     /**
@@ -76,7 +80,11 @@ class UserController extends BaseController {
      * @return Response
      */
     public function getRegister(){
-        return view('home.user.register');
+        return view('home.user.register', [
+            'title'         => '注册',
+            'keywords'      => '注册',
+            'description'   => '注册',
+        ]);
     }
 
     /**

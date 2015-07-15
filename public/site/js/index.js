@@ -3,50 +3,50 @@
           $(function(){
 			   /* 搜索框的js */
 
-		         $("#search-input").bind('keyup',function(){
-	    
-				 /* 获取服务端数据 */
-				  /*   var searchText=$("#search-input").val();
-					 $.get('http://api.bing.com/qsonhs.aspx?q='+ searchText,function(d){
-						  var d=d.AS.Results[0].Suggests;
-						  var html='';
-						  for(var i=0;i<d.length;i++){
-							   html='<li>' + d[i].Txt + '</li>';
-						  }
-						  $("#search-result").html(html);
-						  $('#search-suggest').show().css({
-							 top:$("#search-form").offset().top() + $("#search-form").height(),
-							 left:$("#search-form").offset().left(),
-							 position:'absolute'
-						  });
-						  
-						  
-						  
-					 },'json');*/
-					 
-					 /* 从服务端获取数据后不需要这个  这个仅针对当前静态页面 设置搜索提示的样式 */
-					 $('#search-suggest').show().css({
-							 top:$("#search-form").offset().top() + $("#search-form").height(),
-							 left:$("#search-form").offset().left(),
-							 position:'absolute'
-						  });
-				 
-					
-				 })
+                 //$("#search-input").bind('keyup',function(){
+                 //
+				 ///* 获取服务端数据 */
+				 // /*   var searchText=$("#search-input").val();
+					// $.get('http://api.bing.com/qsonhs.aspx?q='+ searchText,function(d){
+					//	  var d=d.AS.Results[0].Suggests;
+					//	  var html='';
+					//	  for(var i=0;i<d.length;i++){
+					//		   html='<li>' + d[i].Txt + '</li>';
+					//	  }
+					//	  $("#search-result").html(html);
+					//	  $('#search-suggest').show().css({
+					//		 top:$("#search-form").offset().top() + $("#search-form").height(),
+					//		 left:$("#search-form").offset().left(),
+					//		 position:'absolute'
+					//	  });
+					//
+					//
+					//
+					// },'json');*/
+					//
+					// /* 从服务端获取数据后不需要这个  这个仅针对当前静态页面 设置搜索提示的样式 */
+					// $('#search-suggest').show().css({
+					//		 top:$("#search-form").offset().top() + $("#search-form").height(),
+					//		 left:$("#search-form").offset().left(),
+					//		 position:'absolute'
+					//	  });
+				 //
+					//
+				 //})
 				 
 				 /* 从服务端获取数据后不需要这个  这个仅针对当前静态页面 点击搜索列表后文字显示在搜索框中 */
-				 $("#search-result li").each(function(i){
-						 $(this).hover(function(){
-							 $(this).css('background','#f8f8f8');
-						 },function(){
-							 $(this).css('background','#fff');
-						 })
-						 $(this).click(function(){
-							 var lival=$(this).html();
-							 $(".txt_so").val(lival);
-							 $("#search-result").css('display','none');
-						})
-				 })
+				 //$("#search-result li").each(function(i){
+					//	 $(this).hover(function(){
+					//		 $(this).css('background','#f8f8f8');
+					//	 },function(){
+					//		 $(this).css('background','#fff');
+					//	 })
+					//	 $(this).click(function(){
+					//		 var lival=$(this).html();
+					//		 $(".txt_so").val(lival);
+					//		 $("#search-result").css('display','none');
+					//	})
+				 //})
 				 
 				  
 				  /* 点击页面其他位置隐藏 */
