@@ -26,6 +26,8 @@ class SearchCatModel extends BaseModel {
     public static function mergeData($data){
         if(!empty($data)){
             foreach($data as &$v){
+                //组合是否默认
+                $v->is_default = self::mergeIsDefault($v->is_default);
                 //组合状态
                 $v->status = self::mergeStatus($v->status);
                 //组合操作

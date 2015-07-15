@@ -150,5 +150,31 @@ class BaseModel extends Model{
         $query = end($sql);
         return $query;
     }
+
+    /**
+     * 获得搜索导航数据
+     *
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getSearch(){
+        return self::mergeSearch(DB::table('search_cat')->where('status', '=', 1)->get());
+    }
+
+    /**
+     * 组合搜索导航数据
+     *
+     * @param $data
+     * @return mixed
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function mergeSearch($data){
+        if(!empty($data)){
+            foreach($data as &$v){
+                $v->al_query = DB::table('search')->where('search_cat_id', '=', $v->id)->where('status', '=', 1)->get();
+            }
+        }
+        return $data;
+    }
 }
 

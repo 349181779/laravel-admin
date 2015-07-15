@@ -34,4 +34,16 @@ class IndexController extends BaseController {
         ]);
 	}
 
+    /**
+     * 网址分类
+     *
+     * @return Response
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getCategory(Request $request, $cat_id){
+        return view('home.index.category', [
+            'all_site' => IndexModel::getCategorySite((int)$cat_id),
+        ]);
+    }
+
 }

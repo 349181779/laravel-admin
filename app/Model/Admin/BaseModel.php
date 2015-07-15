@@ -111,6 +111,24 @@ class BaseModel extends Model{
     }
 
     /**
+     * 组合是否默认
+     *
+     * @param $sex
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    protected static function mergeIsDefault($is_default){
+        if(empty($is_default)){
+            return;
+        }
+
+        switch($is_default){
+            case 1:
+                return trans('response.is_default');
+            default:
+                return trans('response.not_is_default');
+        }
+    }
+    /**
      * 组合图片路径
      *
      * @param $image_src

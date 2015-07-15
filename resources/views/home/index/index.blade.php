@@ -50,6 +50,7 @@
                                         <?php foreach($site_cat['site'] as $site):?>
                                             <span><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></span>
                                         <?php endforeach;?>
+                                        <span><a target="_blank" href="<?php echo action('Home\IndexController@getCategory', [$site_cat->id]) ;?>">更多</a></span>
                                        <?php endif;?>
                                    </div>
                                    <div class="clear"></div>

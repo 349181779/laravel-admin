@@ -59,19 +59,11 @@
                   <!---->
                 <div class="tp_dhdiv">
                    <ul class="subnav">
-                            <li><a href="" class="liselect">网页</a></li>
-                            <li><a href="">新闻</a></li>
-                            <li><a href="">帖吧</a></li>
-                            <li><a href="">知道</a></li>
-                            <li><a href="">音乐</a></li>
-                            <li><a href="">图片</a></li>
-                            <li><a href="">视频</a></li>
-                            <li><a href="">地图</a></li>
-                            <li><a href="">文库</a></li>
+
                       </ul>
                       <!--  end subnav -->
                       <div>
-                         <form method="post" action="" id="search-form">
+                         <form method="get" action="" id="search-form" >
                             <div class="so_left">
 
                                  <input type="text" class="txt_so" id="search-input" value="" />
@@ -90,11 +82,19 @@
                          </div>
                       </div>
                       <div  class="so_radio">
-                              <span><input type="radio" name="radio" checked="checked" /> 百度 </span>
-                              <span><input type="radio" name="radio"/> 谷歌 </span>
-                              <span><input type="radio" name="radio"/> 搜狗 </span>
-                              <span><input type="radio" name="radio"/> 必应 </span>
-                              <span><input type="radio" name="radio"/> 雅虎</span>
+                              <?php if(!empty($all_search)):?>
+                                <?php foreach($all_search as $search):?>
+                                    <?php if($search->is_default == 1):?>
+
+                                        <span><input onclick="getSearch()" value="<?php echo $search->id ;?>" type="radio" name="radio" checked="checked" /><?php echo $search->cat_name ;?> </span>
+                                          <script>
+                                              $('input[name=radio]:checked').trigger('click')
+                                          </script>
+                                    <?php else:?>
+                                        <span><input onclick="getSearch()" value="<?php echo $search->id ;?>" type="radio" name="radio" /><?php echo $search->cat_name ;?> </span>
+                                    <?php endif;?>
+                                <?php endforeach;?>
+                              <?php endif;?>
                       </div>
                   </div>
                   <!---->

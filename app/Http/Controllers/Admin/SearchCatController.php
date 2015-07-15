@@ -42,6 +42,7 @@ class SearchCatController extends BaseController {
                 builderTitle('查询工具分类')->
                 builderSchema('id', 'id')->
                 builderSchema('cat_name', '分类名称')->
+                builderSchema('is_default', '默认')->
                 builderSchema('status', '状态')->
                 builderSchema('sort', '排序')->
                 builderSchema('created_at', '创建时间')->
@@ -98,6 +99,7 @@ class SearchCatController extends BaseController {
                 builderFormSchema('id', 'id', 'hidden')->
                 builderFormSchema('cat_name', '分类名称')->
                 builderFormSchema('logo', 'logo', 'image')->
+                builderFormSchema('is_default', '是否默认搜', 'radio', '', '', '', '', '', [1=>'默认', '2'=>'不默认'], '1')->
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
                 builderFormSchema('sort', '菜单排序')->
                 builderConfirmBotton('确认', url('admin/search-cat/edit'), 'btn btn-success')->
@@ -128,6 +130,7 @@ class SearchCatController extends BaseController {
                 builderTitle('增加搜索工具分类')->
                 builderFormSchema('cat_name', '分类名称')->
                 builderFormSchema('logo', 'logo', 'image')->
+                builderFormSchema('is_default', '是否默认搜', 'radio', '', '', '', '', '', [1=>'默认', '2'=>'不默认'], '1')->
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
                 builderFormSchema('sort', '菜单排序', 'text', 255)->
                 builderConfirmBotton('确认', url('admin/search-cat/add'), 'btn btn-success')->

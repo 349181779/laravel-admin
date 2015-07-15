@@ -25,4 +25,7 @@ return [
     'sex_2' => '女',
     'sex_3' => '未知',
     'top_classification' => '顶级分类',
+    'is_default'=>'默认',
+    'not_is_default' => '非默认',
+    'search_error'=>'当前页面不存在'
 ];

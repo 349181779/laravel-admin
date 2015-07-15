@@ -46,4 +46,16 @@ class IndexModel extends BaseModel {
         return $data;
     }
 
+    /**
+     * 获得当前分类下面全部网址
+     *
+     * @param $cat_id
+     * @return mixed
+     */
+    public static function getCategorySite($cat_id){
+        if(!empty($cat_id)){
+            return  DB::table('site')->where('site_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit'));
+        }
+    }
+
 }
