@@ -1,11 +1,11 @@
 // JavaScript Document
 
           $(function(){
-			   /* �������js */
+			   /* 搜索框的js */
 
 		         $("#search-input").bind('keyup',function(){
-
-				 /* ��ȡ�������� */
+	    
+				 /* 获取服务端数据 */
 				  /*   var searchText=$("#search-input").val();
 					 $.get('http://api.bing.com/qsonhs.aspx?q='+ searchText,function(d){
 						  var d=d.AS.Results[0].Suggests;
@@ -19,22 +19,22 @@
 							 left:$("#search-form").offset().left(),
 							 position:'absolute'
 						  });
-
-
-
+						  
+						  
+						  
 					 },'json');*/
-
-					 /* �ӷ���˻�ȡ��ݺ���Ҫ���  �������Ե�ǰ��̬ҳ�� ����������ʾ����ʽ */
+					 
+					 /* 从服务端获取数据后不需要这个  这个仅针对当前静态页面 设置搜索提示的样式 */
 					 $('#search-suggest').show().css({
 							 top:$("#search-form").offset().top() + $("#search-form").height(),
 							 left:$("#search-form").offset().left(),
 							 position:'absolute'
 						  });
-
-
+				 
+					
 				 })
-
-				 /* �ӷ���˻�ȡ��ݺ���Ҫ���  �������Ե�ǰ��̬ҳ�� ��������б��������ʾ���������� */
+				 
+				 /* 从服务端获取数据后不需要这个  这个仅针对当前静态页面 点击搜索列表后文字显示在搜索框中 */
 				 $("#search-result li").each(function(i){
 						 $(this).hover(function(){
 							 $(this).css('background','#f8f8f8');
@@ -47,67 +47,69 @@
 							 $("#search-result").css('display','none');
 						})
 				 })
-
-
-				  /* ���ҳ������λ������ */
+				 
+				  
+				  /* 点击页面其他位置隐藏 */
 				/*$(document).bind('click',function(){
 					$('#search-suggest').hide();
-
+				   
 				})*/
-
-				/*Ϊ���Ԫ������javascript��̬��ɵ�Ԫ������¼�ʱʹ���¼����� ��������б��ֱ��������ҳ */
+				
+				/*为多个元素且由javascript动态生成的元素添加事件时使用事件代理 点击搜索列表后直接跳到搜索页 */
 				/*$(document).delegate('li','click',function(){
 					 var keyword=$(this).text();
 					 location.href='http://cn.bing.com/search?q=' + keyword
 				})*/
-
-
-				 /* �������js���� */
-
-				 /*�������� ����  ���� */
+				 
+				 
+				 /* 搜索框的js结束 */
+				 
+				 /*个人社区 朋友  伸缩 */ 
 				 $(".grsp_l_pep li .grsp_group").click(function(){
-					 		$(this).next().toggle();
+					 		$(this).next().toggle();		
+							return false;
 				})
-			    /*�������� �л� */
+			    /*个人社区 切换 */ 
 				$(".g_l_nav ul li").each(function(i){
 				     $(this).click(function(){
 					    $(".grsp_left .grsp-box").eq(i).show().siblings().hide();
+						$(".g_r_say span").eq(i).show().siblings().hide();
+						$(".grsp_right .r-grsp-box").eq(i).show().siblings().hide();
                         return false;
-					})
+					})			  
 			    })
 				$(".c_q_title ul li").each(function(i){
-
+				    									
 					$(this).click(function(){
-					$(".index-box .c_q_cont").eq(i).show().siblings().hide();
-					$(this).children("a").addClass("select_a").parent().siblings().children("a").removeClass("select_a");
+					$(".index-box .c_q_cont").eq(i).show().siblings().hide();					   
+					$(this).children("a").addClass("select_a").parent().siblings().children("a").removeClass("select_a");		
 					return  false;
-					})
+					})								
 				})
-
-
-				/* ����ѡ��js */
-				$(".mailSelect").click(function(){
+				
+				
+				/* 邮箱选择js */
+				$(".mailSelect i").click(function(){
 					 var selectem=$(".mailSelect em").html();
 					 $(".mail-list ul li").each(function(i){
 						  var thisval=$(this).html();
 					     if(selectem == thisval){
-
-							 }
+							    
+							 }						 
 					 })
-					 $(".mail-list").show();
-
+					 $(".mail-list").show();						  
+				  								  
 				})
-
+				
 				$(".mail-list ul li").each(function(i){
 						 $(this).click(function(){
 							 var livals=$(this).html();
 							 $(".mailSelect").find('em').html(livals);
 							 $(".mail-list").hide();
-                             $('select[name=domainss]').html('<option value="'+livals+'">'+livals+'</option>')
-
+							 $('select[name=domainss]').html('<option value="'+livals+'">'+livals+'</option>')
 						})
 				 })
-
+				
 		  })
 		  
 		  

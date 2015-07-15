@@ -377,7 +377,10 @@ margin-right:10px;}
 i{ font-style:normal;}
 .vf_tishi{ display:none;}
 
-
+.subm{ border:solid 1px #ccc; background:#fff; margin-top:10px;}
+.subtt {padding-left: 20px;font-size: 14px;color: #676767;height: 40px;border-bottom: 1px solid #E5E5E5;line-height: 40px;}
+.subul li {display: block;width: 164px;height: 39px;padding-left: 22px;line-height: 40px;font-size: 14px;float: left;overflow: hidden;
+text-overflow: ellipsis;white-space: nowrap;/*border-bottom: 1px dotted #E5E5E5;*/}
 
 
 
