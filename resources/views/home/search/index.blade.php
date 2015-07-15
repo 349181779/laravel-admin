@@ -20,7 +20,7 @@
     <div class="wrap">
            <div class="sodiv">
 		            <div class="so_logo"><a href=""><img src="/site/images/sologo.png" width="363" height="66" /></a></div>
-                    @include('home.block.search');
+                    @include('home.block.search')
 				  <!---->
 		   </div>
 		   <div class="seaou">

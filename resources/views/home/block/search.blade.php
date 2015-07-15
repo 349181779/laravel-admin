@@ -1,8 +1,4 @@
-
-
-<ul class="subnav">
-
-</ul>
+<ul class="subnav"></ul>
 <!--  end subnav -->
 <div>
     <form method="get" action="" id="search-form" >

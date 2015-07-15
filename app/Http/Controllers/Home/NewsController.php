@@ -18,11 +18,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Model\Home\UserModel;
-
-use App\Http\Requests\Home\UserLoginRequest;
-
-use App\Http\Requests\Home\UserRegisterRequest;
+use App\Model\Home\NewsModel;
 
 class NewsController extends BaseController {
 
@@ -34,6 +30,7 @@ class NewsController extends BaseController {
 	 */
 	public function getIndex(){
         return view('home.news.index', [
+			'all_new'		=> NewsModel::getAllNews(),
 			'title'         => '新闻',
 			'keywords'      => '新闻',
 			'description'   => '新闻',

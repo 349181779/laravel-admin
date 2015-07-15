@@ -20,7 +20,7 @@
     <div class="wrap">
            <div class="sodiv tubiao">
 		          	<div class="so_logo"><img src="/site/images/sologo.png" width="363" height="66" /></div>
-			   		@include('home.block.search');
+			   		@include('home.block.search')
 				  <!-- end -->
 		   </div>
 		   <!-- 新闻 -->
@@ -29,95 +29,52 @@
 		          <!---->
 				  <div class="c_q_title">
 				         <ul>
-						    <li><a href="" class="select_a">新闻</a></li>
-							<li><a href="">体育</a></li>
-							<li><a href="">财经</a></li>
-							<li><a href="">军事</a></li>
-							<li><a href="">房产</a></li>
-							<li><a href="">视频</a></li>
-							<li><a href="">娱乐</a></li>
-							<li><a href="">汽车</a></li>
-							<li><a href="">文化</a></li>
-							<li><a href="">教育</a></li>
-							<li><a href="">游戏</a></li>
-							<li><a href="">购物</a></li>
-							<li><a href="">科技</a></li>
-							<li><a href="">时尚</a></li>
-							<li><a href="">音乐</a></li>
-							<li><a href="">农业</a></li>
+							<?php if(!empty($all_new)):?>
+							 	<?php foreach($all_new as $k=>$new_cat):?>
+							 		<?php if($k == 0):?>
+						    			<li><a href="" class="select_a"><?php echo $new_cat->cat_name ;?></a></li>
+									<?php else:?>
+										<li><a href=""><?php echo $new_cat->cat_name ;?></a></li>
+									<?php endif;?>
+								<?php endforeach;?>
+							<?php endif;?>
 						 </ul>
 						 <div class="c_q_set"></div>
 						 <div class="clear"></div>
 				  </div>
 				  <div class="index-box">
 				  <!---->
-				    <div class="c_q_cont" style="display:block;">
+					  <?php if(!empty($all_new)):?>
+							<?php foreach($all_new as $k=>$new_cat):?>
+								<?php if($k == 0):?>
+					  				<div class="c_q_cont" style="display:block;">
+										<ul class="new-list-ul">
+											<?php if(!empty($new_cat->news)):?>
+												<?php foreach($new_cat->news as $new):?>
+													<li><a target="_blank" href="<?php echo $new->site_url ;?>"><?php echo $new->title ;?></a></li>
+												<?php endforeach;?>
+											<?php endif;?>
+											<div class="clear"></div>
+										</ul>
+										<div class="clear"></div>
+									</div>
+								<?php else:?>
+									  <div class="c_q_cont" style="display:none;">
+										  <ul class="new-list-ul">
+											  <?php if(!empty($new_cat->news)):?>
+											  <?php foreach($new_cat->news as $new):?>
+											  <li><a target="_blank" href="<?php echo $new->site_url ;?>"><?php echo $new->title ;?></a></li>
+											  <?php endforeach;?>
+											  <?php endif;?>
+											  <div class="clear"></div>
+										  </ul>
+										  <div class="clear"></div>
+									  </div>
+								<?php endif;?>
 
-						<ul class="new-list-ul">
-						     <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
-							 <li><a href="">测试文字测试文字测试文字测试文字测试文字</a></li>
+						<?php endforeach;?>
+						<?php endif;?>
 
-							 <div class="clear"></div>
-						</ul>
-						<div class="clear"></div>
-					   <!---->
-				  </div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">
-					       体育
-					</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">财经</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">军事</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">房产</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">视频</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">娱乐</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">汽车</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">文化</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">教育</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">游戏</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">购物</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">科技</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">时尚</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">音乐</div>
-				  <!---->
-				  <div class="c_q_cont" style="display:none;">农业</div>
-				  <!---->
-				  </div>
 		   </div>
 	</div>
 		   <!-- end 新闻 -->

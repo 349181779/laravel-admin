@@ -57,7 +57,7 @@
 			<div class="tp_daohan">
 				<!---->
 				<div class="tp_dhdiv">
-					@include('home.block.search');
+					@include('home.block.search')
 				</div>
 				<!---->
 			</div>
