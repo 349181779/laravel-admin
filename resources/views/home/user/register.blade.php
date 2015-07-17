@@ -20,6 +20,9 @@
 <div class="main">
     <div class="wrap">
        <div class="login">
+	   		 <div class="rst-r-img">
+			         <img src="/site/images/registerimg.png" width="530" height="453" />
+			  </div>
 	          <div class="register">
 			         <div class="rgt-lf-img"><img src="/site/images/logo.png" width="432" height="79" /></div>
 					 <div class="l_form">
@@ -81,9 +84,7 @@
 					 </div>
 
 			  </div>
-			  <div class="rst-r-img">
-			         <img src="/site/images/registerimg.png" width="530" height="453" />
-			  </div>
+			  
 			  <div class="clear"></div>
 	   </div>
 	</div>
