@@ -22,7 +22,7 @@ class SiteCatRequest extends BaseFormRequest {
     public function rules(){
         return [
             'cat_name'  => ['required'],
-            'pid'       => ['required', 'numeric'],
+            //'pid'       => ['required', 'numeric'],
             'status'    => ['required', 'in:1,2'],
             'sort'      => ['required', 'digits_between:0,255'],
         ];

@@ -27,7 +27,6 @@ class UserInfoRequest extends BaseFormRequest {
             'password'  => ['required', 'size:6'],
             'mobile'    => ['required', 'digits:11'],
             'status'    => ['required', 'in:1,2'],
-            'sort'      => ['required', 'digits_between:0,255'],
             'sex'       => ['required', 'in:1,2,3'],
             'birthday'  => ['required', 'date_format:Y-m-d'],
         ];

@@ -46,7 +46,7 @@ class SearchController extends BaseController {
                 builderTitle('后台搜索工具导航列表')->
                 builderSchema('id', 'id')->
                 builderSchema('name', '名称')->
-                builderSchema('search_cat_id', '所属搜索')->
+                builderSchema('cat_name', '所属搜索')->
                 builderSchema('search_url', 'url')->
                 builderSchema('status', '状态')->
                 builderSchema('sort', '排序')->

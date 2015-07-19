@@ -26,7 +26,6 @@ class AdminInfoRequest extends BaseFormRequest {
             'password'  => ['required', 'size:6'],
             'mobile'    => ['required', 'digits:11'],
             'status'    => ['required', 'in:1,2'],
-            'sort'      => ['required', 'digits_between:0,255'],
             'role_id'   => ['required', 'numeric'],
         ];
     }
@@ -47,8 +46,6 @@ class AdminInfoRequest extends BaseFormRequest {
             'mobile.digits'         => trans('validate.mobile_error'),
             'status.required'       => trans('validate.status_require'),
             'status.in'             => trans('validate.status_error'),
-            'sort.require'          => trans('validate.sort_require'),
-            'sort.digits_between'   => trans('validate.sort_error'),
             'role_id.required'      => trans('validate.role_id_require'),
             'role_id.numeric'       => trans('validate.role_id_error'),
         ];

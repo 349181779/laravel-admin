@@ -23,7 +23,6 @@ class RoleRequest extends BaseFormRequest {
         return [
             'role_name'     => ['required'],
             'status'        => ['required', 'in:1,2'],
-            'sort'          => ['required', 'digits_between:0,255'],
         ];
     }
 
@@ -37,8 +36,6 @@ class RoleRequest extends BaseFormRequest {
             'role_name.required'    => trans('validate.role_name_require'),
             'status.required'       => trans('validate.status_require'),
             'status.in'             => trans('validate.status_error'),
-            'sort.require'          => trans('validate.sort_require'),
-            'sort.digits_between'   => trans('validate.sort_error')
         ];
     }
 
