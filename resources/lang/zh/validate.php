@@ -32,6 +32,7 @@ return [
     'cat_unique'    => '分类不能重复',
     'name_reuqire' => '名称不能为空',
     'name_unique' => '名称不能重复',
+    'captcha_error' => '验证码不正确',
 
 
     //后台会员
@@ -69,6 +70,8 @@ return [
     'password_confirmed_require'    => '确认密码不能为空',
     'birthday_require'  => '生日不能空',
     'birthday_error'    => '生日格式不正确',
+    'agreement_require' => '必须同意并接收注册用户服务条款',
+
 
     //查询工具
 

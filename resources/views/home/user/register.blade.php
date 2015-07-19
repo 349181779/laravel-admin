@@ -39,10 +39,10 @@
 								  <div class="inline fields">
 										<div class="field">
 										  <label id="b-label">验 　证　码：</label>
-										  <input type="text" placeholder="" name="verify" style="width:200px;">
+										  <input type="text" placeholder="" name="captcha" style="width:200px;">
 										</div>
-										<div class="field">
-										  <img src="/site/images/verify.png" height="33" width="100"/>
+										<div onclick="load_captcha_img(this)" class="field">
+                                            <?php echo captcha_img();?>
 										</div>
 								  </div>
 								  <div class="inline field">
@@ -55,8 +55,8 @@
 								  </div>
 								  <div class="inline field">
 									<div class="ui checkbox" id="b-check">
-									  <input type="checkbox" name="agreement">
-									  <label>我同意并接收注册用户服务条款</label>
+									  <input type="checkbox" checked="checked" name="agreement" value="1">
+									  <label><a target="_blank" href="<?php echo action('Home\UserController@getAgree') ;?>">我同意并接收注册用户服务条款</a></label>
 									</div>
 								  </div>
 								  <div class="inline fields">
@@ -93,6 +93,13 @@
 <!-- footer -->
 @section('footer')
 @include('home.block.footer')
+<script>
+    function load_captcha_img(obj){
+        var _this = $(obj);
+        var src = _this.find('img').attr('src');
+        _this.find('img').attr('src', src+"?"+Math.round())
+    }
+</script>
 @parent
 @show
 <!-- end footer -->

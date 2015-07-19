@@ -29,6 +29,7 @@ class UserInfoRequest extends BaseFormRequest {
             'status'    => ['required', 'in:1,2'],
             'sex'       => ['required', 'in:1,2,3'],
             'birthday'  => ['required', 'date_format:Y-m-d'],
+            'agreement' => ['required', 'in:1'],
         ];
     }
 
@@ -55,7 +56,9 @@ class UserInfoRequest extends BaseFormRequest {
             'sex.required'          => trans('validate.sex_require'),
             'sex.in'                => trans('validate.sex_error'),
             'birthday.required'     => trans('validate.birthday_require'),
-            'birthday.date_format'  => trans('validate.birthday_error')
+            'birthday.date_format'  => trans('validate.birthday_error'),
+            'agreement.required'    => trans('validate.agreement_require'),
+            'agreement.in'          => trans('validate.agreement_require'),
         ];
     }
 

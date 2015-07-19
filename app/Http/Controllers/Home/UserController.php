@@ -94,10 +94,24 @@ class UserController extends BaseController {
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public function postRegister(UserRegisterRequest $request){
-        $input = $request->only('email', 'mobile', 'verify', 'password', 'password_confirmation');
+        $input = $request->only('email', 'mobile', 'password', 'password_confirmation');
         //写入数据
         $affected_number = UserModel::register($input);
-        return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, action('Home\UserController@getLogin')) : $this->response(400, trans('response.add_error'), [], true);
+        return $affected_number->id > 0 ? $this->response(200, trans('response.register_success'), [], true, action('Home\UserController@getLogin')) : $this->response(400, trans('response.register_error'), [], true);
+    }
+
+    /**
+     * 用户协议
+     *
+     * @return \Illuminate\View\View
+     * @auther yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getAgree(){
+        return view('home.user.agree', [
+            'title'         => '用户协议',
+            'keywords'      => '用户协议',
+            'description'   => '用户协议',
+        ]);
     }
 
 }

@@ -3372,7 +3372,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 	public static function __callStatic($method, $parameters)
 	{
 		$instance = new static;
-        return call_user_func_array(array($instance, $method), $parameters);
+
+		return call_user_func_array(array($instance, $method), $parameters);
 	}
 
 	/**

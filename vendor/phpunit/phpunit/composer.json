@@ -20,6 +20,7 @@
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "irc": "irc://irc.freenode.net/phpunit"
     },
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
         "phpunit/php-file-iterator": "~1.4",
@@ -63,7 +64,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.7.x-dev"
+            "dev-master": "4.8.x-dev"
         }
     }
 }

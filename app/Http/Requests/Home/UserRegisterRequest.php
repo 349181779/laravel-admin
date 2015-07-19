@@ -21,11 +21,11 @@ class UserRegisterRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'email'                     => ['required', 'email'],
-            'mobile'                    => ['required', 'digits:11'],
-            'verify'                    => ['required'],
+            'email'                     => ['required', 'email', 'unique:user_info'],
+            'mobile'                    => ['required', 'digits:11', 'unique:user_info'],
+            'captcha'                   => ['required', 'captcha'],
             'password'                  => ['required', 'confirmed'],
-            'password_confirmation'    => ['required'],
+            'password_confirmation'     => ['required'],
         ];
     }
 
@@ -38,9 +38,12 @@ class UserRegisterRequest extends BaseFormRequest {
         return [
             'email.required'                    => trans('validate.user_name_reuqire'),
             'email.email'                       => trans('validate.email_error'),
+            'email.unique'                      => trans('validate.email_unique'),
             'mobile.mobile_require'             => trans('validate.mobile_require'),
             'mobile.digits'                     => trans('validate.mobile_error'),
-            'verify.required'                   => trans('validate.verify_reuqire'),
+            'mobile.unique'                     => trans('validate.mobile_unique'),
+            'captcha.required'                  => trans('validate.verify_reuqire'),
+            'captcha.captcha'                   => trans('validate.captcha_error'),
             'password.required'                 => trans('validate.password_reuqre'),
             'password.confirmed'                => trans('validate.password_confirmed_error'),
             'password_confirmation.required'    => trans('validate.password_confirmed_require'),

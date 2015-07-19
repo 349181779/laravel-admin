@@ -20,9 +20,10 @@
         "stevenyangecho/laravel-u-editor": "~1.1",
         "ender/laravel-ueditor":"0.8.*",
         "rcrowe/turbo": "0.2.*",
-	  "greggilbert/recaptcha": "dev-master"
+        "mews/captcha": "~2.0"
 
 	},
+   "minimum-stability": "dev",
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1"

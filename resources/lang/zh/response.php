@@ -27,5 +27,7 @@ return [
     'top_classification' => '顶级分类',
     'is_default'=>'默认',
     'not_is_default' => '非默认',
-    'search_error'=>'当前页面不存在'
+    'search_error'=>'当前页面不存在',
+    'register_success' => '注册成功',
+    'register_error'    => '注册失败',
 ];

@@ -156,7 +156,7 @@ return [
         'zgldh\QiniuStorage\QiniuFilesystemServiceProvider',//七牛
         'Stevenyangecho\UEditor\UEditorServiceProvider',//ueditor
         //'Dingo\Api\Provider\ApiServiceProvider'
-		'Greggilbert\Recaptcha\RecaptchaServiceProvider',//验证码
+		'Mews\Captcha\CaptchaServiceProvider',//验证码
 
 	],
 
@@ -214,7 +214,7 @@ return [
         //https://github.com/AlloVince/EvaOAuth
         'Excel'         => 'Maatwebsite\Excel\Facades\Excel', //https://github.com/Maatwebsite/Laravel-Excel
         'Wechat'        => 'Overtrue\LaravelWechat\Facade',//https://github.com/overtrue/laravel-wechat
-
+        'Captcha'       => 'Mews\Captcha\Facades\Captcha',
 
 
 	],

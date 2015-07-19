@@ -35,7 +35,8 @@
         "Overtrue\\LaravelWechat\\ServiceProvider",
         "Overtrue\\LaravelPinyin\\ServiceProvider",
         "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider",
-        "Stevenyangecho\\UEditor\\UEditorServiceProvider"
+        "Stevenyangecho\\UEditor\\UEditorServiceProvider",
+        "Mews\\Captcha\\CaptchaServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -60,7 +61,8 @@
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Overtrue\\LaravelPinyin\\ServiceProvider",
         "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider",
-        "Stevenyangecho\\UEditor\\UEditorServiceProvider"
+        "Stevenyangecho\\UEditor\\UEditorServiceProvider",
+        "Mews\\Captcha\\CaptchaServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

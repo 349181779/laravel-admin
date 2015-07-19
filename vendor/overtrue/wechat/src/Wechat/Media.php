@@ -18,6 +18,7 @@ namespace Overtrue\Wechat;
 use Overtrue\Wechat\Utils\JSON;
 use Overtrue\Wechat\Utils\Arr;
 use Overtrue\Wechat\Utils\Bag;
+use Overtrue\Wechat\Utils\File;
 
 /**
  * 媒体素材
@@ -119,7 +120,9 @@ class Media
 
         $this->forever = false;
 
-        return Arr::last(Arr::only($response, array('media_id', 'thumb_media_id')));
+        $response = Arr::only($response, array('media_id', 'thumb_media_id'));
+
+        return array_pop($response);
     }
 
     /**
@@ -267,7 +270,18 @@ class Media
 
         $contents = $this->http->{$method}($api, $params);
 
-        return $filename ? file_put_contents($filename, $contents) : $contents;
+        $filename = $filename ? $filename : $mediaId;
+
+        if (!is_array($contents)) {
+            $ext = File::getStreamExt($contents);
+
+            file_put_contents($filename.'.'.$ext, $contents);
+
+            return $filename.'.'.$ext;
+        } else {
+
+            return $contents;
+        }
     }
 
     /**
