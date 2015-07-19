@@ -156,6 +156,7 @@ return [
         'zgldh\QiniuStorage\QiniuFilesystemServiceProvider',//七牛
         'Stevenyangecho\UEditor\UEditorServiceProvider',//ueditor
         //'Dingo\Api\Provider\ApiServiceProvider'
+		'Greggilbert\Recaptcha\RecaptchaServiceProvider',//验证码
 
 	],
 

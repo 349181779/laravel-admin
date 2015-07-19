@@ -22,7 +22,7 @@ class AdminInfoRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'email'     => ['required', 'email'],
+            'email'     => ['required', 'email', 'unique:admin_info'],
             'password'  => ['required', 'size:6'],
             'mobile'    => ['required', 'digits:11'],
             'status'    => ['required', 'in:1,2'],
@@ -40,6 +40,7 @@ class AdminInfoRequest extends BaseFormRequest {
         return [
             'email.required'        => trans('validate.email_require'),
             'email.email'           => trans('validate.email_error'),
+            'email.unique'          => trans('validate.email_unique'),
             'password.required'     => trans('validate.password_require'),
             'password.size'         => trans('validate.password_size_error'),
             'mobile.mobile_require' => trans('validate.mobile_require'),

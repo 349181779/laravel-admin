@@ -21,7 +21,7 @@ class RoleRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'role_name'     => ['required'],
+            'role_name'     => ['required', 'unique:role'],
             'status'        => ['required', 'in:1,2'],
         ];
     }
@@ -34,6 +34,7 @@ class RoleRequest extends BaseFormRequest {
     public function messages(){
         return [
             'role_name.required'    => trans('validate.role_name_require'),
+            'role_name.unique'      => trans('validate.role_name_unique'),
             'status.required'       => trans('validate.status_require'),
             'status.in'             => trans('validate.status_error'),
         ];

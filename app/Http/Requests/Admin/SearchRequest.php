@@ -21,7 +21,7 @@ class SearchRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'name'              => ['required'],
+            'name'              => ['required', 'unique:admin_info'],
             'search_cat_id'     => ['required', 'numeric'],
             'search_url'        => ['required', 'url'],
             'status'            => ['required', 'in:1,2'],
@@ -37,6 +37,7 @@ class SearchRequest extends BaseFormRequest {
     public function messages(){
         return [
             'name.required'             => trans('validate.article_title_require'),
+            'name.unique'               => trans('validate.name_unique'),
             'search_cat_id.required'    => trans('validate.cat_name_require'),
             'search_cat_id.numeric'     => trans('validate.cat_name_error'),
             'search_url.required'       => trans('validate.url_require'),

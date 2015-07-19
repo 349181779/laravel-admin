@@ -21,9 +21,9 @@ class NewsRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'title'             => ['required'],
+            'title'             => ['required', 'unique:news'],
             'news_cat_id'       => ['required', 'numeric'],
-            'site_url'          => ['required', 'url'],
+            'site_url'          => ['required', 'url', 'unique:news'],
             'status'            => ['required', 'in:1,2'],
             'sort'              => ['required', 'digits_between:0,255'],
         ];
@@ -37,10 +37,12 @@ class NewsRequest extends BaseFormRequest {
     public function messages(){
         return [
             'title.required'            => trans('validate.article_title_require'),
+            'title.unique'              => trans('validate.name_unique'),
             'news_cat_id.required'      => trans('validate.cat_name_require'),
             'news_cat_id.numeric'       => trans('validate.cat_name_error'),
             'site_url.required'         => trans('validate.url_require'),
             'site_url.url_error'        => trans('validate.url_error'),
+            'site_url.required'         => trans('validate.url_require'),
             'status.required'           => trans('validate.status_require'),
             'status.in'                 => trans('validate.status_error'),
             'sort.require'              => trans('validate.sort_require'),

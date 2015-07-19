@@ -21,7 +21,7 @@ class SearchCatRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'cat_name'  => ['required'],
+            'cat_name'  => ['required', 'unique:search_cat'],
             'status'    => ['required', 'in:1,2'],
             'sort'      => ['required', 'digits_between:0,255'],
         ];
@@ -35,6 +35,7 @@ class SearchCatRequest extends BaseFormRequest {
     public function messages(){
         return [
             'cat_name.required'     => trans('validate.cat_name_require'),
+            'cat_name.unique'       => trans('validate.cat_unique'),
             'status.required'       => trans('validate.status_require'),
             'status.in'             => trans('validate.status_error'),
             'sort.require'          => trans('validate.sort_require'),

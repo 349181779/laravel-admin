@@ -158,7 +158,7 @@ class BaseModel extends Model{
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public static function getSearch(){
-        return self::mergeSearch(DB::table('search_cat')->where('status', '=', 1)->get());
+        return self::mergeSearch(DB::table('search_cat')->where('status', '=', 1)->orderBy('sort', 'ASC')->get());
     }
 
     /**

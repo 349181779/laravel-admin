@@ -21,7 +21,7 @@ class ArticleRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'title'             => ['required'],
+            'title'             => ['required', 'unique:article'],
             'article_cat_id'    => ['required', 'numeric'],
             'status'            => ['required', 'in:1,2'],
             'sort'              => ['required', 'digits_between:0,255'],
@@ -36,6 +36,7 @@ class ArticleRequest extends BaseFormRequest {
     public function messages(){
         return [
             'title.required'            => trans('validate.article_title_require'),
+            'title.unique'              => trans('validate.article_title_unique'),
             'article_cat_id.required'   => trans('validate.cat_name_require'),
             'article_cat_id.numeric'    => trans('validate.cat_name_error'),
             'status.required'           => trans('validate.status_require'),

@@ -21,9 +21,9 @@ class SiteRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'site_name'         => ['required'],
+            'site_name'         => ['required', 'unique:site'],
             'site_cat_id'       => ['required', 'numeric'],
-            'site_url'          => ['required', 'url'],
+            'site_url'          => ['required', 'url', 'unique:site'],
             'status'            => ['required', 'in:1,2'],
             'sort'              => ['required', 'digits_between:0,255'],
         ];
@@ -37,10 +37,12 @@ class SiteRequest extends BaseFormRequest {
     public function messages(){
         return [
             'site_name.required'            => trans('validate.site_name_require'),
+            'site_name.unique'              => trans('validate.name_unique'),
             'site_cat_id.required'          => trans('validate.cat_name_require'),
             'site_cat_id.numeric'           => trans('validate.cat_name_error'),
             'site_url.required'             => trans('validate.url_require'),
             'site_url.url_error'            => trans('validate.url_error'),
+            'site_url.unique'               => trans('validate.url_unique'),
             'status.required'               => trans('validate.status_require'),
             'status.in'                     => trans('validate.status_error'),
             'sort.require'                  => trans('validate.sort_require'),

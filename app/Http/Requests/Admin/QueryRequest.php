@@ -21,9 +21,9 @@ class QueryRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'name'              => ['required'],
+            'name'              => ['required', 'unique:query'],
             'query_cat_id'      => ['required', 'numeric'],
-            'site_url'          => ['required'],
+            'site_url'          => ['required', 'unique:query'],
             'status'            => ['required', 'in:1,2'],
             'sort'              => ['required', 'digits_between:0,255'],
         ];
@@ -37,8 +37,10 @@ class QueryRequest extends BaseFormRequest {
     public function messages(){
         return [
             'name.required'                 => trans('validate.name_reuqire'),
+            'name.unique'                   => trans('validate.site_name_unique'),
             'query_cat_id.required'         => trans('validate.cat_name_require'),
             'query_cat_id.numeric'          => trans('validate.cat_name_error'),
+            'site_url.unique'               => trans('validate.url_unique'),
             'status.required'               => trans('validate.status_require'),
             'status.in'                     => trans('validate.status_error'),
             'sort.require'                  => trans('validate.sort_require'),

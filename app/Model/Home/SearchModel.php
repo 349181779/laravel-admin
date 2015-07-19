@@ -29,7 +29,7 @@ class SearchModel extends BaseModel {
     public static function getSearchInfo($search_cat_id){
         $search_cat = self::select('cat_name', 'logo', 'id')->where('id', '=', $search_cat_id)->where('status', '=', 1)->first();
         //获得当前分类下面的全部搜索导航
-        $search_cat['all_search'] = DB::table('search')->select('name', 'search_url')->where('status', '=', 1)->get();
+        $search_cat['all_search'] = DB::table('search')->select('name', 'search_url')->where('status', '=', 1)->where('search_cat_id', '=', $search_cat_id)->orderBy('sort', 'ASC')->get();
 
         return $search_cat;
     }
