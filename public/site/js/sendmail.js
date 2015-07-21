@@ -1,132 +1,205 @@
-function clickMail(){
+var mail = {
+    mailData:[
+        {
+            mail: "163",
+            name: "@163.com",
+            action: "http://reg.163.com/CheckUser.jsp",
+            params: {
+                url: "http://entry.mail.163.com/coremail/fcg/ntesdoor2?lightweight=1&verifycookie=1&language=-1&from=web&df=webmail163",
+                username: "_username_",
+                password: "_password_"
+            }
+        },
+        {
+            mail: "126",
+            name: "@126.com",
+            action: "https://reg.163.com/logins.jsp",
+            params: {
+                domain: "126.com",
+                username: "_username_@126.com",
+                password: "_password_",
+                url: "http://entry.mail.126.com/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26language%3D0%26style%3D-1"
+            }
+        },
+        {
+            mail: "sina",
+            name: "@sina.com",
+            action: "http://mail.sina.com.cn/cgi-bin/login.cgi",
+            params: {
+                u: "_username_",
+                psw: "_password_"
+            }
+        },
+        {
+            mail: "yahoocomcn",
+            name: "@yahoo.com.cn",
+            action: "https://edit.bjs.yahoo.com/config/login",
+            params: {
+                login: "_username_@yahoo.com.cn",
+                passwd: "_password_",
+                domainss: "yahoo",
+                ".intl": "cn",
+                ".src": "ym"
+            }
+        },
+        {
+            mail: "yahoocn",
+            name: "@yahoo.cn",
+            action: "https://edit.bjs.yahoo.com/config/login",
+            params: {
+                login: "_username_@yahoo.cn",
+                passwd: "_password_",
+                domainss: "yahoocn",
+                ".intl": "cn",
+                ".done": "http://mail.cn.yahoo.com/inset.html"
+            }
+        },
+        {
+            mail: "sohu",
+            name: "@sohu.com",
+            action: "http://passport.sohu.com/login.jsp",
+            params: {
+                loginid: "_username_@sohu.com",
+                passwd: "_password_",
+                fl: "1",
+                vr: "1|1",
+                appid: "1000",
+                ru: "http://login.mail.sohu.com/servlet/LoginServlet",
+                ct: "1173080990",
+                sg: "5082635c77272088ae7241ccdf7cf062"
+            }
+        },
+        {
+            mail: "yeah",
+            name: "@yeah.net",
+            action: "https://reg.163.com/logins.jsp",
+            params: {
+                domain: "yeah.net",
+                username: "_username_@yeah.net",
+                password: "_password_",
+                url: "http://entry.mail.yeah.net/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26style%3D-1"
+            }
+        },
+        {
+            mail: "139",
+            name: "@139.com",
+            action: "https://mail.10086.cn/Login/Login.ashx",
+            params: {
+                UserName: "_username_",
+                Password: "_password_",
+                clientid: "5015"
+            }
+        },
+        {
+            mail: "tom",
+            name: "@tom.com",
+            action: "http://login.mail.tom.com/cgi/login",
+            params: {
+                user: "_username_",
+                pass: "_password_"
+            }
+        },
+        {
+            mail: "21cn",
+            name: "@21cn.com",
+            action: "http://passport.21cn.com/maillogin.jsp",
+            params: {
+                UserName: "_username_@21cn.com",
+                passwd: "_password_",
+                domainname: "21cn.com"
+            }
+        },
+        {
+            mail: "renren",
+            name: "\u4eba\u4eba\u7f51",
+            action: "http://passport.renren.com/PLogin.do",
+            params: {
+                email: "_username_",
+                password: "_password_",
+                origURL: "http://www.renren.com/Home.do",
+                domain: "renren.com"
+            }
+        },
+        {
+            mail: "baidu",
+            name: "\u767b\u5f55\u767e\u5ea6",
+            action: "https://passport.baidu.com/?login",
+            params: {
+                u: "http://passport.baidu.com/center",
+                username: "_username_",
+                password: "_password_"
+            }
+        },
+        {
+            mail: "51",
+            name: "51.com",
+            action: "http://passport.51.com/login.5p",
+            params: {
+                passport_51_user: "_username_",
+                passport_51_password: "_password_",
+                gourl: "http%3A%2F%2Fmy.51.com%2Fwebim%2Findex.php"
+            }
+        }],
+    init:function(){
+        var $mailSelect = $('.mail-list ul');
+        var $mailUserName =$('#mailUserName');
+        var $mailPassword = $('#mailPassword');
+        var $mailParas = $('#mailParas');
+        var md = mail.mailData;
+        var p=[];
+        $mailSelect.empty(); //清空邮箱列表
+        for(var i=0;i<md.length;i++){
+            $mailSelect.append('<li data="'+md[i].mail+'">'+md[i].name+'</li>');
+        }
 
-    var gm          = $('#FrLgn')
-    var vDomain     = gm.find('select[name=domainss]');
-    var vName       = gm.find('input[name=uName]');
-    var vPw         = gm.find('input[name=uPw]')
-    if(vDomain.val()==""){alert("您没有选择邮箱！")
-        vDomain.focus()
-        return false}
-    if(vName.val()==""){alert("用户名不能为空！")
-        vName.focus()
-        return false
+        $mailSelect.find('li').click(function(){
+            var mailName = $(this).attr('data');
+            var m = mail.find(mailName,md);
+            if(m){
+                p = [];
+                for(var key in m.params){
+                    p.push('<input type="hidden" name="'+ key+'" value="'+m.params[key].replace(/_username_/,$mailUserName.val()).replace(/_password_/,$mailPassword.val())+'" />');
+                };
+                $mailParas.empty().html(p.join(''));
+                $('.mailSelect').find('.mail-list').addClass('hide')
+                $('#mailForm').attr('action',m.action);
+            }
+        }).change();
+
+        $('#mailForm').bind('submit',function(){
+            return mail.check();
+        });
+    },
+    check:function(){
+        var $mailSelect = $('#mailSelect');
+        var $mailUserName =$('#mailUserName');
+        var $mailPassword = $('#mailPassword');
+        if($mailUserName.val()==''){
+            alert('请输入您的邮箱登录名称！');
+            return false;
+        }else if($mailPassword.val()==''){
+            alert('请输入您的登录密码！');
+            return false;
+        }else{
+            $mailSelect.change();
+            $mailPassword.val('');
+            outWin=window.open('','','scrollbars=yes,menubar=yes,toolbar=yes,location=yes,status=yes,resizable=yes');
+            doc=outWin.document;
+            doc.open('text/html');
+            doc.write('<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb2312"><title>邮箱登录</title></head><body onload="document.tmpForm.submit()">');
+            doc.write('<p align="center" style="font-size: 14px; color: #FF0000">正在登录系统，请稍候......</p><form name="tmpForm" action="'+$('#mailForm').attr('action')+'" method="post">'+$('#mailParas').html()+'</form></body></html>');
+            doc.close();
+            return false;
+        }
+    },
+    find:function(mail,md){ //根据mail名称查找
+        for(var i=0;i<md.length;i++){
+            if(md[i].mail == mail)
+                return md[i];
+        }
     }
-    if(vPw.val()==""){alert("密码不能为空！")
-        vPw.focus()
-        return false}
-    switch(vDomain.val()){
-        case "@163.com":
-            gm.attr('action',"http://reg.163.com/CheckUser.jsp" )
-            gm.find('input[name=url]').val("http://fm163.163.com/coremail/fcg/ntesdoor2?lightweight=1&verifycookie=1&language=-1&style=15")
-            gm.find('input[name=username]').val(vName.val());
-            gm.find('input[name=password]').val(vPw.val());
-            gm.find('input[name=enterVip]').val('')
-            break;
-        case "@126.com":
-            gm.attr('action',"https://reg.163.com/logins.jsp" )
-            gm.find('input[name=domain]').val('126.com');
-            gm.find('input[name=username]').val(vName.val()+"@126.com");
-            gm.find('input[name=password]').val(vPw.val());
-            gm.find('input[name=value]').val("http://entry.mail.126.com/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26language%3D0%26style%3D-1")
-            break
-        case "@yeah.net":
-            gm.attr('action',"https://reg.163.com/logins.jsp")
-            gm.find('input[name=domain]').val('yeah.net');
-            gm.find('input[name=username]').val(vName.val()+"@yeah.net");
-            gm.find('input[name=password]').val(vPw.val());
-            gm.find('input[name=value]').val("http://entry.mail.yeah.net/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26style%3D-1")
-            break
-        case "@188.com":
-            gm.attr('action',"http://reg.mail.188.com/servlet/coremail/login?language=0&style=1")
-            gm.find('input[name=username]').val(vName.val());
-            gm.find('input[name=password]').val(vPw.val());
-            break
-        case "@sohu.com":
-            gm.attr('action',"http://passport.sohu.com/login.jsp")
-            gm.find('input[name=url]').val("")
-            gm.find('input[name=UserName]').val(vName.val());
-            gm.find('input[name=Password]').val(vPw.val());
-            gm.find('input[name=id]').val(vName.value);
-            gm.find('input[name=username]').val(vName.val()+"@yeah.net");
-            gm.find('input[name=password]').val(vPw.val());
-            gm.find('input[name=m]').val(vName.val());
-            gm.find('input[name=passwd]').val(vPw.val());
-            gm.find('input[name=mpass]').val(vPw.val());
-            gm.find('input[name=loginid]').val(vName.val()+"@sohu.com");
-            gm.find('input[name=fl]').val('1');
-            gm.find('input[name=vr]').val('1|1');
-            gm.find('input[name=appid]').val('1000');
-            gm.find('input[name=ru]').val("http://login.mail.sohu.com/servlet/LoginServlet");
-            gm.find('input[name=eru]').val("http://login.mail.sohu.com/login.jsp");
-            gm.find('input[name=ct]').val("1173080990");
-            gm.find('input[name=sg]').val("5082635c77272088ae7241ccdf7cf062");
-            break
-        case "yahoo":
-            gm.attr('action',"https://edit.bjs.yahoo.com/config/login")
-            gm.find('input[name=login]').val(vName.val());
-            gm.find('input[name=passwd]').val(vPw.val());
-            break
-        case "@yahoo.com.cn":
-            gm.attr('action',"https://edit.bjs.yahoo.com/config/login")
-            gm.find('input[name=login]').val(vName.val()+"@yahoo.cn");
-            gm.find('input[name=passwd]').val(vPw.val());
-            break
-        case "@tom.com":
-            gm.attr('action',"http://bjweb.163.net/cgi/163/login_pro.cgi")
-            gm.find('input[name=user]').val(vName.val());
-            gm.find('input[name=pass]').val(vPw.val());
-            break
-        case "@21cn.com":
-            gm.attr('action',"http://passport.21cn.com/maillogin.jsp")
-            gm.find('input[name=LoginName]').val(vName.val());
-            gm.find('input[name=passwd]').val(vPw.val());
-            gm.find('input[name=domain]').val('21cn.com');
-            gm.find('input[name=UserName]').val(vName.val()+'@21cn.com');
-            break
-        case "@sina.com":
-            gm.attr('action',"http://mail.sina.com.cn/cgi-bin/login.cgi")
-            gm.find('input[name=u]').val(vName.val());
-            gm.find('input[name=psw]').val(vPw.val());
-            break
-        case "@gmail.com":
-            gm.attr('action',"https://www.google.com/accounts/ServiceLoginAuth")
-            gm.find('input[name=Email]').val(vName.val());
-            gm.find('input[name=Passwd]').val(vPw.val());
-            break
-        case "chinaren":
-            gm.attr('action',"http://passport.sohu.com/login.jsp")
-            gm.find('input[name=loginid]').val(vName.val()+"@chinaren.com");
-            gm.find('input[name=passwd]').val(vPw.val());
-            gm.find('input[name=fl]').val('1');
-            gm.find('input[name=vr]').val('1|1');
-            gm.find('input[name=appid]').val('1005');
-            gm.find('input[name=ru]').val("http://profile.chinaren.com/urs/setcookie.jsp?burl=http://alumni.chinaren.com/");
-            gm.find('input[name=ct]').val("1174378209");
-            gm.find('input[name=sg]').val("84ff7b2e1d8f3dc46c6d17bb83fe72bd");
-            break
-        case "tianya":
-            gm.attr('action',"http://www.tianya.cn/user/loginsubmit.asp")
-            gm.find('input[name=vwriter]').val(vName.val());
-            gm.find('input[name=vpassword]').val(vPw.val());
-            break
-        //case "baidu":
-        //    gm.action="http://passport.baidu.com/?login"
-        //    gm.attr('action',"http://passport.baidu.com/?login")
-        //    gm.u.value="http://passport.baidu.com/center"
-        //    gm.username.value=vName.value
-        //    gm.password.value=vPw.value
-        //    break
-        //case "xiaonei":
-        //    gm.action="http://login.xiaonei.com/Login.do"
-        //    gm.email.value=vName.value
-        //    gm.password.value=vPw.value
-        //    break
-        //case "51com":
-        //    gm.action="http://passport.51.com/login.5p"
-        //    gm.passport_51_user.value=vName.value
-        //    gm.passport_51_password.value=vPw.value
-        //    gm.gourl.value="http%3A%2F%2Fmy.51.com%2Fwebim%2Findex.php"
-        //    break
-    }
-    vPw.value=""
-    return true}
+}
+
+$(function(){
+    mail.init();
+})

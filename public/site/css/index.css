@@ -5,6 +5,7 @@ ul{ list-style:none; margin:0px; padding:0px;}
 ol, ul, li {
 list-style-type: none;
 }
+.hide{display: none !important;}
 input{ text-indent:2px;}
 img {border: 0;vertical-align: middle;}
 a{ text-decoration:none; border:0px; color:#000;}

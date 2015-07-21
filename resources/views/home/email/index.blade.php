@@ -3,6 +3,43 @@
 <head>
 @section('base_header')
 @include('home.block.base_header')
+		<style>
+			.mailSelect {
+				float: none;
+				position: relative;
+				top: 16px;
+				display: inline-block;
+				width: 200px;
+				height: 39px;
+				border: 1px solid #CCC;
+				color: #666;
+				cursor: pointer;
+				background-color:#e2e2e2;
+
+			}
+			.mailSelect em {
+				display: block;
+				overflow: hidden;
+				float: left;
+				width: 150px;
+				height: 39px;
+				line-height: 39px;
+				text-align: center; font-style:normal;
+				font-size: 14px;
+				background-color:#fff;
+				font-weight: bold;
+			}
+			.mailSelect i {
+				display: block;
+				overflow: hidden;
+				float: right;
+				width: 50px;
+				height: 39px;background:url(/site/images/emailrt.jpg?__inline) right center no-repeat;
+				text-indent: -9999px;
+			}
+			.mail-list{ position:absolute; width: 148px; line-height: 39px; top: 40px; right: 50px; border:1px solid #ccc; border-top:0px; background-color:#fff; z-index:999;}
+
+		</style>
 @show
 </head>
 
@@ -22,26 +59,23 @@
 		   <div class="mail">
 		         <div class="m_logo"><img src="/site/images/sologo.png" width="363" height="66" /></div>
 				 <div class="m_conts">
-				      <form name="gomail" id="FrLgn" method="post" onsubmit="return clickMail()" action="">
-				          账号：<input type="text" name="uName" value="" class="m_txt" />
-                          邮箱：<select class="m_txt" name="domainss">
-                                    <option  >请选择邮箱</option>
-                                    <option value="@163.com">@163.com</option>
-                                    <option value="@126.com">@126.com</option>
-                                    <option value="@sina.com">@sina.com</option>
-                                    <option value="@yahoo.com">@yahoo.com.cn</option>
-                                    <option value="@yahoo.cn">@yahoo.cn</option>
-                                    <option value="@gmail.com">@gmail.com</option>
-                                    <option value="@sohu.com">@sohu.com 搜狐</option>
-                                    <option value="@tom.com">@tom.com</option>
-                                    <option value="@188.com">@188.com</option>
-                                    <option value="@21cn.com">@21cn.com</option>
-                                    <option value="@yeah.net">@yeah.net</option>
-                            </select>
-                          密码：<input type="password" name="uPw"  class="m_txt" />
+				      <form id="mailForm" method="post" action="">
+				          账号：<input type="text" name="uName" value="" class="m_txt" id="mailUserName" />
+                          邮箱：<div class="mailSelect mailSelectHover">
+							  <em>请选择邮箱</em>
+							  <i>箭头图标</i>
+
+							  <div class="mail-list" style="display: none;" >
+								  <ul>
+
+								  </ul>
+							  </div>
+						  </div>
+
+                          密码：<input type="password" name="uPw" id="mailPassword"  class="m_txt" />
                           <input type="submit" class="sub_m" value="登 录" />
+						  <span id="mailParas" style="display:none;"></span>
                           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-				          @include('home.block.email')
 				      </form>
 
 				 </div>

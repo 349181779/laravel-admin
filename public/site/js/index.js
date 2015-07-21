@@ -90,6 +90,7 @@
 				
 				/* 邮箱选择js */
 				$(".mailSelect i").click(function(){
+					$('.mail-list').removeClass('hide')
 					 var selectem=$(".mailSelect em").html();
 					 $(".mail-list ul li").each(function(i){
 						  var thisval=$(this).html();
@@ -97,15 +98,19 @@
 							    
 							 }						 
 					 })
-					 $(".mail-list").show();						  
+					 $(".mail-list").show();
 				  								  
 				})
-				
-				$(".mail-list ul li").each(function(i){
+
+				  
+
+				$(".mail-list li").each(function(i){
+
 						 $(this).click(function(){
+							 $('.mail-list').addClass('hide')
 							 var livals=$(this).html();
 							 $(".mailSelect").find('em').html(livals);
-							 $(".mail-list").hide();
+
 							 $('select[name=domainss]').html('<option value="'+livals+'">'+livals+'</option>')
 						})
 				 })

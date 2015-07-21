@@ -10,40 +10,24 @@
     			       <iframe allowtransparency="true" frameborder="0" width="410" height="52" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=2&d=2&bd=0&k=&f=&q=0&e=1&a=1&c=54511&w=410&h=52&align=center"></iframe>
     			   </div>
     			   <div class="email-box">
-    			        <form name="gomail" id="FrLgn" method="post" onsubmit="return clickMail()" action="">
+    			        <form id="mailForm" method="post" action="">
     						<ul class="email-ul">
     							 <li>
-    								<div class="email-txt"><input type="text" name="uName" class="input-email" /></div>
+    								<div class="email-txt"><input type="text" name="mailUserName" id="mailUserName" class="input-email" /></div>
     								<div class="mailSelect mailSelectHover">
     											<em>请选择邮箱</em>
     											<i>箭头图标</i>
     								</div>
-    								<select name="domainss" style="display: none;" id=""></select>
     								<div class="mail-list" style="display:none;">
     									  <ul>
-    										  <li>@163.com</li>
-                                              <li>@126.com</li>
-                                              <li>@sina.com</li>
-                                              <li>@yahoo.com.cn</li>
-                                              <li>@yahoo.cn</li>
-                                              <li>@gmail.com</li>
-                                              <li>@sohu.com</li>
-                                              <li>@tom.com</li>
-                                              <li>@188.com</li>
-                                              <li>@21cn.com</li>
-                                              <li>@yeah.net</li>
-                                              <li>-请选择其他服务-</li>
-                                              <li>百度账号</li>
-                                              <li>ChinaRen校友录</li>
-                                              <li>校内网</li>
-                                              <li>51.com</li>
+
     									  </ul>
     								</div>
     							 </li>
     							 <li>
-    								<input type="password" name="uPw" class="input-pwd" />
+									 <span id="mailParas" style="display:none;"></span>
+    								<input type="password" name="uPw" id="mailPassword" class="input-pwd" />
     								<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-    								@include('home.block.email')
     								<input type="submit" class="btn-submit" value="登录" />
     							 </li>
     						</ul>
