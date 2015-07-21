@@ -30,13 +30,23 @@ window.onload = bgChange;
 	       <div class="chaxun-box">
 		           <p class="chaxun-p">查询</p>
 					<div class="query">
-					    <?php if(!empty($all_query)):?>
+						<?php if(!empty($all_query)):?>
 					    <?php foreach($all_query as $query_cat):?>
 						<div class="item">
 							<ul class="list">
 							  <li><?php echo $query_cat->cat_name;?></li>
+								<?php if($query_cat->query):?>
+									<?php foreach($query_cat->query as $query):?>
+
+									<?php endforeach;?>
+                        		<?php endif;?>
 							    <?php for($i = 0; $i<=10; $i++):?>
-							        <li><a target="_blank" href="<?php echo $query_cat->query[$i]->site_url ;?>"><?php echo $query_cat->query[$i]->name ;?></a></li>
+									<?php if(!empty($query_cat->query[$i])):?>
+											<li><a target="_blank" href="<?php echo $query_cat->query[$i]->site_url ;?>"><?php echo $query_cat->query[$i]->name ;?></a></li>
+									<?php else:?>
+										<li><a target="_blank" href=""></a></li>
+									<?php endif;?>
+
 							    <?php endfor;?>
                               <li><a href="" class="more">更多</a></li>
 							</ul>
