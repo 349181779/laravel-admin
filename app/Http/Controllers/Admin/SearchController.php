@@ -29,7 +29,7 @@ class SearchController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -39,7 +39,7 @@ class SearchController extends BaseController {
      * 获得后台用户
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
         return  $this->html_builder->
@@ -65,7 +65,7 @@ class SearchController extends BaseController {
      * 搜索
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request){
         //接受参数
@@ -103,7 +103,7 @@ class SearchController extends BaseController {
      * 编辑搜索工具导航
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -121,7 +121,7 @@ class SearchController extends BaseController {
     /**
      * 处理更新搜索工具导航
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(SearchRequest $request){
         $Model  = SearchModel::findOrFail($request->get('id'));
@@ -134,7 +134,7 @@ class SearchController extends BaseController {
     /**
      * 增加搜索工具导航
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -152,7 +152,7 @@ class SearchController extends BaseController {
      * 添加文章
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(SearchRequest $request){
         //写入数据

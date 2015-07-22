@@ -21,7 +21,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         //加载函数库
@@ -34,7 +34,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
     /**
      * 获得导航数据
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function getSearch(){
         view()->share('all_search', BaseModel::getSearch());

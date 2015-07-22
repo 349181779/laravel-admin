@@ -102,7 +102,7 @@
 				  								  
 				})
 
-				  
+
 
 				$(".mail-list li").each(function(i){
 

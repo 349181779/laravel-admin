@@ -16,7 +16,7 @@ class SwooleServer{
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         $this->swoole_config = include dirname(__DIR__) . '/config/swoole.php';
@@ -35,7 +35,7 @@ class SwooleServer{
     /**
      * 设置swoole配置
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function set(){
         $this->swoole_server->set([
@@ -77,7 +77,7 @@ class SwooleServer{
     /**
      * Server启动在主进程的主线程回调此函数
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onStart(){
         echo "                      _ooOoo_                         \r\n";
@@ -106,7 +106,7 @@ class SwooleServer{
     /**
      * 事件在Server结束时发生
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onShutdown(){
         echo "Server shutdown\n";
@@ -115,7 +115,7 @@ class SwooleServer{
     /**
      * 此事件在worker进程/task进程启动时发生
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onWorkerStart(){
         //引入函数库
@@ -125,7 +125,7 @@ class SwooleServer{
     /**
      * 事件在worker进程终止时发生
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onWorkerStop(){
         echo "Worker stop \n";
@@ -134,7 +134,7 @@ class SwooleServer{
     /**
      * 定时器触发
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onTimer(){
 
@@ -145,7 +145,7 @@ class SwooleServer{
      *
      * @param $serv
      * @param $fd
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onConnect(swoole_server $serv, $fd){
         //echo "Client:Connect.\n";
@@ -158,7 +158,7 @@ class SwooleServer{
      * @param $fd
      * @param $from_id
      * @param $data
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onReceive(swoole_server $serv, $fd, $from_id, $data){
         $data = json_decode($data, true);
@@ -180,7 +180,7 @@ class SwooleServer{
      *
      * @param $serv
      * @param $fd
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onClose(swoole_server $serv, $fd){
         //echo "Client: Close.\n";
@@ -192,7 +192,7 @@ class SwooleServer{
      * @param $serv
      * @param $task_id
      * @param $data
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onTask(swoole_server $serv, $task_id, $from_id, $data){
         //调度任务
@@ -209,7 +209,7 @@ class SwooleServer{
      * @param $serv
      * @param $task_id
      * @param $data
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onFinish(swoole_server $serv, $task_id, $data){
         if($data['status']['code'] == 200){
@@ -223,7 +223,7 @@ class SwooleServer{
     /**
      * 当工作进程收到由sendMessage发送的管道消息时会触发onPipeMessage事件
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onPipeMessage(){
         echo 'onPipeMessage';
@@ -232,7 +232,7 @@ class SwooleServer{
     /**
      * 当worker/task_worker进程发生异常后会在Manager进程内回调此函数。
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onWorkerError(){
         echo 'onWorkerError';
@@ -241,7 +241,7 @@ class SwooleServer{
     /**
      * 当管理进程启动时调用它
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onManagerStart(){
         //echo 'onManagerStart';
@@ -250,7 +250,7 @@ class SwooleServer{
     /**
      * 当管理进程结束时调用它
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onManagerStop(){
         //echo 'onManagerStop';

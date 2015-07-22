@@ -33,7 +33,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
      * 检测登录
      *
      * @return bool|\Illuminate\Http\RedirectResponse
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function checkIsLogin(){
         load_func('common');
@@ -44,7 +44,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
     /**
      * 获得全部菜单
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function getAllMenu(){
         view()->share('menu_tree_data', MenuModel::getAllForMenuSide());

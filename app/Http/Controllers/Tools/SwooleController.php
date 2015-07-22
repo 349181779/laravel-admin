@@ -25,7 +25,7 @@ class SwooleController extends Controller {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         $this->swoole_client = new \swoole_client(SWOOLE_SOCK_TCP);
@@ -55,7 +55,7 @@ class SwooleController extends Controller {
     /**
      * 设置客户端参数
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function set(){
         $this->swoole_client->set([
@@ -67,7 +67,7 @@ class SwooleController extends Controller {
     /**
      * 发送请求
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
         $this->swoole_client->send(json_encode(['step'=>'task','data'=>111]).config('swoole.package_eof'));

@@ -26,7 +26,7 @@ class IndexController extends BaseController {
 	 * 网址首页
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return view('home.index.index', [
@@ -41,7 +41,7 @@ class IndexController extends BaseController {
      * 网址分类
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getCategory(Request $request, $cat_id){
         return view('home.index.category', [

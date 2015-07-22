@@ -30,7 +30,7 @@ class UserController extends BaseController {
 	 * 登录
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getLogin(){
         return view('home.user.login', [
@@ -44,7 +44,7 @@ class UserController extends BaseController {
      * 处理登录操作
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postLogin(UserLoginRequest $request){
         $login_status = UserModel::login($request->only('email', 'password', 'readme'));
@@ -67,7 +67,7 @@ class UserController extends BaseController {
      * 用户退出
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getLogout(){
         UserModel::logout();
@@ -91,7 +91,7 @@ class UserController extends BaseController {
      * 处理注册操作
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postRegister(UserRegisterRequest $request){
         $input = $request->only('email', 'mobile', 'password', 'password_confirmation');
@@ -104,7 +104,7 @@ class UserController extends BaseController {
      * 用户协议
      *
      * @return \Illuminate\View\View
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAgree(){
         return view('home.user.agree', [

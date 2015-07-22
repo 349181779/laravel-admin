@@ -29,7 +29,7 @@ class AdmininfoController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -39,7 +39,7 @@ class AdmininfoController extends BaseController {
      * 获得后台用户
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
         return  $this->html_builder->
@@ -52,7 +52,7 @@ class AdmininfoController extends BaseController {
                 builderSchema('created_at', '创建时间')->
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
-                builderSearchSchema('email', '登录名')->
+                builderSearchSchema('email', '登录名1')->
                 builderSearchSchema('mobile', '手机号码')->
                 builderSearchSchema($name = 'status', $title = '状态', $type = 'select', $class = '', $option = [1=>'开启', '2'=>'关闭'], $option_value_schema = '0')->
                 builderSearchSchema('role_name', '角色')->
@@ -65,7 +65,7 @@ class AdmininfoController extends BaseController {
      * 搜索
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request){
         //接受参数
@@ -106,7 +106,7 @@ class AdmininfoController extends BaseController {
      * 编辑角色
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -126,7 +126,7 @@ class AdmininfoController extends BaseController {
     /**
      * 处理更新角色
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(AdminInfoRequest $request){
         $data = $request->all();
@@ -145,7 +145,7 @@ class AdmininfoController extends BaseController {
     /**
      * 增加后台用户
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -164,7 +164,7 @@ class AdmininfoController extends BaseController {
      * 添加后台用户
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(AdminInfoRequest $request){
         $data = $request->all();

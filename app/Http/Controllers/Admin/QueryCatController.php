@@ -25,7 +25,7 @@ class QueryCatController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -35,7 +35,7 @@ class QueryCatController extends BaseController {
 	 * 获得文章分类列表
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return  $this->html_builder->
@@ -58,7 +58,7 @@ class QueryCatController extends BaseController {
      * 搜索
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request){
         //接受参数
@@ -92,7 +92,7 @@ class QueryCatController extends BaseController {
      * 编辑文章分类
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -109,7 +109,7 @@ class QueryCatController extends BaseController {
     /**
      * 处理更新文章分类
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(QueryCatRequest $request){
         $Model = QueryCatModel::findOrFail($request->get('id'));
@@ -122,7 +122,7 @@ class QueryCatController extends BaseController {
      * 增加文章分类
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -137,7 +137,7 @@ class QueryCatController extends BaseController {
     /**
      * 处理新增文章分类
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(QueryCatRequest $request){
         $affected_number = QueryCatModel::create($request->all());

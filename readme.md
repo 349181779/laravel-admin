@@ -7,7 +7,7 @@
      * 获得后台用户
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
         return  $this->html_builder->
@@ -41,7 +41,7 @@
      * 搜索
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request){
         //接受参数
@@ -88,7 +88,7 @@
      * 编辑角色
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -117,7 +117,7 @@
 /**
      * 增加后台用户
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -143,7 +143,7 @@
 	 * 获得菜单列表
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return  $this->html_builder->
@@ -174,7 +174,7 @@
 	 * 网站配置
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
           return $this->html_builder->builderTabSchema(

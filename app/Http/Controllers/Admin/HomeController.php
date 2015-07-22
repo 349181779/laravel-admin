@@ -28,7 +28,7 @@ class HomeController extends BaseController {
 	 * 后台首页
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return view('admin.home.index');
@@ -38,7 +38,7 @@ class HomeController extends BaseController {
 	 * 用户退出
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getLogout(){
         AdminInfoModel::logout();

@@ -18,7 +18,7 @@ class LoginFormRequest extends BaseFormRequest  {
 	 * 验证错误规则
 	 *
 	 * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function rules(){
 		return [
@@ -31,7 +31,7 @@ class LoginFormRequest extends BaseFormRequest  {
      * 验证错误提示
      *
      * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function messages(){
         return [

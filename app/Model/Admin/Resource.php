@@ -24,7 +24,7 @@ class Resource extends BaseModel {
      *
      * @param $data
      * @return mixed
-     * @return mixed'@auther yangyifan <yangyifanphp@gmail.com>
+     * @return mixed'@author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function mergeData($data){
         if(!empty($data)){

@@ -25,7 +25,7 @@ class QueryModel extends BaseModel {
      * @param $order
      * @param $offset
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function search($map, $sort, $order, $limit, $offset){
         return [
@@ -49,7 +49,7 @@ class QueryModel extends BaseModel {
      *
      * @param $roles
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data){
         if(!empty($data)){

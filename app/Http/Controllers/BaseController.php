@@ -24,7 +24,7 @@ class BaseController extends Controller {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
 
@@ -38,7 +38,7 @@ class BaseController extends Controller {
      * @param $data     数据
      * @param $target   是否跳转到新页面
      * @prams $href     跳转的网址
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
 	protected function response($code = 200, $msg = '', $data = [], $target = true, $href = ''){
         die(json_encode(compact('code', 'msg', 'data', 'target', 'href')));

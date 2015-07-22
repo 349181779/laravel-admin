@@ -47,7 +47,7 @@ class HtmlBuilderController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         parent::__construct();
@@ -57,7 +57,7 @@ class HtmlBuilderController extends BaseController {
      * 构建网站标题
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderTitle($title, $description = '', $keywords = ''){
         $this->title        = $title;
@@ -76,7 +76,7 @@ class HtmlBuilderController extends BaseController {
      * @param $url      url
      * @param $is_sort  是否允许排序
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderSchema($schame, $comment, $type = self::SCHAME_STRING, $class = '', $url = '', $is_sort = 'false'){
         $this->schemas[$schame]  = [
@@ -101,7 +101,7 @@ class HtmlBuilderController extends BaseController {
      * @param $rule     表单验证规则
      * @param $message  表单验证提示文字
      * @return $this
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderSearchSchema($name, $title, $type = 'text', $class = '', $option = '', $option_value_schema = ''){
         array_push($this->search_schema, [
@@ -152,7 +152,7 @@ class HtmlBuilderController extends BaseController {
 	 * 构建HTML列表页
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function builderList($data = [], $urls = []){
         return View('admin/html_builder/list',[
@@ -180,7 +180,7 @@ class HtmlBuilderController extends BaseController {
      * @param $rule     表单验证规则
      * @param $message  表单验证提示文字
      * @return $this
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = ''){
         array_push($this->form_schema, [
@@ -205,7 +205,7 @@ class HtmlBuilderController extends BaseController {
      * @param $url
      * @param $class
      * @return $this
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderConfirmBotton($title, $url, $class){
         $this->confirm_button = [
@@ -220,7 +220,7 @@ class HtmlBuilderController extends BaseController {
      * 构建编辑页面数据
      *
      * @param array $data
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderEditData($data = []){
         $this->edit_data = $data;
@@ -231,7 +231,7 @@ class HtmlBuilderController extends BaseController {
      * 构建HTML编辑页
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderEdit($urls = []){
         return View('admin/html_builder/edit',[
@@ -249,7 +249,7 @@ class HtmlBuilderController extends BaseController {
      * 构建HTML新增页
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderAdd($data = [], $urls = []){
         return View('admin/html_builder/add',[
@@ -268,7 +268,7 @@ class HtmlBuilderController extends BaseController {
      *
      * @param $obj
      * @return $this
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderTabSchema($obj){
         //写入数据
@@ -290,7 +290,7 @@ class HtmlBuilderController extends BaseController {
      * @param array $data
      * @param array $urls
      * @return \Illuminate\View\View
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderTabHtml($data = [], $urls = []){
         return View('admin/html_builder/tab',[
@@ -309,7 +309,7 @@ class HtmlBuilderController extends BaseController {
      *
      * @param $data
      * @return \Illuminate\View\View
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderTreeData($data){
         //加载函数库
@@ -324,7 +324,7 @@ class HtmlBuilderController extends BaseController {
      * @param array $data
      * @param array $urls
      * @return \Illuminate\View\View
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderTree($data = [], $urls = []){
         return View('admin/html_builder/tree',[

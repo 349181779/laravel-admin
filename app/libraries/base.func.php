@@ -17,7 +17,7 @@ define('FUNC_PATH', APP_PATH . 'app/libraries/');
  * @param $func_name    函数名
  * @param string $ext   扩展名
  * @param string $pasth 文件路径
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('load_func')){
     function load_func($func_name, $ext = '.func.php', $pasth = ''){

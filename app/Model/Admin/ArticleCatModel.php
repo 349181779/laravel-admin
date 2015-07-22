@@ -21,7 +21,7 @@ class ArticleCatModel extends BaseModel {
      * 获得全部文章分类
      *
      * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAll(){
         //加载函数库
@@ -33,7 +33,7 @@ class ArticleCatModel extends BaseModel {
      * 组合数据
      *
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data){
         if(!empty($data)){

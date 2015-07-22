@@ -25,7 +25,7 @@ class BaseModel extends Model{
      * @param $order
      * @param $offset
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function search($map, $sort, $order, $limit, $offset){
         return [
@@ -44,7 +44,7 @@ class BaseModel extends Model{
      * 多条件查询where
      *
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function scopeMultiwhere($query, $arr){
         if (!is_array($arr)) {
@@ -76,7 +76,7 @@ class BaseModel extends Model{
      * 组合性别
      *
      * @param $sex
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function mergeUserSex($sex){
         if(empty($sex)){
@@ -96,7 +96,7 @@ class BaseModel extends Model{
      * 组合状态
      *
      * @param $sex
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function mergeStatus($status){
         if(empty($status)){
@@ -114,7 +114,7 @@ class BaseModel extends Model{
      * 组合是否默认
      *
      * @param $sex
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function mergeIsDefault($is_default){
         if(empty($is_default)){
@@ -134,7 +134,7 @@ class BaseModel extends Model{
      * @param $image_src
      * @param $image_type
      * @return string
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function mergeImagePath($image_src, $image_type = 1){
         return config('config.file_url').$image_src;
@@ -147,7 +147,7 @@ class BaseModel extends Model{
      * @param $name 表单name名称
      * @param $id 当前id
      * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllForSchemaOption($name, $id = 0){
         //加载函数库
@@ -161,7 +161,7 @@ class BaseModel extends Model{
      * 打印最后一条执行sql
      *
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getLastSql(){
         $sql = DB::getQueryLog();

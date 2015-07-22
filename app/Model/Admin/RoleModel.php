@@ -24,7 +24,7 @@ class RoleModel extends BaseModel {
      *
      * @param $roles
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data){
         if(!empty($data)){
@@ -46,7 +46,7 @@ class RoleModel extends BaseModel {
      * 获得角色列表
      *
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getRoleList(){
         //加载函数库

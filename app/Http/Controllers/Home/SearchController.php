@@ -26,7 +26,7 @@ class SearchController extends BaseController {
 	 * 搜索首页
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return view('home.search.index', [
@@ -40,7 +40,7 @@ class SearchController extends BaseController {
      * 获得指定搜索下面信息
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postSearchInfo(Request $request){
         if ($request->isMethod('post')){

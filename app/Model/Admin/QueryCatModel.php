@@ -21,7 +21,7 @@ class QueryCatModel extends BaseModel {
      * 组合数据
      *
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data){
         if(!empty($data)){

@@ -25,7 +25,7 @@ class SearchCatController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -35,7 +35,7 @@ class SearchCatController extends BaseController {
 	 * 获得搜索工具分类列表
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return  $this->html_builder->
@@ -57,7 +57,7 @@ class SearchCatController extends BaseController {
      * 搜索
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request){
         //接受参数
@@ -91,7 +91,7 @@ class SearchCatController extends BaseController {
      * 编辑搜索工具分类
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -110,7 +110,7 @@ class SearchCatController extends BaseController {
     /**
      * 处理更新文章分类
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(SearchCatRequest $request){
         $Model = SearchCatModel::findOrFail($request->get('id'));
@@ -123,7 +123,7 @@ class SearchCatController extends BaseController {
      * 增加搜索工具分类
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -140,7 +140,7 @@ class SearchCatController extends BaseController {
     /**
      * 处理搜索工具分类
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(SearchCatRequest $request){
         $affected_number = SearchCatModel::create($request->all());

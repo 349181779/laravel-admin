@@ -15,7 +15,7 @@
  * @param $params   提交目标连接参数
  * @param $callback 回调地址
  * @return mixed(int|bool)
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('send_task_to_swoole_server')){
     function send_task_to_swoole_server($targer, $params, $callback){
@@ -37,7 +37,7 @@ if(!function_exists('send_task_to_swoole_server')){
  * @param $params   提交目标连接参数
  * @param $callback 回调地址
  * @return mixed(int|bool)
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('send_to_swoole_server')){
     function send_to_swoole_server($targer, $params, $callback){

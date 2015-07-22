@@ -27,7 +27,7 @@ class UserInfoController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -37,7 +37,7 @@ class UserInfoController extends BaseController {
 	 * 获得前台用户
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return  $this->html_builder->
@@ -111,7 +111,7 @@ class UserInfoController extends BaseController {
      * 编辑会员
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -133,7 +133,7 @@ class UserInfoController extends BaseController {
     /**
      * 处理更新会员
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(UserInfoRequest $request){
         $data = $request->all();
@@ -153,7 +153,7 @@ class UserInfoController extends BaseController {
     /**
      * 增加会员
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -174,7 +174,7 @@ class UserInfoController extends BaseController {
      * 添加会员
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(UserInfoRequest $request){
         $data = $request->all();

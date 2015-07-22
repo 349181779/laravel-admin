@@ -25,7 +25,7 @@ class NewsCatController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -35,7 +35,7 @@ class NewsCatController extends BaseController {
 	 * 获得文章分类列表
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return  $this->html_builder->
@@ -57,7 +57,7 @@ class NewsCatController extends BaseController {
      * 编辑文章分类
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -77,7 +77,7 @@ class NewsCatController extends BaseController {
     /**
      * 处理更新文章分类
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(NewsCatRequest $request){
         $Model = NewsCatModel::findOrFail($request->get('id'));
@@ -90,7 +90,7 @@ class NewsCatController extends BaseController {
      * 增加文章分类
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -108,7 +108,7 @@ class NewsCatController extends BaseController {
     /**
      * 处理新增文章分类
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(NewsCatRequest $request){
         $affected_number = NewsCatModel::create($request->all());

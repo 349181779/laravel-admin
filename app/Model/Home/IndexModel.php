@@ -23,7 +23,7 @@ class IndexModel extends BaseModel {
      * 获得首页网址分类和分类下面的网址
      *
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllSite(){
        return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit')));
@@ -34,7 +34,7 @@ class IndexModel extends BaseModel {
      *
      * @param $roles
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data){
         if(!empty($data)){

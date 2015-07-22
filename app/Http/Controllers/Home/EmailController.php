@@ -24,7 +24,7 @@ class EmailController extends BaseController {
 	 * 网址首页
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return view('home.email.index', [

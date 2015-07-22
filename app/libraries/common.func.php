@@ -12,7 +12,7 @@
  *
  * @param $obj
  * @return array
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('obj_to_array')){
     function obj_to_array($obj){
@@ -25,7 +25,7 @@ if(!function_exists('obj_to_array')){
  *
  * @param $params
  * @return string
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('hash_user_sign')){
     function hash_user_sign($params){
@@ -42,7 +42,7 @@ if(!function_exists('hash_user_sign')){
  * 判断是否登录
  *
  * @return Int
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('is_login')){
     function is_login(){
@@ -54,7 +54,7 @@ if(!function_exists('is_login')){
  * 判断前台是否登录
  *
  * @return Int
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('is_user_login')){
     function is_user_login(){
@@ -72,7 +72,7 @@ if(!function_exists('merge_tree_node')){
      * @param $parent_id
      * @param $current_id
      * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function merge_tree_node($data, $pid = 0, $level = 0, $parent_id = 0, $current_id = 0){
         $array = [];
@@ -100,7 +100,7 @@ if(!function_exists('merge_tree_child_node')){
      * @param $pid
      * @param $level
      * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function merge_tree_child_node($data, $pid = 0, $level = 0){
         $array = [];
@@ -122,7 +122,7 @@ if(!function_exists('p')){
      * 另一个打印函数
      *
      * @param array $array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function p(Array $array){
         echo '<pre>';
@@ -137,7 +137,7 @@ if(!function_exists('password_encrypt')){
      *
      * @param $password
      * @return bool|false|string
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function password_encrypt($password){
         return password_hash($password, PASSWORD_DEFAULT);
@@ -150,7 +150,7 @@ if(!function_exists('safe_base64_encode')){
      *
      * @param $str
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function safe_base64_encode($str){
         $find = array("+", "/");
@@ -165,7 +165,7 @@ if(!function_exists('safe_base64_decode')){
      *
      * @param $str
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function safe_base64_decode($str){
         $find = array("-", "_");

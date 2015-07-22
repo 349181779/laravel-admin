@@ -24,7 +24,7 @@ class UserModel extends BaseModel {
      *
      * @param $params array 用户登录名和密码参数
      * @return int
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function login($params){;
         //查找用户
@@ -55,7 +55,7 @@ class UserModel extends BaseModel {
      * 写入用户信息到SESSION
      *
      * @param $user_info
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private static function saveUserSession($user_info){
         //引入函数库
@@ -74,7 +74,7 @@ class UserModel extends BaseModel {
     /**
      * 用户退出
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function logout(){
         Session::flush();

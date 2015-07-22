@@ -12,7 +12,7 @@
  * 获得redis对象
  *
  * @return array
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('get_redis')){
     function get_redis(){
@@ -26,7 +26,7 @@ if(!function_exists('get_redis')){
  * 获得swolle_cliend对象
  *
  * @return array
- * @auther yangyifan <yangyifanphp@gmail.com>
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('get_swoole_client')){
     function get_swoole_client(){

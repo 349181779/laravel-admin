@@ -25,7 +25,7 @@ class RoleController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -35,7 +35,7 @@ class RoleController extends BaseController {
 	 * 获得角色列表
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return $this->html_builder->
@@ -89,7 +89,7 @@ class RoleController extends BaseController {
 	 * 编辑角色
 	 *
 	 * @param  int  $id
-	 * @auther yangyifan <yangyifanphp@gmail.com>
+	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getEdit($id){
         return $this->html_builder->
@@ -105,7 +105,7 @@ class RoleController extends BaseController {
     /**
      * 处理更新角色
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(RoleRequest $request){
         $Model  = RoleModel::findOrFail($request->get('id'));
@@ -118,7 +118,7 @@ class RoleController extends BaseController {
     /**
      * 增加角色
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -132,7 +132,7 @@ class RoleController extends BaseController {
     /**
      * 处理新增角色
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(RoleRequest $request){
         $affected_number    = RoleModel::create($request->all());

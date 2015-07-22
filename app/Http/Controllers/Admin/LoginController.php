@@ -28,7 +28,7 @@ class LoginController extends BaseController {
 	 * 登录操作
      *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return view('admin.login.login');
@@ -38,7 +38,7 @@ class LoginController extends BaseController {
 	 * 处理登录操作
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function postLogin(LoginFormRequest $request){
 

@@ -32,7 +32,7 @@ class UploadController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         $this->disk = Storage::disk('qiniu');//获得一块硬盘
@@ -42,7 +42,7 @@ class UploadController extends BaseController {
 	 * 获得选择文件框
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
         return View('tools.upload.upload');
@@ -52,7 +52,7 @@ class UploadController extends BaseController {
      * 获得上传框
      *
      * @return \Illuminate\View\View
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getUploadview(){
         return View('tools.upload.uploadview');
@@ -62,7 +62,7 @@ class UploadController extends BaseController {
      * 上传文件
      *
      * @param Request $requests
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postUpload(Request $requests){
         if ($requests->hasFile('file')){
@@ -151,7 +151,7 @@ class UploadController extends BaseController {
      * 处理图片公共方法
      *
      * @return array 触发处理“持久化处理的进程ID”数组几个
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function handleImage(){
         $ops[] = 'imageView2/0/w/500/h/500/format/jpg/interlace/1';//图片处理管道
@@ -165,7 +165,7 @@ class UploadController extends BaseController {
      * 处理视频公共方法
      *
      * @return array 触发处理“持久化处理的进程ID”数组几个
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function handleVideo(){
         //加载函数库
@@ -181,7 +181,7 @@ class UploadController extends BaseController {
      * 处理音频公共方法
      *
      * @return array 触发处理“持久化处理的进程ID”数组几个
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function handleAudio(){
         $ops[] = 'avthumb/mp3/ab/192k/aq/0/ar/8000';//转码成192k
@@ -195,7 +195,7 @@ class UploadController extends BaseController {
      *
      * @param $ops
      * @return array
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function persistentFop($ops){
         if(!empty($ops)){
@@ -234,7 +234,7 @@ class UploadController extends BaseController {
      * "pipeline":"0.default",
      * "reqid":"d3AAADvcrkBL0-wT"},null]
      * @param $persistent_fop_id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getPersistentStatus(Request $request){
 
@@ -269,7 +269,7 @@ class UploadController extends BaseController {
      * 转码成功回调
      *
      * @param $persistent_fop_id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getPersistentSuccessCallback(Request $request){
         //引入函数库

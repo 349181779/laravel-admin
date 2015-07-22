@@ -24,7 +24,7 @@ class SearchModel extends BaseModel {
      *
      * @param $search_cat_id
      * @return mixed
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getSearchInfo($search_cat_id){
         $search_cat = self::select('cat_name', 'logo', 'id')->where('id', '=', $search_cat_id)->where('status', '=', 1)->first();

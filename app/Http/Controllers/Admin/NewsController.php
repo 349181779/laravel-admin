@@ -31,7 +31,7 @@ class NewsController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         $this->html_builder = $html_builder;
@@ -41,7 +41,7 @@ class NewsController extends BaseController {
      * 获得后台用户
      *
      * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
         return  $this->html_builder->
@@ -68,7 +68,7 @@ class NewsController extends BaseController {
      * 搜索
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request){
         //接受参数
@@ -109,7 +109,7 @@ class NewsController extends BaseController {
      * 编辑文章
      *
      * @param  int  $id
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
         return  $this->html_builder->
@@ -129,7 +129,7 @@ class NewsController extends BaseController {
     /**
      * 处理更新角色
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(NewsRequest $request){
         $Model  = NewsModel::findOrFail($request->get('id'));
@@ -142,7 +142,7 @@ class NewsController extends BaseController {
     /**
      * 增加文章
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd(){
         return  $this->html_builder->
@@ -162,7 +162,7 @@ class NewsController extends BaseController {
      * 添加文章
      *
      * @param Request $request
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(NewsRequest $request){
         $data = $request->all();

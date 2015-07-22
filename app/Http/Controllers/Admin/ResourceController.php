@@ -24,7 +24,7 @@ class ResourceController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         parent::__construct();
@@ -34,7 +34,7 @@ class ResourceController extends BaseController {
 	 * 资源列表
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(Request $request){
         return View('admin.resource.index', ['title'     => '资源列表']);

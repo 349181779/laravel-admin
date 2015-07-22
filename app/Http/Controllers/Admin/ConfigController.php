@@ -27,7 +27,7 @@ class ConfigController extends BaseController {
     /**
      * 构造方法
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder){
         parent::__construct();
@@ -38,7 +38,7 @@ class ConfigController extends BaseController {
 	 * 网站配置
 	 *
 	 * @return Response
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
           return $this->html_builder->builderTabSchema(
@@ -55,7 +55,7 @@ class ConfigController extends BaseController {
     /**
      * 更新网站配置项
      *
-     * @auther yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postEdit(Request $request){
         $data   = $request->all();
