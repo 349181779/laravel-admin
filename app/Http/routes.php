@@ -54,6 +54,8 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('search-cat', 'SearchCatController');
     //搜索工具导航
     Route::controller('search', 'SearchController');
+    //email控制器
+    Route::controller('email', 'EmailController');
 });
 
 //Tools

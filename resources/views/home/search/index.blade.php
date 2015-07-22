@@ -24,16 +24,17 @@
 				  <!---->
 		   </div>
 		   <div class="seaou">
-			   <a href="https://www.baidu.com">搜索</a>
-			   <a href="https://www.baidu.com">百度</a>
-			   <a href="http://www.glgoo.com/">谷歌</a>
-			   <a href="http://www.sogou.com/">搜狗</a>
-			   <a href="http://www.youdao.com/">有道</a>
-			   <a href="http://cn.bing.com/">必应</a>
-			   <a href="https://www.yahoo.com/">雅虎</a>
-			   <a href="http://iask.sina.com.cn/">爱问知识</a>
-			   <a href="http://www.haosou.com/">奇虎</a>
-			   <a href="http://dict.cn/">海词</a>
+			   <?php if(!empty($all_site)):?>
+                <?php foreach($all_site as $site_cat):?>
+				   <a href="javascript:void(0)"><?php echo $site_cat->cat_name;?></a>
+
+				   <?php if(!empty($site_cat->site)):?>
+						<?php foreach($site_cat->site as $site):?>
+				   			<a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a>
+						<?php endforeach;?>
+					<?php endif;?>
+			   	<?php endforeach;?>
+               <?php endif;?>
 		   </div>
 	</div>
 </div>

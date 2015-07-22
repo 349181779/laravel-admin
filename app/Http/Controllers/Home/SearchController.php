@@ -30,6 +30,7 @@ class SearchController extends BaseController {
 	 */
 	public function getIndex(){
         return view('home.search.index', [
+            'all_site'      => SearchModel::getSite(),
             'title'         => '搜索',
             'keywords'      => '搜索',
             'description'   => '搜索',

@@ -36,11 +36,11 @@ class IndexModel extends BaseModel {
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function mergeData($data){
+    public static function mergeData($data, $limit = 30){
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->site  = DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->get();
+                $v->site  = DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->take($limit)->get();
             }
         }
         return $data;

@@ -82,15 +82,11 @@
 		   </div>         
 		   <!-- end 邮箱 -->
 		   <ul class="email">
-		   <li><a target="_blank" href="https://mail.qq.com/cgi-bin/loginpage">QQ邮箱</a></li>
-		   <li><a target="_blank" href="https://mail.aliyun.com/alimail/auth/login?reurl=%2Falimail%2F">阿里云邮箱</a></li>
-		   <li><a target="_blank" href="http://mail.163.com/">163邮箱</a></li>
-		   <li><a target="_blank" href="http://www.126.com/">126邮箱</a></li>
-		   <li><a target="_blank" href="http://mail.sohu.com/">搜狐邮箱</a></li>
-		   <li><a target="_blank" href="https://mail.sina.com.cn">新浪邮箱</a></li>
-		   <li><a target="_blank" href="http://web.mail.tom.com/webmail/login/index.action">TOM邮箱</a></li>
-		   <li><a target="_blank" href="http://www.outlook.com">Outlook</a></li>
-		   <li><a target="_blank" href="http://www.263.net/">263邮箱</a></li>
+			   <?php if(!empty($all_email)):?>
+				   <?php foreach($all_email as $email):?>
+				   		<li><a target="_blank" href="<?php echo $email->site_url ;?>"><?php echo $email->name ;?></a></li>
+				   <?php endforeach;?>
+			   <?php endif;?>
 		    <div class="clear"></div>
 		   </ul>
 	</div>

@@ -25,6 +25,7 @@ return [
     'pid_require'   => '父级不能为空',
     'url_require'   => '链接不能为空',
     'url_error' => '超链接格式不正确',
+    'url_unique' => '链接不能重复',
     'sort_require' => '排序不能为空',
     'sort_error' => '排序格式不正确',
     'cat_name_require'  => '分类不能为空',
@@ -75,6 +76,7 @@ return [
 
     //查询工具
 
+    //邮箱
 
 
 

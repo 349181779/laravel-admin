@@ -18,16 +18,19 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Model\Home\EmailModel;
+
 class EmailController extends BaseController {
 
 	/**
 	 * 网址首页
 	 *
 	 * @return Response
-     * @author yangyifan <yangyifanphp@gmail.com>
+	 * @auther yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
-        return view('home.email.index', [
+		return view('home.email.index', [
+			'all_email'		=> EmailModel::getAllEmail(),
 			'title'         => '邮箱',
 			'keywords'      => '邮箱',
 			'description'   => '邮箱',

@@ -46,8 +46,9 @@
                                 <li>
                                    <h4 class="l_h_tl"><?php echo $site_cat->cat_name;?></h4>
                                    <div class="l_h_rt">
-                                       <?php if(!empty($site_cat['site'])):?>
-                                        <?php foreach($site_cat['site'] as $site):?>
+
+                                       <?php if(!empty($site_cat->site)):?>
+                                        <?php foreach($site_cat->site as $site):?>
                                             <span><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></span>
                                         <?php endforeach;?>
                                         <span><a target="_blank" href="<?php echo action('Home\IndexController@getCategory', [$site_cat->id]) ;?>">更多</a></span>
@@ -72,16 +73,6 @@
 				    <div class="c_q_cont" style="display:none;">
 					       分类
 					</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">搜索</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">邮件</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">查询</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">应用</div>
-				  <!---->
-				    <div class="c_q_cont" style="display:none;">新闻（预留）</div>
 				  <!---->
 				  </div>
 		   </div>
