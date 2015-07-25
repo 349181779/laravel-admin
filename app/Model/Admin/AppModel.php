@@ -18,6 +18,33 @@ class AppModel extends BaseModel {
     protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
+     * 搜索
+     *
+     * @param $map
+     * @param $sort
+     * @param $order
+     * @param $offset
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected static function search($map, $sort, $order, $limit, $offset){
+        return [
+            'data' => self::mergeData(
+                self::multiwhere($map)->
+                select('c.cat_name', 'app.*')->
+                join('app_cat as c', 'app.app_cat_id', '=', 'c.id')->
+                orderBy('app.'.$sort, $order)->
+                skip($offset)->
+                take($limit)->
+                get()
+            ),
+            'count' =>  self::multiwhere($map)->
+            join('app_cat as c', 'app.app_cat_id', '=', 'c.id')->
+            count(),
+        ];
+    }
+
+    /**
      * 组合数据
      *
      * @param $roles
@@ -30,7 +57,7 @@ class AppModel extends BaseModel {
                 //组合状态
                 $v->status = self::mergeStatus($v->status);
                 //组合操作
-                $v->handle  = '<a href="'.url('admin/site/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  = '<a href="'.url('admin/app/edit', [$v->id]).'" target="_blank" >编辑</a>';
             }
         }
         return $data;

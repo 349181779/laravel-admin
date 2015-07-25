@@ -114,6 +114,9 @@
 							 $('select[name=domainss]').html('<option value="'+livals+'">'+livals+'</option>')
 						})
 				 })
+
+			    //页面底部网址列表js
+			    $('.seaou:gt(0)').css('border-top', '0')
 				
 		  })
 		  

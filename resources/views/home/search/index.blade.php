@@ -12,7 +12,7 @@
       @section('header')
           @include('home.block.header')
       @show
-	
+
 </div>
 <!-- end top -->
 <!-- main -->
@@ -23,19 +23,19 @@
                     @include('home.block.search')
 				  <!---->
 		   </div>
-		   <div class="seaou">
-			   <?php if(!empty($all_site)):?>
-                <?php foreach($all_site as $site_cat):?>
-				   <a href="javascript:void(0)"><?php echo $site_cat->cat_name;?></a>
 
-				   <?php if(!empty($site_cat->site)):?>
+       <?php if(!empty($all_site)):?>
+      <?php foreach($all_site as $site_cat):?>
+		   <div class="seaou">
+          <a href="javascript:void(0)"><?php echo $site_cat->cat_name;?></a>
+            <?php if(!empty($site_cat->site)):?>
 						<?php foreach($site_cat->site as $site):?>
 				   			<a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a>
 						<?php endforeach;?>
-					<?php endif;?>
-			   	<?php endforeach;?>
-               <?php endif;?>
-		   </div>
+					  <?php endif;?>
+       </div>
+       <?php endforeach;?>
+       <?php endif;?>
 	</div>
 </div>
 <!-- end main -->
