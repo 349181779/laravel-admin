@@ -21,7 +21,7 @@ class SearchRequest extends BaseFormRequest {
      */
     public function rules(){
         return [
-            'name'              => ['required', 'unique:admin_info'],
+            'name'              => ['required', 'unique:search'],
             'search_cat_id'     => ['required', 'numeric'],
             'search_url'        => ['required', 'url'],
             'status'            => ['required', 'in:1,2'],

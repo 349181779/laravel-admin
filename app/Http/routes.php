@@ -56,6 +56,10 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('search', 'SearchController');
     //email控制器
     Route::controller('email', 'EmailController');
+    //App分类
+    Route::controller('app-cat', 'AppCatController');
+    //App
+    Route::controller('app', 'AppController');
 });
 
 //Tools

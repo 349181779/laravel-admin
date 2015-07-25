@@ -53,7 +53,7 @@ class SearchController extends BaseController {
                 builderSchema('created_at', '创建时间')->
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
-                builderSearchSchema('title', '文章标题')->
+                builderSearchSchema('name', '搜索导航名称')->
                 builderSearchSchema('search_cat_id', '所属分类', 'select', $class = '', $option = SearchCatModel::lists('cat_name', 'id'), $option_value_schema = '')->
                 builderSearchSchema($name = 'status', $title = '状态', $type = 'select', $class = '', $option = [1=>'开启', '2'=>'关闭'], $option_value_schema = '0')->
                 builderAddBotton('增加搜索工具导航', url('admin/search/add'))->
