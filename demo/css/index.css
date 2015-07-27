@@ -130,7 +130,8 @@ bottom: 3px;
 .l_h_tl{ width:80px; padding-right:10px; text-align:right; float:left; color:#3ab813; font-size:14px;}
 .list_hf li{ padding:10px 0px; line-height:23px; border-bottom:1px solid #c9cbce;}
 .list_hf li a{ font-size:14px;}
-.l_h_rt{ width:1080px; float:left;}
+.list_hf .more a{ display:block; float:left; color:#919191; font-size:12px; padding:20px 10px 0 0;font: 12px/1.5 arial,\5b8b\4f53,georgia,verdana,helvetica,sans-serif; }
+.l_h_rt{ width:1050px; float:left;}
 .l_h_rt span{ display:block; width:100px; text-align:center; float:left;}
 .grsq_div{ border:1px solid #cacaca; margin:10px 0px; min-height:950px;}
 .grsq_tle{ height:45px; border-bottom:1px solid #cacaca; background-color:#f7f7f7;}
@@ -383,5 +384,34 @@ i{ font-style:normal;}
 .subul li {display: block;width: 164px;height: 39px;padding-left: 22px;line-height: 40px;font-size: 14px;float: left;overflow: hidden;
 text-overflow: ellipsis;white-space: nowrap;/*border-bottom: 1px dotted #E5E5E5;*/}
 
-
+.subm:hover .bd {
+background: #f5f8fa;}
+.subm .bd {
+padding: 10px 0;
+overflow: hidden;
+zoom: 1;}
+.subm .bd dl {
+padding: 0 0 10px 10px;
+overflow: hidden;
+zoom: 1;}
+.subm .bd dt {
+padding-left: 7px;
+color: #b87500;
+font-weight: bold;
+line-height: 28px;}
+.subm .bd dd {
+float: left;
+overflow: hidden;
+zoom: 1;}
+.subm ul{ padding-left:5px; overflow:hidden; zoom:1;}
+.subm .bd li {
+float: left;
+height: 28px;
+padding: 0 5px;
+line-height: 28px;}
+.subm .bd strong {
+color: #3ab813;}
+.subm .bd strong a{color: #3ab813;}
+.subm a {
+padding: 1px 2px 2px 2px;}
 
