@@ -22,8 +22,8 @@ body{background:#f3f3f3;}
 .set{ width:500px; float:right; text-align:right;}
 .set span,.set span a{ display:block; float:right; color:#fff; line-height:40px; margin-left:15px;}
 .shezhi{ padding-right:22px; background:url(../images/set.png?__inline) right center no-repeat;}
-.footer{ height:50px;  text-align:center;}
-.footer a{ margin:10px; line-height:50px;}
+.footer{ height:40px;  text-align:center; border-top:solid 1px #ccc; background:#000;}
+.footer a{ margin:10px; line-height:40px; color:#fff;}
 .login{ padding:160px 0px 280px 0px;}
 .l_left{ width:590px; float:left;}
 .l_right{ width:440px; float:left;}
