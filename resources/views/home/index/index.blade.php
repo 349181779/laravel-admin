@@ -25,7 +25,7 @@
 				  <div class="c_q_title">
 				         <ul>
 						    <li><a href="" class="select_a">综合导航</a></li>
-							<li><a href="">查询</a></li>
+							<li><a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a></li>
 							<li><a href="">应用</a></li>
 							<li><a href="">分类</a></li>
 						 </ul>

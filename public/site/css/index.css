@@ -93,7 +93,7 @@ bottom: 3px;
 -webkit-transition: opacity .15s;}
 
 .page_bt{ margin:45px 0px 0px 0px; padding-bottom:25px;}
-.page_bt ul li a,.page_bt ul li span{ min-width:35px;position: relative;float: left;margin-left: -1px;height: 35px;border: solid 1px #ededed;color: #3e3e3e;text-align: center;line-height: 35px;font-weight: 700;cursor: pointer; background-color:#FFFFFF;}
+.page_bt ul li a,.page_bt ul li span{ min-width:35px;position: relative;float: left;margin-left: -1px;height: 35px;/*border: solid 1px #ededed;*/color: #3e3e3e;text-align: center;line-height: 35px;font-weight: 700;cursor: pointer;/* background-color:#FFFFFF;*/}
 .page_bt ul{ width:185px; margin:0px auto; text-align:center;}
 .page_bt ul .pagenum{min-width:35px;}
 
