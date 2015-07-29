@@ -121,17 +121,19 @@ bottom: 3px;
 .c_qiehuan{ width:1198px; height:auto;border:1px solid #cecece; margin:10px auto; }
 .c_q_title{ height:40px; background-color:#f7f7f7; line-height:40px;}
 .c_q_title ul{ float:left; height:40px;}
-.c_q_set{ float:right; padding-right:10px;}
-.c_q_set span{}
+.c_q_set{ float:right; padding-right:10px; border-bottom:solid 1px #ccc;}
+.c_q_set span{color:#919191;}
 .c_q_title ul li{ text-align:center; float:left; }
 .c_q_title ul li a{ display:block;  height:41px; padding:0px 20px; margin-top:-1px;border: solid 1px #ccc;border-width: 0px 1px 1px 0;}
 
 .c_q_title ul li .select_a{ border-top:1px solid #3ab813;border-bottom: none;}
 .cq_cent{ /*padding:5px;*/}
 
-.l_h_tl{ width:80px; padding-right:10px; text-align:right; float:left; color:#3ab813; font-size:14px;}
-.list_hf li{ padding:10px 0px; line-height:23px; border-bottom:1px solid #c9cbce;}
+.l_h_tl{ width:70px; padding-right:10px; text-align:right; float:left; color:#3ab813; font-size:14px;}
+.list_hf li{ padding:10px 0px; line-height:23px; border-bottom:1px solid #c9cbce; position:relative; overflow:hidden; zoom:1;}
 .list_hf li a{ font-size:14px;}
+.in_more{ position:absolute; right:50px;}
+.in_more a{ color:#ccc;}
 .l_h_rt{ width:1100px; float:left;}
 .l_h_rt span{ display:block; width:100px; text-align:center; float:left;}
 .grsq_div{ border:1px solid #cacaca; margin:10px 0px; min-height:950px;}

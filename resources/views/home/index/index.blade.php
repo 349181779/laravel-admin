@@ -29,7 +29,7 @@
 							<li><a href="">应用</a></li>
 							<li><a href="">分类</a></li>
 						 </ul>
-
+						<div class="c_q_set"><span>添加</span>  <span>设置</span></div>
 						 <div class="clear"></div>
 				  </div>
 				  <div class="index-box">
@@ -48,7 +48,7 @@
                                         <?php foreach($site_cat->site as $site):?>
                                             <span><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></span>
                                         <?php endforeach;?>
-                                        <span><a target="_blank" href="<?php echo action('Home\IndexController@getCategory', [$site_cat->id]) ;?>">更多</a></span>
+                                        <span class="in_more"><a target="_blank" href="<?php echo action('Home\IndexController@getCategory', [$site_cat->id]) ;?>">更多</a></span>
                                        <?php endif;?>
                                    </div>
                                    <div class="clear"></div>
