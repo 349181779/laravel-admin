@@ -58,12 +58,7 @@
 							  </ul>
 							  <div class="clear"></div>
 						</div>
-						 <div class="page_bt">
-				          <ul>
-						   <?php echo $all_site->render(); ?>
-						 </ul>
-						 <div class="clear"></div>
-		               </div>
+						 
 					   <!---->
 				  </div>
 				  <!---->
@@ -75,6 +70,12 @@
 		   </div>
 	</div>
 </div>
+<div class="page_bt">
+				          <ul>
+						   <?php echo $all_site->render(); ?>
+						 </ul>
+						 <div class="clear"></div>
+		               </div>
 <!-- end main -->
 <!-- footer -->
 @section('footer')
