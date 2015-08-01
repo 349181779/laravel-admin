@@ -38,7 +38,7 @@ class SiteController extends BaseController {
     }
 
     /**
-     * 获得后台用户
+     * 获得全部网址
      *
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
@@ -108,7 +108,7 @@ class SiteController extends BaseController {
 
 
     /**
-     * 编辑文章
+     * 编辑网址
      *
      * @param  int  $id
      * @author yangyifan <yangyifanphp@gmail.com>
@@ -133,7 +133,7 @@ class SiteController extends BaseController {
     }
 
     /**
-     * 处理更新角色
+     * 处理更新网址
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
@@ -146,7 +146,7 @@ class SiteController extends BaseController {
 
 
     /**
-     * 增加文章
+     * 增加网址
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
@@ -169,7 +169,7 @@ class SiteController extends BaseController {
     }
 
     /**
-     * 添加文章
+     * 添加网址
      *
      * @param Request $request
      * @author yangyifan <yangyifanphp@gmail.com>

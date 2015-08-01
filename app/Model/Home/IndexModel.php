@@ -56,7 +56,7 @@ class IndexModel extends BaseModel {
         if(!empty($cat_id)){
             $cat_info           = new \stdClass();
             $cat_info->cat_info = DB::table('site_cat')->select('cat_name', 'id')->where('id', '=', $cat_id)->first();
-            $cat_info->all_site = DB::table('site')->where('site_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit'));
+            $cat_info->all_site = DB::table('site')->where('site_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'desc')->paginate(50);
             return $cat_info;
         }
     }

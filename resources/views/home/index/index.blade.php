@@ -27,7 +27,7 @@
 						    <li><a href="" class="select_a">综合导航</a></li>
 							<li><a href="<?php echo action('Home\IndexController@getCategory') ;?>">分类</a></li>
 						 </ul>
-						<div class="c_q_set"><span>添加</span>  <span>设置</span></div>
+						<div class="c_q_set"><span onclick="addSite(this)">添加</span>  <span>设置</span></div>
 						 <div class="clear"></div>
 				  </div>
 				  <div class="index-box">
@@ -98,6 +98,20 @@
 <!-- footer -->
 @section('footer')
 @include('home.block.footer')
+
+<script>
+    function addSite(obj){
+        var _this = $(obj);
+
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['520px', '440px'], //宽高
+            content:'<?php echo action("Home\IndexController@getAddSite") ;?>'
+        });
+
+    }
+</script>
 @show
 <!-- end footer -->
 </body>

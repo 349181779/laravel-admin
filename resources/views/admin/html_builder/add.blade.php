@@ -103,20 +103,7 @@
         //重置radio
 
         //验证表单
-        $("form").Validform({
-            tiptype:function(msg, o, cssctl){
-                switch(o.type){
-                    case 3:
-                        o.obj.parents('.form-group').find('.alert').removeClass('hide').find('.err_message').text(msg);
-                        break;
-                    case 2:
-                        o.obj.parents('.form-group').find('.alert').addClass('hide').find('.err_message').text('');
-                        break;
-                }
-            }
-
-        });
-        //验证表单
+        checkForm($("form"))
 
     });
     </script> 
