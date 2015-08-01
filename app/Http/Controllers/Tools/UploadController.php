@@ -204,7 +204,7 @@ class UploadController extends BaseController {
                 $persistent_fop_id = $this->disk->getDriver()->persistentFop($this->clientOriginalName, $v);
 
                 //引入函数库
-                load_func('instanceof,swoole');
+                load_func('swoole');
 
                 //写入队列
                 $redis = get_redis();
@@ -275,7 +275,7 @@ class UploadController extends BaseController {
         //引入函数库
         load_func('instanceof,swoole');
 
-        send_to_swoole_server('', ['data'=>$request->get('persistent_fop_id').'转码成功'], '');
+        send_default_to_swoole_server('', ['data'=>$request->get('persistent_fop_id').'转码成功'], '');
     }
 
 }

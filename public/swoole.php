@@ -163,12 +163,14 @@ class SwooleServer{
     public function onReceive(swoole_server $serv, $fd, $from_id, $data){
         $data = json_decode($data, true);
 
+        //异步任务
         if($data['step'] == 'task'){
             //开始 task
             $params = ['fd'=> $fd, 'targer'=>$data['targer'], 'params'=>$data['params'], 'callback'=>$data['callback']];
             $serv->task($params);
-        }else if($data['step'] == 'default'){
-            $send_data = '来至'.$from_id.'：'.$data['params']['data']. $this->swoole_config['package_eof'];
+        }else if($data['step'] == 'save_user'){//保持连接，统计会员
+            $user_info = unserialize($data['params']);
+            $send_data = '来至'.$from_id.'：用户id是'.$user_info->id. $this->swoole_config['package_eof'];
             echo $send_data;
             //$this->swoole_server->send($fd, $send_data);
         }
