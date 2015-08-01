@@ -30,7 +30,6 @@ class UserInfoRequest extends BaseFormRequest {
                 'status'    => ['required', 'in:1,2'],
                 'sex'       => ['required', 'in:1,2,3'],
                 'birthday'  => ['required', 'date_format:Y-m-d'],
-                'agreement' => ['required', 'in:1'],
             ];
         }else{
             return [
@@ -41,7 +40,6 @@ class UserInfoRequest extends BaseFormRequest {
                 'status'    => ['required', 'in:1,2'],
                 'sex'       => ['required', 'in:1,2,3'],
                 'birthday'  => ['required', 'date_format:Y-m-d'],
-                'agreement' => ['required', 'in:1'],
             ];
         }
     }
