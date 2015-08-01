@@ -109,37 +109,38 @@ var mail = {
                 domainname: "21cn.com"
             }
         },
-        {
-            mail: "renren",
-            name: "\u4eba\u4eba\u7f51",
-            action: "http://passport.renren.com/PLogin.do",
-            params: {
-                email: "_username_",
-                password: "_password_",
-                origURL: "http://www.renren.com/Home.do",
-                domain: "renren.com"
-            }
-        },
-        {
-            mail: "baidu",
-            name: "\u767b\u5f55\u767e\u5ea6",
-            action: "https://passport.baidu.com/?login",
-            params: {
-                u: "http://passport.baidu.com/center",
-                username: "_username_",
-                password: "_password_"
-            }
-        },
-        {
-            mail: "51",
-            name: "51.com",
-            action: "http://passport.51.com/login.5p",
-            params: {
-                passport_51_user: "_username_",
-                passport_51_password: "_password_",
-                gourl: "http%3A%2F%2Fmy.51.com%2Fwebim%2Findex.php"
-            }
-        }],
+        //{
+        //    mail: "renren",
+        //    name: "\u4eba\u4eba\u7f51",
+        //    action: "http://passport.renren.com/PLogin.do",
+        //    params: {
+        //        email: "_username_",
+        //        password: "_password_",
+        //        origURL: "http://www.renren.com/Home.do",
+        //        domain: "renren.com"
+        //    }
+        //},
+        //{
+        //    mail: "baidu",
+        //    name: "\u767b\u5f55\u767e\u5ea6",
+        //    action: "https://passport.baidu.com/?login",
+        //    params: {
+        //        u: "http://passport.baidu.com/center",
+        //        username: "_username_",
+        //        password: "_password_"
+        //    }
+        //},
+        //{
+        //    mail: "51",
+        //    name: "51.com",
+        //    action: "http://passport.51.com/login.5p",
+        //    params: {
+        //        passport_51_user: "_username_",
+        //        passport_51_password: "_password_",
+        //        gourl: "http%3A%2F%2Fmy.51.com%2Fwebim%2Findex.php"
+        //    }
+        //}
+        ],
     init:function(){
         var $mailSelect = $('.mail-list ul');
         var $mailUserName =$('#mailUserName');

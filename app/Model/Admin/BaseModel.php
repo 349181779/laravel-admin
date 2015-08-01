@@ -168,5 +168,7 @@ class BaseModel extends Model{
         $query = end($sql);
         return $query;
     }
+
+
 }
 

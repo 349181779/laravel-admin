@@ -30,7 +30,8 @@ class AppController extends BaseController {
 	 */
 	public function getIndex(){
         return view('home.app.index', [
-			'all_app'      => AppModel::getAllApp(),
+			'all_app'      	=> AppModel::getAllApp(),
+			'all_category'  => AppModel::getAllCategory(),
 			'title'         => '应用',
 			'keywords'      => '应用',
 			'description'   => '应用',

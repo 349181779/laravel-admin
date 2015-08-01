@@ -21,6 +21,20 @@ if(!function_exists('obj_to_array')){
 }
 
 /**
+ * 对象 转成 数组
+ *
+ * @param $obj
+ * @return array
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+if(!function_exists('array_to_obj')){
+    function array_to_obj($array){
+        return json_decode(json_encode($array));
+    }
+}
+
+
+/**
  * 生成后台用户签名
  *
  * @param $params

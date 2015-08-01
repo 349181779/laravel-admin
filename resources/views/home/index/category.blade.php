@@ -23,24 +23,24 @@
 
         <div class="subm">
             <div class="subbox subb0 subbfr">
-                <h2 class="subtt"><?php echo $all_site->cat_info->cat_name;?></h2>
-                <ul class="subul">
-                    <?php if(!empty($all_site->all_site)):?>
-                    <?php foreach($all_site->all_site as $site_cat):?>
-                    <li>
-                        <a target="_blank" href="<?php echo $site_cat->site_url ;?>"><?php echo $site_cat->site_name ;?></a>
-                    </li>
-                    <?php endforeach;?>
-                    <?php endif;?>
-                    <div class="clear"></div>
-                </ul>
+                <h1 class="subtt">网址分类<em>·</em></h1>
+                <div class="bd">
+
+                    <dl>
+                        <dt>[网址分类]</dt>
+                        <dd>
+                            <ul>
+                                <?php if($all_category):?>
+                                    <?php foreach($all_category as $category):?>
+                                        <li><a href="<?php echo action('Home\IndexController@getInfo', [$category->id]) ;?>" target="_blank"><?php echo $category->cat_name;?></a></li>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
             </div>
-            <div class="page_bt">
-                <ul>
-                    <?php echo $all_site->all_site->render(); ?>
-                </ul>
-                <div class="clear"></div>
-            </div>
+
         </div>
 
     </div>

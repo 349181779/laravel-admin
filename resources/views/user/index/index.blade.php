@@ -25,9 +25,14 @@
 				  <div class="c_q_title">
 				         <ul>
 						    <li><a href="" class="select_a">综合导航</a></li>
-							<li><a href="<?php echo action('Home\IndexController@getCategory') ;?>">分类</a></li>
+							<li><a href="">分类</a></li>
+							<li><a href="">搜索</a></li>
+							<li><a href="">邮件</a></li>
+							<li><a href="">查询</a></li>
+							<li><a href="">应用</a></li>
+							<li><a href="">新闻（预留）</a></li>
 						 </ul>
-						<div class="c_q_set"><span>添加</span>  <span>设置</span></div>
+
 						 <div class="clear"></div>
 				  </div>
 				  <div class="index-box">
@@ -46,7 +51,7 @@
                                         <?php foreach($site_cat->site as $site):?>
                                             <span><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></span>
                                         <?php endforeach;?>
-                                        <span class="in_more"><a target="_blank" href="<?php echo action('Home\IndexController@getInfo', [$site_cat->id]) ;?>">更多</a></span>
+                                        <span><a target="_blank" href="<?php echo action('Home\IndexController@getCategory', [$site_cat->id]) ;?>">更多</a></span>
                                        <?php endif;?>
                                    </div>
                                    <div class="clear"></div>
@@ -56,44 +61,23 @@
 							  </ul>
 							  <div class="clear"></div>
 						</div>
-						 
+						 <div class="page_bt">
+				          <ul>
+						   <?php echo $all_site->render(); ?>
+						 </ul>
+						 <div class="clear"></div>
+		               </div>
 					   <!---->
 				  </div>
 				  <!---->
 				    <div class="c_q_cont" style="display:none;">
-                        <div class="subm" style="border:none;margin-top:0;">
-                            <div class="subbox subb0 subbfr">
-                                <h1 class="subtt">网址分类<em>·</em></h1>
-                                <div class="bd">
-
-                                    <dl>
-                                        <dt>[网址分类]</dt>
-                                        <dd>
-                                            <ul>
-                                                <?php if($all_category):?>
-                                                    <?php foreach($all_category as $category):?>
-                                                        <li><a href="<?php echo action('Home\IndexController@getInfo', [$category->id]) ;?>" target="_blank"><?php echo $category->cat_name;?></a></li>
-                                                    <?php endforeach;?>
-                                                <?php endif;?>
-                                            </ul>
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
-
-                        </div>
+					       分类
 					</div>
 				  <!---->
 				  </div>
 		   </div>
 	</div>
 </div>
-<div class="page_bt">
-				          <ul>
-						   <?php echo $all_site->render(); ?>
-						 </ul>
-						 <div class="clear"></div>
-		               </div>
 <!-- end main -->
 <!-- footer -->
 @section('footer')

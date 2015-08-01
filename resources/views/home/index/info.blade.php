@@ -14,7 +14,7 @@
           @include('home.block.top')
       @show
 
-
+	
 </div>
 <!-- end top -->
 <!-- main -->
@@ -23,12 +23,12 @@
 
         <div class="subm">
             <div class="subbox subb0 subbfr">
-                <h2 class="subtt"><?php echo $all_app->cat_info->cat_name;?></h2>
+                <h2 class="subtt"><?php echo $all_site->cat_info->cat_name;?></h2>
                 <ul class="subul">
-                    <?php if(!empty($all_app->all_app)):?>
-                    <?php foreach($all_app->all_app as $app_cat):?>
+                    <?php if(!empty($all_site->all_site)):?>
+                    <?php foreach($all_site->all_site as $site_cat):?>
                     <li>
-                        <a target="_blank" href="<?php echo $app_cat->site_url ;?>"><?php echo $app_cat->name ;?></a>
+                        <a target="_blank" href="<?php echo $site_cat->site_url ;?>"><?php echo $site_cat->site_name ;?></a>
                     </li>
                     <?php endforeach;?>
                     <?php endif;?>
@@ -37,7 +37,7 @@
             </div>
             <div class="page_bt">
                 <ul>
-                    <?php echo $all_app->all_app->render(); ?>
+                    <?php echo $all_site->all_site->render(); ?>
                 </ul>
                 <div class="clear"></div>
             </div>

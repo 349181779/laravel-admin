@@ -38,7 +38,6 @@
 									<?php endif;?>
 								<?php endforeach;?>
 							<?php endif;?>
-							 <li><a href="" >分类</a></li>
 						 </ul>
 						 <div class="c_q_set"></div>
 						 <div class="clear"></div>
@@ -75,39 +74,6 @@
 
 						<?php endforeach;?>
 						<?php endif;?>
-
-                        <!-- 分类 -->
-                      <div class="c_q_cont" style="display:none;">
-                          <div class="subm" style="border:none;margin-top:0;">
-                              <div class="subbox subb0 subbfr">
-                                  <h1 class="subtt">新闻分类<em>·</em></h1>
-                                  <div class="bd">
-                                      <?php if(!empty($all_category)):?>
-                                      <dl>
-                                          <dt>[新闻分类]</dt>
-                                          <?php foreach($all_category as $category):?>
-                                              <dd class="line" style="width:275px;">
-
-                                                  <ul>
-                                                      <li><strong><a href="" target="_blank"><?php echo $category->cat_name;?></a></strong></li>
-                                                      <?php if(!empty($category->child)):?>
-                                                        <?php for($i=0; $i<5; $i++):?>
-                                                            <li><a href="" target="_blank"><?php echo $category->child[$i]->cat_name;?></a></li>
-                                                        <?php endfor;?>
-                                                      <?php endif;?>
-                                                  </ul>
-                                              </dd>
-                                          <?php endforeach;?>
-                                       </dl>
-                                      <?php endif;?>
-
-                                  </div>
-                              </div>
-
-                          </div>
-                      </div>
-                      <!-- 分类 -->
-
 
 		   </div>
 	</div>

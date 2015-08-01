@@ -31,6 +31,7 @@ class IndexController extends BaseController {
 	public function getIndex(){
         return view('home.index.index', [
             'all_site'      => IndexModel::getAllSite(),
+            'all_category'  => IndexModel::getAllCategory(),
             'title'         => '首页',
             'keywords'      => '首页',
             'description'   => '首页',
@@ -43,8 +44,24 @@ class IndexController extends BaseController {
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getCategory(Request $request, $cat_id){
+    public function getCategory(Request $request){
+
         return view('home.index.category', [
+            'all_category'  => IndexModel::getAllCategory(),
+            'title'         => '网址分类',
+            'keywords'      => '网址分类',
+            'description'   => '网址分类',
+        ]);
+    }
+
+    /**
+     * 网址分类详细列表
+     *
+     * @return Response
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getInfo(Request $request, $cat_id){
+        return view('home.index.info', [
             'all_site'      => IndexModel::getCategorySite((int)$cat_id),
             'title'         => '网址分类',
             'keywords'      => '网址分类',

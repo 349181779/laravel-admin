@@ -95,3 +95,13 @@ Route::group(['prefix'=> 'home', 'namespace' => 'Home'], function(){
     //应用
     Route::controller('app', 'AppController');
 });
+
+//会员
+Route::group(['prefix'=> 'user', 'namespace' => 'Home'], function(){
+    //首页
+    Route::controller('index', 'IndexController');
+    //查询
+//    Route::controller('query', 'QueryController');
+    //新闻
+    Route::controller('news', 'NewsController');
+});

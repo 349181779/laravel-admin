@@ -176,5 +176,18 @@ class BaseModel extends Model{
         }
         return $data;
     }
+
+    /**
+     * 获得全部分类
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getAllCategory(){
+        //加载函数库
+        load_func('common');
+        $data = obj_to_array(self::all());
+        $data =  array_to_obj(merge_tree_child_node($data));
+        return $data;
+    }
 }
 
