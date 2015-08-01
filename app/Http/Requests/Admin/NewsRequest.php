@@ -20,13 +20,23 @@ class NewsRequest extends BaseFormRequest {
      * @return array
      */
     public function rules(){
-        return [
-            'title'             => ['required', 'unique:news'],
-            'news_cat_id'       => ['required', 'numeric'],
-            'site_url'          => ['required', 'url', 'unique:news'],
-            'status'            => ['required', 'in:1,2'],
-            'sort'              => ['required', 'digits_between:0,255'],
-        ];
+        if($this->get('id') > 0 ){
+            return [
+                'title'             => ['required'],
+                'news_cat_id'       => ['required', 'numeric'],
+                'site_url'          => ['required', 'url'],
+                'status'            => ['required', 'in:1,2'],
+                'sort'              => ['required', 'digits_between:0,255'],
+            ];
+        }else{
+            return [
+                'title'             => ['required', 'unique:news'],
+                'news_cat_id'       => ['required', 'numeric'],
+                'site_url'          => ['required', 'url', 'unique:news'],
+                'status'            => ['required', 'in:1,2'],
+                'sort'              => ['required', 'digits_between:0,255'],
+            ];
+        }
     }
 
     /**

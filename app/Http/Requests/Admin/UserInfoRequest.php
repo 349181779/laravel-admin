@@ -21,16 +21,29 @@ class UserInfoRequest extends BaseFormRequest {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function rules(){
-        return [
-            'user_name' => ['required', 'unique:user_info'],
-            'email'     => ['required', 'email', 'unique:user_info'],
-            'password'  => ['required', 'size:6'],
-            'mobile'    => ['required', 'digits:11', 'unique:user_info'],
-            'status'    => ['required', 'in:1,2'],
-            'sex'       => ['required', 'in:1,2,3'],
-            'birthday'  => ['required', 'date_format:Y-m-d'],
-            'agreement' => ['required', 'in:1'],
-        ];
+        if($this->get('id') > 0 ){
+            return [
+                'user_name' => ['required'],
+                'email'     => ['required', 'email'],
+                'password'  => ['required', 'size:6'],
+                'mobile'    => ['required', 'digits:11'],
+                'status'    => ['required', 'in:1,2'],
+                'sex'       => ['required', 'in:1,2,3'],
+                'birthday'  => ['required', 'date_format:Y-m-d'],
+                'agreement' => ['required', 'in:1'],
+            ];
+        }else{
+            return [
+                'user_name' => ['required', 'unique:user_info'],
+                'email'     => ['required', 'email', 'unique:user_info'],
+                'password'  => ['required', 'size:6'],
+                'mobile'    => ['required', 'digits:11', 'unique:user_info'],
+                'status'    => ['required', 'in:1,2'],
+                'sex'       => ['required', 'in:1,2,3'],
+                'birthday'  => ['required', 'date_format:Y-m-d'],
+                'agreement' => ['required', 'in:1'],
+            ];
+        }
     }
 
     /**

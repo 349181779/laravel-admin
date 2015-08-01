@@ -21,13 +21,23 @@ class AdminInfoRequest extends BaseFormRequest {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function rules(){
-        return [
-            'email'     => ['required', 'email', 'unique:admin_info'],
-            'password'  => ['required', 'size:6'],
-            'mobile'    => ['required', 'digits:11'],
-            'status'    => ['required', 'in:1,2'],
-            'role_id'   => ['required', 'numeric'],
-        ];
+        if($this->get('id') > 0){
+            return [
+                'email'     => ['required', 'email'],
+                'password'  => ['required', 'size:6'],
+                'mobile'    => ['required', 'digits:11'],
+                'status'    => ['required', 'in:1,2'],
+                'role_id'   => ['required', 'numeric'],
+            ];
+        }else{
+            return [
+                'email'     => ['required', 'email', 'unique:admin_info'],
+                'password'  => ['required', 'size:6'],
+                'mobile'    => ['required', 'digits:11'],
+                'status'    => ['required', 'in:1,2'],
+                'role_id'   => ['required', 'numeric'],
+            ];
+        }
     }
 
     /**

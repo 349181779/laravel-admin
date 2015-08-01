@@ -20,13 +20,24 @@ class SiteRequest extends BaseFormRequest {
      * @return array
      */
     public function rules(){
-        return [
-            'site_name'         => ['required', 'unique:site'],
-            'site_cat_id'       => ['required', 'numeric'],
-            'site_url'          => ['required', 'url', 'unique:site'],
-            'status'            => ['required', 'in:1,2'],
-            'sort'              => ['required', 'digits_between:0,255'],
-        ];
+        if($this->get('id') > 0 ){
+            return [
+                'site_name'         => ['required'],
+                'site_cat_id'       => ['required', 'numeric'],
+                'site_url'          => ['required', 'url'],
+                'status'            => ['required', 'in:1,2'],
+                'sort'              => ['required', 'digits_between:0,255'],
+            ];
+        }else{
+            return [
+                'site_name'         => ['required', 'unique:site'],
+                'site_cat_id'       => ['required', 'numeric'],
+                'site_url'          => ['required', 'url', 'unique:site'],
+                'status'            => ['required', 'in:1,2'],
+                'sort'              => ['required', 'digits_between:0,255'],
+            ];
+        }
+
     }
 
     /**

@@ -20,10 +20,18 @@ class RoleRequest extends BaseFormRequest {
      * @return array
      */
     public function rules(){
-        return [
-            'role_name'     => ['required', 'unique:role'],
-            'status'        => ['required', 'in:1,2'],
-        ];
+        if($this->get('id') > 0 ){
+            return [
+                'role_name'     => ['required'],
+                'status'        => ['required', 'in:1,2'],
+            ];
+        }else{
+            return [
+                'role_name'     => ['required', 'unique:role'],
+                'status'        => ['required', 'in:1,2'],
+            ];
+        }
+
     }
 
     /**

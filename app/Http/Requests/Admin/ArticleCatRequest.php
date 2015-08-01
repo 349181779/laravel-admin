@@ -20,12 +20,21 @@ class ArticleCatRequest extends BaseFormRequest {
      * @return array
      */
     public function rules(){
-        return [
-            'cat_name'  => ['required', 'unique:article_cat'],
-            'pid'       => ['required', 'numeric'],
-            'status'    => ['required', 'in:1,2'],
-            'sort'      => ['required', 'digits_between:0,255'],
-        ];
+        if($this->get('id') > 0 ){
+            return [
+                'cat_name'  => ['required'],
+                'pid'       => ['required', 'numeric'],
+                'status'    => ['required', 'in:1,2'],
+                'sort'      => ['required', 'digits_between:0,255'],
+            ];
+        }else{
+            return [
+                'cat_name'  => ['required', 'unique:article_cat'],
+                'pid'       => ['required', 'numeric'],
+                'status'    => ['required', 'in:1,2'],
+                'sort'      => ['required', 'digits_between:0,255'],
+            ];
+        }
     }
 
     /**

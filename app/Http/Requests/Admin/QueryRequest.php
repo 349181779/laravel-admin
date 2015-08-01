@@ -20,13 +20,23 @@ class QueryRequest extends BaseFormRequest {
      * @return array
      */
     public function rules(){
-        return [
-            'name'              => ['required', 'unique:query'],
-            'query_cat_id'      => ['required', 'numeric'],
-            'site_url'          => ['required', 'unique:query'],
-            'status'            => ['required', 'in:1,2'],
-            'sort'              => ['required', 'digits_between:0,255'],
-        ];
+        if($this->get('id') > 0 ){
+            return [
+                'name'              => ['required'],
+                'query_cat_id'      => ['required', 'numeric'],
+                'site_url'          => ['required'],
+                'status'            => ['required', 'in:1,2'],
+                'sort'              => ['required', 'digits_between:0,255'],
+            ];
+        }else{
+            return [
+                'name'              => ['required', 'unique:query'],
+                'query_cat_id'      => ['required', 'numeric'],
+                'site_url'          => ['required', 'unique:query'],
+                'status'            => ['required', 'in:1,2'],
+                'sort'              => ['required', 'digits_between:0,255'],
+            ];
+        }
     }
 
     /**
