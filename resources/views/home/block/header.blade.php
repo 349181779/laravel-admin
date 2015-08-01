@@ -6,7 +6,7 @@
 				  <?php /*?><a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a><?php */?>
 				  <a href="<?php echo action('Home\EmailController@getIndex') ;?>">邮箱</a>
 				  <a href="<?php echo action('Home\SearchController@getIndex') ;?>">搜索</a>
-				  <a href="<?php echo action('Home\AppController@getIndex') ;?>">应用</a>
+				  <a href="<?php echo action('Home\AppController@getIndex') ;?>">论坛</a>
 			</div>
 			<div class="set">
 			    <?php if(is_user_login() <= 0 ):?>

@@ -24,8 +24,9 @@
 		          <!---->
 				  <div class="c_q_title">
 				         <ul>
-						    <li><a href="" class="select_a">综合导航</a></li>
-							<li><a href="">分类</a></li>
+						     <li><a href="<?php echo action('Home\IndexController@getIndex') ;?>" class=>综合导航</a></li>
+							 <li><a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a></li>
+							 <li><a href="" class="select_a">应用</a></li>
 						 </ul>
 
 						 <div class="clear"></div>
@@ -65,29 +66,7 @@
 					   <!---->
 				  </div>
 				  <!---->
-				    <div class="c_q_cont" style="display:none;">
-						<div class="subm" style="border:none;margin-top:0;">
-							<div class="subbox subb0 subbfr">
-								<h1 class="subtt">App分类<em>·</em></h1>
-								<div class="bd">
 
-									<dl>
-										<dt>[App分类]</dt>
-										<dd>
-											<ul>
-												<?php if($all_category):?>
-													<?php foreach($all_category as $category):?>
-														<li><a href="<?php echo action('Home\IndexController@getInfo', [$category->id]) ;?>" target="_blank"><?php echo $category->cat_name;?></a></li>
-													<?php endforeach;?>
-												<?php endif;?>
-											</ul>
-										</dd>
-									</dl>
-								</div>
-							</div>
-
-						</div>
-					</div>
 				  <!---->
 				  </div>
 		   </div>

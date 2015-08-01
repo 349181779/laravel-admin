@@ -30,8 +30,34 @@
                         <dt>[网址分类]</dt>
                         <dd>
                             <ul>
-                                <?php if($all_category):?>
-                                    <?php foreach($all_category as $category):?>
+                                <?php if($all_site_category):?>
+                                    <?php foreach($all_site_category as $category):?>
+                                        <li><a href="<?php echo action('Home\IndexController@getInfo', [$category->id]) ;?>" target="_blank"><?php echo $category->cat_name;?></a></li>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </ul>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>[查询工具]</dt>
+                        <dd>
+                            <ul>
+                                <?php if($app_query_category):?>
+                                    <?php foreach($app_query_category as $category):?>
+                                        <li><a href="<?php echo action('Home\IndexController@getInfo', [$category->id]) ;?>" target="_blank"><?php echo $category->cat_name;?></a></li>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </ul>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>[APP分类]</dt>
+                        <dd>
+                            <ul>
+                                <?php if($all_app_category):?>
+                                    <?php foreach($all_app_category as $category):?>
                                         <li><a href="<?php echo action('Home\IndexController@getInfo', [$category->id]) ;?>" target="_blank"><?php echo $category->cat_name;?></a></li>
                                     <?php endforeach;?>
                                 <?php endif;?>

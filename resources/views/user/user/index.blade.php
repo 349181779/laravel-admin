@@ -40,12 +40,7 @@
 			<!--上-->
 			<div class="grsq_tle">
 				<div class="g_l_nav">
-					<ul>
-						<li><a href="">朋友</a></li>
-						<li><a href="">社区</a></li>
-						<li><a href="">新闻</a></li>
-						<div class="clear"></div>
-					</ul>
+
 				</div>
 				<div class="g_r_say">聊天窗口</div>
 				<div class="clear"></div>

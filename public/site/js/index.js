@@ -81,9 +81,16 @@
 				$(".c_q_title ul li").each(function(i){
 				    									
 					$(this).click(function(){
-					$(".index-box .c_q_cont").eq(i).show().siblings().hide();					   
-					$(this).children("a").addClass("select_a").parent().siblings().children("a").removeClass("select_a");		
-					return  false;
+
+						if($(this).find('a').attr('href') == ''){
+							$(".index-box .c_q_cont").eq(i).show().siblings().hide();
+							$(this).children("a").addClass("select_a").parent().siblings().children("a").removeClass("select_a");
+							return  false;
+						}else{
+							console.log($(this).find('a').attr('href'));
+							window.location.href = $(this).find('a').attr('href')
+						}
+
 					})								
 				})
 				

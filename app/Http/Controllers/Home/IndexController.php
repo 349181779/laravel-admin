@@ -26,6 +26,10 @@ use App\Model\Admin\SiteModel;
 
 use App\Http\Requests\Admin\SiteRequest;
 
+use App\Model\Home\AppModel;
+
+use App\Model\Home\QueryModel;
+
 use Session;
 
 class IndexController extends BaseController {
@@ -38,11 +42,13 @@ class IndexController extends BaseController {
 	 */
 	public function getIndex(){
         return view('home.index.index', [
-            'all_site'      => IndexModel::getAllSite(),
-            'all_category'  => IndexModel::getAllCategory(),
-            'title'         => '首页',
-            'keywords'      => '首页',
-            'description'   => '首页',
+            'all_site'              => IndexModel::getAllSite(),
+            'all_site_category'     => IndexModel::getAllCategory(),
+            'all_app_category'      => AppModel::getAllCategory(),
+            'app_query_category'    => QueryModel::getAllCategory(),
+            'title'                 => '首页',
+            'keywords'              => '首页',
+            'description'           => '首页',
         ]);
 	}
 

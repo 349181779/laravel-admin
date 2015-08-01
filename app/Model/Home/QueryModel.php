@@ -25,8 +25,8 @@ class QueryModel extends BaseModel {
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllSite(){
-       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->take(11)->get());
+    public static function getAll(){
+        return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(20));
     }
 
     /**

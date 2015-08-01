@@ -148,7 +148,7 @@ class SwooleServer{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onConnect(swoole_server $serv, $fd){
-        //echo "Client:Connect.\n";
+
     }
 
     /**

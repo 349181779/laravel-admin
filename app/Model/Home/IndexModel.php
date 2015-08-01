@@ -26,7 +26,7 @@ class IndexModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllSite(){
-       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit')));
+       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(20));
     }
 
     /**

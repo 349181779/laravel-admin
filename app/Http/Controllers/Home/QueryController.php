@@ -30,7 +30,7 @@ class QueryController extends BaseController {
 	 */
 	public function getIndex(){
         return view('home.query.index', [
-            'all_query'     => QueryModel::getAllSite(),
+            'all_query'     => QueryModel::getAll(),
             'title'         => '查询工具',
             'keywords'      => '查询工具',
             'description'   => '查询工具',

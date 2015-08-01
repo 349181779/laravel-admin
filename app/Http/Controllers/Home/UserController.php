@@ -51,7 +51,7 @@ class UserController extends BaseController {
 
         switch($login_status){
             case 1:
-                return $this->response(200, trans('response.success'),[], true, action('Home\IndexController@getIndex'));
+                return $this->response(200, trans('response.success'),[], true, action('User\IndexController@getIndex'));
             case -1:
             case -3:
                 return $this->response(401, trans('response.admin_not_exists'));

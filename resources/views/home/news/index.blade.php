@@ -80,7 +80,6 @@
                       <div class="c_q_cont" style="display:none;">
                           <div class="subm" style="border:none;margin-top:0;">
                               <div class="subbox subb0 subbfr">
-                                  <h1 class="subtt">新闻分类<em>·</em></h1>
                                   <div class="bd">
                                       <?php if(!empty($all_category)):?>
                                       <dl>

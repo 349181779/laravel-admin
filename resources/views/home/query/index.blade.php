@@ -18,47 +18,67 @@ window.onload = bgChange;
 <!-- top -->
 <div class="top">
       @section('header')
-          @include('home.block.header')
+          	@include('home.block.header')
+			@include('home.block.top')
       @show
 
 </div>
 <!-- end top -->
 <!-- main -->
 <div class="main">
-    <div class="wrap">
-	       <div class="chaxun-logo"><a href="/"><img src="/site/images/sologo.png" /></a></div>
-	       <div class="chaxun-box">
-		           <p class="chaxun-p">查询</p>
-					<div class="query">
-						<?php if(!empty($all_query)):?>
-					    <?php foreach($all_query as $query_cat):?>
-						<div class="item">
-							<ul class="list">
-							  <li><?php echo $query_cat->cat_name;?></li>
-								<?php if($query_cat->query):?>
-									<?php foreach($query_cat->query as $query):?>
+	<div class="content">
+		<div class="c_qiehuan">
+			<!---->
+			<div class="c_q_title">
+				<ul>
 
-									<?php endforeach;?>
-                        		<?php endif;?>
-							    <?php for($i = 0; $i<=10; $i++):?>
-									<?php if(!empty($query_cat->query[$i])):?>
-											<li><a target="_blank" href="<?php echo $query_cat->query[$i]->site_url ;?>"><?php echo $query_cat->query[$i]->name ;?></a></li>
-									<?php else:?>
-										<li><a target="_blank" href=""></a></li>
-									<?php endif;?>
+					<li><a href="<?php echo action('Home\IndexController@getIndex') ;?>" >综合导航</a></li>
+					<li><a href="" class="select_a">查询导航</a></li>
+					<li><a href="<?php echo action('Home\AppController@getIndex') ;?>">应用</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="index-box">
+				<!---->
+				<div class="c_q_cont" style="display:block;">
+					<div class="cq_cent">
 
-							    <?php endfor;?>
-                              <li><a href="" class="more">更多</a></li>
-							</ul>
-						</div>
-						<?php endforeach;?>
-                        <?php endif;?>
+						<ul class="list_hf">
+							<?php if(!empty($all_query)):?>
+								<?php foreach($all_query as $query_cat):?>
+									<li>
+										<h4 class="l_h_tl"><?php echo $query_cat->cat_name;?></h4>
+										<div class="l_h_rt">
 
+											<?php if(!empty($query_cat->query)):?>
+												<?php foreach($query_cat->query as $query):?>
+													<span><a target="_blank" href="<?php echo $query->site_url ;?>"><?php echo $query->name ;?></a></span>
+												<?php endforeach;?>
+												<span class="in_more"><a target="_blank" href="<?php echo action('Home\IndexController@getInfo', [$query->id]) ;?>">更多</a></span>
+											<?php endif;?>
+										</div>
+										<div class="clear"></div>
+									</li>
+								<?php endforeach;?>
+							<?php endif;?>
+						</ul>
 						<div class="clear"></div>
 					</div>
 
-		   </div>
+					<!---->
+				</div>
+				<!---->
+
+				<!---->
+			</div>
+		</div>
 	</div>
+</div>
+<div class="page_bt">
+	<ul>
+		<?php echo $all_query->render(); ?>
+	</ul>
+	<div class="clear"></div>
 </div>
 <!-- end main -->
 <!-- footer -->

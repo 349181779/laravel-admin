@@ -30,7 +30,7 @@ class SearchRequest extends BaseFormRequest {
             ];
         }else{
             return [
-                'name'              => ['required', 'unique:search'],
+                'name'              => ['required', ],
                 'search_cat_id'     => ['required', 'numeric'],
                 'search_url'        => ['required', 'url'],
                 'status'            => ['required', 'in:1,2'],
