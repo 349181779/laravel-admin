@@ -10,7 +10,7 @@
 <!-- top -->
 <div class="top">
       @section('header')
-          @include('home.block.header')
+          @include('user.block.header')
       @show
 
 </div>

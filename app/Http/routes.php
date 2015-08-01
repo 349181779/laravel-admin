@@ -97,11 +97,11 @@ Route::group(['prefix'=> 'home', 'namespace' => 'Home'], function(){
 });
 
 //会员
-Route::group(['prefix'=> 'user', 'namespace' => 'Home'], function(){
+Route::group(['prefix'=> 'user', 'namespace' => 'User'], function(){
     //首页
     Route::controller('index', 'IndexController');
-    //查询
-//    Route::controller('query', 'QueryController');
+    //好友管理
+    Route::controller('user', 'UserController');
     //新闻
     Route::controller('news', 'NewsController');
 });

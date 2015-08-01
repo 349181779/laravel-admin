@@ -16,7 +16,7 @@
                 <?php else :?>
 			        <span class="shezhi">设置</span>
                     <span><a onclick="logout()" href="javascript::void(0)">退出</a></span>
-                    <span>欢迎：<?php echo Session::get('user_info.user_name') ;?></span>
+                    <span>欢迎：<a href="<?php echo action('User\IndexController@getIndex') ;?>"><?php echo Session::get('user_info.user_name') ;?></a></span>
 			    <?php endif;?>
 
 			</div>

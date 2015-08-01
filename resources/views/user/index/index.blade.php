@@ -10,7 +10,7 @@
 <!-- top -->
 <div class="top">
       @section('header')
-          @include('home.block.header')
+          @include('user.block.header')
           @include('home.block.top')
       @show
 
@@ -26,11 +26,7 @@
 				         <ul>
 						    <li><a href="" class="select_a">综合导航</a></li>
 							<li><a href="">分类</a></li>
-							<li><a href="">搜索</a></li>
-							<li><a href="">邮件</a></li>
-							<li><a href="">查询</a></li>
-							<li><a href="">应用</a></li>
-							<li><a href="">新闻（预留）</a></li>
+
 						 </ul>
 
 						 <div class="clear"></div>
