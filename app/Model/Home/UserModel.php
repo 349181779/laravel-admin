@@ -48,6 +48,9 @@ class UserModel extends BaseModel {
 
         //保存用户session信息
         self::saveUserSession($user_info);
+        //保存用户信息到swoole
+        self::saveUserInfo($user_info);
+
         return 1;
     }
 
@@ -72,6 +75,18 @@ class UserModel extends BaseModel {
     }
 
     /**
+     * 保存用户信息 到 swoole
+     *
+     * @param $user_info
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function saveUserInfo($user_info){
+        //加载函数库
+        load_func('swoole');
+        send_save_user_to_swoole_server('', serialize($user_info), '');
+    }
+
+    /**
      * 用户退出
      *
      * @author yangyifan <yangyifanphp@gmail.com>
@@ -89,7 +104,7 @@ class UserModel extends BaseModel {
      */
     public static function register($params){
         //加密密码
-        $input['password'] = bcrypt($params['password']);
+        $params['password'] = bcrypt($params['password']);
         //销毁字段
         unset($params['verify']);
         unset($params['password_confirmation']);
