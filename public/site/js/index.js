@@ -1,75 +1,75 @@
 // JavaScript Document
 
           $(function(){
-			   /* æœç´¢æ¡†çš„js */
+			   /* ËÑË÷¿òµÄjs */
 
-                 //$("#search-input").bind('keyup',function(){
-                 //
-				 ///* è·å–æœåŠ¡ç«¯æ•°æ® */
-				 // /*   var searchText=$("#search-input").val();
-					// $.get('http://api.bing.com/qsonhs.aspx?q='+ searchText,function(d){
-					//	  var d=d.AS.Results[0].Suggests;
-					//	  var html='';
-					//	  for(var i=0;i<d.length;i++){
-					//		   html='<li>' + d[i].Txt + '</li>';
-					//	  }
-					//	  $("#search-result").html(html);
-					//	  $('#search-suggest').show().css({
-					//		 top:$("#search-form").offset().top() + $("#search-form").height(),
-					//		 left:$("#search-form").offset().left(),
-					//		 position:'absolute'
-					//	  });
-					//
-					//
-					//
-					// },'json');*/
-					//
-					// /* ä»æœåŠ¡ç«¯è·å–æ•°æ®åä¸éœ€è¦è¿™ä¸ª  è¿™ä¸ªä»…é’ˆå¯¹å½“å‰é™æ€é¡µé¢ è®¾ç½®æœç´¢æç¤ºçš„æ ·å¼ */
-					// $('#search-suggest').show().css({
-					//		 top:$("#search-form").offset().top() + $("#search-form").height(),
-					//		 left:$("#search-form").offset().left(),
-					//		 position:'absolute'
-					//	  });
-				 //
-					//
-				 //})
+		         $("#search-input").bind('keyup',function(){
+	    
+				 /* »ñÈ¡·şÎñ¶ËÊı¾İ */
+				  /*   var searchText=$("#search-input").val();
+					 $.get('http://api.bing.com/qsonhs.aspx?q='+ searchText,function(d){
+						  var d=d.AS.Results[0].Suggests;
+						  var html='';
+						  for(var i=0;i<d.length;i++){
+							   html='<li>' + d[i].Txt + '</li>';
+						  }
+						  $("#search-result").html(html);
+						  $('#search-suggest').show().css({
+							 top:$("#search-form").offset().top() + $("#search-form").height(),
+							 left:$("#search-form").offset().left(),
+							 position:'absolute'
+						  });
+						  
+						  
+						  
+					 },'json');*/
+					 
+					 /* ´Ó·şÎñ¶Ë»ñÈ¡Êı¾İºó²»ĞèÒªÕâ¸ö  Õâ¸ö½öÕë¶Ôµ±Ç°¾²Ì¬Ò³Ãæ ÉèÖÃËÑË÷ÌáÊ¾µÄÑùÊ½ */
+					 $('#search-suggest').show().css({
+							 top:$("#search-form").offset().top() + $("#search-form").height(),
+							 left:$("#search-form").offset().left(),
+							 position:'absolute'
+						  });
 				 
-				 /* ä»æœåŠ¡ç«¯è·å–æ•°æ®åä¸éœ€è¦è¿™ä¸ª  è¿™ä¸ªä»…é’ˆå¯¹å½“å‰é™æ€é¡µé¢ ç‚¹å‡»æœç´¢åˆ—è¡¨åæ–‡å­—æ˜¾ç¤ºåœ¨æœç´¢æ¡†ä¸­ */
-				 //$("#search-result li").each(function(i){
-					//	 $(this).hover(function(){
-					//		 $(this).css('background','#f8f8f8');
-					//	 },function(){
-					//		 $(this).css('background','#fff');
-					//	 })
-					//	 $(this).click(function(){
-					//		 var lival=$(this).html();
-					//		 $(".txt_so").val(lival);
-					//		 $("#search-result").css('display','none');
-					//	})
-				 //})
+					
+				 })
+				 
+				 /* ´Ó·şÎñ¶Ë»ñÈ¡Êı¾İºó²»ĞèÒªÕâ¸ö  Õâ¸ö½öÕë¶Ôµ±Ç°¾²Ì¬Ò³Ãæ µã»÷ËÑË÷ÁĞ±íºóÎÄ×ÖÏÔÊ¾ÔÚËÑË÷¿òÖĞ */
+				 $("#search-result li").each(function(i){
+						 $(this).hover(function(){
+							 $(this).css('background','#f8f8f8');
+						 },function(){
+							 $(this).css('background','#fff');
+						 })
+						 $(this).click(function(){
+							 var lival=$(this).html();
+							 $(".txt_so").val(lival);
+							 $("#search-result").css('display','none');
+						})
+				 })
 				 
 				  
-				  /* ç‚¹å‡»é¡µé¢å…¶ä»–ä½ç½®éšè— */
+				  /* µã»÷Ò³ÃæÆäËûÎ»ÖÃÒş²Ø */
 				/*$(document).bind('click',function(){
 					$('#search-suggest').hide();
 				   
 				})*/
 				
-				/*ä¸ºå¤šä¸ªå…ƒç´ ä¸”ç”±javascriptåŠ¨æ€ç”Ÿæˆçš„å…ƒç´ æ·»åŠ äº‹ä»¶æ—¶ä½¿ç”¨äº‹ä»¶ä»£ç† ç‚¹å‡»æœç´¢åˆ—è¡¨åç›´æ¥è·³åˆ°æœç´¢é¡µ */
+				/*Îª¶à¸öÔªËØÇÒÓÉjavascript¶¯Ì¬Éú³ÉµÄÔªËØÌí¼ÓÊÂ¼şÊ±Ê¹ÓÃÊÂ¼ş´úÀí µã»÷ËÑË÷ÁĞ±íºóÖ±½ÓÌøµ½ËÑË÷Ò³ */
 				/*$(document).delegate('li','click',function(){
 					 var keyword=$(this).text();
 					 location.href='http://cn.bing.com/search?q=' + keyword
 				})*/
 				 
 				 
-				 /* æœç´¢æ¡†çš„jsç»“æŸ */
+				 /* ËÑË÷¿òµÄjs½áÊø */
 				 
-				 /*ä¸ªäººç¤¾åŒº æœ‹å‹  ä¼¸ç¼© */ 
+				 /*¸öÈËÉçÇø ÅóÓÑ  ÉìËõ */ 
 				 $(".grsp_l_pep li .grsp_group").click(function(){
 					 		$(this).next().toggle();		
 							return false;
 				})
-			    /*ä¸ªäººç¤¾åŒº åˆ‡æ¢ */ 
+			    /*¸öÈËÉçÇø ÇĞ»» */ 
 				$(".g_l_nav ul li").each(function(i){
 				     $(this).click(function(){
 					    $(".grsp_left .grsp-box").eq(i).show().siblings().hide();
@@ -81,23 +81,24 @@
 				$(".c_q_title ul li").each(function(i){
 				    									
 					$(this).click(function(){
-
-						if($(this).find('a').attr('href') == ''){
-							$(".index-box .c_q_cont").eq(i).show().siblings().hide();
-							$(this).children("a").addClass("select_a").parent().siblings().children("a").removeClass("select_a");
-							return  false;
-						}else{
-							console.log($(this).find('a').attr('href'));
-							window.location.href = $(this).find('a').attr('href')
-						}
-
+					$(".index-box .c_q_cont").eq(i).show().siblings().hide();					   
+					$(this).children("a").addClass("select_a").parent().siblings().children("a").removeClass("select_a");		
+					return  false;
 					})								
 				})
 				
+					 
+	            $(".user-inlmenu dd").each(function(i){
+				    									
+					$(this).click(function(){
+					$(".user-inr1").eq(i).show().siblings().hide();					   
+					$(this).children("a").addClass("sel_a").parent().siblings().children("a").removeClass("sel_a");		
+					return  false;
+					})								
+				})
 				
-				/* é‚®ç®±é€‰æ‹©js */
+				/* ÓÊÏäÑ¡Ôñjs */
 				$(".mailSelect i").click(function(){
-					$('.mail-list').removeClass('hide')
 					 var selectem=$(".mailSelect em").html();
 					 $(".mail-list ul li").each(function(i){
 						  var thisval=$(this).html();
@@ -105,25 +106,17 @@
 							    
 							 }						 
 					 })
-					 $(".mail-list").show();
+					 $(".mail-list").show();						  
 				  								  
 				})
-
-
-
-				$(".mail-list li").each(function(i){
-
+				
+				$(".mail-list ul li").each(function(i){
 						 $(this).click(function(){
-							 $('.mail-list').addClass('hide')
 							 var livals=$(this).html();
 							 $(".mailSelect").find('em').html(livals);
-
-							 $('select[name=domainss]').html('<option value="'+livals+'">'+livals+'</option>')
+							 $(".mail-list").hide();
 						})
 				 })
-
-			    //é¡µé¢åº•éƒ¨ç½‘å€åˆ—è¡¨js
-			    $('.seaou:gt(0)').css('border-top', '0')
 				
 		  })
 		  

@@ -87,6 +87,15 @@
 					})								
 				})
 				
+					 
+	            $(".user-inlmenu dd").each(function(i){
+				    									
+					$(this).click(function(){
+					$(".user-inr1").eq(i).show().siblings().hide();					   
+					$(this).children("a").addClass("sel_a").parent().siblings().children("a").removeClass("sel_a");		
+					return  false;
+					})								
+				})
 				
 				/* ” œ‰—°‘Òjs */
 				$(".mailSelect i").click(function(){

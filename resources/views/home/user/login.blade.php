@@ -19,7 +19,7 @@
     <div class="wrap">
        <div class="login">
 	          <div class="l_left">
-			        <img src="/site/images/micpanda.png" width="359" height="461" />
+			        <img src="/site/images/micpanda.png" />
 			  </div>
 			  <div class="l_right">
 			        <div ><a href=""><img src="/site/images/logo.png" width="432" height="79" /></a></div>

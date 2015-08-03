@@ -360,7 +360,21 @@ border-radius: 4px;}
 .seaou a{ padding:0 40px; font-size:14px;}
 .email li{ float:left; width:120px;}
 
-
+.bfff{ background:#fff; padding:10px;}
+.user-inl{ width:200px; float:left;}
+.user-inl dt {
+height: 32px;
+line-height: 32px;
+font-size: 14px;
+font-weight: bold;
+padding-left: 48px;}
+.user-inl dd a {
+height: 32px;
+line-height: 32px;
+padding-left: 48px;}
+.sel_a{ color:#aaaaaa; background:#eee; height:32px; line-height:32px; display:block;}
+.user-inr{ float:right; width:960px; min-height:500px;}
+.user-inr h4{height: 32px;line-height: 32px; border-bottom:solid 1px #ccc; margin-bottom:10px;}
 .tab_rgst tr td {height: 38px;}
 .inp_l,.select_medium {
 float: left;

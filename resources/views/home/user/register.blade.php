@@ -21,7 +21,7 @@
     <div class="wrap">
        <div class="login">
 	   		  <div class="l_left">
-			        <img src="/site/images/micpanda.png" width="359" height="461" />
+			        <img src="/site/images/micpanda.png" />
 			  </div>
 	          <div class="register">
 			         <div class="rgt-lf-img"><img src="/site/images/logo.png" width="432" height="79" /></div>
@@ -29,12 +29,20 @@
 					       <form class="ui form ajax-form" action="<?php echo action('Home\UserController@postRegister') ;?>" method="post" >
 						      <div class="rgt-form">
 							      <div class="inline field">
-								     <label id="b-label">邮　　 　箱：</label>
-								     <input type="text" placeholder="请输入邮箱" name="email" style="width:400px;">
+								     <label id="b-label">邮箱/手机号：</label>
+								     <input type="text" placeholder="请输入邮箱/手机号" name="email" style="width:400px;">
 								  </div>
-							      <div class="inline field">
+							     <!-- <div class="inline field">
 								     <label id="b-label">手 机 号 码：</label>
 								     <input type="text" placeholder="请输入你的手机号" name="mobile" style="width:400px;">
+								  </div>-->
+								  <div class="inline field">
+								     <label id="b-label">请设置密码：</label>
+								     <input type="password" name="password" placeholder="请输入密码" style="width:400px;">
+								  </div>
+								  <div class="inline field">
+								     <label id="b-label">请确认密码：</label>
+								     <input type="password" name="password_confirmation" placeholder="请再一次输入密码" style="width:400px;">
 								  </div>
 								  <div class="inline fields">
 										<div class="field">
@@ -44,14 +52,7 @@
 										<div onclick="load_captcha_img(this)" class="field">
                                             <?php echo captcha_img();?>
 										</div>
-								  </div>
-								  <div class="inline field">
-								     <label id="b-label">设 置 密 码：</label>
-								     <input type="password" name="password" placeholder="请输入密码" style="width:400px;">
-								  </div>
-								  <div class="inline field">
-								     <label id="b-label">确 认 密 码：</label>
-								     <input type="password" name="password_confirmation" placeholder="请再一次输入密码" style="width:400px;">
+										<div class="field"><a href="">换一张</a></div>
 								  </div>
 								  <div class="inline field">
 									<div class="ui checkbox" id="b-check">
