@@ -37,11 +37,11 @@
 								     <input type="text" placeholder="请输入你的手机号" name="mobile" style="width:400px;">
 								  </div>-->
 								  <div class="inline field">
-								     <label id="b-label">请设置密码： </label>
+								     <label id="b-label">请设置密码： 　</label>
 								     <input type="password" name="password" placeholder="请输入密码" style="width:400px;">
 								  </div>
 								  <div class="inline field">
-								     <label id="b-label">请确认密码： </label>
+								     <label id="b-label">请确认密码： 　</label>
 								     <input type="password" name="password_confirmation" placeholder="请再一次输入密码" style="width:400px;">
 								  </div>
 								  <div class="inline fields">
