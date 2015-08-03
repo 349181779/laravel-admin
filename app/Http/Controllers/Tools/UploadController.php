@@ -242,19 +242,19 @@ class UploadController extends BaseController {
         if($status[0]['code'] == 0){
             //写入数据库
             $id = DB::table(config('table_name.resource_slave_table_name'))->insertGetId([
-                'file_name' => $status[0]['items'][0]['key'],
-                'persistent_fop_id' => $status[0]['id'],
-                'bucket'    => $status[0]['inputBucket'],
-                'reqid' => $status[0]['reqid'],
-                'cmd' => $status[0]['items'][0]['cmd'],
-                'created_at' => date('Y-m-d H:i:s'),
+                'file_name'             => $status[0]['items'][0]['key'],
+                'persistent_fop_id'     => $status[0]['id'],
+                'bucket'                => $status[0]['inputBucket'],
+                'reqid'                 => $status[0]['reqid'],
+                'cmd'                   => $status[0]['items'][0]['cmd'],
+                'created_at'            => date('Y-m-d H:i:s'),
             ]);
 
             if($id > 0 ){
                 echo $this->response(200);
             }
             //上传失败错误提示
-            echo $this->response(400,trans('response.upload_file_error'));
+            echo $this->response(400, trans('response.upload_file_error'));
         }else{
             //引入函数库
             load_func('instanceof,swoole');
@@ -271,7 +271,7 @@ class UploadController extends BaseController {
      * @param $persistent_fop_id
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getPersistentSuccessCallback(Request $request){
+    public function postPersistentSuccessCallback(Request $request){
         //引入函数库
         load_func('instanceof,swoole');
 

@@ -30,4 +30,5 @@ return [
     'search_error'=>'当前页面不存在',
     'register_success' => '注册成功',
     'register_error'    => '注册失败',
+    'save_user_info_to_redis_error'=>'保存用户到redis失败',
 ];

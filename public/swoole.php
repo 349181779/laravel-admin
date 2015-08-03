@@ -161,19 +161,40 @@ class SwooleServer{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onReceive(swoole_server $serv, $fd, $from_id, $data){
+
+        //解析数据
         $data = json_decode($data, true);
 
-        //异步任务
-        if($data['step'] == 'task'){
-            //开始 task
-            $params = ['fd'=> $fd, 'targer'=>$data['targer'], 'params'=>$data['params'], 'callback'=>$data['callback']];
-            $serv->task($params);
-        }else if($data['step'] == 'save_user'){//保持连接，统计会员
-            $user_info = unserialize($data['params']);
-            $send_data = '来至'.$from_id.'：用户id是'.$user_info->id. $this->swoole_config['package_eof'];
-            echo $send_data;
-            //$this->swoole_server->send($fd, $send_data);
+        switch($data['step']){
+            //异步任务
+            case 'task':
+                //开始 task
+                $params = ['fd'=> $fd, 'targer'=>$data['targer'], 'params'=>$data['params'], 'callback'=>$data['callback']];
+
+                //发送异步请求
+                $serv->task($params);
+                break;
+
+            //保存用户信息
+            case 'save_user':
+                $user_info      = unserialize($data['params']);
+                $user_info->fd  = $fd;
+                $params = ['fd'=> $fd, 'targer'=>$data['targer'], 'params'=> ['user_info' => serialize($user_info)], 'callback'=>$data['callback']];
+                //发送异步请求
+                $serv->task($params);
+                break;
+
+            //发送消息到用户
+            case 'send_message_to_user':
+                $serv->send($data['params']['fd'], $data['params']['data']);
+                break;
+
+            //默认操作
+            case 'default':
+                break;
         }
+
+        //关闭连接
         $serv->close($fd);
     }
 
@@ -214,11 +235,18 @@ class SwooleServer{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function onFinish(swoole_server $serv, $task_id, $data){
-        if($data['status']['code'] == 200){
+
+        switch($data['status']['code']){
+
             //任务调度成功，执行callback
-            curl_get($data['data']['callback'] .'?'. http_build_query($data['data']['params']));
-        }else{
-            echo 'task 失败，继续任务调度ing'.uniqid() . $this->swoole_config['package_eof'];
+            case 200:
+                !empty($data['data']['callback']) && curl_post($data['data']['callback'] .'?'. http_build_query($data['data']['params']));
+                break;
+
+            //任务调度失败
+            case 400:
+                echo 'task 失败，继续任务调度ing'.uniqid() . $this->swoole_config['package_eof'];
+                break;
         }
     }
 

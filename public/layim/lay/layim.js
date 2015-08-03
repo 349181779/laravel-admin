@@ -342,12 +342,13 @@ xxim.tabchat = function(param){
 
 //弹出聊天窗
 xxim.popchatbox = function(othis){
+
     var node = xxim.node, dataId = othis.attr('data-id'), param = {
         id: dataId, //用户ID
         type: othis.attr('type'),
         name: othis.find('.xxim_onename').text(),  //用户名
         face: othis.find('.xxim_oneface').attr('src'),  //用户头像
-        href: config.hosts + 'user/' + dataId //用户主页
+        href: othis.parent().find('li').attr('data-url') //用户主页
     }, key = param.type + dataId;
 
     if(!config.chating[key]){
@@ -371,12 +372,11 @@ xxim.getGroups = function(param){
     groupss = xxim.chatbox.find('#layim_group'+ keys);
     groupss.addClass('loading');
     config.json(config.api.groups, {}, function(datas){
-        //console.log(datas);
         if(datas.code === 200){
             var ii = 0, lens = datas.data.length;
             if(lens > 0){
                 for(; ii < lens; ii++){
-                    str += '<li data-id="'+ datas.data[ii].id +'" type="one"><img src="'+ datas.data[ii].face +'"><span class="xxim_onename">'+ datas.data[ii].name +'</span></li>';
+                    str += '<li data-id="'+ datas.data[ii].id +'" type="one" ><img src="'+ datas.data[ii].face +'"><span class="xxim_onename">'+ datas.data[ii].name +'</span></li>';
                 }
             } else {
                 str = '<li class="layim_errors">没有群员</li>';
@@ -398,7 +398,6 @@ xxim.transmit = function(){
     var node = xxim.node, log = {};
     node.sendbtn = $('#layim_sendbtn');
     node.imwrite = $('#layim_write');
-    console.log("1221");
     //发送
     log.send = function(){
         var data = {
@@ -412,6 +411,30 @@ xxim.transmit = function(){
             layer.tips('说点啥呗！', '#layim_write', 2);
             node.imwrite.focus();
         } else {
+
+            //发送消息
+            config.json(config.api.sendurl, data, function(datas){
+                if(datas.code === 200){
+                    var ii = 0, lens = datas.data.length;
+                    if(lens > 0){
+                        for(; ii < lens; ii++){
+                            str += '<li data-id="'+ datas.data[ii].id +'" type="one" ><img src="'+ datas.data[ii].face +'"><span class="xxim_onename">'+ datas.data[ii].name +'</span></li>';
+                        }
+                    } else {
+                        str = '<li class="layim_errors">没有群员</li>';
+                    }
+
+                } else {
+                    str = '<li class="layim_errors">'+ datas.msg +'</li>';
+                }
+                groupss.removeClass('loading');
+                groupss.html(str);
+            }, function(){
+                groupss.removeClass('loading');
+                groupss.html('<li class="layim_errors">请求异常</li>');
+            });
+
+
             //此处皆为模拟
             var keys = xxim.nowchat.type + xxim.nowchat.id;
 
@@ -563,7 +586,6 @@ xxim.getDates = function(index){
         node = xxim.node, myf = node.list.eq(index);
     myf.addClass('loading');
     config.json(api[index], {}, function(datas){
-        //console.log(datas)
         if(datas.code === 200){
             var i = 0, myflen = datas.data.length, str = '', item;
             if(myflen > 0){
@@ -574,21 +596,21 @@ xxim.getDates = function(index){
                             +'<ul class="xxim_chatlist">';
                         item = datas.data[i].item;
                         for(var j = 0; j < item.length; j++){
-                            str += '<li data-id="'+ item[j].id +'" class="xxim_childnode" type="'+ (index === 0 ? 'one' : 'group') +'"><img src="'+ item[j].face +'" class="xxim_oneface"><span class="xxim_onename">'+ item[j].name +'</span></li>';
+                            str += '<li data-id="'+ item[j].id +'" data-url="'+item[j].url+'" class="xxim_childnode" type="'+ (index === 0 ? 'one' : 'group') +'"><img src="'+ item[j].face +'" class="xxim_oneface"><span class="xxim_onename">'+ item[j].name +'</span></li>';
                         }
                         str += '</ul></li>';
                     }
                 } else {
+
                     str += '<li class="xxim_liston">'
                         +'<ul class="xxim_chatlist">';
 
                     for(; i < myflen; i++){
-                        //console.log(datas.data[i]);
-                        str += '<li data-id="'+ datas.data[i].id +'" class="xxim_childnode" type="one"><img src="'+ datas.data[i].face +'"  class="xxim_oneface"><span  class="xxim_onename">'+ datas.data[i].name +'</span><em class="xxim_time">'+ datas.data[i].time +'</em></li>';
+
+                        str += '<li data-id="'+ datas.data[i].id +'"  class="xxim_childnode" type="one"><img src="'+ datas.data[i].face +'"  class="xxim_oneface"><span  class="xxim_onename">'+ datas.data[i].name +'</span><em class="xxim_time">'+ datas.data[i].time +'</em></li>';
                     }
                     str += '</ul></li>';
                 }
-                //console.log(str);
                 myf.html(str);
             } else {
                 myf.html('<li class="xxim_errormsg">没有任何数据</li>');
@@ -634,7 +656,6 @@ xxim.view = (function(){
             +'<div class="layim_min" id="layim_min"></div>'
         +'</ul>'
     +'</div>');
-    //console.log(xximNode);
     //dom[3].append(xximNode);
     $('.grsp_left').append(xximNode);
 

@@ -104,4 +104,7 @@ Route::group(['prefix'=> 'user', 'namespace' => 'User'], function(){
     Route::controller('user', 'UserController');
     //新闻
     Route::controller('news', 'NewsController');
+    //消息
+    Route::controller('chat', 'ChatController');
+
 });

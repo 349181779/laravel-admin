@@ -18,7 +18,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Model\Home\IndexModel;
+use App\Model\User\UserModel;
 
 class UserController extends BaseController {
 
@@ -30,12 +30,26 @@ class UserController extends BaseController {
 	 */
 	public function getIndex(){
         return view('user.user.index', [
-            'all_site'      => IndexModel::getAllSite(),
             'title'         => '会员-好友管理',
             'keywords'      => '会员-好友管理',
             'description'   => '会员-好友管理',
         ]);
 	}
+
+
+    /**
+     * 保用用户信息到redis
+     *
+     * @param Requests $requests
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getSaveUserInfo(Request $requests){
+        $user_info = unserialize(urldecode($requests->get('user_info')));
+        //保存用户信息到redis hash表
+        load_func('instanceof,swoole');
+        //返回状态
+        get_redis()->hSet(config('config.user_list_hash_table'), $user_info->id, serialize($user_info)) != false ? $this->response(200, 'success') : $this->response(400, trans('response.save_user_info_to_redis_error'));
+    }
 
     /**
      * 获得好友数据
@@ -44,23 +58,7 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postFriend(){
-        //获得好友数据
-        $data = [
-            [
-                'name'=> '在线好友',
-                'nums'=> 4,
-                'id'=> 1,
-                'item'=> [
-                    ['id'=> "100001", 'name'=> 'yangyifan1', 'face'=> 'http://tp1.sinaimg.cn/1571889140/180/40030060651/1'],
-                    ['id'=> "100002", 'name'=> 'yangyifan2', 'face'=> 'http://tp1.sinaimg.cn/1571889140/180/40030060651/1'],
-                    ['id'=> "100003", 'name'=> 'yangyifan3', 'face'=> 'http://tp1.sinaimg.cn/1571889140/180/40030060651/1'],
-                    ['id'=> "100004", 'name'=> 'yangyifan4', 'face'=> 'http://tp1.sinaimg.cn/1571889140/180/40030060651/1'],
-                ],
-            ]
-
-        ];
-        //响应
-        return $this->response($code = 200, $msg = '', $data = $data, $target = true, $href = '');
+        return $this->response($code = 200, $msg = '', $data = UserModel::onlineUser());
     }
 
     /**

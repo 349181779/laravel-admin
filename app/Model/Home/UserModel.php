@@ -83,7 +83,7 @@ class UserModel extends BaseModel {
     private static function saveUserInfo($user_info){
         //加载函数库
         load_func('swoole');
-        send_save_user_to_swoole_server('', serialize($user_info), '');
+        send_save_user_to_swoole_server(action('User\UserController@getSaveUserInfo'), serialize($user_info), '');
     }
 
     /**

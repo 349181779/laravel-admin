@@ -78,6 +78,9 @@ return [
 
     //邮箱
 
+    //会员消息
+    'send_message_reuqire' => '消息不能为空',
+
 
 
 ];

@@ -79,6 +79,22 @@ if(!function_exists('send_to_swoole_server')){
 }
 
 
+/**
+ * 发送  消息给用户
+ *
+ * @param $targer   目标连接
+ * @param $params   提交目标连接参数
+ * @param $callback 回调地址
+ * @return mixed(int|bool)
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+if(!function_exists('send_message_to_swoole_server')){
+    function send_message_to_swoole_server($targer, $params, $callback){
+        send_to_swoole_server('send_message_to_user', $targer, $params, $callback);
+    }
+}
+
+
 
 
 

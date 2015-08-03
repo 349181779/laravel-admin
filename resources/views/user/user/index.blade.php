@@ -9,7 +9,7 @@
 		var group = '<?php echo action("User\UserController@postGroup") ;?>'
 		var chatlog = '<?php echo action("User\UserController@postChatlog") ;?>'
 		var groups = '<?php echo action("User\UserController@postGroups") ;?>'
-		var sendurl = '<?php echo action("User\UserController@postSendurl") ;?>'
+		var sendurl = '<?php echo action("User\ChatController@postSendMessage") ;?>'
 	</script>
 @show
 </head>
