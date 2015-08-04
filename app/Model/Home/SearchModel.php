@@ -43,7 +43,7 @@ class SearchModel extends BaseModel {
      * @return mixed
      */
     public static function getSite(){
-        return IndexModel::mergeData(DB::table('site_cat')->where('status', '=', '1')->where('is_show_search', '=', 1)->orderBy('sort', 'desc')->paginate(config('config.page_limit')), 9);
+        return IndexModel::mergeData(DB::table('site_cat')->where('status', '=', '1')->where('is_show_search', '=', 1)->orderBy('sort', 'ASC')->paginate(config('config.page_limit')), 9);
     }
 
 }

@@ -26,7 +26,7 @@ class QueryModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAll(){
-        return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(20));
+        return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(20));
     }
 
     /**
@@ -40,7 +40,7 @@ class QueryModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->query  = DB::table('query')->where('query_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->take(10)->get();
+                $v->query  = DB::table('query')->where('query_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->take(10)->get();
             }
         }
         return $data;

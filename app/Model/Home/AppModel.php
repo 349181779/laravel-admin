@@ -26,7 +26,7 @@ class AppModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllApp(){
-       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit')));
+       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(config('config.page_limit')));
     }
 
     /**
@@ -40,7 +40,7 @@ class AppModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->app  = DB::table('app')->where('app_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->take($limit)->get();
+                $v->app  = DB::table('app')->where('app_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->take($limit)->get();
             }
         }
         return $data;
@@ -56,7 +56,7 @@ class AppModel extends BaseModel {
         if(!empty($cat_id)){
             $cat_info           = new \stdClass();
             $cat_info->cat_info = DB::table('app_cat')->select('cat_name', 'id')->where('id', '=', $cat_id)->first();
-            $cat_info->all_app  = DB::table('app')->where('app_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'desc')->paginate(config('config.page_limit'));
+            $cat_info->all_app  = DB::table('app')->where('app_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(config('config.page_limit'));
             return $cat_info;
         }
     }

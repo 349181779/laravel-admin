@@ -26,7 +26,7 @@ class IndexModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllSite(){
-       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'desc')->paginate(20));
+       return self::mergeData(self::where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(20));
     }
 
     /**
@@ -40,7 +40,7 @@ class IndexModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->site  = DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'desc')->take($limit)->get();
+                $v->site  = DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->take($limit)->get();
             }
         }
         return $data;
@@ -56,7 +56,7 @@ class IndexModel extends BaseModel {
         if(!empty($cat_id)){
             $cat_info           = new \stdClass();
             $cat_info->cat_info = DB::table('site_cat')->select('cat_name', 'id')->where('id', '=', $cat_id)->first();
-            $cat_info->all_site = DB::table('site')->where('site_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'desc')->paginate(50);
+            $cat_info->all_site = DB::table('site')->where('site_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(50);
             return $cat_info;
         }
     }
