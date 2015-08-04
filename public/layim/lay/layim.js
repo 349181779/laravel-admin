@@ -58,6 +58,7 @@ var config = {
             url: url,
             data: data,
             dataType: 'json',
+            async:false,
             success: callback,
             error: error
         });
@@ -233,7 +234,7 @@ xxim.popchat = function(param){
 
     log.html = '<div class="layim_chatbox" id="layim_chatbox">'
             +'<h6>'
-            +'<span class="layim_move"></span>'
+            +'<span data-id="'+ param.id +'" class="layim_move"></span>'
             +'    <a href="'+ param.url +'" class="layim_face" target="_blank"><img src="'+ param.face +'" ></a>'
             +'    <a href="'+ param.url +'" class="layim_names" target="_blank">'+ param.name +'</a>'
             +'    <span class="layim_rightbtn">'
@@ -404,6 +405,7 @@ xxim.transmit = function(){
             content: node.imwrite.val(),
             id: xxim.nowchat.id,
             sign_key: '', //密匙
+            cmd:'message',//发送消息
             _: +new Date
         };
 
@@ -411,56 +413,26 @@ xxim.transmit = function(){
             layer.tips('说点啥呗！', '#layim_write', 2);
             node.imwrite.focus();
         } else {
+            var web_socket_fd;
+            config.json(Socket_fd, {id:data.id}, function(response){
+                data.id     = response.data.fd;
+                data.face   = response.data.face;
+                data.name   = response.data.name;
+            });
 
             //发送消息
-            config.json(config.api.sendurl, data, function(datas){
-                if(datas.code === 200){
-                    var ii = 0, lens = datas.data.length;
-                    if(lens > 0){
-                        for(; ii < lens; ii++){
-                            str += '<li data-id="'+ datas.data[ii].id +'" type="one" ><img src="'+ datas.data[ii].face +'"><span class="xxim_onename">'+ datas.data[ii].name +'</span></li>';
-                        }
-                    } else {
-                        str = '<li class="layim_errors">没有群员</li>';
-                    }
-
-                } else {
-                    str = '<li class="layim_errors">'+ datas.msg +'</li>';
-                }
-                groupss.removeClass('loading');
-                groupss.html(str);
-            }, function(){
-                groupss.removeClass('loading');
-                groupss.html('<li class="layim_errors">请求异常</li>');
-            });
+            ws.send(JSON.stringify(data));
 
 
             //此处皆为模拟
             var keys = xxim.nowchat.type + xxim.nowchat.id;
 
-            //聊天模版
-            log.html = function(param, type){
-                return '<li class="'+ (type === 'me' ? 'layim_chateme' : '') +'">'
-                    +'<div class="layim_chatuser">'
-                        + function(){
-                            if(type === 'me'){
-                                return '<span class="layim_chattime">'+ param.time +'</span>'
-                                       +'<span class="layim_chatname">'+ param.name +'</span>'
-                                       +'<img src="'+ param.face +'" >';
-                            } else {
-                                return '<img src="'+ param.face +'" >'
-                                       +'<span class="layim_chatname">'+ param.name +'</span>'
-                                       +'<span class="layim_chattime">'+ param.time +'</span>';
-                            }
-                        }()
-                    +'</div>'
-                    +'<div class="layim_chatsay">'+ param.content +'<em class="layim_zero"></em></div>'
-                +'</li>';
-            };
+            console.log(keys);
+
 
             log.imarea = xxim.chatbox.find('#layim_area'+ keys);
 
-            log.imarea.append(log.html({
+            log.imarea.append(logHtml({
                 time: '2014-04-26 0:37',
                 name: config.user.name,
                 face: config.user.face,
@@ -469,21 +441,15 @@ xxim.transmit = function(){
             node.imwrite.val('').focus();
             log.imarea.scrollTop(log.imarea[0].scrollHeight);
 
-            setTimeout(function(){
-                log.imarea.append(log.html({
-                    time: '2014-04-26 0:38',
-                    name: xxim.nowchat.name,
-                    face: xxim.nowchat.face,
-                    content: config.autoReplay[(Math.random()*config.autoReplay.length) | 0]
-                }));
-                log.imarea.scrollTop(log.imarea[0].scrollHeight);
-            }, 500);
-
-            /*
-            that.json(config.api.sendurl, data, function(datas){
-
-            });
-            */
+            //setTimeout(function(){
+            //    log.imarea.append(logHtml({
+            //        time: '2014-04-26 0:38',
+            //        name: xxim.nowchat.name,
+            //        face: xxim.nowchat.face,
+            //        content: config.autoReplay[(Math.random()*config.autoReplay.length) | 0]
+            //    }));
+            //    log.imarea.scrollTop(log.imarea[0].scrollHeight);
+            //}, 500);
         }
 
     };
@@ -624,6 +590,11 @@ xxim.getDates = function(index){
         myf.removeClass('loading');
     });
 };
+
+
+
+
+
 
 //渲染骨架
 xxim.view = (function(){

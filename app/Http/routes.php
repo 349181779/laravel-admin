@@ -76,6 +76,8 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('upload', 'UploadController');
     //swoole
     Route::controller('swoole', 'SwooleController');
+    //web socket
+    Route::controller('socket', 'WebSocketController');
 });
 
 //前台

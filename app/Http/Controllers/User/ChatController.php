@@ -45,5 +45,49 @@ class ChatController extends BaseController {
 
 	}
 
+	/**
+	 * 保存当前用户 web socket 的 fd
+	 *
+	 * @param Request $request
+	 * @author yangyifan <yangyifanphp@gmail.com>
+	 */
+	public function postSaveUserWebSocketFd(Request $request){
+		//接受消息
+		$data = $request->all();
+
+		//加载函数库
+		load_func('instanceof');
+		$redis = get_redis();
+
+		//获得发送对象$fb
+		$user_info = unserialize($redis->hGet(config('config.user_list_hash_table'), Session::get('user_info.id')));
+
+		$user_info->web_socket_fd = $data['fd'];
+
+		//保存当前资料
+		$redis->hSet(config('config.user_list_hash_table'), Session::get('user_info.id'), serialize($user_info)) !== false ? $this->response(200 ,'success')  : $this->response(400, trans('response.save_user_socket_to_redis_error'));
+
+	}
+
+	/**
+	 * 获得用户web socket fd
+	 *
+	 * @param Request $request
+	 */
+	public function postSocketFd(Request $request){
+		$user_id = $request->get('id');
+
+		//加载函数库
+		load_func('instanceof,image');
+
+		//获得发送对象$fb
+		$user_info = unserialize( get_redis()->hGet(config('config.user_list_hash_table'), $user_id));
+
+		if(!empty($user_info)){
+			$this->response(200 ,'success', ['fd'=>$user_info->web_socket_fd, 'name' => $user_info->user_name, 'face'=>get_user_info_face($user_info->face)]);
+		}else{
+			$this->response(400, trans('response.save_user_socket_to_redis_error'));
+		}
+	}
 
 }

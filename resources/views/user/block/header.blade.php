@@ -1,3 +1,9 @@
+<script>
+    var socket_prot = <?php echo config('swoole.web_socket_port');?>;
+    var save_user_socket = "<?php echo action('User\ChatController@postSaveUserWebSocketFd') ;?>";
+</script>
+<script src="/js/user_base.js"></script>
+
 <div class="header">
       <div class="wrap">
 	        <div class="nav">

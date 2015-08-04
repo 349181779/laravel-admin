@@ -10,6 +10,7 @@
 		var chatlog = '<?php echo action("User\UserController@postChatlog") ;?>'
 		var groups = '<?php echo action("User\UserController@postGroups") ;?>'
 		var sendurl = '<?php echo action("User\ChatController@postSendMessage") ;?>'
+        var Socket_fd =  '<?php echo action("User\ChatController@postSocketFd") ;?>'
 	</script>
 @show
 </head>
@@ -49,12 +50,6 @@
 			<div class="grsq_box">
 				<div class="grsp_left">
 
-					<div class="grsp-box" style="display:none;">
-						社区
-					</div>
-					<div class="grsp-box" style="display:none;">
-						新闻
-					</div>
 
 				</div>
 				<div class="grsp_right">
@@ -72,7 +67,6 @@
 <!-- footer -->
 @section('footer')
 @include('home.block.footer')
-<!--<script src="/layim/lay/layer/layer.min.js"></script>-->
 <link rel="stylesheet" href="/layim/css/layim.css">
 <script src="/layim/lay/layim.js"></script>
 @show

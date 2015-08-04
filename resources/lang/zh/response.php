@@ -31,4 +31,6 @@ return [
     'register_success' => '注册成功',
     'register_error'    => '注册失败',
     'save_user_info_to_redis_error'=>'保存用户到redis失败',
+    'connet_web_socket_error'=>'连接失败，请重试！',
+    'save_user_socket_to_redis_error' => '连接失败，请重试！',
 ];
