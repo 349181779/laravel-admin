@@ -96,6 +96,8 @@ Route::group(['prefix'=> 'home', 'namespace' => 'Home'], function(){
     Route::controller('search', 'SearchController');
     //应用
     Route::controller('app', 'AppController');
+    //论坛
+    Route::controller('forum', 'ForumController');
 });
 
 //会员

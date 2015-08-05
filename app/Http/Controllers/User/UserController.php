@@ -118,9 +118,14 @@ class UserController extends BaseController {
     }
 
 
-
-    public function postSendurl(){
-
+    /**
+     * 用户详细资料
+     *
+     * @return \Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getProfile(){
+        return view('user.user.profile');
     }
 
 }
