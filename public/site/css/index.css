@@ -275,15 +275,13 @@ border-right: 0px; float:left;}
 .mt30{ margin-top:30px;}
 .more{ color:#ccc;}
 
-.seaou,.email{line-height:40px; border:solid 1px #c9cbce; border-width:1px 0;}
-.seaou a{ padding:0 40px; font-size:14px;}
-.email li{ float:left; width:100px; padding-left:20px;}
-
 .mod-useragreement{ border:solid 1px #c9cbce; padding:20px; background:#fff; width:1000px; margin:0 auto; line-height:22px;}
 .mod-useragreement h2{color: #444;font-size: 16px;height: 40px;font-weight: bold;line-height: 40px;border-bottom: 1px solid #e8e8e8;margin-bottom: 20px;}
 .mod-useragreement h5 {font-size: 14px;font-weight: bold;padding: 1em 0px;}
 .seaou ,.email{ line-height:40px; border:solid 1px #c9cbce; border-width:1px 0;}
-.seaou a{ display:inline-block; width:136px; font-size:14px; }
+.seaou h3{ float:left; width:92px; padding-left:20px;}
+.sea{ float:left; width:1088px;}
+.sea a{ display:inline-block; width:136px; font-size:14px; }
 .email li{ float:left; width:120px;}
 
 .bfff{ background:#fff; padding:10px;}
@@ -314,7 +312,13 @@ padding-left: 48px;}
     height: 30px;
     border: 1px solid #ccc;
     border-radius: 2px;
-    margin-right:10px;}
+    margin:0 10px 5px 0;}
+.txt-mark {
+	width: 120px;
+	height: 33px;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	border-radius: 4px;}
 i{ font-style:normal;}
 .vf_tishi{ display:none;}
 .signin_left12aa a{ background:#ff9900; width:232px; height:40px; display:block; font-size:14px; text-align:center; line-height:40px;}

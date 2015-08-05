@@ -27,10 +27,10 @@
        <?php if(!empty($all_site)):?>
       <?php foreach($all_site as $site_cat):?>
 		   <div class="seaou">
-          <a href="javascript:void(0)"><?php echo $site_cat->cat_name;?></a>
+          <h3><?php echo $site_cat->cat_name;?></h3>
             <?php if(!empty($site_cat->site)):?>
 						<?php foreach($site_cat->site as $site):?>
-				   			<a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a>
+				   			<div class="sea"><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></div>
 						<?php endforeach;?>
 					  <?php endif;?>
        </div>
