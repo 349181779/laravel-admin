@@ -38,7 +38,7 @@
                         <li><a href="">其它</a></li>
                         <li><a href="">版内搜索</a></li>
                     </ul>
-                    <div class="c_q_set">
+                    <div class="c_q_set2">
                         <span>刷新</span>  <span>发贴</span>
                     </div>
                     <div class="clear"></div>
