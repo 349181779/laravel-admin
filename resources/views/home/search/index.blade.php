@@ -28,11 +28,13 @@
       <?php foreach($all_site as $site_cat):?>
 		   <div class="seaou">
           <h3><?php echo $site_cat->cat_name;?></h3>
+		  <div class="sea">
             <?php if(!empty($site_cat->site)):?>
 						<?php foreach($site_cat->site as $site):?>
-				   			<div class="sea"><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></div>
+				   			<a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a>
 						<?php endforeach;?>
 					  <?php endif;?>
+		</div>
        </div>
        <?php endforeach;?>
        <?php endif;?>
