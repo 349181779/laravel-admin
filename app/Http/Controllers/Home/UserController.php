@@ -96,10 +96,10 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postRegister(UserRegisterRequest $request){
-        $input = $request->only('email', 'mobile', 'password', 'password_confirmation');
+        $input = $request->only('email', 'password');
         //写入数据
         $affected_number = UserModel::register($input);
-        return $affected_number->id > 0 ? $this->response(200, trans('response.register_success'), [], true, action('Home\UserController@getLogin')) : $this->response(400, trans('response.register_error'), [], true);
+        return $affected_number > 0 ? $this->response(200, trans('response.register_success'), [], true, action('Home\UserController@getLogin')) : $this->response(400, trans('response.register_error'), [], true);
     }
 
     /**

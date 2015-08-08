@@ -24,20 +24,22 @@ class BaseController extends \App\Http\Controllers\BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
-        //加载函数库
-        load_func('common');
-        //获得导航数据
-        $this->getSearch();
+        //检测是否登陆
+        $this->checkIsLogin();
     }
 
-
     /**
-     * 获得导航数据
+     * 检测登录
      *
+     * @return bool|\Illuminate\Http\RedirectResponse
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private function getSearch(){
-        view()->share('all_search', BaseModel::getSearch());
+    private function checkIsLogin(){
+        load_func('common');
+        $uid = is_user_login();
+        if($uid <= 0 ){
+            header('location:'. action('Home\UserController@getLogin'));die;
+        }
     }
 
 }

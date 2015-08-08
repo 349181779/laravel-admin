@@ -22,10 +22,11 @@ class UserRegisterRequest extends BaseFormRequest {
     public function rules(){
         return [
             'email'                     => ['required', 'email', 'unique:user_info'],
-            'mobile'                    => ['required', 'digits:11', 'unique:user_info'],
+            //'mobile'                    => ['required', 'digits:11', 'unique:user_info'],
             'captcha'                   => ['required', 'captcha'],
             'password'                  => ['required', 'confirmed'],
             'password_confirmation'     => ['required'],
+            'agreement'                 => ['accepted'],
         ];
     }
 
@@ -36,7 +37,7 @@ class UserRegisterRequest extends BaseFormRequest {
      */
     public function messages(){
         return [
-            'email.required'                    => trans('validate.user_name_reuqire'),
+            'email.required'                    => trans('validate.email_require'),
             'email.email'                       => trans('validate.email_error'),
             'email.unique'                      => trans('validate.email_unique'),
             'mobile.mobile_require'             => trans('validate.mobile_require'),

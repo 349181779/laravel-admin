@@ -29,8 +29,8 @@
 					       <form class="ui form ajax-form" action="<?php echo action('Home\UserController@postRegister') ;?>" method="post" >
 						      <div class="rgt-form">
 							      <div class="inline field">
-								     <label id="b-label">邮箱/手机号：</label>
-								     <input type="text" placeholder="请输入邮箱/手机号" name="email" style="width:400px;">
+								     <label id="b-label">邮箱：</label>
+								     <input type="text" placeholder="请输入邮箱" name="email" style="width:400px;">
 								  </div>
 							     <!-- <div class="inline field">
 								     <label id="b-label">手 机 号 码：</label>
@@ -49,7 +49,7 @@
 										  <label id="b-label">验 　证　码：</label>
 										  <input type="text" placeholder="" name="captcha" style="width:200px;">
 										</div>
-										<div onclick="load_captcha_img(this)" class="field">
+										<div onclick="loadCaptchaImg(this)" class="field">
                                             <?php echo captcha_img();?>
 										</div>
 										<div class="field"><a href="">换一张</a></div>
@@ -94,13 +94,6 @@
 <!-- footer -->
 @section('footer')
 @include('home.block.footer')
-<script>
-    function load_captcha_img(obj){
-        var _this = $(obj);
-        var src = _this.find('img').attr('src');
-        _this.find('img').attr('src', src+"?"+Math.round())
-    }
-</script>
 @parent
 @show
 <!-- end footer -->

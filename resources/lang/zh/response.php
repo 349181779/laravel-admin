@@ -33,4 +33,8 @@ return [
     'save_user_info_to_redis_error'=>'保存用户到redis失败',
     'connet_web_socket_error'=>'连接失败，请重试！',
     'save_user_socket_to_redis_error' => '连接失败，请重试！',
+    'update_user_profile_error' => '保存用户详细信息失败',
+    'update_user_password_error'  => '更新用户密码失败',
+    'old_password_error'  => '旧密码错误',
+    'update_user_password_success'  => '更新用户密码成功',
 ];

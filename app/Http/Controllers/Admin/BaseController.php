@@ -37,8 +37,8 @@ class BaseController extends \App\Http\Controllers\BaseController {
      */
     private function checkIsLogin(){
         load_func('common');
-        $uid = is_login();
-        return $uid <= 0 && header('location:/admin/login');
+        $uid = is_admn_login();
+        return $uid <= 0 && header('location:'.action('Admin\LoginController@getIndex'));die;
     }
 
     /**

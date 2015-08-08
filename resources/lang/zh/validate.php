@@ -66,13 +66,25 @@ return [
     'sex_error' => '性别格式不正确',
     'user_name_reuqire' => '会员名称不能为空',
     'password_confirmed_error'  => '两次密码不一致',
+    'old_password_reuqre'   => '旧密码不能为空',
     'password_reuqre'   => '密码不能为空',
     'verify_reuqire'    => '验证码不能为空',
     'password_confirmed_require'    => '确认密码不能为空',
     'birthday_require'  => '生日不能空',
     'birthday_error'    => '生日格式不正确',
     'agreement_require' => '必须同意并接收注册用户服务条款',
-
+    'year_require'  =>  '年份不能为空',
+    'year_error'  =>  '年份格式错误',
+    'month_require' => '月份不能为空',
+    'month_error' => '月份格式错误',
+    'day_require'   => '日期不能为空',
+    'day_error' => '日期格式错误',
+    'user_profile_truename_require' => '会员真实姓名不能为空',
+    'user_profile_qq_require' => '会员QQ不能为空',
+    'user_profile_wechat_require' => '会员微信不能为空',
+    'user_profile_weibo_require' => '会员微博不能为空',
+    'user_profile_id_card_require' => '会员身份证不能为空',
+    'user_profile_occupation_require' => '会员职业不能为空',
 
     //查询工具
 

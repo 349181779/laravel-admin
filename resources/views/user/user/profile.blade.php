@@ -4,14 +4,10 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('base_header')
 @include('home.block.base_header')
-	<script>
-		var friend = '<?php echo action("User\UserController@postFriend") ;?>';
-		var group = '<?php echo action("User\UserController@postGroup") ;?>'
-		var chatlog = '<?php echo action("User\UserController@postChatlog") ;?>'
-		var groups = '<?php echo action("User\UserController@postGroups") ;?>'
-		var sendurl = '<?php echo action("User\ChatController@postSendMessage") ;?>'
-        var Socket_fd =  '<?php echo action("User\ChatController@postSocketFd") ;?>'
-	</script>
+    <style>
+        input{
+            text-indent: 1em;}
+    </style>
 @show
 </head>
 
@@ -40,56 +36,63 @@
 			<div class="user-inr" >
 				<div class="user-inr1" style="display:block;">
 					<h4>基本资料</h4>
-					<form name="form1">
+					<form name="form1" class="ajax-form" method="post" action="<?php echo action('User\UserController@postProfile') ;?>">
 						<table width="100%" border="0" class="tab_rgst">
 							<tr>
-								<td width="18%"><div align="right">邮箱/手机号：</div></td>
-								<td width="82%"> <input type="text" class="text_txt inp_l" placeholder="请输入邮箱/手机号"/> <span class="vf_tishi">
-								        请您填写邮箱/手机号
+								<td width="18%"><div align="right">邮箱：</div></td>
+								<td width="82%"> <input type="text" class="text_txt inp_l" name="email" value="<?php echo $user_profile->email ;?>" placeholder="请输入邮箱"/> <span class="vf_tishi">
+								        请您填写邮箱
 								</span></td>
 							</tr>
 
+                            <tr>
+                                <td width="18%"><div align="right">手机号：</div></td>
+                                <td width="82%"> <input type="text" class="text_txt inp_l" name="mobile" value="<?php  if($user_profile->mobile > 0)  echo $user_profile->mobile;?>" placeholder="请输入手机号"/> <span class="vf_tishi">
+								        请您填写手机号
+								</span></td>
+                            </tr>
+
 							<tr>
 								<td><div align="right">网名：</div></td>
-								<td> <input type="text" class="text_txt inp_l"  id="nickname" name="nickname" placeholder="网名"/> <span class="vf_tishi">
+								<td> <input type="text" class="text_txt inp_l"  id="nickname" value="<?php echo $user_profile->user_name ;?>" name="user_name" placeholder="网名"/> <span class="vf_tishi">
 								        请您填写网名
 								</span></td>
 							</tr>
 							<tr>
 								<td><div align="right">姓名：</div></td>
-								<td><input class="text_txt inp_l" type="text" value="" name="realname" action-data="text=填写真实姓名&amp;must=false" action-type="text_copy" node-type="realname">
+								<td><input class="text_txt inp_l" type="text" name="user_profile[truename]" value="<?php echo $user_profile->user_profile->truename ;?>" >
 									<span class="vf_tishi">
 								        请您填写真实姓名，方便我们联系你。你的资料不会透漏给任何人								</span>									</td>
 							</tr>
 							<tr>
 								<td><div align="right">性别：</div></td>
 								<td><label class="radio-inline">
-										<input name="sex" type="radio" value="1"> 男
+										<input name="sex" type="radio" value="1" <?php if($user_profile->sex == 1){echo 'checked="checked"';}?> > 男
 									</label>
 									<label class="radio-inline">
-										<input name="sex" type="radio" value="2"> 女								</label>								</td>
+										<input name="sex" type="radio" value="2" <?php if($user_profile->sex == 2){echo 'checked="checked"';}?>> 女								</label>								</td>
 							</tr>
 							<tr>
 								<td><div align="right">常用邮箱：</div></td>
-								<td> <input type="text" class="text_txt inp_l"  placeholder="常用邮箱"/> <span class="vf_tishi">
+								<td> <input type="text" class="text_txt inp_l" name="user_profile[other_email]" value="<?php echo $user_profile->user_profile->other_email ;?>"  placeholder="常用邮箱"/> <span class="vf_tishi">
 								        请您填写常用邮箱
 								</span></td>
 							</tr>
 							<tr>
 								<td><div align="right">QQ：</div></td>
-								<td> <input class="text_txt" type="text" value="" action-data="text=请输入QQ号&amp;must=false" action-type="text_copy" node-type="qq" name="qq"></td>
+								<td> <input class="text_txt" type="text" value="<?php echo $user_profile->user_profile->qq ;?>"  name="user_profile[qq]"></td>
 							</tr>
 							<tr>
 								<td><div align="right">微信：</div></td>
-								<td> <input class="text_txt" type="text" value="" action-data="text=请输入微信号&amp;must=false" action-type="text_copy" node-type="微信" name="微信"></td>
+								<td> <input class="text_txt" type="text" value="<?php echo $user_profile->user_profile->wechat ;?>"  name="user_profile[wechat]"></td>
 							</tr>
 							<tr>
 								<td><div align="right">微博：</div></td>
-								<td> <input class="text_txt " type="text" value="" action-data="text=请输入微博地址&amp;must=false" name="blog" action-type="text_copy" node-type="blog"></td>
+								<td> <input class="text_txt " type="text" value="<?php echo $user_profile->user_profile->weibo ;?>"  name="user_profile[weibo]"></td>
 							</tr>
 							<tr>
 								<td><div align="right">身份证号码：</div></td>
-								<td> <input type="text" class="text_txt inp_l"  placeholder="身份证号码"/> <span class="vf_tishi">
+								<td> <input type="text" class="text_txt inp_l"  placeholder="身份证号码" value="<?php echo $user_profile->user_profile->id_card ;?>"  name="user_profile[id_card]"/> <span class="vf_tishi">
 								        请您填写身份证号码
 								</span></td>
 							</tr>
@@ -97,24 +100,21 @@
 								<td><div align="right">出生年月：</div></td>
 								<td><div class="inp_l" node-type="birthday" action-data="must=false">
 									<span class="year">
-										<select node-type="birthday_year" name="Date_Year">
-											<option value="1"> </option>
-											<option label="2015" value="2015">2015</option>
-										</select>
-														<i>年</i>													</span>
-													<span class="month">
-														<select node-type="birthday_month" name="birthday_m"><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-														<i>月</i>													</span>
-													<span class="day">
-														<select node-type="birthday_day" name="birthday_d"><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
-														<i>日</i>													</span>
-										<input type="hidden" value="1991-08-24" node-type="birthday_value">
+										<select name="year"></select><i>年</i>
+                                    </span>
+									<span class="month">
+									    <select name="month"></select><i>月</i>
+                                    </span>
+									<span class="day">
+									    <select name="day">></select><i>日</i>
+                                    </span>
+										<input type="hidden" value="" name="birthday">
 									</div>																								</td>
 							</tr>
 							<tr>
 								<td><div align="right">婚姻：</div></td>
 								<td><div class="basicinfo_box">
-										<select id="sense_select" class="select_medium">
+										<select id="sense_select" name="marriage" class="select_medium">
 											<option value="0">请选择</option>
 											<option value="1">未婚</option>
 											<option value="2">已婚</option>
@@ -124,24 +124,17 @@
 							</tr>
 							<tr>
 								<td><div align="right">职业：</div></td>
-								<td><input id="career_txt" type="text" class="text_txt inp_l" ><span class="vf_tishi">
+								<td><input id="career_txt" type="text" class="text_txt inp_l" value="<?php echo $user_profile->user_profile->occupation ;?>"  name="user_profile[occupation]" ><span class="vf_tishi">
 								        请您填写职业
 								</span></td>
 							</tr>
 							<tr>
 								<td><div align="right">现居地：</div></td>
-								<td><div class="basicinfo_box">
-										<!--<select id="sense_select" class="select_medium">
-                                            <option value="0">请选择</option>
-                                        </select>-->
-										<select id="addslt_c_0" style="width: 120px;"><option value="0">选择国家</option></select><label>    </label><select id="addslt_s_0" style="width: 75px;" disabled=""><option value="0">选择省</option></select><label>    </label><select id="addslt_cty_0" style="width: 105px;" disabled=""><option value="0">选择市</option></select><label>    </label>
-									</div></td>
+								<td><div class="basicinfo_box"><select name="user_profile[province]"></select><select name="user_profile[city]"></select><select name="user_profile[area]"></select></div></td>
 							</tr>
 							<tr>
 								<td><div align="right">家乡：</div></td>
-								<td><div class="basicinfo_box">
-										<select id="addslt_c_0" style="width: 120px;"><option value="0">选择国家</option></select><label>    </label><select id="addslt_s_0" style="width: 75px;" disabled=""><option value="0">选择省</option></select><label>    </label><select id="addslt_cty_0" style="width: 105px;" disabled=""><option value="0">选择市</option></select><label>    </label>
-									</div>							</td>
+								<td><div class="basicinfo_box"><select name="user_profile[home_province]"></select><select name="user_profile[home_city]"></select><select name="user_profile[home_area]"></select></div></td>
 							</tr>
 							<tr>
 								<td><div align="right">个人经历：</div></td>
@@ -181,20 +174,19 @@
 							</tr>
 							<tr>
 								<td><div align="right">验证码：</div></td>
-								<td><div class="input-div">
-										<input type="text" class="txt-mark">
-										<img src="/site/images/verify.png" height="33" width="100">
+								<td><div class="input-div" >
+										<input type="text" name="captcha" class="txt-mark">
+                                        <div style="display: inline-block;" onclick="loadCaptchaImg(this)"><?php echo captcha_img();?></div>
 									</div></td>
 							</tr>
 							<tr>
 								<td><div align="right"></div></td>
-								<td><div class="signin_left12aa">
-										<p id="errormsg" style="padding-bottom: 10px;color:red;"></p>
-										<a href="javascript:void(0);" onclick="Login();" class="signin_left15 colored8b00">确认</a> <a id="singloading" style="color: rgb(51, 51, 51);
-                                padding-left: 1px; float: left; margin-left: 11px; margin-top: 12px; display: none;">
-											<img src="http://img.cndns.com/images/loading.gif"></a>
-
-									</div></td>
+								<td>
+                                    <div class="signin_left12aa">
+                                        <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>" />
+										<input type="submit" value="确认" class="signin_left15 colored8b00">
+                                    </div>
+                                </td>
 							</tr>
 						</table>
 					</form>
@@ -202,7 +194,12 @@
 
 				<div class="user-inr1" style="display:none;">
 					<h4>账号安全</h4>
+                    <form name="form1" class="ajax-form" method="post" action="<?php echo action('User\UserController@postUpdatePassword') ;?>">
 					<table width="100%" border="0" class="tab_rgst">
+                        <tr>
+                            <td><div align="right">旧密码：</div></td>
+                            <td><input type="password" class="text_txt inp_l" id="txtPwd" name="old_password" value="" placeholder="请输入密码"></td>
+                        </tr>
 						<tr>
 							<td><div align="right">请设置密码：</div></td>
 							<td><input type="password" class="text_txt inp_l" id="txtPwd" name="password" value="" placeholder="请输入密码"><span class="vf_tishi">
@@ -211,21 +208,20 @@
 						</tr>
 						<tr>
 							<td><div align="right">请确认密码：</div></td>
-							<td><input type="password" class="text_txt inp_l" id="txtPwd" name="password" value="" placeholder="请确认密码"><span class="vf_tishi">
+							<td><input type="password" class="text_txt inp_l" id="txtPwd" name="password_confirmation" value="" placeholder="请确认密码"><span class="vf_tishi">
 																请确认密码 ,密码为6-20位
 														</span></td>
 						</tr>
 						<tr>
 							<td><div align="right"></div></td>
 							<td><div class="signin_left12aa">
-									<p id="errormsg" style="padding-bottom: 10px;color:red;"></p>
-									<a href="javascript:void(0);" onclick="Login();" class="signin_left15 colored8b00">确认</a> <a id="singloading" style="color: rgb(51, 51, 51);
-                                padding-left: 1px; float: left; margin-left: 11px; margin-top: 12px; display: none;">
-										<img src="http://img.cndns.com/images/loading.gif"></a>
+                                    <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>" />
+                                    <input type="submit" value="确认" class="signin_left15 colored8b00">
 
 								</div></td>
 						</tr>
 					</table>
+                    </form>
 
 				</div>
 			</div>
@@ -236,8 +232,35 @@
 <!-- end main --><!-- footer -->
 @section('footer')
 @include('home.block.footer')
-<link rel="stylesheet" href="/layim/css/layim.css">
-<script src="/layim/lay/layim.js"></script>
+<script src="/date/YMDClass.js"></script>
+<script src="/city/PCASClass.js"></script>
+<script>
+
+    function choseCity(province, city, area){
+
+
+    }
+
+
+    $(function(){
+
+        new PCAS("user_profile[province]=<?php echo $user_profile->user_profile->province;?>,请选择省份","user_profile[city]=<?php echo $user_profile->user_profile->city;?>,请选择城市","user_profile[area]=<?php echo $user_profile->user_profile->area;?>,请选择地区");
+        new PCAS("user_profile[home_province]=<?php echo $user_profile->user_profile->home_province;?>,请选择省份","user_profile[home_city]=<?php echo $user_profile->user_profile->home_city;?>,请选择城市","user_profile[home_area]=<?php echo $user_profile->user_profile->home_area;?>,请选择地区");
+
+        <?php if(!empty($user_profile->birthday)):?>
+            <?php $date = explode('-', $user_profile->birthday);?>
+            new YMDselect('year', 'month', 'day', <?php echo $date[0] ;?>, <?php echo $date[1] ;?>, <?php echo $date[2] ;?>);
+        <?php endif;?>
+
+        <?php if(!empty($user_profile->sex)):?>
+            $('select[name=sex]').val(<?php echo $user_profile->sex ;?>);
+        <?php endif;?>
+
+        <?php if(!empty($user_profile->user_profile->marriage)):?>
+            $('select[name=marriage]').val(<?php echo $user_profile->user_profile->marriage ;?>);
+        <?php endif;?>
+    })
+</script>
 @show
 <!-- end footer -->
 </body>

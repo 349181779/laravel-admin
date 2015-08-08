@@ -172,3 +172,14 @@ function checkForm(obj){
 
     });
 }
+
+/**
+ * 加载验证码
+ *
+ * @param obj
+ */
+function loadCaptchaImg(obj){
+    var _this = $(obj);
+    var src = _this.find('img').attr('src');
+    _this.find('img').attr('src', src+"?"+Math.round())
+}

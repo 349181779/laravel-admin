@@ -33,7 +33,7 @@ class UserLoginRequest extends BaseFormRequest {
      */
     public function messages(){
         return [
-            'email.required'        => trans('validate.user_name_reuqire'),
+            'email.required'        => trans('validate.email_require'),
             'email.email'           => trans('validate.email_error'),
             'password.required'     => trans('validate.password_reuqre'),
         ];

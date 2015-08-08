@@ -53,13 +53,13 @@ if(!function_exists('hash_user_sign')){
 }
 
 /**
- * 判断是否登录
+ * 判断是否后台登陆登录
  *
  * @return Int
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-if(!function_exists('is_login')){
-    function is_login(){
+if(!function_exists('is_admn_login')){
+    function is_admn_login(){
         return hash_user_sign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.id') : false;
     }
 }

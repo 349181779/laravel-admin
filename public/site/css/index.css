@@ -322,7 +322,7 @@ padding-left: 48px;}
 	border-radius: 4px;}
 i{ font-style:normal;}
 .vf_tishi{ display:none;}
-.signin_left12aa a{ background:#ff9900; width:232px; height:40px; display:block; font-size:14px; text-align:center; line-height:40px;}
+.signin_left12aa input{ background:#ff9900; width:232px; height:40px; display:block; font-size:14px; text-align:center; line-height:40px;border: 0;}
 
 .subm{ border:solid 1px #ccc; background:#fff; margin-top:10px;}
 .subtt {padding-left: 20px;font-size: 14px;color: #676767;height: 40px;border-bottom: 1px solid #E5E5E5;line-height: 40px;}

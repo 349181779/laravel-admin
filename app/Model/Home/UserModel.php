@@ -101,15 +101,31 @@ class UserModel extends BaseModel {
      *
      * @param $params
      * @return static
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function register($params){
         //加密密码
         $params['password'] = bcrypt($params['password']);
-        //销毁字段
-        unset($params['verify']);
-        unset($params['password_confirmation']);
+
         //写入数据
-        return self::create($params);
+        $user_info = self::create($params);
+        return self::registerUserProfile($user_info->id) == true ? $user_info->id : false;
+    }
+
+    /**
+     * 注册会员其他信息
+     *
+     * @param $user_id
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function registerUserProfile($user_id){
+        if($user_id > 0 ){
+            $profile_id = DB::table('user_profile')->insertGetId([
+                'user_info_id'  => $user_id,
+            ]);
+            return $profile_id > 0 ? true : false;
+        }
     }
 
 }

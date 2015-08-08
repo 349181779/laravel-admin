@@ -3,7 +3,7 @@
 return [
 
     'default'   => [
-        'length'    => 5,
+        'length'    => 4,
         'width'     => 100,
         'height'    => 33,
         'quality'   => 90,

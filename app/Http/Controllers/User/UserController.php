@@ -20,6 +20,10 @@ use Illuminate\Http\Request;
 
 use App\Model\User\UserModel;
 
+use App\Http\Requests\User\UserProfileRequest;
+
+use App\Http\Requests\User\Passwordequest;
+
 class UserController extends BaseController {
 
 	/**
@@ -125,7 +129,42 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getProfile(){
-        return view('user.user.profile');
+        return view('user.user.profile', [
+            'title'         => '会员-详细资料管理',
+            'keywords'      => '会员-详细资料管理',
+            'description'   => '会员-详细资料管理',
+            'user_profile'  => UserModel::getUserProfile(),
+        ]);
+    }
+
+    /**
+     * 保存用户详细资料
+     *
+     * @param UserProfileRequest $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postProfile(UserProfileRequest $request){
+        UserModel::updateUserProfile($request->all()) == true ? $this->response(200, 'success') : $this->response(400, trans('response.update_user_profile_error'));
+    }
+
+    /**
+     * 更新用户密码
+     *
+     * @param Passwordequest $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postUpdatePassword(Passwordequest $request){
+        $status = UserModel::updatePassword($request->only('old_password', 'password'));
+
+        if($status === true){
+            $this->response(200, trans('response.update_user_password_success'));
+        }else{
+            if($status == -1){
+                $this->response(400, trans('response.old_password_error'));
+            }else if($status === false){
+                $this->response(400, trans('response.update_user_password_error'));
+            }
+        }
     }
 
 }
