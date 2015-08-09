@@ -14,11 +14,9 @@ use App\Http\Controllers\User\BaseController;
 
 use App\Http\Requests;
 
-use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
-use App\Model\Home\IndexModel;
+use App\Model\User\IndexModel;
 
 class IndexController extends BaseController {
 

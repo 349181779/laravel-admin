@@ -3,6 +3,10 @@
 <head>
 @section('base_header')
 @include('home.block.base_header')
+    <style>
+        .c_q_set span{display: inline-block;height: 40px;padding: 0 10px;
+            margin-right: 5px: }
+    </style>
 @show
 </head>
 
@@ -29,7 +33,10 @@
                              <li><a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a></li>
                              <li><a href="<?php echo action('Home\AppController@getIndex') ;?>">应用</a></li>
 						 </ul>
-						<div class="c_q_set"><span onclick="addSite(this)">添加</span>  <span>设置</span></div>
+                      <?php if(Session::get('admin_info.id') > 0 ):?>
+                        <div class="c_q_set"><span style="cursor: pointer;" onclick="addSite(this)">添加网址</span>  <span style="cursor: pointer;" onclick="addSiteCategory(this)">添加网址分类</span> <span style="cursor: pointer;" >设置</span></div>
+                      <?php endif;?>
+
 						 <div class="clear"></div>
 				  </div>
 				  <div class="index-box">
@@ -127,6 +134,7 @@
 @include('home.block.footer')
 
 <script>
+    <?php if(Session::get('admin_info.id') > 0 ):?>
     function addSite(obj){
         var _this = $(obj);
 
@@ -138,6 +146,19 @@
         });
 
     }
+
+    function addSiteCategory(obj){
+        var _this = $(obj);
+
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['520px', '440px'], //宽高
+            content:'<?php echo action("Home\IndexController@getAddSiteCategory") ;?>'
+        });
+
+    }
+    <?php endif;?>
 </script>
 @show
 <!-- end footer -->

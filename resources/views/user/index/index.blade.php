@@ -29,6 +29,10 @@
 
 						 </ul>
 
+						  <?php if(Session::get('user_info.id') > 0 ):?>
+							  <div class="c_q_set"><span style="cursor: pointer;" onclick="addSite(this)">添加网址</span>  <span style="cursor: pointer;" onclick="addSiteCategory(this)">添加网址分类</span> <span style="cursor: pointer;" >设置</span></div>
+						  <?php endif;?>
+
 						 <div class="clear"></div>
 				  </div>
 				  <div class="index-box">
@@ -78,6 +82,33 @@
 <!-- footer -->
 @section('footer')
 @include('home.block.footer')
+<script>
+	<?php if(Session::get('admin_info.id') > 0 ):?>
+	function addSite(obj){
+		var _this = $(obj);
+
+		layer.open({
+			type: 2,
+			skin: 'layui-layer-rim', //加上边框
+			area: ['520px', '440px'], //宽高
+			content:'<?php echo action("Home\IndexController@getAddSite") ;?>'
+		});
+
+	}
+
+	function addSiteCategory(obj){
+		var _this = $(obj);
+
+		layer.open({
+			type: 2,
+			skin: 'layui-layer-rim', //加上边框
+			area: ['520px', '440px'], //宽高
+			content:'<?php echo action("Home\IndexController@getAddSiteCategory") ;?>'
+		});
+
+	}
+	<?php endif;?>
+</script>
 @show
 <!-- end footer -->
 </body>
