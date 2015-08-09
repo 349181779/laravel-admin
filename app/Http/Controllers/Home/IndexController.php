@@ -43,9 +43,6 @@ class IndexController extends BaseController {
 	public function getIndex(){
         return view('home.index.index', [
             'all_site'              => IndexModel::getAllSite(),
-            'all_site_category'     => IndexModel::getAllCategory(),
-            'all_app_category'      => AppModel::getAllCategory(),
-            'app_query_category'    => QueryModel::getAllCategory(),
             'title'                 => '首页',
             'keywords'              => '首页',
             'description'           => '首页',
@@ -61,7 +58,9 @@ class IndexController extends BaseController {
     public function getCategory(Request $request){
 
         return view('home.index.category', [
-            'all_category'  => IndexModel::getAllCategory(),
+            'all_site_category'     => IndexModel::getAllCategory(),
+            'all_app_category'      => AppModel::getAllCategory(),
+            'app_query_category'    => QueryModel::getAllCategory(),
             'title'         => '网址分类',
             'keywords'      => '网址分类',
             'description'   => '网址分类',
@@ -90,7 +89,7 @@ class IndexController extends BaseController {
      */
     public function getAddSite(){
         return view('home.index.add_site', [
-            'all_cat' => SiteCatModel::getAllForSchemaOption('cat_name')
+            'all_cat' => SiteCatModel::getAllForSchemaOption('cat_name', 0, false)
         ]);
     }
 

@@ -34,7 +34,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label"><strong>所属分类：</strong></label>
             <div class="col-sm-3">
-                <select class="form-control" name="site_cat_id">
+                <select class="form-control" name="user_site_cat_id">
                     <?php if($all_cat):?>
                         <?php foreach($all_cat as $k=>$option):?>
                             <option value="<?php echo $option['id'];?>"   >

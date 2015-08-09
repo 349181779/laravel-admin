@@ -25,7 +25,7 @@
 				  <div class="c_q_title">
 				         <ul>
 						    <li><a href="" class="select_a">综合导航</a></li>
-							<li><a href="">分类</a></li>
+							 <li><a  href="<?php echo action('User\IndexController@getCategory') ;?>" >分类</a></li>
 
 						 </ul>
 
@@ -51,7 +51,7 @@
                                         <?php foreach($site_cat->site as $site):?>
                                             <span><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></span>
                                         <?php endforeach;?>
-                                        <span><a target="_blank" href="<?php echo action('Home\IndexController@getCategory', [$site_cat->id]) ;?>">更多</a></span>
+                                        <span><a target="_blank" href="<?php echo action('User\IndexController@getInfo', [$site_cat->id]) ;?>">更多</a></span>
                                        <?php endif;?>
                                    </div>
                                    <div class="clear"></div>

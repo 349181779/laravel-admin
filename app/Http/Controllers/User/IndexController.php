@@ -24,6 +24,10 @@ use App\Model\User\SiteModel;
 
 use App\Http\Requests\Admin\SearchCatRequest;
 
+use App\Http\Requests\User\SiteRequest;
+
+use Session;
+
 class IndexController extends BaseController {
 
 	/**
@@ -47,12 +51,27 @@ class IndexController extends BaseController {
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getCategory(Request $request, $cat_id){
+    public function getCategory(Request $request){
         return view('user.index.category', [
+            'all_site_category'     => IndexModel::getAllCategory(),
+            'title'                 => '会员-网址分类',
+            'keywords'              => '会员-网址分类',
+            'description'           => '会员-网址分类',
+        ]);
+    }
+
+    /**
+     * 网址分类详细列表
+     *
+     * @return Response
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getInfo(Request $request, $cat_id){
+        return view('home.index.info', [
             'all_site'      => IndexModel::getCategorySite((int)$cat_id),
-            'title'         => '会员-网址分类',
-            'keywords'      => '会员-网址分类',
-            'description'   => '会员-网址分类',
+            'title'         => '网址分类',
+            'keywords'      => '网址分类',
+            'description'   => '网址分类',
         ]);
     }
 
@@ -63,7 +82,7 @@ class IndexController extends BaseController {
      */
     public function getAddSite(){
         return view('user.index.add_site', [
-            'all_cat' => SiteCatModel::getAllForSchemaOption('cat_name')
+            'all_cat' => SiteCatModel::getAllForSchemaOption('cat_name', 0, false)
         ]);
     }
 
@@ -74,14 +93,10 @@ class IndexController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postSiteAdd(SiteRequest $request){
-        if(Session::get('admin_info.id') > 0 ){
-            $data = $request->all();
-            //写入当前用户到数据
-            $data['admin_info_id'] = $request->get('admin_info_id', Session::get('admin_info.id'));
-            //写入数据
-            $affected_number = SiteModel::create($data);
-            return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], false, url('admin/site/index')) : $this->response(400, trans('response.add_error'), [], false);
-        }
+        $data = $request->all();
+        //写入数据
+        $affected_number = SiteModel::create($data);
+        return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], false) : $this->response(400, trans('response.add_error'), [], false);
     }
 
     /**
@@ -100,11 +115,13 @@ class IndexController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postSiteCategory(SearchCatRequest $request){
-        if(Session::get('admin_info.id') > 0 ){
-            //写入数据
-            $affected_number = SiteCatModel::create($request->all());
-            return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], false) : $this->response(400, trans('response.add_error'), [], false);
-        }
+        $data = $request->all();
+        //加载函数库
+        load_func('common');
+        $data['user_info_id'] = is_user_login();
+
+        $affected_number = SiteCatModel::create($data);
+        return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], false) : $this->response(400, trans('response.add_error'), [], false);
     }
 
 }

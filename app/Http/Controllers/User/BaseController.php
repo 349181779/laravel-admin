@@ -26,6 +26,8 @@ class BaseController extends \App\Http\Controllers\BaseController {
     public function __construct(){
         //检测是否登陆
         $this->checkIsLogin();
+        //获得导航数据
+        $this->getSearch();
     }
 
     /**
@@ -40,6 +42,15 @@ class BaseController extends \App\Http\Controllers\BaseController {
         if($uid <= 0 ){
             header('location:'. action('Home\UserController@getLogin'));die;
         }
+    }
+
+    /**
+     * 获得导航数据
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function getSearch(){
+        view()->share('all_search', BaseModel::getSearch());
     }
 
 }
