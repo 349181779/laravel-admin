@@ -68,10 +68,10 @@ return [
 
         'qiniu' => [
             'driver'        => 'qiniu',
-            'domain'        => '7xk0dl.com1.z0.glb.clouddn.com',//你的七牛域名
-            'access_key'    => 'gIx7sI3Ak7LIXT-EDPPvF8imSUyP85ErXK5xhNoc',//AccessKey
-            'secret_key'    => 'KqP9ABmUZDfTS27WGBhSqVMiE4AjTFLU0fT5vMR9',//SecretKey
-            'bucket'        => 'test',//Bucket名字
+            'domain'        => '7xkzhy.com1.z0.glb.clouddn.com',//你的七牛域名
+            'access_key'    => 'hhekZLF98l0gLe49lVVD3DZZsiwO6v6k8fg8JmPw',//AccessKey
+            'secret_key'    => 'MQZ1679oF9c1430E2p85gUpUhWCur4W5ItM4vCMf',//SecretKey
+            'bucket'        => 'webpc',//Bucket名字
         ],
 
 	],

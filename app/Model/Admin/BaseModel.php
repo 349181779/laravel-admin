@@ -149,11 +149,11 @@ class BaseModel extends Model{
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllForSchemaOption($name, $id = 0){
+    public static function getAllForSchemaOption($name, $id = 0, $first = true){
         //加载函数库
         load_func('common');
         $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->get())) : merge_tree_node(obj_to_array(self::all()));
-        array_unshift($data, ['id' => '0', $name => '顶级分类']);
+        $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
         return $data;
     }
 

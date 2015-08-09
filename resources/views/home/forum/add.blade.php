@@ -52,11 +52,36 @@
                     <div class="c_q_cont container-fluid" style="display:block;">
 
                         <div style="margin: 50px 0;">
-                            <form class="form-horizontal bucket-form ajax-form" action="<?php echo action('Home\IndexController@postSiteCategory') ;?>" method="post">
+                            <form class="form-horizontal bucket-form ajax-form" action="<?php echo action('User\ForumController@postAdd') ;?>" method="post">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><strong>标题：</strong></label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="cat_name" class="form-control" datatype="*" errormsg="" >
+                                        <input type="text" name="title" class="form-control" datatype="*" errormsg="" >
+                                        <span class="help-block"></span>
+
+                                        <div class="alert alert-danger hide" role="alert">
+                                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                            <span class="sr-only">Error:</span>
+                                            <span class="err_message"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><strong>所属分类：</strong></label>
+                                    <div class="col-sm-3">
+
+                                        <select name="forum_cat_id" >
+                                            <?php if($all_merge_category):?>
+                                                <?php foreach($all_merge_category as $k=>$category):?>
+                                                    <option value="<?php echo $category['id'];?>"   >
+                                                        <?php if($category['level'] > 0 ){echo str_repeat('&nbsp;==', $category['level']);}?>
+                                                        <?php echo $category['cat_name'];?>
+                                                    </option>
+                                                <?php endforeach;?>
+                                            <?php endif;?>
+                                        </select>
+
                                         <span class="help-block"></span>
 
                                         <div class="alert alert-danger hide" role="alert">
@@ -68,8 +93,37 @@
                                 </div>
 
 
-                                <input type="hidden" name="status" value="1">
-                                <input type="hidden" name="sort" value="255">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><strong>内容：</strong></label>
+                                    <div class="col-sm-8">
+                                        @include('UEditor::head')
+                                        <!-- 加载编辑器的容器 -->
+                                        <script id="contents" name="contents" type="text/plain">
+
+                                        </script>
+
+                                        <!-- 实例化编辑器 -->
+                                        <script type="text/javascript">
+                                            var ue = UE.getEditor('contents', {
+                                                initialFrameHeight : 500
+                                            });
+                                            ue.ready(function() {
+                                                ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
+                                            });
+                                        </script>
+
+                                        <span class="help-block"></span>
+
+                                        <div class="alert alert-danger hide" role="alert">
+                                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                            <span class="sr-only">Error:</span>
+                                            <span class="err_message"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>"/>
                                 <button type="submit" style="display: block;margin: 0 auto;" class="btn btn btn-success">确认</button>
                             </form>

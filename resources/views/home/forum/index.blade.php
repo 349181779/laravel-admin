@@ -40,7 +40,7 @@
                         <li><a href="<?php echo action('Home\ForumController@getCategory') ;?>" >其它</a></li>
                     </ul>
                     <div class="c_q_title width">
-                          <span><a href="<?php echo action('Home\ForumController@getAdd') ;?>">发贴</a></span>
+                          <span><a href="<?php echo action('User\ForumController@getAdd') ;?>">发贴</a></span>
                     </div>
                     <div class="clear"></div>
                 </div>

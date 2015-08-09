@@ -93,6 +93,10 @@ return [
     //会员消息
     'send_message_reuqire' => '消息不能为空',
 
+    //论坛
+    'forum_title_reuquire'=>'标题不能为空',
+    'forum_contents_reuqire'=>'内容不能为空',
+
 
 
 ];

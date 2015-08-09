@@ -14,11 +14,15 @@ use App\Http\Controllers\Home\BaseController;
 
 use App\Http\Requests;
 
-use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 use App\Model\Home\ForumModel;
+
+use App\Http\Requests\Home\ForumRequest;
+
+use App\Model\Admin\ForumCatModel;
+
+use Session;
 
 class ForumController extends BaseController {
 
@@ -52,21 +56,6 @@ class ForumController extends BaseController {
             'title'                 => '论坛-分类',
             'keywords'              => '论坛-分类',
             'description'           => '论坛-分类',
-        ]);
-    }
-
-    /**
-     * 发表帖子
-     *
-     * @return \Illuminate\View\View
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getAdd(){
-        return view('home.forum.add', [
-            'all_category'          => ForumModel::getAllCategory(),
-            'title'                 => '发表帖子',
-            'keywords'              => '发表帖子',
-            'description'           => '发表帖子',
         ]);
     }
 
