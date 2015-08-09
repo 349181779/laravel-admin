@@ -68,6 +68,7 @@ class ForumCatController extends BaseController {
                 builderFormSchema('description', '分类描述', 'textarea')->
                 builderFormSchema('pid', '父级菜单', 'select', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', ForumCatModel::getAllForSchemaOption('cat_name', $id), 'cat_name')->
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
+                builderFormSchema('is_show', '是否设置为推荐', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('sort', '菜单排序')->
                 builderConfirmBotton('确认', url('admin/forum-cat/edit'), 'btn btn-success')->
                 builderEditData(ForumCatModel::find($id))->

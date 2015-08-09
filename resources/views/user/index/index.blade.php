@@ -91,7 +91,7 @@
 			type: 2,
 			skin: 'layui-layer-rim', //加上边框
 			area: ['520px', '440px'], //宽高
-			content:'<?php echo action("Home\IndexController@getAddSite") ;?>'
+			content:'<?php echo action("User\IndexController@getAddSite") ;?>'
 		});
 
 	}
@@ -103,7 +103,7 @@
 			type: 2,
 			skin: 'layui-layer-rim', //加上边框
 			area: ['520px', '440px'], //宽高
-			content:'<?php echo action("Home\IndexController@getAddSiteCategory") ;?>'
+			content:'<?php echo action("User\IndexController@getAddSiteCategory") ;?>'
 		});
 
 	}
