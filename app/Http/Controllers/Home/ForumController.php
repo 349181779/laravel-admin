@@ -22,6 +22,8 @@ use App\Http\Requests\Home\ForumRequest;
 
 use App\Model\Admin\ForumCatModel;
 
+use App\Model\User\UserModel;
+
 use Session;
 
 class ForumController extends BaseController {
@@ -59,5 +61,25 @@ class ForumController extends BaseController {
         ]);
     }
 
+    /**
+     * 帖子详情
+     *
+     * @return \Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getInfo(Request $request){
+        //获得帖子内容
+        $id         = $request->get('id', 1);
+        $forum_info = ForumModel::getInfo($id);
+        if(empty($forum_info)) return redirect()->action('Home\ForumController@getIndex');
+
+        return view('home.forum.info', [
+            'user_profile'          => UserModel::getUserProfile($forum_info->user_info_id),
+            'data'                  => $forum_info,
+            'title'                 => '论坛-'.$forum_info->title,
+            'keywords'              => '论坛-'.$forum_info->title,
+            'description'           => '论坛-'.$forum_info->title,
+        ]);
+    }
 
 }

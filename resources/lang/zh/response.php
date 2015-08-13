@@ -37,4 +37,5 @@ return [
     'update_user_password_error'  => '更新用户密码失败',
     'old_password_error'  => '旧密码错误',
     'update_user_password_success'  => '更新用户密码成功',
+    'page_error'    => '页面错误',
 ];

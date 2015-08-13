@@ -22,11 +22,25 @@ class SwooleWebSocket{
         $this->swoole_config = include dirname(__DIR__) . '/config/swoole.php';
         $this->web_socket = new swoole_websocket_server($this->swoole_config['swoole_host'], $this->swoole_config['web_socket_port']);
 
+        //设置socket配置
+        $this->set();
+
         //绑定函数
         $this->bind();
 
         //启动
         $this->web_socket->start();
+    }
+
+    /**
+     * 设置 socket
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function set(){
+        $this->web_socket->set([
+            'daemonize'                 => $this->swoole_config['daemonize'],
+        ]);
     }
 
     /**

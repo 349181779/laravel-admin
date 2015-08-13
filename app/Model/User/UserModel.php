@@ -62,8 +62,8 @@ class UserModel extends BaseModel {
      * @return \Illuminate\Support\Collection|null|static
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getUserProfile(){
-        $user_id                    = Session::get('user_info.id');
+    public static function getUserProfile($user_id = null){
+        $user_id                    = !empty($user_id) ? $user_id : Session::get('user_info.id');
         $user_profile               = self::find($user_id);
         $user_profile->user_profile = self::getUserOtherProfile($user_id);
         return $user_profile;

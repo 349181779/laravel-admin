@@ -60,5 +60,51 @@ class ForumController extends BaseController {
 
     }
 
+    /**
+     * 编辑帖子
+     *
+     * @param Request $requests
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getSave(Request $requests){
+        //获得帖子内容
+        $id         = $requests->get('id', 1);
+        $forum_info = ForumModel::getInfo($id);
+        if(empty($forum_info)) return redirect()->action('Home\ForumController@getIndex');
+
+        return view('home.forum.save', [
+            'data'                  => $forum_info,
+            'all_category'          => ForumModel::getAllCategory(),
+            'all_merge_category'    => ForumCatModel::getAllForSchemaOption('cat_name', 0, false),//表单全部分类
+            'title'                 => '编辑帖子',
+            'keywords'              => '编辑帖子',
+            'description'           => '编辑帖子',
+        ]);
+    }
+
+    /**
+     * 编辑帖子
+     *
+     * @param Request $requests
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postSave(Request $requests){
+        $data = $requests->only('id', 'forum_cat_id', 'contents', 'title');
+        $data['user_info_id']   = Session::get('user_info.id');
+
+        if(empty(ForumModel::getInfo((int)$data['id']))){
+            $this->response(400, trans('response.page_error'));
+        }
+
+        DB::table('forum')->where('id', '=', (int)$data['id'])->update([
+            'title'         => $data['title'],
+            'contents'      => $data['contents'],
+            'forum_cat_id'  => $data['forum_cat_id'],
+            'updated_at'    => date('Y-m-d H:i:s'),
+        ]);
+        $this->response(200, 'success', $data = [], $target = true, $href = action('Home\ForumController@getInfo', ['id'=> $data['id']]));
+    }
+
 
 }

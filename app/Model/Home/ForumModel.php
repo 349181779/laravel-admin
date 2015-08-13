@@ -38,4 +38,18 @@ class ForumModel extends BaseModel {
     public static function getAllForums($cat_id){
         return DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(20);
     }
+
+    /**
+     * 获得帖子内容
+     *
+     * @param $id
+     * @return \Illuminate\Support\Collection|null|static
+     */
+    public static function getInfo($id){
+        if(!empty($id)){
+            $data = DB::table('forum')->where('id', '=', $id)->where('status', '=', 1)->first();
+
+            return $data;
+        }
+    }
 }
