@@ -5,4 +5,5 @@
 <script>
     var logout_url = '<?php echo action("Home\UserController@getLogout") ;?>';
     var get_search = '<?php echo action("Home\SearchController@postSearchInfo") ;?>';
+    var login_url   = '<?php echo action("Home\UserController@postLogin") ;?>';
 </script>

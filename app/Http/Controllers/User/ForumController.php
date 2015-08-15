@@ -20,6 +20,8 @@ use App\Model\Home\ForumModel;
 
 use App\Http\Requests\User\ForumRequest;
 
+use App\Http\Requests\User\ForumCommentRequest;
+
 use App\Model\Admin\ForumCatModel;
 
 use Session;
@@ -53,7 +55,10 @@ class ForumController extends BaseController {
      */
     public function postAdd(ForumRequest $request){
         $data = $request->only('title', 'contents', 'forum_cat_id');
+        //组合数据
         $data['user_info_id']   = Session::get('user_info.id');
+        $data['created_at']     = date('Y-m-d H:i:s');
+        $data['updated_at']     = date('Y-m-d H:i:s');
 
         $affected_number = DB::table('forum')->insertGetId($data);
         return  $affected_number > 0  ? $this->response(200, trans('response.add_success'), [], true, action('Home\ForumController@getIndex')) : $this->response(400, trans('response.add_error'), [], false);
@@ -104,6 +109,28 @@ class ForumController extends BaseController {
             'updated_at'    => date('Y-m-d H:i:s'),
         ]);
         $this->response(200, 'success', $data = [], $target = true, $href = action('Home\ForumController@getInfo', ['id'=> $data['id']]));
+    }
+
+    /**
+     * 评论帖子
+     *
+     * @param Request $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postForumComment(ForumCommentRequest $request){
+        $data = $request->only('contents', 'forum_id', 'node');
+        //记载函数库
+        load_func('common');
+
+        $affected_number = DB::table('forum_comment')->insertGetId([
+            'forum_id'      => $data['forum_id'],
+            'user_info_id'  => is_user_login(),
+            'status'        => 1,
+            'created_at'    => date('Y-m-d H:i:s'),
+            'contents'      => trim($data['contents']),
+            'node'          => $data['node'] > 0 ? (int)$data['node'] : 0,
+        ]);
+        $affected_number > 0 ? $this->response(200, 'success') : $this->response(400, trans('response.comment_forum_error'));
     }
 
 

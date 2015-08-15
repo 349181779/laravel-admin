@@ -16,6 +16,8 @@ use App\Model\Home\BaseModel;
 
 use Session;
 
+use Request;
+
 class BaseController extends \App\Http\Controllers\BaseController {
 
     /**
@@ -37,11 +39,16 @@ class BaseController extends \App\Http\Controllers\BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function checkIsLogin(){
+        //记载函数库
         load_func('common');
         $uid = is_user_login();
-        if($uid <= 0 ){
+
+        if($uid <= 0 && Request::method() == 'POST' ){
+            $this->response(400, trans('response.no_login'));
+        }else if($uid <= 0 ){
             header('location:'. action('Home\UserController@getLogin'));die;
         }
+
     }
 
     /**

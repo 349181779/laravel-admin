@@ -130,6 +130,29 @@ if(!function_exists('merge_tree_child_node')){
         return $array;
     }
 }
+if(!function_exists('get_location')){
+    /**
+     * 获得当前页面的“所在位置”
+     *
+     * @param $data
+     * @param int $pid
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    function get_location($category, $pid = 0){
+        $data = [];
+
+        if(!empty($category)){
+            foreach($category as $location){
+                if($location['id'] == $pid){
+                    $data[] = $location;
+                    $data = array_merge($data, get_location($category, $location['pid']));
+                }
+            }
+        }
+
+        return $data;
+    }
+}
 
 if(!function_exists('p')){
     /**

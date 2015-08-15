@@ -96,6 +96,9 @@ return [
     //论坛
     'forum_title_reuquire'=>'标题不能为空',
     'forum_contents_reuqire'=>'内容不能为空',
+    'comment_contents_reuqire'  => '回复内容不能为空',
+    'forum_require' => '帖子不能为空',
+    'forum_error'   => '格式不正确',
 
 
 

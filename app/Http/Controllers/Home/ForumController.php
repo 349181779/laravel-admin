@@ -73,6 +73,7 @@ class ForumController extends BaseController {
         $forum_info = ForumModel::getInfo($id);
         if(empty($forum_info)) return redirect()->action('Home\ForumController@getIndex');
 
+//        var_dump($forum_info);die;
         return view('home.forum.info', [
             'user_profile'          => UserModel::getUserProfile($forum_info->user_info_id),
             'data'                  => $forum_info,

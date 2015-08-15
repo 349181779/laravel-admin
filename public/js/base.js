@@ -3,6 +3,14 @@
  */
 
 $(function(){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
     /**
      * 初始化弹出框属性
      */
@@ -182,4 +190,46 @@ function loadCaptchaImg(obj){
     var _this = $(obj);
     var src = _this.find('img').attr('src');
     _this.find('img').attr('src', src+"?"+Math.round())
+}
+
+/**
+ * 登陆
+ *
+ * @param obj
+ */
+function login(obj){
+
+    var _this = $(obj);
+    var email = $.trim(_this.parent().find('input[name=username]').val());
+    var password = $.trim(_this.parent().find('input[name=passowrd]').val());
+    //var token = _this.parent().find('input[name=_token]');
+
+    if(email == ''){
+        toastr.warning('用户名不能为空');
+        return;
+    }else if(password == ''){
+        toastr.warning('密码不能为空');
+        return;
+    }
+
+    console.log(email);
+
+    $.post(login_url, {email: email, password:password}, function(data){
+        var _data = $.parseJSON(data);
+
+        if(_data.code == 200){
+            //弹出提示框
+            toastr.success(_data.msg);
+
+            //如果为true表示跳转到新连接
+            _data.target == true && setTimeout(function(){
+                location.href = location.href;
+            },1000)
+
+        }else{
+            toastr.warning(_data.msg);
+        }
+    });
+
+
 }

@@ -38,4 +38,8 @@ return [
     'old_password_error'  => '旧密码错误',
     'update_user_password_success'  => '更新用户密码成功',
     'page_error'    => '页面错误',
+    'forum_comment_reuqire' => '评论内容不能为空',
+    'comment_forum_error'   => '发表帖子评论失败',
+    'no_login'  => '请先登陆',
+
 ];

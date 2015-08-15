@@ -30,13 +30,13 @@ class ForumModel extends BaseModel {
     }
 
     /**
-     * 获得当前分类下面全部网址
+     * 获得当前分类下面全部帖子
      *
      * @param $cat_id 论坛分类id
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllForums($cat_id){
-        return DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(20);
+        return DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(config('config.forum_page_limit'));
     }
 
     /**
@@ -44,12 +44,65 @@ class ForumModel extends BaseModel {
      *
      * @param $id
      * @return \Illuminate\Support\Collection|null|static
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getInfo($id){
         if(!empty($id)){
             $data = DB::table('forum')->where('id', '=', $id)->where('status', '=', 1)->first();
+            //获得分类信息
+            if($data->forum_cat_id > 0 ){
+                $data->category = self::getForumCat($data->forum_cat_id);
+            }
+
+            //获得评论信息
+            $data->comment = self::getForumComment($data->id);
+
+            //获得当前所在位置
+            $data->location = self::getForumLocation($data);
 
             return $data;
         }
+    }
+
+    /**
+     * 获得帖子评论信息
+     *
+     * @param $id
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function getForumComment($id){
+        return DB::table('forum_comment')->where('forum_id', '=', $id)->where('status', '=', '1')->orderBy('id', 'DESC')->paginate(config('config.forum_comment_page_limit'));
+    }
+
+    /**
+     * 获得分类信息
+     *
+     * @param $forum_cat_id
+     * @return mixed
+     */
+    private static function getForumCat($forum_cat_id){
+        if($forum_cat_id > 0){
+            return DB::table('forum_cat')->where('id', '=', $forum_cat_id)->first();
+        }
+    }
+
+    /**
+     * 获得全部论坛分类
+     *
+     * @param $data
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getForumLocation($data){
+        //加载函数库
+        load_func('common');
+
+        $all_category = obj_to_array(self::select('cat_name', 'id' , 'pid')->get());
+
+        $data = get_location($all_category, $data->forum_cat_id);
+
+        //翻转函数
+        $data = array_reverse($data);
+        return $data;
     }
 }
