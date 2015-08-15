@@ -92,7 +92,6 @@
                                                    <?php echo $comment->contents;?>
                                                 </div>
                                                 <p class="pull-right text-muted">
-                                                    沙发
                                                     发表于 <?php echo $comment->created_at ;?>
                                                     <a href="javascript:" class="reply_btn" args="18" id="reply_btn_18">回复(0)</a>
                                                 </p>
