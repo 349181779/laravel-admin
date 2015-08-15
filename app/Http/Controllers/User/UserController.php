@@ -26,6 +26,15 @@ use App\Http\Requests\User\Passwordequest;
 
 class UserController extends BaseController {
 
+    /**
+     * 构造方法
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function __construct(){
+        parent::__construct();
+    }
+
 	/**
 	 * 好友管理
 	 *
@@ -33,6 +42,8 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
+        load_func('instanceof,image,common');
+
         return view('user.user.index', [
             'title'         => '会员-好友管理',
             'keywords'      => '会员-好友管理',
@@ -42,26 +53,38 @@ class UserController extends BaseController {
 
 
     /**
-     * 保用用户信息到redis
-     *
-     * @param Requests $requests
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getSaveUserInfo(Request $requests){
-        $user_info = unserialize(urldecode($requests->get('user_info')));
-        //保存用户信息到redis hash表
-        load_func('instanceof,swoole');
-        //返回状态
-        get_redis()->hSet(config('config.user_list_hash_table'), $user_info->id, serialize($user_info)) != false ? $this->response(200, 'success') : $this->response(400, trans('response.save_user_info_to_redis_error'));
-    }
-
-    /**
      * 获得好友数据
      *
      * @param Request $request
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postFriend(){
+        return $this->response($code = 200, $msg = '', $data = UserModel::onlineUser());
+    }
+
+    /**
+     * 添加好友页面
+     *
+     * @return \Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getAddFriend(){
+        return view('user.user.add_users', [
+            'title'         => '会员-添加好友',
+            'keywords'      => '会员-添加好友',
+            'description'   => '会员-添加好友',
+        ]);
+    }
+
+
+    /**
+     * 处理添加会员
+     *
+     * @param AddUsersRequest $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postAddFriend(AddUsersRequest $request){
+        $id = $request->get('id');
         return $this->response($code = 200, $msg = '', $data = UserModel::onlineUser());
     }
 

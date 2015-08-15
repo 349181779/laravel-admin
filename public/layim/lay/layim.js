@@ -28,8 +28,8 @@ var config = {
         sendurl: sendurl //发送消息接口
     },
     user: { //当前用户信息
-        name: '游客',
-        face: '/layim/images/1.png'
+        name: user_name,
+        face: user_face
     },
 
     //自动回复内置文案，也可动态读取数据库配置
@@ -42,7 +42,7 @@ var config = {
         '<（@￣︶￣@）>',
         '你要和我说话？你真的要和我说话？你确定自己想说吗？你一定非说不可吗？那你说吧，这是自动回复。',
         '主人正在开机自检，键盘鼠标看好机会出去凉快去了，我是他的电冰箱，我打字比较慢，你慢慢说，别急……',
-        '(*^__^*) 嘻嘻，是贤心吗？'
+        '(*^__^*) 嘻嘻'
     ],
 
 
@@ -608,26 +608,26 @@ xxim.view = (function(){
             +'  <ul class="xxim_list xxim_searchmain" id="xxim_searchmain"></ul>'
             +'</div>'
             +'<ul class="xxim_bottom" id="xxim_bottom">'
-            +'<li class="xxim_online" id="xxim_online">'
-                +'<i class="xxim_nowstate"></i><span id="xxim_onlinetex">在线</span>'
-                +'<div class="xxim_setonline">'
-                    +'<span><i></i>在线</span>'
-                    +'<span class="xxim_setoffline"><i></i>隐身</span>'
-                +'</div>'
-            +'</li>'
-            +'<li class="xxim_mymsg" id="xxim_mymsg" title="我的私信"><i></i><a href="'+ config.msgurl +'" target="_blank"></a></li>'
-            +'<li class="xxim_seter" id="xxim_seter" title="设置">'
-                +'<i></i>'
-                +'<div class="">'
-
-                +'</div>'
-            +'</li>'
-            +'<li class="xxim_hide" id="xxim_hide"><i></i></li>'
-            +'<li id="xxim_on" class="xxim_icon xxim_on"></li>'
+            //+'<li class="xxim_online" id="xxim_online">'
+            //    +'<i class="xxim_nowstate"></i><span id="xxim_onlinetex">在线</span>'
+            //    +'<div class="xxim_setonline">'
+            //        +'<span><i></i>在线</span>'
+            //        +'<span class="xxim_setoffline"><i></i>隐身</span>'
+            //    +'</div>'
+            //+'</li>'
+            +'<li class="" id="" title="我的私信"><i></i><a href="javascript:void(0)" onclick="addUser(this)" target="_blank">&nbsp;&nbsp;加好友</a></li>'
+            //+'<li class="xxim_seter" id="xxim_seter" title="设置">'
+            //    +'<i></i>'
+            //    +'<div class="">'
+            //
+            //    +'</div>'
+            //+'</li>'
+            //+'<li class="xxim_hide" id="xxim_hide"><i></i></li>'
+            //+'<li id="xxim_on" class="xxim_icon xxim_on"></li>'
             +'<div class="layim_min" id="layim_min"></div>'
         +'</ul>'
     +'</div>');
-    //dom[3].append(xximNode);
+    dom[3].append(xximNode);
     $('.grsp_left').append(xximNode);
 
     xxim.renode();

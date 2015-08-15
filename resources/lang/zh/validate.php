@@ -100,6 +100,10 @@ return [
     'forum_require' => '帖子不能为空',
     'forum_error'   => '格式不正确',
 
+    //会员
+    'account_number_require'    => '会员账户不能为空',
+    'account_number_error'  => '会员账户格式不正确',
+
 
 
 ];

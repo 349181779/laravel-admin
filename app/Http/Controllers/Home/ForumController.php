@@ -67,13 +67,12 @@ class ForumController extends BaseController {
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getInfo(Request $request){
+    public function getInfo(Request $request, $id){
         //获得帖子内容
-        $id         = $request->get('id', 1);
         $forum_info = ForumModel::getInfo($id);
         if(empty($forum_info)) return redirect()->action('Home\ForumController@getIndex');
 
-//        var_dump($forum_info);die;
+        
         return view('home.forum.info', [
             'user_profile'          => UserModel::getUserProfile($forum_info->user_info_id),
             'data'                  => $forum_info,

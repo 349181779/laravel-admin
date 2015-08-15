@@ -43,7 +43,7 @@
 							  <tr>
 							    <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>" />
 								<td><input type="submit" class="lgsubs lrbtn" value="登录" /></td>
-								<td style="text-align:right;"><input type="button" class="rgbtns lrbtn" value="注册" /></td>
+								<td style="text-align:right;"><input type="button" onclick="location.href = '<?php echo action('Home\UserController@getRegister') ;?>' " class="rgbtns lrbtn" value="注册" /></td>
 							  </tr>
 						 </table>
                        </form>

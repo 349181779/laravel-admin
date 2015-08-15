@@ -11,6 +11,13 @@
 		var groups = '<?php echo action("User\UserController@postGroups") ;?>'
 		var sendurl = '<?php echo action("User\ChatController@postSendMessage") ;?>'
         var Socket_fd =  '<?php echo action("User\ChatController@postSocketFd") ;?>'
+		<?php if(!empty(Session::get('user_info.user_name'))):?>
+			var user_name	= "<?php echo Session::get('user_info.user_name');?>"
+		<?php else:?>
+			var user_name	= "<?php echo Session::get('user_info.email');?>"
+		<?php endif;?>
+		<?php $face = Session::get('user_info.face');?>
+		var user_face	= "<?php echo get_user_info_face($face);?>"
 	</script>
 @show
 </head>
@@ -69,6 +76,28 @@
 @include('home.block.footer')
 <link rel="stylesheet" href="/layim/css/layim.css">
 <script src="/layim/lay/layim.js"></script>
+
+<script>
+	$(function(){
+		if($('.xxim_chatlist:has(li)')){
+			$('.xxim_parentname').trigger('click');
+			$('.xxim_chatlist li:first-child').trigger('click')
+		}
+
+	})
+
+	function addUser(obj){
+		var _this = $(obj);
+
+		layer.open({
+			type: 2,
+			skin: 'layui-layer-rim', //加上边框
+			area: ['520px', '440px'], //宽高
+			content:'<?php echo action("User\UserController@getAddFriend") ;?>'
+		});
+
+	}
+</script>
 @show
 <!-- end footer -->
 </body>

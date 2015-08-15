@@ -143,11 +143,13 @@ bottom: 3px;
 .g_l_nav{ width:200px; float:left;}
 .g_l_nav ul li{ width:65px; float:left; line-height:45px; text-align:center; border-right:1px dashed #ccc;}
 .g_r_say{ width:995px; line-height:45px; text-align:center; float:left;}
-.grsq_box{ min-height:600px; background:#fff url(../images/grsqgans.png?__inline) 230px repeat-y; position:relative;}
-.grsp_left{ width:235px; padding:10px 5px 0px 0px; position:relative; min-height:600px; float:left;}
+.grsq_box{ height:570px; background:#fff url(../images/grsqgans.png?__inline) 230px repeat-y; position:relative;
+    overflow: hidden;}
+.grsp_left{ width:235px; padding:10px 0 0px 0px; position:relative; height:500px; float:left;}
 
 .grsp_l_pep li .grsp_group{ display:block; padding-left:15px; line-height:23px; margin-top:5px; cursor:pointer; background:url(../images/grsqdian.png?__inline) left center no-repeat;}
-.grsp_right{ width:958px; min-height:600px; float:left; }
+.grsp_right{ width:960px; height:570px; float:left;
+    overflow: hidden;}
 .grsp_bt{ height:50px;line-height:50px; width:995px; position:absolute; bottom:0px; left:200px;}
 .grsp_pep{ width:800px; float:left;}
 .grsp_pep span{ margin:0px 10px;}

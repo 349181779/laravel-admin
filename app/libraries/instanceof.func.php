@@ -18,6 +18,8 @@ if(!function_exists('get_redis')){
     function get_redis(){
         $redis = new \Redis();
         $redis->connect(config('database.redis.default.host'), config('database.redis.default.port'));
+        //选择数据库
+        $redis->select(config('database.redis.default.database'));
         return $redis;
     }
 }

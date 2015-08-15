@@ -59,8 +59,8 @@
                             <?php if(!empty($all_forum)):?>
                             <?php foreach($all_forum as $forum):?>
                             <tr>
-                                <td class="common"><a href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum_cat->id]) ;?>" target="_blank"><?php echo $forum->title;?></a></td>
-                                <td class="by"><a target="_blank" href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum_cat->id]) ;?>"><?php echo $forum->title;?></a></td>
+                                <td class="common"><a href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum->id]) ;?>" target="_blank"><?php echo $forum->title;?></a></td>
+                                <td class="by"><a target="_blank" href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum->id]) ;?>"><?php echo $forum->title;?></a></td>
                                 <td class="digit"><?php echo $forum->title;?></td>
                                 <td class="num"><?php echo $forum->title;?> </td>
                                 <td class="by kmhf"><?php echo $forum->created_at;?></td>

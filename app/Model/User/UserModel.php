@@ -27,7 +27,7 @@ class UserModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function onlineUser(){;
-        load_func('instanceof,image');
+        load_func('instanceof,image,common');
 
         $online_user = get_redis()->hGetAll(config('config.user_list_hash_table'));
 
@@ -35,6 +35,9 @@ class UserModel extends BaseModel {
 
         foreach($online_user as $user){
             $user = unserialize($user);
+
+            if($user->id == is_user_login()) continue;
+
             $item[] = [
                 'id'    => $user->id,
                 'name'  => $user->user_name,
@@ -46,7 +49,7 @@ class UserModel extends BaseModel {
         $data = [
             [
                 'name'  => '在线好友',
-                'nums'  => count($online_user),
+                'nums'  => count($item),
                 'id'    => 1,
                 'item'  => $item,
             ]

@@ -37,7 +37,7 @@ class UserController extends BaseController {
 	public function getLogin(){
         //保存上次访问页面
         Session::put('HTTP_REFERER', $_SERVER['HTTP_REFERER']);
-        
+
         return view('home.user.login', [
             'title'         => '登录',
             'keywords'      => '登录',
@@ -65,10 +65,22 @@ class UserController extends BaseController {
                 return $this->response(401, trans('response.admin_disable'));
 
         }
-
-
         //登陆失败
         return $this->response(401, trans('response.unauthorized'));
+    }
+
+    /**
+     * 保用用户信息到redis
+     *
+     * @param Requests $requests
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getSaveUserInfo(Request $requests){
+        $user_info = unserialize(urldecode($requests->get('user_info')));
+        //保存用户信息到redis hash表
+        load_func('instanceof,swoole');
+        //返回状态
+        get_redis()->hSet(config('config.user_list_hash_table'), $user_info->id, serialize($user_info)) != false ? $this->response(200, 'success') : $this->response(400, trans('response.save_user_info_to_redis_error'));
     }
 
     /**
