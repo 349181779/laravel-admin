@@ -38,7 +38,43 @@ class ForumModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllForums($cat_id){
-        return DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(config('config.forum_page_limit'));
+        $forum_list =  DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(config('config.forum_page_limit'));
+
+        if(!empty($forum_list)){
+            foreach($forum_list as &$forum){
+                $forum->user_info       = UserModel::getUserSimpleInfo($forum->user_info_id);
+                $forum->last_comment    = self::getForumLastComment($forum->id);
+                $forum->total_comment   = self::getTotalComment($forum->id);
+            }
+        }
+
+        return $forum_list;
+    }
+
+    /**
+     * 获得帖子最后一条评论
+     *
+     * @param $forum_id
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function getForumLastComment($forum_id){
+        if(!empty($forum_id)){
+            return DB::table('forum_comment')->where('forum_id', '=', $forum_id)->where('status', '=', 1)->orderBy('id', 'DESC')->first();
+        }
+    }
+
+    /**
+     * 获得总评论数
+     *
+     * @param $forum_id
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function getTotalComment($forum_id){
+        if(!empty($forum_id)){
+            return DB::table('forum_comment')->where('forum_id', '=', $forum_id)->count();
+        }
     }
 
     /**
@@ -61,6 +97,9 @@ class ForumModel extends BaseModel {
 
             //获得当前所在位置
             $data->location = self::getForumLocation($data);
+
+            //点击来+1
+            DB::table('forum')->where('id', '=', $id)->increment('view');
 
             return $data;
         }

@@ -172,4 +172,15 @@ class UserModel extends BaseModel {
         return $affected_number > 0 ? true : false;
     }
 
+    /**
+     * 查找添加哈偶有
+     *
+     * @param $account_number
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function addFriend($account_number){
+        return DB::table('user_info')->where('account_number', '=', $account_number)->where('status', '=', 1)->select('id', 'user_name', 'email', 'account_number', 'face')->first();
+    }
+
 }

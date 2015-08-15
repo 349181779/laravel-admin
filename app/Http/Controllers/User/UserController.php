@@ -24,6 +24,8 @@ use App\Http\Requests\User\UserProfileRequest;
 
 use App\Http\Requests\User\Passwordequest;
 
+use App\Http\Requests\User\AddUsersRequest;
+
 class UserController extends BaseController {
 
     /**
@@ -84,8 +86,9 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAddFriend(AddUsersRequest $request){
-        $id = $request->get('id');
-        return $this->response($code = 200, $msg = '', $data = UserModel::onlineUser());
+        //添加好友
+        $user_list = UserModel::addFriend(intval($request->get('id')));
+        return !empty($user_list) ? $this->response($code = 200, $msg = '', $data = $user_list) : $this->response(400, trans('response.search_empty'));
     }
 
     /**

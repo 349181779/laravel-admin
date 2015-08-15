@@ -41,5 +41,6 @@ return [
     'forum_comment_reuqire' => '评论内容不能为空',
     'comment_forum_error'   => '发表帖子评论失败',
     'no_login'  => '请先登陆',
+    'search_empty'  => '搜索内容为空',
 
 ];

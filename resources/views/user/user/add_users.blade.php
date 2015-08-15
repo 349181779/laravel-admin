@@ -27,4 +27,54 @@
 <script>
     //验证表单
     checkForm($("form"))
+
+    $(function(){
+        /**
+         * ajax-form
+         * 通过ajax提交表单，通过oneplus提示消息
+         * 示例：<form class="ajax-form" method="post" action="xxx">
+         */
+        $(document).on('submit', 'form.ajax-form', function (e) {
+            //取消默认动作，防止表单两次提交
+            e.preventDefault();
+
+            //禁用提交按钮，防止重复提交
+            var form = $(this);
+            $('[type=submit]', form).addClass('disabled');
+
+            //获取提交地址，方式
+            var action = $(this).attr('action');
+            var method = $(this).attr('method');
+
+            //检测提交地址
+            if (!action) {
+                return false;
+            }
+
+            //默认提交方式为get
+            if (!method) {
+                method = 'get';
+            }
+
+            //获取表单内容
+            var formContent = $(this).serialize();
+
+            //发送提交请求
+            var callable;
+            if (method == 'post') {
+                callable = $.post;
+            } else {
+                callable = $.get;
+            }
+
+            callable(action, formContent, function (data) {
+                var _data = $.parseJSON(data);
+                console.log(_data);return;
+                $('[type=submit]', form).removeClass('disabled');
+            });
+
+            //返回
+            return false;
+        });
+    })
 </script>

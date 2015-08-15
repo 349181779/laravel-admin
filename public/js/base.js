@@ -82,7 +82,7 @@ $(function(){
         } else {
             callable = $.get;
         }
-        console.log(action);
+
         callable(action, formContent, function (data) {
             parseResponseJson(data);
             $('[type=submit]', form).removeClass('disabled');

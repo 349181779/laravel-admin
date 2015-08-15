@@ -60,10 +60,18 @@
                             <?php foreach($all_forum as $forum):?>
                             <tr>
                                 <td class="common"><a href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum->id]) ;?>" target="_blank"><?php echo $forum->title;?></a></td>
-                                <td class="by"><a target="_blank" href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum->id]) ;?>"><?php echo $forum->title;?></a></td>
-                                <td class="digit"><?php echo $forum->title;?></td>
-                                <td class="num"><?php echo $forum->title;?> </td>
-                                <td class="by kmhf"><?php echo $forum->created_at;?></td>
+                                <td class="by">
+                                    <a target="_blank" href="<?php echo action('Home\ForumController@getInfo', ['id' => $forum->id]) ;?>">
+                                        <?php if($forum->user_info->user_name):?>
+                                            <?php echo $forum->user_info->user_name;?>
+                                        <?php else:?>
+                                            <?php echo $forum->user_info->email;?>
+                                        <?php endif;?>
+                                    </a>
+                                </td>
+                                <td class="digit"><?php echo $forum->view;?></td>
+                                <td class="num"><?php echo $forum->total_comment;?> </td>
+                                <td class="by kmhf"><?php echo $forum->last_comment->created_at;?></td>
                             </tr>
                                 <?php endforeach;?>
                             <?php endif;?>
