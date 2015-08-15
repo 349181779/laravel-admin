@@ -16,6 +16,7 @@ use App\Http\Requests;
 
 use App\Http\Controllers\Controller;
 
+use App\Model\User\LetterModel;
 use Illuminate\Http\Request;
 
 use App\Model\User\UserModel;
@@ -44,6 +45,7 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
+
         load_func('instanceof,image,common');
 
         return view('user.user.index', [
@@ -62,33 +64,6 @@ class UserController extends BaseController {
      */
     public function postFriend(){
         return $this->response($code = 200, $msg = '', $data = UserModel::onlineUser());
-    }
-
-    /**
-     * 添加好友页面
-     *
-     * @return \Illuminate\View\View
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getAddFriend(){
-        return view('user.user.add_users', [
-            'title'         => '会员-添加好友',
-            'keywords'      => '会员-添加好友',
-            'description'   => '会员-添加好友',
-        ]);
-    }
-
-
-    /**
-     * 处理添加会员
-     *
-     * @param AddUsersRequest $request
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function postAddFriend(AddUsersRequest $request){
-        //添加好友
-        $user_list = UserModel::addFriend(intval($request->get('id')));
-        return !empty($user_list) ? $this->response($code = 200, $msg = '', $data = $user_list) : $this->response(400, trans('response.search_empty'));
     }
 
     /**
@@ -134,6 +109,11 @@ class UserController extends BaseController {
         return $this->response($code = 200, $msg = '', $data = $data, $target = true, $href = '');
     }
 
+    /**
+     * 聊天记录
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
     public function postChatlog(){
         //获得群组成员
         $data = [
@@ -156,10 +136,11 @@ class UserController extends BaseController {
      */
     public function getProfile(){
         return view('user.user.profile', [
-            'title'         => '会员-详细资料管理',
-            'keywords'      => '会员-详细资料管理',
-            'description'   => '会员-详细资料管理',
-            'user_profile'  => UserModel::getUserProfile(),
+            'title'             => '会员-详细资料管理',
+            'keywords'          => '会员-详细资料管理',
+            'description'       => '会员-详细资料管理',
+            'user_profile'      => UserModel::getUserProfile(),
+            'add_friend_letter' => LetterModel::addFriendLetter(),
         ]);
     }
 

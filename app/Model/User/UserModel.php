@@ -14,6 +14,8 @@ use DB;
 
 use Session;
 
+use App\Model\User\LetterModel;
+
 class UserModel extends BaseModel {
 
     protected $table    = 'user_info';//定义表名
@@ -33,10 +35,14 @@ class UserModel extends BaseModel {
 
         $item = [];
 
+        //获得全部我的好友
+        $my_friends = FriendsModel::getMyFriends();
+
         foreach($online_user as $user){
             $user = unserialize($user);
 
-            if($user->id == is_user_login()) continue;
+            //如果是自己，则跳过 || 如果不是自己好友，则跳过
+            if($user->id == is_user_login() || !in_array($user->id, $my_friends)) continue;
 
             $item[] = [
                 'id'    => $user->id,
@@ -93,7 +99,23 @@ class UserModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getUserSimpleInfo($user_id){
-        return self::find($user_id);
+       return self::mergeUserInfo(self::find($user_id));
+    }
+
+    /**
+     * 组合用户信息
+     *
+     * @param $user_info
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function mergeUserInfo($user_info){
+        if(!empty($user_info)){
+            load_func('image');
+            $user_info->face        = get_user_info_face($user_info->face);
+            $user_info->url         = action("User\UserController@getIndex", ['id' => $user_info->id]);
+            $user_info->user_name   = !empty($user_info->user_name) ? $user_info->user_name : $user_info->email;
+            return $user_info;
+        }
     }
 
     /**
@@ -173,14 +195,16 @@ class UserModel extends BaseModel {
     }
 
     /**
-     * 查找添加哈偶有
+     * 查找添加好友
      *
      * @param $account_number
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function addFriend($account_number){
-        return DB::table('user_info')->where('account_number', '=', $account_number)->where('status', '=', 1)->select('id', 'user_name', 'email', 'account_number', 'face')->first();
+    public static function SearchFriend($account_number){
+        return self::mergeUserInfo(DB::table('user_info')->where('account_number', '=', $account_number)->where('status', '=', 1)->select('id', 'user_name', 'email', 'account_number', 'face')->first());
     }
+
+
 
 }

@@ -19,4 +19,7 @@ return [
 
     'forum_page_limit'=>10,//论坛分页
     'forum_comment_page_limit'=> 10,//论坛回复分页
+
+    //私信
+    'letter_page_limit'=>10,//私信分页数量
 ];

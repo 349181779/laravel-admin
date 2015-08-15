@@ -11,6 +11,7 @@ img {border: 0;vertical-align: middle;}
 a{ text-decoration:none; border:0px; color:#000;}
 a:link, a:visited, a.no-under:hover, .no-under a:hover {color: #000;}
 a:hover {color:#000;}
+textarea{resize: none;}
 .clear{zoom:1; height:0px; display:block; clear:both; overflow:hidden;}
 .clear:after{content:'';display:block; overflow:hidden;clear:both;}
 .wrap{ width:1200px; height:auto; margin:0px auto; overflow: hidden;}

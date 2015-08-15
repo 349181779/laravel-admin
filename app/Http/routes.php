@@ -114,5 +114,7 @@ Route::group(['prefix'=> 'user', 'namespace' => 'User'], function(){
     Route::controller('chat', 'ChatController');
     //论坛
     Route::controller('forum', 'ForumController');
+    //添加好友
+    Route::controller('add-friend', 'AddFriendController');
 
 });

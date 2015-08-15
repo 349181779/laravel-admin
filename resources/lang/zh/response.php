@@ -43,5 +43,8 @@ return [
     'no_login'  => '请先登陆',
     'search_empty'  => '搜索内容为空',
     'del_forum_success' => '删除帖子成功',
+    'send_add_user_message_success' => '发送添加好友请求成功',
+    'can_not_add_their_own_friends' => '不能添加自己为好友',
+    'confirm_add_friend_success'    => '确认添加好友成功',
 
 ];

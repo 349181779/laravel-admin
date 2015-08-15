@@ -56,6 +56,12 @@ $(function(){
 
         //禁用提交按钮，防止重复提交
         var form = $(this);
+
+        //如果禁止base.js 解析 则跳过
+        if(form.find('input[name=status]').val() == 'false'){
+            return;
+        }
+
         $('[type=submit]', form).addClass('disabled');
 
         //获取提交地址，方式

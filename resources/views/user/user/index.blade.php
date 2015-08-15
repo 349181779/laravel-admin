@@ -93,7 +93,7 @@
 			type: 2,
 			skin: 'layui-layer-rim', //加上边框
 			area: ['520px', '440px'], //宽高
-			content:'<?php echo action("User\UserController@getAddFriend") ;?>'
+			content:'<?php echo action("User\AddFriendController@getAddFriend") ;?>'
 		});
 
 	}

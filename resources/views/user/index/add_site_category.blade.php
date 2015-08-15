@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <link media="all" type="text/css" rel="stylesheet" href="/assets/css/bootstrap.css">
 @include('home.block.style')
 
