@@ -12,6 +12,8 @@ namespace App\Model\Home;
 
 use App\Model\Home\BaseModel;
 
+use App\Model\User\UserModel;
+
 use DB;
 
 class ForumModel extends BaseModel {
@@ -72,7 +74,14 @@ class ForumModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private static function getForumComment($id){
-        return DB::table('forum_comment')->where('forum_id', '=', $id)->where('status', '=', '1')->orderBy('id', 'DESC')->paginate(config('config.forum_comment_page_limit'));
+        $comment_list =  DB::table('forum_comment')->where('forum_id', '=', $id)->where('status', '=', '1')->orderBy('id', 'DESC')->paginate(config('config.forum_comment_page_limit'));
+
+        if(!empty($comment_list)){
+            foreach($comment_list as $comment){
+                $comment->user_info = UserModel::getUserSimpleInfo($comment->user_info_id);
+            }
+        }
+        return $comment_list;
     }
 
     /**

@@ -55,7 +55,7 @@
                         <div class="forum_c">
                             <div class="forum_cl">
                                 <p><img src="/site/images/ykcanma.jpg" /></p>
-                                <p><a href=""> 春天的阳光 </a></p>
+                                <p><a href=""> <?php echo $user_profile->user_name ;?> </a></p>
                             </div>
                             <div class="forum_cr">
                                 <div class="post_content">
@@ -84,7 +84,7 @@
                                     <div class="">
                                         <div class="forum_cl">
                                             <p><img src="/site/images/ykcanma.jpg" /></p>
-                                            <p><a href=""> 春天的阳光 </a></p>
+                                            <p><a href=""> <?php echo $comment->user_info->user_name;?> </a></p>
                                         </div>
                                         <div class="forum_cr">
                                             <div class="post_content">

@@ -83,6 +83,17 @@ class UserModel extends BaseModel {
     }
 
     /**
+     * 获得用户基本信息
+     *
+     * @param $user_id
+     * @return \Illuminate\Support\Collection|null|static
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getUserSimpleInfo($user_id){
+        return self::find($user_id);
+    }
+
+    /**
      * 保存用户信息
      *
      * @param $data
