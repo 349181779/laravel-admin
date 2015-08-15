@@ -43,7 +43,9 @@
 <!--                        <span>收藏</span>-->
                         <span><a href="<?php echo action('User\ForumController@getAdd') ;?>">发贴</a></span>
                         <?php if($data->user_info_id == is_user_login()):?>
-                            <span><a href="<?php echo action('User\ForumController@getSave', ['aa' => $data->id]) ;?>">编辑</a></span>
+                            <span><a href="<?php echo action('User\ForumController@getSave', ['id' => $data->id]) ;?>">编辑</a></span>
+                            <span><a onclick="del(this)" href="javascript:void(0)">删除</a></span>
+
                         <?php endif;?>
                     </div>
                     <div class="clear"></div>
@@ -178,6 +180,22 @@
 <!-- footer -->
 @section('footer')
 @include('home.block.footer')
+<script>
+    /**
+     * 删除帖子
+     *
+     * @param obj
+     */
+    function del(obj){
+        var _this = $(obj);
+
+        if(confirm('是否确认删除') == true){
+            $.post("<?php echo action('User\ForumController@postDel') ;?>", {id:<?php echo $data->id;?>}, function(data){
+                parseResponseJson(data);
+            })
+        }
+    }
+</script>
 @show
 <!-- end footer -->
 </body>

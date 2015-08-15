@@ -42,5 +42,6 @@ return [
     'comment_forum_error'   => '发表帖子评论失败',
     'no_login'  => '请先登陆',
     'search_empty'  => '搜索内容为空',
+    'del_forum_success' => '删除帖子成功',
 
 ];

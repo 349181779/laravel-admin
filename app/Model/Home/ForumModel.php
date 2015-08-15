@@ -87,19 +87,23 @@ class ForumModel extends BaseModel {
     public static function getInfo($id){
         if(!empty($id)){
             $data = DB::table('forum')->where('id', '=', $id)->where('status', '=', 1)->first();
-            //获得分类信息
-            if($data->forum_cat_id > 0 ){
-                $data->category = self::getForumCat($data->forum_cat_id);
+
+            if(!empty($data)){
+                //获得分类信息
+                if($data->forum_cat_id > 0 ){
+                    $data->category = self::getForumCat($data->forum_cat_id);
+                }
+
+                //获得评论信息
+                $data->comment = self::getForumComment($data->id);
+
+                //获得当前所在位置
+                $data->location = self::getForumLocation($data);
+
+                //点击来+1
+                DB::table('forum')->where('id', '=', $id)->increment('view');
             }
 
-            //获得评论信息
-            $data->comment = self::getForumComment($data->id);
-
-            //获得当前所在位置
-            $data->location = self::getForumLocation($data);
-
-            //点击来+1
-            DB::table('forum')->where('id', '=', $id)->increment('view');
 
             return $data;
         }

@@ -133,5 +133,17 @@ class ForumController extends BaseController {
         $affected_number > 0 ? $this->response(200, 'success') : $this->response(400, trans('response.comment_forum_error'));
     }
 
+    /**
+     * 删除帖子
+     *
+     * @param Request $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postDel(Request $request){
+        $id = intval($request->get('id'));
+        if($id > 0 ) DB::table('forum')->where('id', '=', $id)->where('user_info_id', '=', is_user_login())->update(['deleted_at' => date('Y-m-d'), 'status' => 2]);
+        return $this->response(200, trans('response.del_forum_success'));
+    }
+
 
 }
