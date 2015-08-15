@@ -24,6 +24,8 @@ use App\Http\Requests\Home\UserLoginRequest;
 
 use App\Http\Requests\Home\UserRegisterRequest;
 
+use Session;
+
 class UserController extends BaseController {
 
 	/**
@@ -33,6 +35,9 @@ class UserController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getLogin(){
+        //保存上次访问页面
+        Session::put('HTTP_REFERER', $_SERVER['HTTP_REFERER']);
+        
         return view('home.user.login', [
             'title'         => '登录',
             'keywords'      => '登录',
@@ -51,7 +56,8 @@ class UserController extends BaseController {
 
         switch($login_status){
             case 1:
-                return $this->response(200, trans('response.success'),[], true, action('User\IndexController@getIndex'));
+                $url = !empty(Session::get('HTTP_REFERER')) ? Session::get('HTTP_REFERER') : action('User\IndexController@getIndex');
+                return $this->response(200, trans('response.success'),[], true, $url);
             case -1:
             case -3:
                 return $this->response(401, trans('response.admin_not_exists'));
