@@ -28,9 +28,10 @@
 				<ul>
 
 					<li><a href="<?php echo action('Home\IndexController@getIndex') ;?>" >综合导航</a></li>
-					<li><a href="<?php echo action('Home\IndexController@getCategory') ;?>">分类</a></li>
+
 					<li><a href="" class="select_a">查询导航</a></li>
 					<li><a href="<?php echo action('Home\AppController@getIndex') ;?>">应用</a></li>
+					<li><a href="<?php echo action('Home\IndexController@getCategory') ;?>">分类</a></li>
 				</ul>
 				<div class="clear"></div>
 			</div>

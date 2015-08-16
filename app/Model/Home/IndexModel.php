@@ -36,7 +36,7 @@ class IndexModel extends BaseModel {
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function mergeData($data, $limit = 30){
+    public static function mergeData($data, $limit = 32){
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作

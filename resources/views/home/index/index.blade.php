@@ -29,9 +29,9 @@
 				  <div class="c_q_title">
 				         <ul>
 						     <li><a href="" class="select_a">综合导航</a></li>
-							 <li><a  href="<?php echo action('Home\IndexController@getCategory') ;?>" >分类</a></li>
                              <li><a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a></li>
                              <li><a href="<?php echo action('Home\AppController@getIndex') ;?>">应用</a></li>
+                             <li><a  href="<?php echo action('Home\IndexController@getCategory') ;?>" >分类</a></li>
 						 </ul>
                       <?php if(Session::get('admin_info.id') > 0 ):?>
                         <div class="c_q_set"><span style="cursor: pointer;" onclick="addSite(this)">添加网址</span>  <span style="cursor: pointer;" onclick="addSiteCategory(this)">添加网址分类</span> <span style="cursor: pointer;" >设置</span></div>

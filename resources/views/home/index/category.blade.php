@@ -26,9 +26,10 @@
             <div class="c_q_title">
                 <ul>
                     <li><a href="<?php echo action('Home\IndexController@getIndex') ;?>">综合导航</a></li>
-                    <li><a href="<?php echo action('Home\IndexController@getCategory') ;?>" class="select_a">分类</a></li>
+
                     <li><a href="<?php echo action('Home\QueryController@getIndex') ;?>">查询</a></li>
                     <li><a href="<?php echo action('Home\AppController@getIndex') ;?>" >应用</a></li>
+                    <li><a href="<?php echo action('Home\IndexController@getCategory') ;?>" class="select_a">分类</a></li>
                 </ul>
 
                 <div class="clear"></div>
@@ -37,8 +38,7 @@
                 <!---->
                 <div class="subm" style="border: 0;margin: 0;">
                     <div class="subbox subb0 subbfr">
-                        <h1 class="subtt">网址分类<em>·</em></h1>
-                        <div class="bd">
+                       <div class="bd">
 
                             <dl>
                                 <dt>[网址分类]</dt>
