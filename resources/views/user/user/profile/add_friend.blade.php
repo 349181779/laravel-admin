@@ -13,7 +13,7 @@
 					<td><?php echo $letter->user_info->user_name;?></td>
 					<td><?php echo $letter->contens;?></div></td>
 					<td><?php echo $letter->created_at;?></td>
-					<td><a href="javascript:void(0)" data-user_id="<?php echo $letter->send_uid;?>" data-letter_id="<?php echo $letter->id;?>" onclick="confirmAddFrined(this)">确认</a></td>
+					<td><a href="javascript:void(0)" data-user_id="<?php echo $letter->user_info_id;?>" data-letter_id="<?php echo $letter->id;?>" onclick="confirmAddFrined(this)">确认</a></td>
 				</tr>
 			<?php endforeach;?>
 		<?php endif;?>

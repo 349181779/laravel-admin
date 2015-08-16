@@ -59,7 +59,7 @@ class FriendsModel extends BaseModel {
      */
     public static function confirmAddFriend($user_id, $letter_id){
         //确认添加好友
-        $affected_number = DB::table('add_user')->where('user_info_id', '=', is_user_login())->where('invitee', '=', $user_id)->where('status', '=', 1)->update([
+        $affected_number = DB::table('add_user')->where('invitee', '=', is_user_login())->where('user_info_id', '=', $user_id)->where('status', '=', 1)->update([
             'status'    => 2
         ]);
 
