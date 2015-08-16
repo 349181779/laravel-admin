@@ -14,6 +14,8 @@ use App\Model\User\BaseModel;
 
 use App\Model\User\UserModel;
 
+use Session;
+
 class LetterModel extends BaseModel {
 
     protected $table    = 'letter';//定义表名
@@ -61,7 +63,7 @@ class LetterModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function addFriendLetter(){
-        return self::mergeLetter(self::where('type', '=', 1)->where('user_info_id', '=', is_user_login())->where('status', '=', 2)->groupBy('send_uid')->paginate(config('config.letter_page_limit')));
+        return self::mergeLetter(self::where('type', '=', 1)->where('send_uid', '=', is_user_login())->where('status', '=', 2)->groupBy('send_uid')->paginate(config('config.letter_page_limit')));
     }
 
     /**

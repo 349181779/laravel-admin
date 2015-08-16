@@ -17,6 +17,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\User\LetterModel;
+
 use Illuminate\Http\Request;
 
 use App\Model\User\UserModel;
