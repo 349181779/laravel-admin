@@ -72,10 +72,9 @@ class ForumController extends BaseController {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getSave(Request $requests){
+    public function getSave(Request $requests, $id){
         //获得帖子内容
-        $id         = $requests->get('id', 1);
-        $forum_info = ForumModel::getInfo($id);
+        $forum_info = ForumModel::getInfo((int)$id);
         if(empty($forum_info)) return redirect()->action('Home\ForumController@getIndex');
 
         return view('home.forum.save', [
@@ -94,7 +93,7 @@ class ForumController extends BaseController {
      * @param Request $requests
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function postSave(Request $requests){
+    public function postSave(Request $requests, $id){
         $data = $requests->only('id', 'forum_cat_id', 'contents', 'title');
         $data['user_info_id']   = Session::get('user_info.id');
 
