@@ -29,7 +29,7 @@ class SiteCatModel extends BaseModel {
     public static function getAllForSchemaOption($name, $id = 0, $first = true){
         //加载函数库
         load_func('common');
-        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->where('user_info_id', '=', is_user_login())->get())) : merge_tree_node(obj_to_array(self::all()));
+        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->where('user_info_id', '=', is_user_login())->get())) : merge_tree_node(obj_to_array(self::where('user_info_id', '=', is_user_login())->get()));
         $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
         return $data;
     }

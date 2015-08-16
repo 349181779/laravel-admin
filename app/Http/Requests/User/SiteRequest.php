@@ -32,7 +32,7 @@ class SiteRequest extends BaseFormRequest {
             return [
                 'site_name'         => ['required'],
                 'user_site_cat_id'  => ['required', 'numeric'],
-                'site_url'          => ['required', 'url', 'unique:site'],
+                'site_url'          => ['required', 'url'],
                 'status'            => ['required', 'in:1,2'],
                 'sort'              => ['required', 'digits_between:0,255'],
             ];
