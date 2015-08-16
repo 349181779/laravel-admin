@@ -185,7 +185,7 @@ class BaseModel extends Model{
     public static function getAllCategory(){
         //加载函数库
         load_func('common');
-        $data = obj_to_array(self::all());
+        $data = obj_to_array(self::where('status', '=', 1)->get());
         $data =  array_to_obj(merge_tree_child_node($data));
         return $data;
     }
