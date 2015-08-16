@@ -26,7 +26,7 @@ class EmailModel extends BaseModel {
      * @auther yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllEmail(){
-       return self::where('status', '=', '1')->orderBy('sort', 'ASC')->take(11)->get();
+       return self::where('status', '=', '1')->orderBy('sort', 'ASC')->get();
     }
 
 }

@@ -40,7 +40,7 @@ class IndexModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->site  = DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->take($limit)->get();
+                $v->site  = $limit > 0 ? DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->take($limit)->get() : DB::table('site')->where('site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->get();
             }
         }
         return $data;
