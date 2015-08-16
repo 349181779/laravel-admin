@@ -1,26 +1,26 @@
 var mail = {
     mailData:[
-        {
-            mail: "163",
-            name: "@163.com",
-            action: "http://reg.163.com/CheckUser.jsp",
-            params: {
-                url: "http://entry.mail.163.com/coremail/fcg/ntesdoor2?lightweight=1&verifycookie=1&language=-1&from=web&df=webmail163",
-                username: "_username_",
-                password: "_password_"
-            }
-        },
-        {
-            mail: "126",
-            name: "@126.com",
-            action: "https://reg.163.com/logins.jsp",
-            params: {
-                domain: "126.com",
-                username: "_username_@126.com",
-                password: "_password_",
-                url: "http://entry.mail.126.com/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26language%3D0%26style%3D-1"
-            }
-        },
+        //{
+        //    mail: "163",
+        //    name: "@163.com",
+        //    action: "http://reg.163.com/CheckUser.jsp",
+        //    params: {
+        //        url: "http://entry.mail.163.com/coremail/fcg/ntesdoor2?lightweight=1&verifycookie=1&language=-1&from=web&df=webmail163",
+        //        username: "_username_",
+        //        password: "_password_"
+        //    }
+        //},
+        //{
+        //    mail: "126",
+        //    name: "@126.com",
+        //    action: "https://reg.163.com/logins.jsp",
+        //    params: {
+        //        domain: "126.com",
+        //        username: "_username_@126.com",
+        //        password: "_password_",
+        //        url: "http://entry.mail.126.com/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26language%3D0%26style%3D-1"
+        //    }
+        //},
         {
             mail: "sina",
             name: "@sina.com",
@@ -30,30 +30,30 @@ var mail = {
                 psw: "_password_"
             }
         },
-        {
-            mail: "yahoocomcn",
-            name: "@yahoo.com.cn",
-            action: "https://edit.bjs.yahoo.com/config/login",
-            params: {
-                login: "_username_@yahoo.com.cn",
-                passwd: "_password_",
-                domainss: "yahoo",
-                ".intl": "cn",
-                ".src": "ym"
-            }
-        },
-        {
-            mail: "yahoocn",
-            name: "@yahoo.cn",
-            action: "https://edit.bjs.yahoo.com/config/login",
-            params: {
-                login: "_username_@yahoo.cn",
-                passwd: "_password_",
-                domainss: "yahoocn",
-                ".intl": "cn",
-                ".done": "http://mail.cn.yahoo.com/inset.html"
-            }
-        },
+        //{
+        //    mail: "yahoocomcn",
+        //    name: "@yahoo.com.cn",
+        //    action: "https://edit.bjs.yahoo.com/config/login",
+        //    params: {
+        //        login: "_username_@yahoo.com.cn",
+        //        passwd: "_password_",
+        //        domainss: "yahoo",
+        //        ".intl": "cn",
+        //        ".src": "ym"
+        //    }
+        //},
+        //{
+        //    mail: "yahoocn",
+        //    name: "@yahoo.cn",
+        //    action: "https://edit.bjs.yahoo.com/config/login",
+        //    params: {
+        //        login: "_username_@yahoo.cn",
+        //        passwd: "_password_",
+        //        domainss: "yahoocn",
+        //        ".intl": "cn",
+        //        ".done": "http://mail.cn.yahoo.com/inset.html"
+        //    }
+        //},
         {
             mail: "sohu",
             name: "@sohu.com",
@@ -69,46 +69,46 @@ var mail = {
                 sg: "5082635c77272088ae7241ccdf7cf062"
             }
         },
-        {
-            mail: "yeah",
-            name: "@yeah.net",
-            action: "https://reg.163.com/logins.jsp",
-            params: {
-                domain: "yeah.net",
-                username: "_username_@yeah.net",
-                password: "_password_",
-                url: "http://entry.mail.yeah.net/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26style%3D-1"
-            }
-        },
-        {
-            mail: "139",
-            name: "@139.com",
-            action: "https://mail.10086.cn/Login/Login.ashx",
-            params: {
-                UserName: "_username_",
-                Password: "_password_",
-                clientid: "5015"
-            }
-        },
-        {
-            mail: "tom",
-            name: "@tom.com",
-            action: "http://login.mail.tom.com/cgi/login",
-            params: {
-                user: "_username_",
-                pass: "_password_"
-            }
-        },
-        {
-            mail: "21cn",
-            name: "@21cn.com",
-            action: "http://passport.21cn.com/maillogin.jsp",
-            params: {
-                UserName: "_username_@21cn.com",
-                passwd: "_password_",
-                domainname: "21cn.com"
-            }
-        },
+        //{
+        //    mail: "yeah",
+        //    name: "@yeah.net",
+        //    action: "https://reg.163.com/logins.jsp",
+        //    params: {
+        //        domain: "yeah.net",
+        //        username: "_username_@yeah.net",
+        //        password: "_password_",
+        //        url: "http://entry.mail.yeah.net/cgi/ntesdoor?lightweight%3D1%26verifycookie%3D1%26style%3D-1"
+        //    }
+        //},
+        //{
+        //    mail: "139",
+        //    name: "@139.com",
+        //    action: "https://mail.10086.cn/Login/Login.ashx",
+        //    params: {
+        //        UserName: "_username_",
+        //        Password: "_password_",
+        //        clientid: "5015"
+        //    }
+        //},
+        //{
+        //    mail: "tom",
+        //    name: "@tom.com",
+        //    action: "http://login.mail.tom.com/cgi/login",
+        //    params: {
+        //        user: "_username_",
+        //        pass: "_password_"
+        //    }
+        //},
+        //{
+        //    mail: "21cn",
+        //    name: "@21cn.com",
+        //    action: "http://passport.21cn.com/maillogin.jsp",
+        //    params: {
+        //        UserName: "_username_@21cn.com",
+        //        passwd: "_password_",
+        //        domainname: "21cn.com"
+        //    }
+        //},
         //{
         //    mail: "renren",
         //    name: "\u4eba\u4eba\u7f51",
