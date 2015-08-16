@@ -13,7 +13,7 @@
 					<a href="<?php echo action('Home\EmailController@getIndex') ;?>">邮箱</a>
 					<a href="<?php echo action('Home\SearchController@getIndex') ;?>">搜索</a>
 					<a href="<?php echo action('Home\ForumController@getIndex') ;?>">论坛</a>
-				  	<a href="<?php echo action('User\UserController@getIndex') ;?>">好友</a>
+				  	<a href="<?php echo action('User\UserController@getIndex') ;?>">聊天</a>
 			</div>
 			<div class="set">
 			    <?php if(is_user_login() <= 0 ):?>

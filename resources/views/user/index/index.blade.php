@@ -83,7 +83,7 @@
 @section('footer')
 @include('home.block.footer')
 <script>
-	<?php if(Session::get('admin_info.id') > 0 ):?>
+	<?php if(Session::get('user_info.id') > 0 ):?>
 	function addSite(obj){
 		var _this = $(obj);
 
