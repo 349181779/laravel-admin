@@ -99,6 +99,7 @@ xxim.renode = function(){
 //主界面缩放
 xxim.expend = function(){
     var node = xxim.node;
+    xxim.layimNode.attr('state', 2)
     if(xxim.layimNode.attr('state') !== '1'){
         xxim.layimNode.stop().animate({right: config.right}, config.aniTime, function(){
             node.xximon.addClass('xxim_off');
