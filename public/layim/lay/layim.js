@@ -134,12 +134,12 @@ xxim.layinit = function(){
             config.aniTime = 0;
             localStorage.layimState = 1;
         }
-        if(localStorage.layimState === '1'){
-            xxim.layimNode.attr({state: 1}).css({right: config.right});
-            node.xximon.addClass('xxim_off');
-            node.layimFooter.addClass('xxim_expend').css({marginLeft: config.right});
-            node.xximHide.addClass('xxim_show');
-        }
+        //if(localStorage.layimState === '1'){
+        //    xxim.layimNode.attr({state: 1}).css({right: config.right});
+        //    node.xximon.addClass('xxim_off');
+        //    node.layimFooter.addClass('xxim_expend').css({marginLeft: config.right});
+        //    node.xximHide.addClass('xxim_show');
+        //}
     }catch(e){
         layer.msg(e.message, 5, -1);
     }
