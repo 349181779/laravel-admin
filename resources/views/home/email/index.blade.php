@@ -82,11 +82,19 @@
 		   </div>         
 		   <!-- end 邮箱 -->
 		   <ul class="email">
+
+
 			   <?php if(!empty($all_email)):?>
-				   <?php foreach($all_email as $email):?>
-				   		<li><a target="_blank" href="<?php echo $email->site_url ;?>"><?php echo $email->name ;?></a></li>
-				   <?php endforeach;?>
+						<div class="seaou">
+						   <h3>邮箱</h3>
+						   <div class="sea">
+								<?php foreach($all_email as $email):?>
+								   <a target="_blank" href="<?php echo $email->site_url ;?>"><?php echo $email->name ;?></a>
+							   <?php endforeach;?>
+						   </div>
+					   </div>
 			   <?php endif;?>
+
 		    <div class="clear"></div>
 		   </ul>
 	</div>

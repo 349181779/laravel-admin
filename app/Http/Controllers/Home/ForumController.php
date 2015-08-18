@@ -38,7 +38,7 @@ class ForumController extends BaseController {
         $cat_id = $request->get('cat_id', 1);
         return view('home.forum.index', [
             'all_forum'		        => ForumModel::getAllForums($cat_id),
-            'all_hot_category'      => ForumModel::getIndexCat(),
+            'all_hot_category'      => ForumModel::getIndexCat($cat_id),
             'cat_id'                => $cat_id,
             'title'                 => '论坛',
             'keywords'              => '论坛',
@@ -55,6 +55,7 @@ class ForumController extends BaseController {
     public function getCategory(){
         return view('home.forum.category', [
             'all_category'          => ForumModel::getAllCategory(),
+            'all_hot_category'      => ForumModel::getIndexCat(),
             'title'                 => '论坛-分类',
             'keywords'              => '论坛-分类',
             'description'           => '论坛-分类',

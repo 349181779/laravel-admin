@@ -19,12 +19,7 @@
 <!-- main -->
 <div class="main">
     <div class="wrap">
-        <div class="sodiv tubiao">
-            <div class="so_logo"><a href=""><img src="/site/images/sologo.png" width="363" height="66" /></a></div>
-            @include('home.block.search')
-
-            <!-- end -->
-        </div>
+        <div class="chaxun-logo"><a href=""><img src="/site/images/sologo.png" /></a></div>
         <!-- 新闻 -->
         <div class="content">
             <div class="c_qiehuan">

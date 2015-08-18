@@ -1,5 +1,5 @@
 <div class="footer">
-       <a>关于我们</a>
-	   <a href="<?php echo action('Home\ForumController@getIndex') ;?>">论坛</a>
+       <a href="<?php echo action('Home\ForumController@getIndex', ['cat_id' => 1]) ;?>">网站公告</a>
+	   <a href="<?php echo action('Home\ForumController@getIndex', ['cat_id' => 2]) ;?>">用户建议</a>
 </div>
 @include('home.block.js')

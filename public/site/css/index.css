@@ -14,7 +14,7 @@ a:hover {color:#000;}
 textarea{resize: none;}
 .clear{zoom:1; height:0px; display:block; clear:both; overflow:hidden;}
 .clear:after{content:'';display:block; overflow:hidden;clear:both;}
-.wrap{ width:1200px; height:auto; margin:0px auto; overflow: hidden;}
+.wrap{ width:1200px; height:auto; margin:0px auto; overflow: hidden;margin-bottom: 41px;}
 body{background:#f3f3f3;}
 .header{height:40px; width:100%; background-color:#000;}
 .top{ height:auto;}
@@ -23,7 +23,7 @@ body{background:#f3f3f3;}
 .set{ width:500px; float:right; text-align:right;}
 .set span,.set span a{ display:block; float:right; color:#fff; line-height:40px; margin-left:15px;}
 .shezhi{ padding-right:22px; background:url(../images/set.png?__inline) right center no-repeat;}
-.footer{ height:40px;  text-align:center; border-top:solid 1px #ccc; background:#000;}
+.footer{ height:40px;  text-align:center; border-top:solid 1px #ccc; background:#000;position: relative;bottom: 0px;left: 0px;}
 .footer a{ margin:10px; line-height:40px; color:#fff;}
 .login{ padding:160px 0px 280px 0px;}
 .l_left{ width:590px; float:left;}
@@ -283,11 +283,12 @@ border-right: 0px; float:left;}
 .mod-useragreement{ border:solid 1px #c9cbce; padding:20px; background:#fff; width:1000px; margin:0 auto; line-height:22px;}
 .mod-useragreement h2{color: #444;font-size: 16px;height: 40px;font-weight: bold;line-height: 40px;border-bottom: 1px solid #e8e8e8;margin-bottom: 20px;}
 .mod-useragreement h5 {font-size: 14px;font-weight: bold;padding: 1em 0px;}
-.seaou ,.email{ line-height:40px; border-top:solid 1px #c9cbce;}
+.seaou ,.email{ line-height:40px; border-top:solid 1px #c9cbce;
+    overflow: hidden;margin-bottom: 20px;}
 .seaou h3{ float:left; width:92px; padding-left:20px;}
 .sea{ float:left; width:1088px;}
-.sea a{ display:inline-block; width:136px; font-size:14px; }
-.email li{ float:left; width:120px;}
+.sea a{ display:block; float:left; width:136px; font-size:14px; }
+.email li{ float:left; width:136px; font-size:14px;}
 
 .bfff{ background:#fff; padding:10px;}
 .user-inl{ width:200px; float:left;}

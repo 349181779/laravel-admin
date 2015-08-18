@@ -30,7 +30,7 @@
 				<dl class="user-inlmenu">
 					<dt>个人资料</dt>
 					<dd><a href="" class="select_a">基本资料</a></dd>
-					<dd><a href="">账号安全</a></dd>
+                    <dd><a href="">账号安全</a></dd>
 					<dd><a href="">好友请求</a></dd>
 				</dl>
 			</div>

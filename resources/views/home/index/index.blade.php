@@ -55,7 +55,11 @@
                                         <?php foreach($site_cat->site as $site):?>
                                             <span><a target="_blank" href="<?php echo $site->site_url ;?>"><?php echo $site->site_name ;?></a></span>
                                         <?php endforeach;?>
-                                        <span class="in_more"><a target="_blank" href="<?php echo action('Home\IndexController@getInfo', [$site_cat->id]) ;?>">更多</a></span>
+
+                                           <?php if(count($site_cat->site) >= 32):?>
+                                                <span class="in_more"><a target="_blank" href="<?php echo action('Home\IndexController@getInfo', [$site_cat->id]) ;?>">更多</a></span>
+                                           <?php endif;?>
+
                                        <?php endif;?>
                                    </div>
                                    <div class="clear"></div>

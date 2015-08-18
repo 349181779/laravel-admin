@@ -27,8 +27,8 @@ class ForumModel extends BaseModel {
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getIndexCat(){
-       return self::where('status', '=', '1')->where('is_show', '=', 1)->orderBy('sort', 'ASC')->take(11)->get();
+    public static function getIndexCat($cat_id = null){
+        return $cat_id != null ? self::where('status', '=', '1')->where('is_show', '=', 1)->orWhere('id', '=', $cat_id)->orderBy('sort', 'ASC')->take(11)->get() : self::where('status', '=', '1')->where('is_show', '=', 1)->orderBy('sort', 'ASC')->take(11)->get();
     }
 
     /**

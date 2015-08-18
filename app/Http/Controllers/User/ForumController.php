@@ -107,6 +107,8 @@ class ForumController extends BaseController {
             'forum_cat_id'  => $data['forum_cat_id'],
             'updated_at'    => date('Y-m-d H:i:s'),
         ]);
+
+
         $this->response(200, 'success', $data = [], $target = true, $href = action('Home\ForumController@getInfo', ['id'=> $data['id']]));
     }
 
@@ -118,7 +120,7 @@ class ForumController extends BaseController {
      */
     public function postForumComment(ForumCommentRequest $request){
         $data = $request->only('contents', 'forum_id', 'node');
-        //记载函数库
+        //加载函数库
         load_func('common');
 
         $affected_number = DB::table('forum_comment')->insertGetId([
@@ -126,9 +128,10 @@ class ForumController extends BaseController {
             'user_info_id'  => is_user_login(),
             'status'        => 1,
             'created_at'    => date('Y-m-d H:i:s'),
-            'contents'      => trim($data['contents']),
+            'contents'      => $data['contents'],
             'node'          => $data['node'] > 0 ? (int)$data['node'] : 0,
         ]);
+
         $affected_number > 0 ? $this->response(200, 'success') : $this->response(400, trans('response.comment_forum_error'));
     }
 

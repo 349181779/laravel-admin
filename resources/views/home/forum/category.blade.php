@@ -19,20 +19,15 @@
 <!-- main -->
 <div class="main">
     <div class="wrap">
-        <div class="sodiv tubiao">
-            <div class="so_logo"><a href=""><img src="/site/images/sologo.png" width="363" height="66" /></a></div>
-            @include('home.block.search')
-
-            <!-- end -->
-        </div>
+        <div class="chaxun-logo"><a href=""><img src="/site/images/sologo.png" /></a></div>
         <!-- 新闻 -->
         <div class="content">
             <div class="c_qiehuan">
                 <!---->
                 <div class="c_q_title">
                     <ul>
-                        <?php if(!empty($all_category)):?>
-                            <?php foreach($all_category as $forum_cat):?>
+                        <?php if(!empty($all_hot_category)):?>
+                            <?php foreach($all_hot_category as $forum_cat):?>
                                 <li><a href="<?php echo action('Home\ForumController@getIndex', ['cat_id' => $forum_cat->id]) ;?>" ><?php echo $forum_cat->cat_name;?></a></li>
                             <?php endforeach;?>
                         <?php endif;?>
