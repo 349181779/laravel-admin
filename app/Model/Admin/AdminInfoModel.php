@@ -22,6 +22,19 @@ class AdminInfoModel extends BaseModel {
     protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
+     * 判断是否登录状态
+     *
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function hasLoginStatus(){
+        //加载函数库
+        load_func('common');
+        if(is_admin_login() > 0 ) return true;
+        return false;
+    }
+
+    /**
      * 用户登录
      *
      * @param $params array 用户登录名和密码参数
@@ -52,7 +65,7 @@ class AdminInfoModel extends BaseModel {
         return 1;
     }
 
-    /**
+   /**
      * 写入用户信息到SESSION
      *
      * @param $user_info
@@ -118,10 +131,13 @@ class AdminInfoModel extends BaseModel {
             foreach($data as &$v){
                 //组合状态
                 $v->status = self::mergeStatus($v->status);
-                //组合操作
-                $v->handle  = '<a href="'.url('admin/admininfo/edit', [$v->id]).'" target="_blank" >编辑</a>';
                 //组合角色
                 $v->role_name = DB::table('role')->where('id', '=', $v->role_id)->pluck('role_name');
+                //组合操作
+                $v->handle  = '<a href="'.url('admin/admininfo/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/admininfo/delete', [$v->id]).'\')" target="_blank" >删除</a>';
+
             }
         }
         return $data;

@@ -32,6 +32,7 @@ textarea{resize:none;}
  a:hover {
     text-decoration: none!important;
 }
+a{cursor: pointer;}
 #preloader {
   
     /* IE 8 and below */

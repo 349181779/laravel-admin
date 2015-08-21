@@ -9,9 +9,6 @@
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Admin;
-
-use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 use App\Model\Admin\RoleModel;
@@ -77,6 +74,7 @@ class RoleController extends BaseController {
         if(!empty($status)){
             $map['status'] = $status;
         }
+        $map['deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = RoleModel::search($map, $sort, $order, $limit, $offset);
         echo json_encode([
@@ -137,6 +135,17 @@ class RoleController extends BaseController {
     public function postAdd(RoleRequest $request){
         $affected_number    = RoleModel::create($request->all());
         return $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/role/index')) : $this->response(400, trans('response.add_error'), [], false);
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        RoleModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 
 }

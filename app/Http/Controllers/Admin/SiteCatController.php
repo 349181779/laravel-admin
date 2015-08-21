@@ -80,6 +80,7 @@ class SiteCatController extends BaseController {
         if(!empty($status)){
             $map['status'] = $status;
         }
+        $map['deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = SiteCatModel::search($map, $sort, $order, $limit, $offset);
 
@@ -149,6 +150,17 @@ class SiteCatController extends BaseController {
     public function postAdd(SiteCatRequest $request){
         $affected_number = SiteCatModel::create($request->all());
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/site-cat/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/article-cat/index'));
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        SiteCatModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 
 }

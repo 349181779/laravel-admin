@@ -28,7 +28,7 @@ class UserModel extends BaseModel {
      */
     public static function login($params){;
         //查找用户
-        $user_info = DB::table('user_info')->where('email', '=', $params['email'])->first();
+        $user_info = DB::table('user_info')->where('email', '=', $params['email'])->where('deleted_at', '=', '0000-00-00 00:00:00')->first();
 
 
         //判断改用户是否存在

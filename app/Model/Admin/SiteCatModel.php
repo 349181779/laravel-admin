@@ -32,6 +32,8 @@ class SiteCatModel extends BaseModel {
                 $v->is_show_search = self::mergeStatus($v->is_show_search);
                 //组合操作
                 $v->handle = '<a href="'.url('admin/site-cat/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/site-cat/delete', [$v->id]).'\')" target="_blank" >删除</a>';
             }
         }
         return $data;

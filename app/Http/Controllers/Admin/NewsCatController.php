@@ -115,4 +115,15 @@ class NewsCatController extends BaseController {
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/news-cat/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/news-cat/index'));
     }
 
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        NewsCatModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
+
 }

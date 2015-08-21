@@ -77,8 +77,9 @@ class QueryCatController extends BaseController {
             $map['cat_name'] = ['like', '%'.$cat_name.'%'];
         }
         if(!empty($status)){
-            $map['article.status'] = $status;
+            $map['status'] = $status;
         }
+        $map['deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = QueryCatModel::search($map, $sort, $order, $limit, $offset);
 
@@ -142,6 +143,17 @@ class QueryCatController extends BaseController {
     public function postAdd(QueryCatRequest $request){
         $affected_number = QueryCatModel::create($request->all());
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/query-cat/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/query-cat/index'));
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        QueryCatModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 
 }

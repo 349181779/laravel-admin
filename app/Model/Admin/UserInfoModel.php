@@ -35,6 +35,8 @@ class UserInfoModel extends BaseModel {
                 $v->face    = '<img src="'.config('config.file_url').$v->face.'" width="100" height="100" />';
                 //组合方法
                 $v->handle  = '<a href="'.url('admin/userinfo/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/userinfo/delete', [$v->id]).'\')" target="_blank" >删除</a>';
 
             }
         }

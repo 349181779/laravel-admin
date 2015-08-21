@@ -12,8 +12,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 
-use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\NewsRequest;
@@ -23,6 +21,8 @@ use App\Model\Admin\NewsModel;
 use App\Model\Admin\NewsCatModel;
 
 use Session;
+
+use DB;
 
 class NewsController extends BaseController {
 
@@ -95,6 +95,7 @@ class NewsController extends BaseController {
         if(!empty($status)){
             $map['news.status'] = $status;
         }
+        $map['news.deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = NewsModel::search($map, $sort, $order, $limit, $offset);
 
@@ -173,6 +174,16 @@ class NewsController extends BaseController {
         return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/news/index')) : $this->response(400, trans('response.add_error'), [], false);
     }
 
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        NewsModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
 
 
 }

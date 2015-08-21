@@ -58,8 +58,8 @@ if(!function_exists('hash_user_sign')){
  * @return Int
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-if(!function_exists('is_admn_login')){
-    function is_admn_login(){
+if(!function_exists('is_admin_login')){
+    function is_admin_login(){
         return hash_user_sign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.id') : false;
     }
 }

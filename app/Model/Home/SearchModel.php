@@ -29,9 +29,9 @@ class SearchModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getSearchInfo($search_cat_id){
-        $search_cat = self::select('cat_name', 'logo', 'id')->where('id', '=', $search_cat_id)->where('status', '=', 1)->first();
+        $search_cat = self::select('cat_name', 'logo', 'id')->where('id', '=', $search_cat_id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->first();
         //获得当前分类下面的全部搜索导航
-        $search_cat['all_search'] = DB::table('search')->select('name', 'search_url')->where('status', '=', 1)->where('search_cat_id', '=', $search_cat_id)->orderBy('sort', 'ASC')->get();
+        $search_cat['all_search'] = DB::table('search')->select('name', 'search_url')->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->where('search_cat_id', '=', $search_cat_id)->orderBy('sort', 'ASC')->get();
 
         return $search_cat;
     }
@@ -43,7 +43,7 @@ class SearchModel extends BaseModel {
      * @return mixed
      */
     public static function getSite(){
-        return IndexModel::mergeData(DB::table('site_cat')->where('status', '=', '1')->where('is_show_search', '=', 1)->orderBy('sort', 'ASC')->paginate(config('config.page_limit')));
+        return IndexModel::mergeData(DB::table('site_cat')->where('status', '=', '1')->where('deleted_at', '=', '0000-00-00 00:00:00')->where('is_show_search', '=', 1)->orderBy('sort', 'ASC')->paginate(config('config.page_limit')));
     }
 
 }

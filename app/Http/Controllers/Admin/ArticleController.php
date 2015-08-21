@@ -96,6 +96,8 @@ class ArticleController extends BaseController {
             $map['article.status'] = $status;
         }
 
+        $map['article.deleted_at'] = ['=', '0000-00-00 00:00:00'];
+
         $data = ArticleModel::search($map, $sort, $order, $limit, $offset);
 
         echo json_encode([
@@ -175,6 +177,17 @@ class ArticleController extends BaseController {
         //写入数据
         $affected_number = ArticleModel::create($data);
         return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/article/index')) : $this->response(400, trans('response.add_error'), [], false);
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        ArticleModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 
 

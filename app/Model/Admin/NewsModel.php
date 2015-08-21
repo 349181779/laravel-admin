@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class NewsModel extends BaseModel {
 
     protected $table    = 'news';//定义表名
@@ -43,6 +41,7 @@ class NewsModel extends BaseModel {
                         join('news_cat as c', 'news.news_cat_id', '=', 'c.id')->
                         join('admin_info as a', 'news.admin_info_id', '=', 'a.id')->
                         count(),
+
         ];
     }
 
@@ -60,6 +59,8 @@ class NewsModel extends BaseModel {
                 $v->status = self::mergeStatus($v->status);
                 //组合操作
                 $v->handle  = '<a href="'.url('admin/news/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/news/delete', [$v->id]).'\')" target="_blank" >删除</a>';
             }
         }
         return $data;

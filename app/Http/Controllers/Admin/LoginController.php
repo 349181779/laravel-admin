@@ -24,6 +24,15 @@ use App\Http\Controllers\BaseController;
 
 class LoginController extends BaseController {
 
+    /**
+     * 构造方法
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function __construct(){
+
+    }
+
 	/**
 	 * 登录操作
      *
@@ -31,6 +40,9 @@ class LoginController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function getIndex(){
+        load_func('common');
+        //判断是否已经登录
+        if(is_admin_login() > 0 ) return redirect(url('admin/home'), 302);
         return view('admin.login.login');
 	}
 

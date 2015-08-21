@@ -202,7 +202,7 @@ class UserModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function SearchFriend($account_number){
-        return self::mergeUserInfo(DB::table('user_info')->where('account_number', '=', $account_number)->where('status', '=', 1)->select('id', 'user_name', 'email', 'account_number', 'face')->first());
+        return self::mergeUserInfo(DB::table('user_info')->where('account_number', '=', $account_number)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->select('id', 'user_name', 'email', 'account_number', 'face')->first());
     }
 
 

@@ -101,6 +101,20 @@ $(function(){
 })
 
 
+/**
+ * 删除信息
+ *
+ */
+function del(obj, url){
+    var _this = $(obj);
+
+    if(url != ''){
+        $.get(url, {}, function (data) {
+            parseResponseJson(data);
+            _this.parents('tr').slideUp();
+        })
+    }
+}
 
 
 /**
@@ -109,7 +123,7 @@ $(function(){
  * @param data
  */
 function parseResponseJson(data){
-    var _data = eval("("+data+")");
+    var _data = $.parseJSON(data);
     if(_data.code == 200){
         //弹出提示框
         toastr.success(_data.msg);

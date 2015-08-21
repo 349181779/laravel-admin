@@ -95,8 +95,9 @@ class SiteController extends BaseController {
             $map['site.site_cat_id'] = $site_cat_id;
         }
         if(!empty($status)){
-            $map['article.status'] = $status;
+            $map['site.status'] = $status;
         }
+        $map['site.deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = SiteModel::search($map, $sort, $order, $limit, $offset);
 
@@ -183,6 +184,16 @@ class SiteController extends BaseController {
         return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/site/index')) : $this->response(400, trans('response.add_error'), [], false);
     }
 
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        SiteModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
 
 
 }

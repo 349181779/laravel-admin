@@ -89,6 +89,7 @@ class SearchController extends BaseController {
         if(!empty($status)){
             $map['search.status'] = $status;
         }
+        $map['search.deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = SearchModel::search($map, $sort, $order, $limit, $offset);
 
@@ -160,6 +161,16 @@ class SearchController extends BaseController {
         return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/search/index')) : $this->response(400, trans('response.add_error'), [], false);
     }
 
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        SearchModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
 
 
 }

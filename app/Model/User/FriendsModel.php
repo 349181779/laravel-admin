@@ -26,7 +26,7 @@ class FriendsModel extends BaseModel {
      * @return mixed
      */
     public static function getMyFriends(){
-        return self::where('user_info_id', '=', is_user_login())->lists('friend_user_id');
+        return self::where('user_info_id', '=', is_user_login())->where('deleted_at', '=', '0000-00-00 00:00:00')->lists('friend_user_id');
     }
 
     /**
@@ -59,7 +59,7 @@ class FriendsModel extends BaseModel {
      */
     public static function confirmAddFriend($user_id, $letter_id){
         //确认添加好友
-        $affected_number = DB::table('add_user')->where('invitee', '=', is_user_login())->where('user_info_id', '=', $user_id)->where('status', '=', 1)->update([
+        $affected_number = DB::table('add_user')->where('invitee', '=', is_user_login())->where('user_info_id', '=', $user_id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->update([
             'status'    => 2
         ]);
 
@@ -106,7 +106,7 @@ class FriendsModel extends BaseModel {
     private static function getFriendGroup($user_id = null){
         $user_id = $user_id == null ? is_user_login() : $user_id;
 
-        $group_info = DB::table('friend_group')->where('user_info_id', '=', $user_id)->where('is_default', '=', '1')->first();
+        $group_info = DB::table('friend_group')->where('user_info_id', '=', $user_id)->where('is_default', '=', '1')->where('deleted_at', '=', '0000-00-00 00:00:00')->first();
 
         if(empty($group_info)){
             $id = DB::table('friend_group')->insertGetId([

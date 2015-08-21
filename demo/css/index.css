@@ -32,7 +32,8 @@ body{background:#f3f3f3;}
 .td_lg{  line-height:50px; font-size:16px; color:#6c6c6c;}
 .hz_span{ text-align:center; width:400px;color:#6c6c6c; height:30px; line-height:30px; font-size:16px; background:url(../images/loginsp.png?__inline) center no-repeat;}
 .td_lg span{ margin-left:80px;font-size:16px; color:#6c6c6c;}
-
+.main{overflow: hidden;
+    height: auto;}
 
 .other_login{ padding-left:50px; height:50px; background:url(../images/fangshi.png?__inline) 50px center no-repeat;}
 .other_login a{ display:block; width:48px; height:50px; float:left; margin-right:5px;}

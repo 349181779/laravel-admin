@@ -37,7 +37,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
      */
     private function checkIsLogin(){
         load_func('common');
-        $uid = is_admn_login();
+        $uid = is_admin_login();
         return $uid <= 0 && header('location:'.action('Admin\LoginController@getIndex'));die;
     }
 
@@ -49,7 +49,5 @@ class BaseController extends \App\Http\Controllers\BaseController {
     private function getAllMenu(){
         view()->share('menu_tree_data', MenuModel::getAllForMenuSide());
     }
-
-
 
 }

@@ -55,7 +55,7 @@ class UploadController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getUploadview(){
-        return View('tools.upload.uploadview');
+        return View('tools.upload.uploadView');
     }
 
     /**

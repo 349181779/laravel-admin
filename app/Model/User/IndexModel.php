@@ -28,7 +28,7 @@ class IndexModel extends BaseModel {
     public static function getAllSite(){
         //加载函数库
         load_func('common');
-       return self::mergeData(self::where('user_info_id', '=', is_user_login())->where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(20));
+       return self::mergeData(self::where('user_info_id', '=', is_user_login())->where('status', '=', '1')->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('sort', 'ASC')->paginate(20));
     }
 
     /**
@@ -42,7 +42,7 @@ class IndexModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->site  = DB::table('user_site')->where('user_site_cat_id', '=', $v->id)->where('status', '=', 1)->orderBy('sort', 'ASC')->take($limit)->get();
+                $v->site  = DB::table('user_site')->where('user_site_cat_id', '=', $v->id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('sort', 'ASC')->take($limit)->get();
             }
         }
         return $data;
@@ -57,8 +57,8 @@ class IndexModel extends BaseModel {
     public static function getCategorySite($cat_id){
         if(!empty($cat_id)){
             $cat_info           = new \stdClass();
-            $cat_info->cat_info = DB::table('user_site_cat')->select('cat_name', 'id')->where('id', '=', $cat_id)->first();
-            $cat_info->all_site = DB::table('user_site')->where('user_site_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('sort', 'ASC')->paginate(50);
+            $cat_info->cat_info = DB::table('user_site_cat')->select('cat_name', 'id')->where('id', '=', $cat_id)->where('deleted_at', '=', '0000-00-00 00:00:00')->first();
+            $cat_info->all_site = DB::table('user_site')->where('user_site_cat_id', '=', $cat_id)->where('status', '=', '1')->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('sort', 'ASC')->paginate(50);
             return $cat_info;
         }
     }

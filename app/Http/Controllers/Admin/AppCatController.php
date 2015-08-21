@@ -148,4 +148,15 @@ class AppCatController extends BaseController {
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/app-cat/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/app-cat/index'));
     }
 
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        AppCatModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
+
 }

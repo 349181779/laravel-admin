@@ -77,8 +77,10 @@ class EmailController extends BaseController {
             $map['name'] = ['like', '%'.$name.'%'];
         }
         if(!empty($status)){
-            $map['article.status'] = $status;
+            $map['status'] = $status;
         }
+
+        $map['deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = EmailModel::search($map, $sort, $order, $limit, $offset);
 
@@ -144,6 +146,17 @@ class EmailController extends BaseController {
     public function postAdd(EmailRequest $request){
         $affected_number = EmailModel::create($request->all());
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/email/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/email/index'));
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        EmailModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 
 }

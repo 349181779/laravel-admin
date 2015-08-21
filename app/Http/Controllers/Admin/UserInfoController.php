@@ -99,6 +99,7 @@ class UserInfoController extends BaseController {
         if(!empty($birthday)){
             $map['birthday'] = $birthday;
         }
+        $map['deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = UserInfoModel::search($map, $sort, $order, $limit, $offset);
         echo json_encode([
@@ -183,5 +184,16 @@ class UserInfoController extends BaseController {
         $affected_number = UserInfoModel::create($data);
 
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/userinfo/index')) : $this->response(400, trans('response.add_error'), [], true);
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        UserInfoModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 }

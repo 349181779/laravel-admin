@@ -28,7 +28,7 @@ class ForumModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getIndexCat($cat_id = null){
-        return $cat_id != null ? self::where('status', '=', '1')->where('is_show', '=', 1)->orWhere('id', '=', $cat_id)->orderBy('sort', 'ASC')->take(11)->get() : self::where('status', '=', '1')->where('is_show', '=', 1)->orderBy('sort', 'ASC')->take(11)->get();
+        return $cat_id != null ? self::where('status', '=', '1')->where('deleted_at', '=', '0000-00-00 00:00:00')->where('is_show', '=', 1)->orWhere('id', '=', $cat_id)->orderBy('sort', 'ASC')->take(11)->get() : self::where('status', '=', '1')->where('is_show', '=', 1)->orderBy('sort', 'ASC')->take(11)->get();
     }
 
     /**
@@ -38,7 +38,7 @@ class ForumModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllForums($cat_id){
-        $forum_list =  DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(config('config.forum_page_limit'));
+        $forum_list =  DB::table('forum')->where('forum_cat_id', '=', $cat_id)->where('status', '=', '1')->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(config('config.forum_page_limit'));
 
         if(!empty($forum_list)){
             foreach($forum_list as &$forum){
@@ -86,7 +86,7 @@ class ForumModel extends BaseModel {
      */
     public static function getInfo($id){
         if(!empty($id)){
-            $data = DB::table('forum')->where('id', '=', $id)->where('status', '=', 1)->first();
+            $data = DB::table('forum')->where('id', '=', $id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->first();
 
             if(!empty($data)){
                 //获得分类信息
@@ -135,7 +135,7 @@ class ForumModel extends BaseModel {
      */
     private static function getForumCat($forum_cat_id){
         if($forum_cat_id > 0){
-            return DB::table('forum_cat')->where('id', '=', $forum_cat_id)->first();
+            return DB::table('forum_cat')->where('id', '=', $forum_cat_id)->where('deleted_at', '=', '0000-00-00 00:00:00')->first();
         }
     }
 

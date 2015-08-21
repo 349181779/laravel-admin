@@ -36,7 +36,8 @@
         "Overtrue\\LaravelPinyin\\ServiceProvider",
         "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider",
         "Stevenyangecho\\UEditor\\UEditorServiceProvider",
-        "Mews\\Captcha\\CaptchaServiceProvider"
+        "Mews\\Captcha\\CaptchaServiceProvider",
+        "App\\Providers\\HtmlDomProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -193,6 +194,7 @@
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
         "Illuminate\\Html\\HtmlServiceProvider": [],
-        "Overtrue\\LaravelWechat\\ServiceProvider": []
+        "Overtrue\\LaravelWechat\\ServiceProvider": [],
+        "App\\Providers\\HtmlDomProvider": []
     }
 }

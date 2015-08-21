@@ -22,4 +22,12 @@ return [
 
     //私信
     'letter_page_limit'=>10,//私信分页数量
+
+    //采集配置
+    'html'  => [
+        ['url' => 'http://www.xinhuanet.com/sports/xj.htm', 'cat_id'=> 11, 'parent_dom' => 'ul[class=dataList] li[class=clearfix]', 'child_dom' => 'h3 a'],
+        ['url' => 'http://sports.qq.com/laliga/', 'cat_id'=> 11, 'parent_dom' => 'div[class=xmNews] ul li', 'child_dom' => 'a'],
+        ['url' => 'http://sports.qq.com/laliga/', 'cat_id'=> 11, 'parent_dom' => 'ul[class=match_news_list] li', 'child_dom' => 'a'],
+        ['url' => 'http://sports.qq.com/laliga/', 'cat_id'=> 11, 'parent_dom' => 'ul[class=match_news_list] li', 'child_dom' => 'a'],
+    ],
 ];

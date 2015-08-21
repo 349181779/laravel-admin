@@ -158,6 +158,8 @@ return [
         //'Dingo\Api\Provider\ApiServiceProvider'
 		'Mews\Captcha\CaptchaServiceProvider',//验证码
 
+		'App\Providers\HtmlDomProvider',//采集库
+
 	],
 
 	/*

@@ -134,7 +134,7 @@ class BaseModel extends Model{
     public static function getAllForSchemaOption($name, $id = 0){
         //加载函数库
         load_func('common');
-        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->get())) : merge_tree_node(obj_to_array(self::all()));
+        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->where('deleted_at', '=', '0000-00-00 00:00:00')->get())) : merge_tree_node(obj_to_array(self::all()));
         array_unshift($data, ['id' => '0', $name => '顶级分类']);
         return $data;
     }
@@ -158,7 +158,7 @@ class BaseModel extends Model{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getSearch(){
-        return self::mergeSearch(DB::table('search_cat')->where('status', '=', 1)->orderBy('sort', 'ASC')->get());
+        return self::mergeSearch(DB::table('search_cat')->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('sort', 'ASC')->get());
     }
 
     /**
@@ -171,7 +171,7 @@ class BaseModel extends Model{
     public static function mergeSearch($data){
         if(!empty($data)){
             foreach($data as &$v){
-                $v->al_query = DB::table('search')->where('search_cat_id', '=', $v->id)->where('status', '=', 1)->get();
+                $v->al_query = DB::table('search')->where('search_cat_id', '=', $v->id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->get();
             }
         }
         return $data;
@@ -185,7 +185,7 @@ class BaseModel extends Model{
     public static function getAllCategory(){
         //加载函数库
         load_func('common');
-        $data = obj_to_array(self::where('status', '=', 1)->get());
+        $data = obj_to_array(self::where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->get());
         $data =  array_to_obj(merge_tree_child_node($data));
         return $data;
     }

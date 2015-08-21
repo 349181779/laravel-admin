@@ -1,14 +1,14 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-07-04
+// | date: 2015-08-02
 // +----------------------------------------------------------------------
 // | BaseModel.php: 公共模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Model\Admin;
+namespace App\Model\Tools;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,14 +50,11 @@ class BaseModel extends Model{
         if (!is_array($arr)) {
             return $query;
         }
-        if(empty($arr)){
-            return $query;
-        }
         foreach ($arr as $key => $value) {
             //判断$arr
             if(is_array($value)){
                 $value[0] = strtolower($value[0]);
-                switch($value[0]){
+                switch(strtolower($value[0])){
                     case 'like';
                         $query = $query->where($key, $value[0] ,$value[1]);
                         break;
@@ -66,9 +63,6 @@ class BaseModel extends Model{
                         break;
                     case 'between':
                         $query = $query->whereBetween($key, $value[1][0], $value[1][1]);
-                        break;
-                    default:
-                        $query = $query->where($key, $value[0], $value[1]);
                         break;
                 }
             }else{
@@ -117,24 +111,6 @@ class BaseModel extends Model{
     }
 
     /**
-     * 组合是否默认
-     *
-     * @param $sex
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    protected static function mergeIsDefault($is_default){
-        if(empty($is_default)){
-            return;
-        }
-
-        switch($is_default){
-            case 1:
-                return trans('response.is_default');
-            default:
-                return trans('response.not_is_default');
-        }
-    }
-    /**
      * 组合图片路径
      *
      * @param $image_src
@@ -155,11 +131,11 @@ class BaseModel extends Model{
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllForSchemaOption($name, $id = 0, $first = true){
+    public static function getAllForSchemaOption($name, $id = 0){
         //加载函数库
         load_func('common');
-        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->where('deleted_at', '=', '0000-00-00 00:00:00')->get())) : merge_tree_node(obj_to_array(self::all()));
-        $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
+        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->get())) : merge_tree_node(obj_to_array(self::all()));
+        array_unshift($data, ['id' => '0', $name => '顶级分类']);
         return $data;
     }
 
@@ -176,21 +152,42 @@ class BaseModel extends Model{
     }
 
     /**
-     * 删除信息
+     * 获得搜索导航数据
      *
-     * @param $id
-     * @return bool
+     * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function del($id){
-        if($id > 0 ){
-            return self::where('id', '=', $id)->update([
-                'deleted_at'    => date('Y-m-d H:i:s'),
-            ]);
-        }
-        return false;
+    public static function getSearch(){
+        return self::mergeSearch(DB::table('search_cat')->where('status', '=', 1)->orderBy('sort', 'ASC')->get());
     }
 
+    /**
+     * 组合搜索导航数据
+     *
+     * @param $data
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function mergeSearch($data){
+        if(!empty($data)){
+            foreach($data as &$v){
+                $v->al_query = DB::table('search')->where('search_cat_id', '=', $v->id)->where('status', '=', 1)->get();
+            }
+        }
+        return $data;
+    }
 
+    /**
+     * 获得全部分类
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getAllCategory(){
+        //加载函数库
+        load_func('common');
+        $data = obj_to_array(self::all());
+        $data =  array_to_obj(merge_tree_child_node($data));
+        return $data;
+    }
 }
 

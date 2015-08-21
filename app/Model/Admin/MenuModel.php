@@ -26,7 +26,7 @@ class MenuModel extends BaseModel {
     public static function getAll(){
         //加载函数库
         load_func('common');
-        return merge_tree_node(obj_to_array(self::mergeData(self::all())));
+        return merge_tree_node(obj_to_array(self::mergeData(self::where('deleted_at', '=', '0000-00-00 00:00:00')->get())));
     }
 
     /**
@@ -44,6 +44,8 @@ class MenuModel extends BaseModel {
                 $v->status = self::mergeStatus($v->status);
                 //组合操作
                 $v->handle = '<a href="'.url('admin/menu/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/menu/delete', [$v->id]).'\')" target="_blank" >删除</a>';
             }
         }
         return $data;

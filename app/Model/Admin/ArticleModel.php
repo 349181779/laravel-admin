@@ -60,6 +60,8 @@ class ArticleModel extends BaseModel {
                 $v->status = self::mergeStatus($v->status);
                 //组合操作
                 $v->handle  = '<a href="'.url('admin/article/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/article/delete', [$v->id]).'\')" target="_blank" >删除</a>';
             }
         }
         return $data;

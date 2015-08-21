@@ -81,11 +81,13 @@ class AppController extends BaseController {
         //组合查询条件
         $map = [];
         if(!empty($app_cat_id)){
-            $map['app_cat_id'] = $app_cat_id;
+            $map['app.app_cat_id'] = $app_cat_id;
         }
         if(!empty($status)){
-            $map['status'] = $status;
+            $map['app.status'] = $status;
         }
+
+        $map['app.deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = AppModel::search($map, $sort, $order, $limit, $offset);
 
@@ -168,6 +170,16 @@ class AppController extends BaseController {
         return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/app/index')) : $this->response(400, trans('response.add_error'), [], false);
     }
 
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        AppModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
 
 
 }

@@ -80,6 +80,8 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('swoole', 'SwooleController');
     //web socket
     Route::controller('socket', 'WebSocketController');
+    //采集
+    Route::controller('html', 'HtmlDomController');
 });
 
 //前台

@@ -17,6 +17,8 @@ return [
     'update_success'=>'更新成功',
     'add_success'=> '增加成功',
     'add_error'=>'增加失败',
+    'delete_success'    => '删除成功',
+    'delete_error'  => '删除失败',
     'on'=>'开启',
     'off'=>'关闭',
     'upload_file_error' => '上传文件错误',

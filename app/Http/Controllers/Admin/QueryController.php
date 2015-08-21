@@ -87,8 +87,9 @@ class QueryController extends BaseController {
             $map['query.query_cat_id'] = $query_cat_id;
         }
         if(!empty($status)){
-            $map['article.status'] = $status;
+            $map['query.status'] = $status;
         }
+        $map['query.deleted_at'] = ['=', '0000-00-00 00:00:00'];
 
         $data = QueryModel::search($map, $sort, $order, $limit, $offset);
 
@@ -158,6 +159,17 @@ class QueryController extends BaseController {
         //写入数据
         $affected_number = QueryModel::create($request->all());
         return  $affected_number->id > 0  ? $this->response(200, trans('response.add_success'), [], true, url('admin/query/index')) : $this->response(400, trans('response.add_error'), [], false);
+    }
+
+    /**
+     * 删除数据
+     *
+     * @param $id
+     * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getDelete($id){
+        QueryModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 
 
