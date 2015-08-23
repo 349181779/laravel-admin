@@ -20,7 +20,8 @@
         "stevenyangecho/laravel-u-editor": "~1.1",
         "ender/laravel-ueditor":"0.8.*",
         "rcrowe/turbo": "0.2.*",
-        "mews/captcha": "~2.0"
+        "mews/captcha": "~2.0",
+	    "hprose/hprose": "dev-master"
 
 	},
    "minimum-stability": "dev",

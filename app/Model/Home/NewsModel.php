@@ -25,8 +25,8 @@ class NewsModel extends BaseModel {
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllNews(){
-       return self::mergeData(self::where('status', '=', '1')->where('pid', '=', 0)->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('sort', 'ASC')->take(11)->get());
+    public static function getAllNews($id){
+        return DB::table('news')->where('news_cat_id', '=', $id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->paginate(105);
     }
 
     /**
@@ -40,7 +40,7 @@ class NewsModel extends BaseModel {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合操作
-                $v->news  = DB::table('news')->where('news_cat_id', '=', $v->id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('sort', 'ASC')->take(100)->get();
+                $v->news  = DB::table('news')->where('news_cat_id', '=', $v->id)->where('status', '=', 1)->where('deleted_at', '=', '0000-00-00 00:00:00')->orderBy('id', 'DESC')->orderBy('sort', 'ASC')->take(100)->get();
             }
         }
         return $data;

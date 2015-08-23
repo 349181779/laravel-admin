@@ -10,6 +10,8 @@
 
 namespace App\Model\Home;
 
+use App\Model\User\BaseModel AS UserBaseModel;
+
 use DB;
 
 use Session;
@@ -50,6 +52,8 @@ class UserModel extends BaseModel {
         self::saveUserSession($user_info);
         //保存用户信息到swoole
         self::saveUserInfo($user_info);
+        //获得用户等级
+        UserBaseModel::DegreeOfCompletion();
 
         return 1;
     }
@@ -109,6 +113,10 @@ class UserModel extends BaseModel {
 
         //写入数据
         $user_info = self::create($params);
+
+        //更新用户编号
+        self::where('id', '=', $user_info->id)->update(['account_number', 10000+$user_info->id]);
+
         return self::registerUserProfile($user_info->id) == true ? $user_info->id : false;
     }
 

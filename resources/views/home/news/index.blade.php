@@ -29,16 +29,16 @@
 		          <!---->
 				  <div class="c_q_title">
 				         <ul>
-							<?php if(!empty($all_new)):?>
-							 	<?php foreach($all_new as $k=>$new_cat):?>
-							 		<?php if($k == 0):?>
-						    			<li><a href="" class="select_a"><?php echo $new_cat->cat_name ;?></a></li>
+							<?php if(!empty($all_category)):?>
+							 	<?php foreach($all_category as $new_cat):?>
+							 		<?php if($new_cat->id == (int)$_GET['id']):?>
+						    			<li><a href="<?php echo action('Home\NewsController@getIndex', ['id'=> $new_cat->id]);?>" class="select_a"><?php echo $new_cat->cat_name ;?></a></li>
 									<?php else:?>
-										<li><a href=""><?php echo $new_cat->cat_name ;?></a></li>
+										<li><a href="<?php echo action('Home\NewsController@getIndex', ['id'=> $new_cat->id]);?>"><?php echo $new_cat->cat_name ;?></a></li>
 									<?php endif;?>
 								<?php endforeach;?>
 							<?php endif;?>
-							 <li><a href="" >分类</a></li>
+							 <li><a href="<?php echo action('Home\NewsController@getCategory');?>" >分类</a></li>
 						 </ul>
 						 <div class="c_q_set"></div>
 						 <div class="clear"></div>
@@ -46,67 +46,23 @@
 				  <div class="index-box">
 				  <!---->
 					  <?php if(!empty($all_new)):?>
-							<?php foreach($all_new as $k=>$new_cat):?>
-								<?php if($k == 0):?>
-					  				<div class="c_q_cont" style="display:block;">
-										<ul class="new-list-ul">
-											<?php if(!empty($new_cat->news)):?>
-												<?php foreach($new_cat->news as $new):?>
-													<li><a target="_blank" href="<?php echo $new->site_url ;?>"><?php echo $new->title ;?></a></li>
-												<?php endforeach;?>
-											<?php endif;?>
-											<div class="clear"></div>
-										</ul>
-										<div class="clear"></div>
-									</div>
-								<?php else:?>
-									  <div class="c_q_cont" style="display:none;">
-										  <ul class="new-list-ul">
-											  <?php if(!empty($new_cat->news)):?>
-											  <?php foreach($new_cat->news as $new):?>
-											  <li><a target="_blank" href="<?php echo $new->site_url ;?>"><?php echo $new->title ;?></a></li>
-											  <?php endforeach;?>
-											  <?php endif;?>
-											  <div class="clear"></div>
-										  </ul>
-										  <div class="clear"></div>
-									  </div>
-								<?php endif;?>
-
-						<?php endforeach;?>
+						  <div class="c_q_cont" style="display:block;">
+							  <ul class="new-list-ul">
+								  <?php foreach($all_new as $new):?>
+									  <li><a target="_blank" href="<?php echo $new->site_url ;?>"><?php echo $new->title ;?></a></li>
+								  <?php endforeach;?>
+								  <div class="clear"></div>
+							  </ul>
+							  <div class="clear"></div>
+						  </div>
 						<?php endif;?>
 
-                        <!-- 分类 -->
-                      <div class="c_q_cont" style="display:none;">
-                          <div class="subm" style="border:none;margin-top:0;">
-                              <div class="subbox subb0 subbfr">
-                                  <div class="bd">
-                                      <?php if(!empty($all_category)):?>
-                                      <dl>
-                                          <dt>[新闻分类]</dt>
-                                          <?php foreach($all_category as $category):?>
-                                              <dd class="line" style="width:275px;">
-
-                                                  <ul>
-                                                      <li><strong><a href="" target="_blank"><?php echo $category->cat_name;?></a></strong></li>
-                                                      <?php if(!empty($category->child)):?>
-                                                        <?php for($i=0; $i<5; $i++):?>
-                                                            <li><a href="" target="_blank"><?php echo $category->child[$i]->cat_name;?></a></li>
-                                                        <?php endfor;?>
-                                                      <?php endif;?>
-                                                  </ul>
-                                              </dd>
-                                          <?php endforeach;?>
-                                       </dl>
-                                      <?php endif;?>
-
-                                  </div>
-                              </div>
-
-                          </div>
-                      </div>
-                      <!-- 分类 -->
-
+					  <div class="page_bt">
+						  <ul>
+							  <?php echo $all_new->render(); ?>
+						  </ul>
+						  <div class="clear"></div>
+					  </div>
 
 		   </div>
 	</div>

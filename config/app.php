@@ -159,6 +159,7 @@ return [
 		'Mews\Captcha\CaptchaServiceProvider',//验证码
 
 		'App\Providers\HtmlDomProvider',//采集库
+		'App\Providers\HproseProvider',//采集库
 
 	],
 

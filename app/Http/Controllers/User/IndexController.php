@@ -28,15 +28,25 @@ use App\Http\Requests\User\SiteRequest;
 
 use Session;
 
+use Route;
+
 class IndexController extends BaseController {
 
+    /**
+     * 构造方法
+     *
+     */
+    public function __construct(){
+        parent::__construct();
+
+    }
 	/**
 	 * 网址首页
 	 *
 	 * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function getIndex(){
+	public function getIndex(){ dd(\Route::currentRouteName());
         return view('user.index.index', [
             'all_site'      => IndexModel::getAllSite(),
             'title'         => '会员-首页',

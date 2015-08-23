@@ -82,6 +82,8 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('socket', 'WebSocketController');
     //采集
     Route::controller('html', 'HtmlDomController');
+    //高性能远程对象
+    Route::controller('hprose', 'HproseController');
 });
 
 //前台

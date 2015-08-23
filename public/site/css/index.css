@@ -191,7 +191,9 @@ bottom: 3px;
 #search-form{ height:50px;}
 .grsp_l_pep li dl{ padding-left:15px; line-height:20px;}
 
-.c_q_cont,.c_pl_cont{ background-color:#fff; min-height:300px;}
+.c_q_cont,.c_pl_cont{ background-color:#fff;
+    height: 100%;overflow: hidden;}
+.index-box{background: #fff;}
 .c_pl_cont{ padding-top:10px;}
 .r-cont-news{ padding:10px;}
 .news-list li{ width:440px; line-height:25px; height:25px; overflow:hidden; float:left; margin:5px 20px; display:inline;}

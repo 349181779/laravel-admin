@@ -3,6 +3,10 @@
 	<form name="form1" class="ajax-form" method="post" action="<?php echo action('User\UserController@postProfile') ;?>">
 		<table width="100%" border="0" class="tab_rgst">
 			<tr>
+				<td width="18%"><div align="right">用户编号：</div></td>
+				<td width="82%"><?php echo $user_profile->account_number ;?></td>
+			</tr>
+			<tr>
 				<td width="18%"><div align="right">邮箱：</div></td>
 				<td width="82%"> <input type="text" class="text_txt inp_l" name="email" value="<?php echo $user_profile->email ;?>" placeholder="请输入邮箱"/> <span class="vf_tishi">
 								        请您填写邮箱

@@ -37,7 +37,8 @@
         "zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider",
         "Stevenyangecho\\UEditor\\UEditorServiceProvider",
         "Mews\\Captcha\\CaptchaServiceProvider",
-        "App\\Providers\\HtmlDomProvider"
+        "App\\Providers\\HtmlDomProvider",
+        "App\\Providers\\HproseProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -195,6 +196,7 @@
         "Illuminate\\Translation\\TranslationServiceProvider": [],
         "Illuminate\\Html\\HtmlServiceProvider": [],
         "Overtrue\\LaravelWechat\\ServiceProvider": [],
-        "App\\Providers\\HtmlDomProvider": []
+        "App\\Providers\\HtmlDomProvider": [],
+        "App\\Providers\\HproseProvider": []
     }
 }

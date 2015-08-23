@@ -3,28 +3,39 @@
 // +----------------------------------------------------------------------
 // | date: 2015-07-11
 // +----------------------------------------------------------------------
-// | SiteModel.php: 会员网址模型
+// | Html.php: 会员网址模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Model\Tools;
 
-class Html extends BaseModel {
+use App\Model\Admin\NewsModel;
+
+class HtmlModel extends BaseModel {
 
     protected $table    = 'news';//定义表名
     protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
 
-    public static function task($data){
-        NewsModel::create([
-            'title'         => $article->find($task['child_dom'], 0)->plaintext,
-            'site_url'      => $article->find($task['child_dom'], 0)->getAttribute('href'),
-            'status'        => 1,
-            'news_cat_id'   => $task['cat_id'],
-        ]);
+    /**
+     * 执行任务
+     *
+     * @param $title
+     * @param $url
+     * @param $cat_id
+     */
+    public static function task($title, $url, $cat_id){
+        $news = NewsModel::where('title', '=', $title)->orWhere('site_url', '=', $url)->first();
 
-
+        if(empty($news)){
+            NewsModel::create([
+                'title'         => $title,
+                'site_url'      => $url,
+                'status'        => 1,
+                'news_cat_id'   => $cat_id,
+            ]);
+        }
 
     }
 }

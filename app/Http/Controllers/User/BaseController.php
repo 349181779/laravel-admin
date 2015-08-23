@@ -18,6 +18,8 @@ use Session;
 
 use Request;
 
+use Route;
+
 class BaseController extends \App\Http\Controllers\BaseController {
 
     /**
@@ -30,6 +32,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
         $this->checkIsLogin();
         //获得导航数据
         $this->getSearch();
+
     }
 
     /**

@@ -28,10 +28,21 @@ class NewsController extends BaseController {
 	 * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function getIndex(){
-		//dd(NewsModel::getAllCategory());
+	public function getIndex(Request $request){
+		$id = $request->get('id');
+		$id = $id > 0 ? (int)$id : 1;
+
 		return view('home.news.index', [
-			'all_new'		=> NewsModel::getAllNews(),
+			'all_new'		=> NewsModel::getAllNews($id),
+			'all_category'  => NewsModel::getAllCategory(),
+			'title'         => '新闻',
+			'keywords'      => '新闻',
+			'description'   => '新闻',
+		]);
+	}
+
+	public function getCategory(){
+		return view('home.news.category', [
 			'all_category'  => NewsModel::getAllCategory(),
 			'title'         => '新闻',
 			'keywords'      => '新闻',

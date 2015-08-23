@@ -140,6 +140,10 @@ class UserModel extends BaseModel {
 
             //保存用户其他资料
             $status = self::updateUserOtherProfile($user_id, $data['user_profile']);
+
+            //更新用户等级
+            self::DegreeOfCompletion();
+
             return true;
         }
         return false;
@@ -162,6 +166,7 @@ class UserModel extends BaseModel {
                 'wechat'        => $data['wechat'],
                 'weibo'         => $data['weibo'],
                 'id_card'       => $data['id_card'],
+                'marriage'      => $data['marriage'],
                 'occupation'    => $data['occupation'],
                 'province'      => $data['province'],
                 'city'          => $data['city'],
@@ -193,6 +198,8 @@ class UserModel extends BaseModel {
         ]);
         return $affected_number > 0 ? true : false;
     }
+
+
 
     /**
      * 查找添加好友
