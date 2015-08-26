@@ -38,9 +38,17 @@ class HproseProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bind('App\Library\Hprose', function($app){
-            require_once app_path() .  '/Library/Hprose/Hprose.php';
+		require_once app_path() .  '/Library/Hprose/Hprose.php';
+
+		$this->app->bind('\Hprose\Http\Client', function($app){
+			//注册对象
+			return new Client();
         });
+
+		$this->app->bind('\Hprose\Http\Server', function($app){
+			//注册对象
+			return new Server();
+		});
 	}
 
 }

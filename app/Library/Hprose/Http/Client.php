@@ -145,6 +145,7 @@ namespace Hprose\Http {
             return parent::useService($url, $namespace);
         }
         private function initCurl($curl, $request) {
+
             curl_setopt($curl, CURLOPT_URL, $this->url);
             curl_setopt($curl, CURLOPT_HEADER, true);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

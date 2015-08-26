@@ -25,7 +25,7 @@
 
 
     <div class="logo-error">
-        <h1>Apricot
+        <h1>Apricot <?php print_r($_SERVER) ;?>
             <span>v1.0</span>
         </h1>
     </div>

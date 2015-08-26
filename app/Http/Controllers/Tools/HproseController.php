@@ -16,13 +16,10 @@ use App;
 
 use App\Model\Admin\NewsModel;
 
-use App\Library\Hprose;
-
-use HproseHttpService;
-
 class HproseController extends BaseController{
 
-    private $hprose;
+    private $Client;
+    private $Server;
 
     /**
      * 构造函数
@@ -31,9 +28,8 @@ class HproseController extends BaseController{
      */
     public function __construct(){
         //设置对象
-        $this->hprose = App::make('App\Library\Hprose');
-        //加载网址
-        $this->hprose->load_file('http://www.xinhuanet.com/sports/xj.htm');
+        $this->Client = App::make('\Hprose\Http\Client');
+        $this->Server = App::make('\Hprose\Http\Server');
     }
 
     /**
@@ -42,22 +38,17 @@ class HproseController extends BaseController{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
-        //获得任务
-        $all_task = config('config.html');
-        var_dump($all_task);
+        $this->Client->useService(action('Tools\HproseController@getIndex2'));
+        var_dump($this->Client->a());
+    }
 
-        if(!empty($all_task)){
-            foreach($all_task as $task){
-                foreach($this->html->find($task['parent_dom']) as $article) {
-                    NewsModel::create([
-                        'title'         => $article->find($task['child_dom'], 0)->plaintext,
-                        'site_url'      => $article->find($task['child_dom'], 0)->getAttribute('href'),
-                        'status'        => 1,
-                        'news_cat_id'   => $task['cat_id'],
-                    ]);
-                }
-            }
-        }
+    public function getIndex2(){
+        $this->Server->addMethods(['a'], new App\Http\Controllers\Tools\HtmlDomController(), ['b']);
+    }
+
+
+    public function a($param){
+        echo '这里是'.$param;
     }
 
 

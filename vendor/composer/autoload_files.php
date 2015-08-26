@@ -20,4 +20,5 @@ return array(
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/mews/captcha/src/helpers.php',
+    $vendorDir . '/hprose/hprose/src/Hprose.php',
 );

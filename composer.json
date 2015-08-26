@@ -21,7 +21,8 @@
         "ender/laravel-ueditor":"0.8.*",
         "rcrowe/turbo": "0.2.*",
         "mews/captcha": "~2.0",
-	    "hprose/hprose": "dev-master"
+	    "hprose/hprose": "dev-master",
+        "predis/predis": "~1.1@dev"
 
 	},
    "minimum-stability": "dev",

@@ -99,5 +99,8 @@ class HtmlDomController extends BaseController{
         HtmlModel::task($title, $url, $task['cat_id']);
     }
 
+    public function a(){
+        echo 'this is a';
+    }
 
 }
