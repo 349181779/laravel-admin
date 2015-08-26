@@ -165,6 +165,7 @@ namespace Hprose\Http {
             foreach ($this->header as $name => $value) {
                 $headers_array[] = $name . ": " . $value;
             }
+
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers_array);
             if ($this->proxy) {
                 curl_setopt($curl, CURLOPT_PROXY, $this->proxy);

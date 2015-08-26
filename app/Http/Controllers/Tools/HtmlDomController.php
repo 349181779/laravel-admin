@@ -100,7 +100,7 @@ class HtmlDomController extends BaseController{
     }
 
     public function a(){
-        echo 'this is a';
+        return false;
     }
 
 }
