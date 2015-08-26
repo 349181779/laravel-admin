@@ -38,12 +38,13 @@ class HproseController extends BaseController{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(){
-        $this->Client->useService(action('Tools\HproseController@getIndex2'));
+        $this->Client->useService(action('Tools\HproseController@postIndex2'));
         var_dump($this->Client->a());
     }
 
     public function getIndex2(){
-        $this->Server->addMethods(['a'], new App\Http\Controllers\Tools\HtmlDomController(), ['b']);
+        print_r(new App\Http\Controllers\Tools\HtmlDomController());die;
+        $this->Server->addMethod('a', new App\Http\Controllers\Tools\HtmlDomController());
     }
 
 
