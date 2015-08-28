@@ -46,7 +46,7 @@ class IndexController extends BaseController {
 	 * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function getIndex(){ dd(\Route::currentRouteName());
+	public function getIndex(){ 
         return view('user.index.index', [
             'all_site'      => IndexModel::getAllSite(),
             'title'         => '会员-首页',
