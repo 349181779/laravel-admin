@@ -63,7 +63,7 @@ class LetterModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function addFriendLetter(){
-        return self::mergeLetter(self::where('type', '=', 1)->where('send_uid', '=', is_user_login())->where('status', '=', 2)->groupBy('send_uid')->paginate(config('config.letter_page_limit')));
+        return self::mergeLetter(self::where('type', '=', 1)->where('send_uid', '=', is_user_login())->groupBy('send_uid')->paginate(config('config.letter_page_limit')));
     }
 
     /**

@@ -67,9 +67,10 @@
                 processData: true
             }).success(function (data) {
                 if(data.code == 200){
+                    toastr.success(data.msg);
                     $('.avatar-img').attr('src', data.data)
                 }else if(data.code == 400){
-                    toastr.warning(data.message);
+                    toastr.warning(data.msg);
                     //$('.text-danger').text(data.message)
                 }
                 //$('#avatar_form').trigger('onJson', [json])
