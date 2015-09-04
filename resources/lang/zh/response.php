@@ -49,4 +49,6 @@ return [
     'can_not_add_their_own_friends' => '不能添加自己为好友',
     'confirm_add_friend_success'    => '确认添加好友成功',
 
+    'update_user_news_category_success' => '更新新闻分类成功',
+    'update_user_news_category_error' => '更新新闻分类失败',
 ];

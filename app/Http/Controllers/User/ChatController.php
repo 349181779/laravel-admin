@@ -37,8 +37,15 @@ class ChatController extends BaseController {
 		//加载函数库
 		load_func('swoole,instanceof');
 
+		$redis = get_redis();
+
 		//获得发送对象$fb
-		$user_info = unserialize(get_redis()->hGet(config('config.user_list_hash_table'), $data['id']));
+		$user_info = unserialize($redis->hGet(config('config.user_list_hash_table'), $data['id']));
+
+		//如果当前用户不在登录状态，则保存信息到未读信息
+//		if(){
+//
+//		}
 
 		//发送消息
 		send_message_to_swoole_server('', [ 'user_id'=> Session::get('user_info.id'), 'fd'=>$user_info->fd, 'data'=>$data], '');

@@ -16,6 +16,7 @@ return [
 
     //redis缓存名称
     'user_list_hash_table' => 'user_list',//用户列表hash
+    'websocket_list'    => 'web_socket_list',//用户连接 web socket 列表数据
 
     'forum_page_limit'=>10,//论坛分页
     'forum_comment_page_limit'=> 10,//论坛回复分页

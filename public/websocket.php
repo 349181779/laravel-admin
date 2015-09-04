@@ -10,8 +10,9 @@
 
 class SwooleWebSocket{
 
-    private $web_socket;
-    private $swoole_config;
+    private $web_socket;//web socket对象
+    private $swoole_config;//swoole配置文件
+    private $config;//配置文件
 
     /**
      * 构造方法
@@ -39,7 +40,8 @@ class SwooleWebSocket{
      */
     private function set(){
         $this->web_socket->set([
-            'daemonize'                 => $this->swoole_config['daemonize'],
+            'daemonize'             => $this->swoole_config['daemonize'],
+            'log_file'              => $this->swoole_config['web_socket_log_file'],
         ]);
     }
 
@@ -55,6 +57,21 @@ class SwooleWebSocket{
     }
 
     /**
+     * 此事件在worker进程/task进程启动时发生
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function onWorkerStart(){
+        //引入函数库
+        require_once dirname(__DIR__) . '/app/libraries/common.func.php';
+        require_once dirname(__DIR__) . '/app/libraries/instanceof.func.php';
+
+        //引入配置文件
+        $this->config = include dirname(__DIR__) . '/config/config.php';
+    }
+
+
+    /**
      * WebSocket客户端与服务器建立连接并完成握手
      *
      * @param swoole_websocket_server $server
@@ -66,7 +83,18 @@ class SwooleWebSocket{
         $data = [
             'cmd'   => 'login',
             'fd'    => $req->fd,
+            'data'  => $server,
         ];
+
+        //开始更新当前连接到redis
+//        get_redis()->hset($this->config['websocket_list'], $req->fd, json_encode([
+//            'master_pid'    => $server['master_pid'],
+//            'manager_pid'   => $server['manager_pid'],
+//            'worker_id'     => $server['worker_id'],
+//            'worker_pid'    => $server['worker_pid'],
+//            'fd'            => $req->fd,
+//        ]));
+
         $server->push($req->fd, json_encode($data));
     }
 
@@ -92,6 +120,10 @@ class SwooleWebSocket{
      * @param $fd
      */
     public function onClose(swoole_websocket_server $server, $fd){
+
+        //销毁当前连接对象
+        get_redis()->hDel($this->config['websocket_list'], $fd);
+
         echo "connection close: ".$fd . $this->swoole_config['package_eof'];;
     }
 }

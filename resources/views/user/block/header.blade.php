@@ -8,8 +8,8 @@
       <div class="wrap">
 	        <div class="nav">
 				<a href="/">首页</a>
-			      	<a href="<?php echo action('User\IndexController@getIndex') ;?>">导航</a>
-					<a href="<?php echo action('Home\NewsController@getIndex') ;?>">新闻</a>
+<!--			      	<a href="--><?php //echo action('User\IndexController@getIndex') ;?><!--">导航</a>-->
+					<a href="<?php echo action('User\NewsController@getIndex') ;?>">新闻</a>
 					<a href="<?php echo action('Home\EmailController@getIndex') ;?>">邮箱</a>
 					<a href="<?php echo action('Home\SearchController@getIndex') ;?>">搜索</a>
 					<a href="<?php echo action('Home\ForumController@getIndex') ;?>">论坛</a>

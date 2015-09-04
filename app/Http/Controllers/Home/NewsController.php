@@ -10,11 +10,7 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Home\BaseController;
-
 use App\Http\Requests;
-
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -41,6 +37,12 @@ class NewsController extends BaseController {
 		]);
 	}
 
+	/**
+	 * 分类页面
+	 *
+	 * @return \Illuminate\View\View
+	 * @author yangyifan <yangyifanphp@gmail.com>
+	 */
 	public function getCategory(){
 		return view('home.news.category', [
 			'all_category'  => NewsModel::getAllCategory(),

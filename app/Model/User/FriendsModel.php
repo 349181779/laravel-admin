@@ -26,7 +26,7 @@ class FriendsModel extends BaseModel {
      * @return mixed
      */
     public static function getMyFriends(){
-        return self::where('user_info_id', '=', is_user_login())->where('deleted_at', '=', '0000-00-00 00:00:00')->lists('friend_user_id');
+        return self::where('user_info_id', '=', is_user_login())->lists('friend_user_id');
     }
 
     /**

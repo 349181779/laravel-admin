@@ -94,26 +94,46 @@
 
 <script>
     <?php if(Session::get('admin_info.id') > 0 ):?>
+
+    /**
+     *  添加网址
+     *
+     */
     function addSite(obj){
         var _this = $(obj);
 
         layer.open({
+            title: "添加网址",
             type: 2,
             skin: 'layui-layer-rim', //加上边框
             area: ['520px', '440px'], //宽高
-            content:'<?php echo action("Home\IndexController@getAddSite") ;?>'
+            content:'<?php echo action("Home\IndexController@getAddSite") ;?>',
+            cancel: function(){
+                layer.closeAll();
+                window.location.href = window.location.href
+            }
         });
 
     }
 
+    /**
+     * 添加网址分类
+     *
+     * @param obj
+     */
     function addSiteCategory(obj){
         var _this = $(obj);
 
         layer.open({
+            title: "添加网址分类",
             type: 2,
             skin: 'layui-layer-rim', //加上边框
             area: ['520px', '440px'], //宽高
-            content:'<?php echo action("Home\IndexController@getAddSiteCategory") ;?>'
+            content:'<?php echo action("Home\IndexController@getAddSiteCategory") ;?>',
+            cancel: function(){
+                layer.closeAll();
+                window.location.href = window.location.href
+            }
         });
 
     }
