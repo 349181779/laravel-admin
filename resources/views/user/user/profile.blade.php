@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link media="all" type="text/css" rel="stylesheet" href="/assets/css/bootstrap.css">
 @section('base_header')
 @include('home.block.base_header')
     <style>
@@ -32,6 +33,7 @@
 					<dd><a href="" class="select_a">基本资料</a></dd>
                     <dd><a href="">账号安全</a></dd>
 					<dd><a href="">好友请求</a></dd>
+                    <dd><a href="">头像</a></dd>
 				</dl>
 			</div>
 			<div class="user-inr" >
@@ -44,6 +46,9 @@
 
 				<!-- 好友请求 -->
 				@include('user.user.profile.add_friend')
+
+                <!-- 头像 -->
+                @include('user.user.profile.change_avatar')
 
 			</div>
 			<div class="clear"></div>

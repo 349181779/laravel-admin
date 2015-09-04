@@ -9,7 +9,7 @@ return [
     'default_image' => 'http://tadmin.louxia100.com/Public/images/load.png',//默认图片
 
     //用户头像图片
-    'user_info_face_prefix' => 'http://7xk0dl.com1.z0.glb.clouddn.com/',//用户头像前缀
+    'user_info_face_prefix' => 'http://7xkzhy.com1.z0.glb.clouddn.com/',//用户头像前缀
 
     //分页
     'page_limit' => '10',//分页条数

@@ -14,7 +14,7 @@ use DB;
 
 use Session;
 
-use App\Model\User\LetterModel;
+use App\Model\User\AvatarModel;
 
 class UserModel extends BaseModel {
 
@@ -72,8 +72,11 @@ class UserModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getUserProfile($user_id = null){
-        $user_id                    = !empty($user_id) ? $user_id : Session::get('user_info.id');
-        $user_profile               = self::find($user_id);
+        //加载函数库
+        load_func('common');
+
+        $user_id                    = !empty($user_id) ? $user_id : is_user_login();
+        $user_profile               = self::mergeUserInfo(self::find($user_id));
         $user_profile->user_profile = self::getUserOtherProfile($user_id);
         return $user_profile;
     }
@@ -110,8 +113,7 @@ class UserModel extends BaseModel {
      */
     private static function mergeUserInfo($user_info){
         if(!empty($user_info)){
-            load_func('image');
-            $user_info->face        = get_user_info_face($user_info->face);
+            $user_info->face        = AvatarModel::getUserRealAvatar($user_info->face);
             $user_info->url         = action("User\UserController@getIndex", ['id' => $user_info->id]);
             $user_info->user_name   = !empty($user_info->user_name) ? $user_info->user_name : $user_info->email;
             return $user_info;
@@ -127,7 +129,10 @@ class UserModel extends BaseModel {
      */
     public static function updateUserProfile($data){
         if(!empty($data)){
-            $user_id = Session::get('user_info.id');
+            //加载函数库
+            load_func('common');
+
+            $user_id = is_user_login();
 
             //保存用户资料
             $affected_number = self::where('id', '=', $user_id)->update([
@@ -187,7 +192,10 @@ class UserModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function updatePassword($data){
-        $user_id    = Session::get('user_info.id');
+        //加载函数库
+        load_func('common');
+
+        $user_id = is_user_login();
         $user_info  = self::find($user_id);
         //验证密码是否正确
         if(password_verify(trim($data['old_password']), $user_info->password) == false){

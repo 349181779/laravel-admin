@@ -51,4 +51,7 @@ return [
 
     'update_user_news_category_success' => '更新新闻分类成功',
     'update_user_news_category_error' => '更新新闻分类失败',
+
+    'upload_avatar_success' => '上传头像成功',
+    'upload_avatar_error' => '上传头像失败',
 ];
