@@ -58,4 +58,6 @@ return [
     'update_user_access_success' => '更新角色权限成功',
     'update_user_access_error' => '更新角色权限失败',
 
+    'access_error'  => '没有权限',
+
 ];

@@ -14,11 +14,14 @@ use App\Model\Admin\MenuModel;
 
 use Route;
 
+use View;
+
 class BaseController extends \App\Http\Controllers\BaseController {
 
     /**
      * 构造方法
      *
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(){
         //检测登录
@@ -76,7 +79,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
         }
         //如果当前菜单在全局菜单里面，并且不存在角色当前菜单，则没有权限
         if(in_array($this->getCurrentUrl(), $all_menu_url) && !in_array($this->getCurrentUrl(), $all_user_menu_url)){
-            echo '没有权限';die;
+            $this->error(trans('response.access_error'));
         }
 
     }
@@ -88,8 +91,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function getCurrentUrl(){
-
-        if(!empty($_SERVER['REQUEST_URI'])){
+        if(!empty($_SERVER['REQUEST_URI']) && strrpos($_SERVER['REQUEST_URI'], 'index')){
             return url($_SERVER['REQUEST_URI']);
         }
 
@@ -106,4 +108,19 @@ class BaseController extends \App\Http\Controllers\BaseController {
         return action($namespace . '\\' . $action_name);
     }
 
+    /**
+     * 显示错误信息
+     *
+     * @param $info
+     * @param $time
+     * @return \Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function error($info, $time = 3, $jump_url = ''){
+        //跳转地址
+        $jump_url = $jump_url != '' ? $jump_url : action('Admin\HomeController@getIndex');
+
+        echo $info;
+        echo "<script>setTimeout(function(){window.location.href = '{$jump_url}'} ,{$time} * 1000)</script>";die;
+    }
 }

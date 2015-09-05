@@ -159,7 +159,7 @@ class RoleController extends BaseController {
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getAccess(Request $request, $role_id){
+    public function getAccess(Request $request, $role_id = 1){
         return view('admin.menu.user', [
             'all_user_menu' => AccessModel::getFullUserMenu($role_id),
             'role_id'       => $role_id,

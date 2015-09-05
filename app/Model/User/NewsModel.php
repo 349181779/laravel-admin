@@ -116,11 +116,11 @@ class NewsModel extends BaseModel {
      * @return bool
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function updateUserCategory(Array $category_array, $user_id = null){
-        if(!empty($category_array)){
-            //删除会员当前全部新闻分类
-            self::deleteUserCategory();
+    public static function updateUserCategory(Array $category_array = null, $user_id = null){
+        //删除会员当前全部新闻分类
+        self::deleteUserCategory();
 
+        if(!empty($category_array)){
             //加载函数库
             load_func('common');
 
@@ -134,10 +134,8 @@ class NewsModel extends BaseModel {
                     'news_cat_id'   => $category,
                 ]);
             }
-
-            return true;
         }
-        return false;
+        return true;
     }
 
     /**

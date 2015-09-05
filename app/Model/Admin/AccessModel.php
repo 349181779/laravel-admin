@@ -61,11 +61,11 @@ class AccessModel extends BaseModel {
      * @return bool
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function updateUserAccess(Array $access_array, $role_id = null){
-        if(!empty($access_array)){
-            //删除会员当前全部新闻分类
-            self::deleteUserAccess();
+    public static function updateUserAccess(Array $access_array = null, $role_id = null){
+        //删除会员当前全部新闻分类
+        self::deleteUserAccess();
 
+        if(!empty($access_array)){
             //加载函数库
             load_func('common');
 
@@ -79,10 +79,8 @@ class AccessModel extends BaseModel {
                     'menu_id'   => $access,
                 ]);
             }
-
-            return true;
         }
-        return false;
+        return true;
     }
 
     /**
