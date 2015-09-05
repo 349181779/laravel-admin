@@ -27,7 +27,7 @@ class BaseController extends \App\Http\Controllers\BaseController {
      */
     public function __construct(){
         //检测是否登陆
-        $this->checkIsLogin();
+        //$this->checkIsLogin();
         //获得导航数据
         $this->getSearch();
 

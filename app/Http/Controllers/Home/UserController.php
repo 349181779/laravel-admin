@@ -22,7 +22,13 @@ use App\Http\Requests\Home\UserRegisterRequest;
 
 use Session;
 
-class UserController extends BaseController {
+class UserController extends \App\Http\Controllers\BaseController {
+
+    public function __construct(){
+        parent::__construct();
+        //加载函数库
+        load_func('common');
+    }
 
 	/**
 	 * 登录
@@ -52,7 +58,7 @@ class UserController extends BaseController {
 
         switch($login_status){
             case 1:
-                $url = !empty(Session::get('HTTP_REFERER')) ? Session::get('HTTP_REFERER') : action('User\IndexController@getIndex');
+                $url = !empty(Session::get('HTTP_REFERER')) && $_SERVER['HTTP_REFERER'] != action('Home\UserController@getLogin') ? Session::get('HTTP_REFERER') : action('User\IndexController@getIndex');
                 return $this->response(200, trans('response.success'),[], true, $url);
             case -1:
             case -3:
