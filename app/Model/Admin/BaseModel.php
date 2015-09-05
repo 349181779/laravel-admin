@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 
+use \Session;
+
 class BaseModel extends Model{
 
 
@@ -189,6 +191,15 @@ class BaseModel extends Model{
             ]);
         }
         return false;
+    }
+
+    /**
+     * 获得管理员角色id
+     *
+     * @param null $role_id
+     */
+    protected static function getRoleId($role_id = null){
+        return $role_id != null ? $role_id : Session::get('admin_info.role_id');
     }
 
 

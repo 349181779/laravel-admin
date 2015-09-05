@@ -10,7 +10,9 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
+use \Session;
+
+use \DB;
 
 class MenuModel extends BaseModel {
 
@@ -52,14 +54,42 @@ class MenuModel extends BaseModel {
     }
 
     /**
-     * 获得全部菜单--递归（左侧菜单显示）
+     * 获得当前用户全部菜单--递归（左侧菜单显示）
      *
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllForMenuSide(){
+    public static function getUserMenuSide(){
         //加载函数库
-        load_func('common');
-        return merge_tree_child_node(obj_to_array(self::all()));
+        return merge_tree_child_node(obj_to_array(
+            DB::table('role_relation_menu AS rrm')->
+            select('m.*')->
+            join('menu AS m', 'rrm.menu_id', '=', 'm.id')->
+            where('role_id', '=', self::getRoleId())->
+            get()
+        ));
+    }
+
+    /**
+     * 获得角色全部菜单url
+     *
+     * @param null $role_id
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getUserMenu($role_id = null){
+        //获得当前角色id
+        $role_id = AccessModel::getRoleId($role_id);
+
+        return DB::table('role_relation_menu AS rrm')->join('menu AS m', 'rrm.menu_id', '=', 'm.id')->where('rrm.role_id', '=', $role_id)->where('deleted_at', '=', '0000-00-00 00:00:00')->lists('m.url');
+    }
+
+    /**
+     * 获得全部菜单 url
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getAllMenuUrl(){
+        return self::where('deleted_at', '=', '0000-00-00 00:00:00')->lists('url');
     }
 }

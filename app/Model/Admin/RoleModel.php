@@ -35,7 +35,7 @@ class RoleModel extends BaseModel {
                 //组合编辑操作
                 $v->handle  = '<a href="'.url('admin/role/edit', [$v->id]).'" target="_blank" >编辑</a>';
                 $v->handle .= '|';
-                $v->handle .= '<a href="'.url('admin/role/edit', [$v->id]).'" target="_blank" >权限</a>';
+                $v->handle .= '<a href="'.action('Admin\RoleController@getAccess', ['role_id' => $v->id]).'" target="_blank" >权限</a>';
                 $v->handle .= '|';
                 $v->handle  .= '<a onclick="del(this,\''.url('admin/role/delete', [$v->id]).'\')" target="_blank" >删除</a>';
 

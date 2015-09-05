@@ -9,11 +9,16 @@
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Admin;
+
 use Illuminate\Http\Request;
 
 use App\Model\Admin\RoleModel;
 
 use App\Http\Requests\Admin\RoleRequest;
+
+use App\Model\Admin\MenuModel;
+
+use App\Model\Admin\AccessModel;
 
 class RoleController extends BaseController {
 
@@ -146,6 +151,31 @@ class RoleController extends BaseController {
      */
     public function getDelete($id){
         RoleModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
+
+    /**
+     * 获得当前用户权限
+     *
+     * @return \Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getAccess(Request $request, $role_id){
+        return view('admin.menu.user', [
+            'all_user_menu' => AccessModel::getFullUserMenu($role_id),
+            'role_id'       => $role_id,
+        ]);
+    }
+
+    /**
+     * 编辑用户权限
+     *
+     * @param Request $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postAccess(Request $request){
+        $status = AccessModel::updateUserAccess($request->get('menu_id'), $request->get('role_id', null));
+        return $status == true ? $this->response($code = 200, $msg = trans('response.update_user_access_success')) : $this->response(400, trans('response.update_user_access_error'));
+
     }
 
 }

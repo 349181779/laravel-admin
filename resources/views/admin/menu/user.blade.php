@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>菜单列表</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Le styles -->
-@section('header')
-    	@include('admin.block.header')
-    	<link rel="stylesheet" href="/assets/js/tree/jquery.treeview.css">
-        <link rel="stylesheet" href="/assets/js/tree/treetable/stylesheets/jquery.treetable.css">
-        <link rel="stylesheet" href="/assets/js/tree/treetable/stylesheets/jquery.treetable.theme.default.css">
-        <link href="/assets/js/tree/tabelizer/tabelizer.min.css" media="all" rel="stylesheet" type="text/css">
-@show
+  <meta charset="utf-8">
+  <title>菜单列表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le styles -->
+  @section('header')
+  @include('admin.block.header')
+  <style>
+    .horizontal {display: inline-block;margin-left: 10px;}
+    dd{width: 120px;height: auto;}
+  </style>
+  @show
 </head>
 
 <body>
@@ -23,13 +23,13 @@
 
 <!-- TOP NAVBAR -->
 @section('top_side')
-    @include('admin.block.top_side')
+@include('admin.block.top_side')
 @show
 <!-- /END OF TOP NAVBAR -->
 
 <!-- SIDE MENU -->
 @section('side_menu')
-    @include('admin.block.side_menu')
+@include('admin.block.side_menu')
 @show
 <!-- END OF SIDE MENU -->
 
@@ -61,7 +61,7 @@
 
     <!-- main_content -->
     @section('main_content')
-    @include('admin.menu.tree')
+    @include('admin.menu.access')
     @show
     <!-- END OF main_content -->
 
@@ -79,29 +79,48 @@
 
 <!-- RIGHT SLIDER CONTENT -->
 @section('right')
-    @include('admin.block.main_right')
+@include('admin.block.main_right')
 @show
 
 <!-- END OF RIGHT SLIDER CONTENT-->
 
 <!-- MAIN EFFECT -->
 @section('js')
-	@include('admin.block.footer_js')
+@include('admin.block.footer_js')
 @show
 <!-- /MAIN EFFECT -->
 
-<!-- GAGE -->
-<script src="/assets/js/tree/lib/jquery.cookie.js" type="text/javascript"></script>
-<script src="/assets/js/tree/jquery.treeview.js" type="text/javascript"></script>
-<script src="/assets/js/tree/tabelizer/jquery-ui-1.10.4.custom.min.js"></script>
-<script src="/assets/js/tree/tabelizer/jquery.tabelizer.js"></script>
-<script src="/assets/js/tree/treetable/vendor/jquery-ui.js"></script>
-<script src="/assets/js/tree/treetable/javascripts/src/jquery.treetable.js"></script>
-
 <script>
-$("#example-advanced").treetable({
-    expandAll: true
-});
+
+  function checke_all(obj){
+    var _this = $(obj);
+    if(_this.prop('checked') == true){
+      $('input[type=checkbox]').prop('checked', 'checked');
+    }else{
+      $('input[type=checkbox]').removeAttr('checked');
+    }
+
+  }
+
+  function check_first_input(obj){
+    var _this = $(obj);
+    if(_this.prop('checked') == true){
+      _this.parents('dl').find('input').prop('checked','checked');
+    }else{
+      _this.parents('dl').find('input').removeAttr('checked');
+    }
+
+  }
+
+  function check_second_input(obj){
+    var _this = $(obj);
+    if(_this.prop('checked') == true){
+      _this.parents('dt').find('input').prop('checked','checked');
+    }else{
+      _this.parents('dt').find('input').removeAttr('checked');
+    }
+  }
+
 </script>
 
 
