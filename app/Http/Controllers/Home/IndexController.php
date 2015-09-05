@@ -10,8 +10,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Home\BaseController;
-
 use App\Http\Requests;
 
 use Illuminate\Http\Request;

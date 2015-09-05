@@ -10,8 +10,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Home\BaseController;
-
 use App\Http\Requests;
 
 use Illuminate\Http\Request;
@@ -19,8 +17,6 @@ use Illuminate\Http\Request;
 use App\Model\Home\ForumModel;
 
 use App\Http\Requests\Home\ForumRequest;
-
-use App\Model\Admin\ForumCatModel;
 
 use App\Model\User\UserModel;
 

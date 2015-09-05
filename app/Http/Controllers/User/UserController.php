@@ -10,11 +10,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\User\BaseController;
-
 use App\Http\Requests;
-
-use App\Http\Controllers\Controller;
 
 use App\Model\User\LetterModel;
 
@@ -25,8 +21,6 @@ use App\Model\User\UserModel;
 use App\Http\Requests\User\UserProfileRequest;
 
 use App\Http\Requests\User\Passwordequest;
-
-use App\Http\Requests\User\AddUsersRequest;
 
 class UserController extends BaseController {
 

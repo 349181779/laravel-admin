@@ -10,8 +10,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
-
 use App\Model\Home\BaseModel;
 
 use Session;

@@ -16,8 +16,6 @@ use App\Model\Admin\RoleModel;
 
 use App\Http\Requests\Admin\RoleRequest;
 
-use App\Model\Admin\MenuModel;
-
 use App\Model\Admin\AccessModel;
 
 class RoleController extends BaseController {

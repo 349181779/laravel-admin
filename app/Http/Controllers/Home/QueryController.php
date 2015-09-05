@@ -10,13 +10,7 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Home\BaseController;
-
 use App\Http\Requests;
-
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 
 use App\Model\Home\QueryModel;
 

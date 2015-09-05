@@ -10,11 +10,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\User\BaseController;
-
 use App\Http\Requests;
-
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
