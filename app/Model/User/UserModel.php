@@ -14,8 +14,6 @@ use DB;
 
 use Session;
 
-use App\Model\User\AvatarModel;
-
 class UserModel extends BaseModel {
 
     protected $table    = 'user_info';//定义表名

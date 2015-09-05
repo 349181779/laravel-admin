@@ -10,8 +10,6 @@
 
 namespace App\Model\User;
 
-use App\Model\Admin\BaseModel;
-
 class SiteCatModel extends BaseModel {
 
     protected $table    = 'user_site_cat';//定义表名

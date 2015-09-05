@@ -60,8 +60,10 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'],function(){
     Route::controller('app-cat', 'AppCatController');
     //App
     Route::controller('app', 'AppController');
-    //论坛
+    //论坛分类
     Route::controller('forum-cat', 'ForumCatController');
+    //论坛
+    Route::controller('forum', 'ForumController');
 });
 
 //Tools

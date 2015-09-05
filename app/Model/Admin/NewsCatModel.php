@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class NewsCatModel extends BaseModel {
 
     protected $table    = 'news_cat';//定义表名

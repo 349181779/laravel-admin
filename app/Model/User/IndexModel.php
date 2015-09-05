@@ -10,8 +10,6 @@
 
 namespace App\Model\User;
 
-use App\Model\User\BaseModel;
-
 use DB;
 
 class IndexModel extends BaseModel {

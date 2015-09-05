@@ -10,8 +10,6 @@
 
 namespace App\Model\Home;
 
-use App\Model\Home\BaseModel;
-
 use DB;
 
 class EmailModel extends BaseModel {

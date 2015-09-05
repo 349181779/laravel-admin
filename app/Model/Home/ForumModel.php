@@ -10,8 +10,6 @@
 
 namespace App\Model\Home;
 
-use App\Model\Home\BaseModel;
-
 use App\Model\User\UserModel;
 
 use DB;

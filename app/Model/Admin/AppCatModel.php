@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class AppCatModel extends BaseModel {
 
     protected $table    = 'app_cat';//定义表名

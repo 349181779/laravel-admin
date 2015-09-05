@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class ConfigModel extends BaseModel {
 
     protected $table    = 'config';//定义表名

@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class UserInfoModel extends BaseModel {
 
     protected $table    = 'user_info';//定义表名

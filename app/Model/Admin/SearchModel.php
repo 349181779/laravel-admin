@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class SearchModel extends BaseModel {
 
     protected $table    = 'search';//定义表名

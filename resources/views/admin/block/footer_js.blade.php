@@ -3,6 +3,6 @@
 <script src="/js/jquery.pjax.js"></script>
 <script>
 $(function(){
-    $(document).pjax('a', 'body');
+    //$(document).pjax('a', 'body');
 })
 </script>

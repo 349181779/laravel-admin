@@ -24,6 +24,9 @@ return [
     //私信
     'letter_page_limit'=>10,//私信分页数量
 
+    //允许查看全部论坛角色组
+    'forum_cat_supper_role_ids' => [1, 2, 3],
+
     //采集配置
     'html'  => [
 

@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class EmailModel extends BaseModel {
 
     protected $table    = 'email';//定义表名

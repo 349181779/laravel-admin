@@ -1,18 +1,18 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-07-22
+// | date: 2015-09-05
 // +----------------------------------------------------------------------
-// | AppModel.php: 后端App模型
+// | ForumModel.php: 后端论坛模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Model\Admin;
 
-class AppModel extends BaseModel {
+class ForumModel extends BaseModel {
 
-    protected $table    = 'app';//定义表名
+    protected $table    = 'forum';//定义表名
     protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
@@ -29,16 +29,18 @@ class AppModel extends BaseModel {
         return [
             'data' => self::mergeData(
                 self::multiwhere($map)->
-                select('c.cat_name', 'app.*')->
-                join('app_cat as c', 'app.app_cat_id', '=', 'c.id')->
-                orderBy('app.'.$sort, $order)->
+                select('c.cat_name', 'u.email', 'forum.*')->
+                join('forum_cat as c', 'forum.forum_cat_id', '=', 'c.id')->
+                join('user_info as u', 'forum.user_info_id', '=', 'u.id')->
+                orderBy('forum.'.$sort, $order)->
                 skip($offset)->
                 take($limit)->
                 get()
             ),
             'count' =>  self::multiwhere($map)->
-            join('app_cat as c', 'app.app_cat_id', '=', 'c.id')->
-            count(),
+                        join('forum_cat as c', 'forum.forum_cat_id', '=', 'c.id')->
+                        join('user_info as u', 'forum.user_info_id', '=', 'u.id')->
+                        count(),
         ];
     }
 
@@ -55,14 +57,12 @@ class AppModel extends BaseModel {
                 //组合状态
                 $v->status = self::mergeStatus($v->status);
                 //组合操作
-                $v->handle  = '<a href="'.url('admin/app/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  = '<a href="'.action('Home\ForumController@getInfo', [$v->id]).'" target="_blank" >查看</a>';
                 $v->handle  .= ' | ';
-                $v->handle  .= '<a onclick="del(this,\''.url('admin/app/delete', [$v->id]).'\')" target="_blank" >删除</a>';
+                $v->handle  .= '<a onclick="del(this,\''.action('Admin\ForumController@getDelete', [$v->id]).'\')" target="_blank" >删除</a>';
             }
         }
         return $data;
     }
-
-
 
 }

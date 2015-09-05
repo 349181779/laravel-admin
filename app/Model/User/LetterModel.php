@@ -10,10 +10,6 @@
 
 namespace App\Model\User;
 
-use App\Model\User\BaseModel;
-
-use App\Model\User\UserModel;
-
 use Session;
 
 class LetterModel extends BaseModel {

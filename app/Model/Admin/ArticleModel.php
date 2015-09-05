@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class ArticleModel extends BaseModel {
 
     protected $table    = 'article';//定义表名

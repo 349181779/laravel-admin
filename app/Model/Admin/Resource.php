@@ -10,8 +10,6 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\BaseModel;
-
 class Resource extends BaseModel {
 
     protected $table    = 'resource';//定义表名

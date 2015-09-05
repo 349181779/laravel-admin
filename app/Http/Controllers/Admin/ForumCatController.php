@@ -10,13 +10,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
-
 use App\Model\Admin\ForumCatModel;
 
 use App\Http\Requests\Admin\ForumCatRequest;
+
+use App\Model\Admin\RoleModel;
 
 class ForumCatController extends BaseController {
 
@@ -60,6 +58,12 @@ class ForumCatController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit($id){
+        //验证权限
+        $this->checkAccess($id);
+
+        //获得当前论坛栏目信息
+        $forum_cat_info = ForumCatModel::find($id);
+
         return  $this->html_builder->
                 builderTitle('编辑论坛分类')->
                 builderFormSchema('id', 'id', 'hidden')->
@@ -70,8 +74,9 @@ class ForumCatController extends BaseController {
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
                 builderFormSchema('is_show', '是否设置为推荐', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('sort', '菜单排序')->
+                builderFormSchema('access', '权限设置', 'multiSelect', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = RoleModel::select('id', 'role_name')->where('status', '=', 1)->get(), $option_value_schema = ForumCatModel::getUserForumCat($forum_cat_info->id))->
                 builderConfirmBotton('确认', url('admin/forum-cat/edit'), 'btn btn-success')->
-                builderEditData(ForumCatModel::find($id))->
+                builderEditData($forum_cat_info)->
                 builderEdit();
     }
 
@@ -82,7 +87,19 @@ class ForumCatController extends BaseController {
      */
     public function postEdit(ForumCatRequest $request){
         $Model = ForumCatModel::findOrFail($request->get('id'));
-        $Model->update($request->all());
+
+        $data = $request->all();
+
+        //删除值
+        unset($data['selectL']);
+        unset($data['selectR']);
+
+        //更新当前分类权限
+        $data['access'] = explode(',', trim($data['access'], ',') );
+        ForumCatModel::updateCategoryAccess($data['access'], $data['id']);
+        unset($data['access']);
+
+        $Model->update($data);
         //更新成功
         return $this->response(200, trans('response.update_success'), [], true , url('admin/forum-cat/index'));
     }
@@ -103,6 +120,7 @@ class ForumCatController extends BaseController {
                 builderFormSchema('status', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '1')->
                 builderFormSchema('is_show', '是否设置为推荐', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'], '2')->
                 builderFormSchema('sort', '菜单排序', 'text', 255)->
+                builderFormSchema('access', '权限设置', 'multiSelect', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = RoleModel::select('id', 'role_name')->where('status', '=', 1)->get(), $option_value_schema = [])->
                 builderConfirmBotton('确认', url('admin/forum-cat/add'), 'btn btn-success')->
                 builderAdd();
     }
@@ -113,7 +131,18 @@ class ForumCatController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function postAdd(ForumCatRequest $request){
-        $affected_number = ForumCatModel::create($request->all());
+        $data = $request->all();
+
+        //删除值
+        unset($data['selectL']);
+        unset($data['selectR']);
+
+        //更新当前分类权限
+        $data['access'] = explode(',', trim($data['access'], ',') );
+        ForumCatModel::updateCategoryAccess($data['access'], $data['id']);
+        unset($data['access']);
+
+        $affected_number = ForumCatModel::create($data);
         return $affected_number->id > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/forum-cat/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/forum-cat/index'));
     }
 
@@ -125,7 +154,23 @@ class ForumCatController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getDelete($id){
+        //验证权限
+        $this->checkAccess($id);
+
+
         ForumCatModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+    }
+
+    /**
+     * 验证论坛栏目权限
+     *
+     * @param $id
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function checkAccess($id){
+        //验证角色权限
+        $status = ForumCatModel::checkAccess($id);
+        if($status == false) $this->error(trans('response.access_error'));
     }
 
 }

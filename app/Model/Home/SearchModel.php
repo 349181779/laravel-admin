@@ -10,11 +10,7 @@
 
 namespace App\Model\Home;
 
-use App\Model\Home\BaseModel;
-
 use DB;
-
-use App\Model\Home\IndexModel;
 
 class SearchModel extends BaseModel {
 

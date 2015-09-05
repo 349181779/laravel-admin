@@ -14,8 +14,6 @@ use Session;
 
 use DB;
 
-use App\Model\Admin\BaseModel;
-
 class AdminInfoModel extends BaseModel {
 
     protected $table    = 'admin_info';//定义表名
