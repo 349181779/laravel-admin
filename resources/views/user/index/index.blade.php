@@ -55,7 +55,7 @@
 										   <?php if(count($site_cat->site) >= 32):?>
 											   <span class="in_more"><a target="_blank" href="<?php echo action('Home\IndexController@getInfo', [$site_cat->id]) ;?>">更多</a></span>
 										   <?php endif;?>
-										   
+
                                        <?php endif;?>
                                    </div>
                                    <div class="clear"></div>

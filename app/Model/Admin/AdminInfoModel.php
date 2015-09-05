@@ -90,6 +90,7 @@ class AdminInfoModel extends BaseModel {
      */
     public static function logout(){
         Session::flush();
+        Session::save();
     }
 
     /**
