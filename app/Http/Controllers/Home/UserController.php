@@ -93,7 +93,7 @@ class UserController extends \App\Http\Controllers\BaseController {
      */
     public function getLogout(){
         UserModel::logout();
-        $this->response(200, trans('response.success'), [], true, action('Home\IndexController@getIndex'));
+        $this->response(200, trans('response.logout_success'), [], true, action('Home\IndexController@getIndex'));
     }
 
     /**

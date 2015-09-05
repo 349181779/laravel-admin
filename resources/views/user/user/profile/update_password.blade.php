@@ -1,6 +1,6 @@
 <div class="user-inr1" style="display:none;">
 	<h4>账号安全</h4>
-	<form name="form1" class="ajax-form" method="post" action="<?php echo action('User\UserController@postUpdatePassword') ;?>">
+	<form name="form1" class="ajax-form" method="post" action="<?php echo action('User\ProfileController@postUpdatePassword') ;?>">
 		<table width="100%" border="0" class="tab_rgst">
 			<tr>
 				<td><div align="right">旧密码：</div></td>

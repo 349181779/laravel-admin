@@ -130,7 +130,7 @@ class ForumController extends BaseController {
             'node'          => $data['node'] > 0 ? (int)$data['node'] : 0,
         ]);
 
-        $affected_number > 0 ? $this->response(200, 'success') : $this->response(400, trans('response.comment_forum_error'));
+        $affected_number > 0 ? $this->response(200, trans('response.comment_forum_success')) : $this->response(400, trans('response.comment_forum_error'));
     }
 
     /**

@@ -23,7 +23,7 @@ class UserProfileRequest extends BaseFormRequest {
         return [
             'email'                     => ['required', 'email'],
             'user_name'                 => ['required', ],
-            'mobile'                    => ['required', 'digits:11'],
+            'mobile'                    => ['digits:11'],
             'captcha'                   => ['required', 'captcha'],
             'sex'                       => ['required', 'in:1,2,3'],
             'year'                      => ['required', 'date_format:Y'],
@@ -50,7 +50,7 @@ class UserProfileRequest extends BaseFormRequest {
             'email.email'                       => trans('validate.email_error'),
             'email.unique'                      => trans('validate.email_unique'),
             'user_name.required'                => trans('validate.user_name_require'),
-            'mobile.mobile_require'             => trans('validate.mobile_require'),
+            'mobile.required'             => trans('validate.mobile_require'),
             'mobile.digits'                     => trans('validate.mobile_error'),
             'mobile.unique'                     => trans('validate.mobile_unique'),
             'captcha.required'                  => trans('validate.verify_reuqire'),

@@ -124,5 +124,7 @@ Route::group(['prefix'=> 'user', 'namespace' => 'User'], function(){
     Route::controller('add-friend', 'AddFriendController');
     //用户头像
     Route::controller('avatar', 'AvatarController');
+    //用户资料
+    Route::controller('profile', 'ProfileController');
 
 });

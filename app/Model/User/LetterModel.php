@@ -72,7 +72,7 @@ class LetterModel extends BaseModel {
     private static function mergeLetter($data){
         if(!empty($data)){
             foreach($data as $letter){
-                $letter->user_info = UserModel::getUserSimpleInfo($letter->user_info_id);
+                $letter->user_info = ProfileModel::getUserSimpleInfo($letter->user_info_id);
             }
         }
         return $data;

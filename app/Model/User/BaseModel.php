@@ -79,37 +79,50 @@ class BaseModel extends Model{
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function DegreeOfCompletion(){
-        //加载函数库
-        load_func('common');
+    public static function DegreeOfCompletion($user_id = null){
+        $user_id = self::getUserId($user_id);
 
         //获得用户详细信息
-        $data = DB::table('user_profile')->where('user_info_id', '=', is_user_login())->first();
+        $data               = DB::table('user_info')->where('id', '=', $user_id)->first();
+        $data->user_profile = ProfileModel::getUserOtherProfile($user_id);
 
         $total = 0;
 
         if(!empty($data->mobile)){
             $total += 10;
         }
-        if(!empty($data->truename)){
+        if(!empty($data->user_profile->truename)){
             $total += 10;
         }
         if(!empty($data->sex)){
             $total += 10;
         }
-        if(!empty($data->id_card)){
+        if(!empty($data->user_profile->id_card)){
             $total += 10;
         }
-        if(!empty($data->marriage)){
+        if(!empty($data->user_profile->marriage)){
             $total += 10;
         }
 
         if($total >= 50){
             Session::put('user_info.level', '2');
+        }else{
+            Session::put('user_info.level', '1');
         }
-
-        Session::put('user_info.level', '1');
         Session::save();
+    }
+
+    /**
+     * 获得用户id
+     *
+     * @param $user_id
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected static function getUserId($user_id){
+        //加载函数库
+        load_func('common');
+        return $user_id != null ? $user_id : is_user_login();
     }
 }
 

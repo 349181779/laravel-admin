@@ -12,15 +12,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Requests;
 
-use App\Model\User\LetterModel;
-
 use Illuminate\Http\Request;
 
 use App\Model\User\UserModel;
-
-use App\Http\Requests\User\UserProfileRequest;
-
-use App\Http\Requests\User\Passwordequest;
 
 class UserController extends BaseController {
 
@@ -120,53 +114,6 @@ class UserController extends BaseController {
         ];
         //响应
         return $this->response($code = 200, $msg = '', $data = $data, $target = true, $href = '');
-    }
-
-
-    /**
-     * 用户详细资料
-     *
-     * @return \Illuminate\View\View
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getProfile(){
-        return view('user.user.profile', [
-            'title'             => '会员-详细资料管理',
-            'keywords'          => '会员-详细资料管理',
-            'description'       => '会员-详细资料管理',
-            'user_profile'      => UserModel::getUserProfile(),
-            'add_friend_letter' => LetterModel::addFriendLetter(),
-        ]);
-    }
-
-    /**
-     * 保存用户详细资料
-     *
-     * @param UserProfileRequest $request
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function postProfile(UserProfileRequest $request){
-        UserModel::updateUserProfile($request->all()) == true ? $this->response(200, 'success') : $this->response(400, trans('response.update_user_profile_error'));
-    }
-
-    /**
-     * 更新用户密码
-     *
-     * @param Passwordequest $request
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function postUpdatePassword(Passwordequest $request){
-        $status = UserModel::updatePassword($request->only('old_password', 'password'));
-
-        if($status === true){
-            $this->response(200, trans('response.update_user_password_success'));
-        }else{
-            if($status == -1){
-                $this->response(400, trans('response.old_password_error'));
-            }else if($status === false){
-                $this->response(400, trans('response.update_user_password_error'));
-            }
-        }
     }
 
 }

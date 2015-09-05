@@ -83,7 +83,7 @@
         <?php endif;?>
 
         <?php if(!empty($user_profile->user_profile->marriage)):?>
-            $('select[name=marriage]').val(<?php echo $user_profile->user_profile->marriage ;?>);
+            $('.marriage').val(<?php echo $user_profile->user_profile->marriage ;?>);
         <?php endif;?>
     })
 </script>

@@ -18,7 +18,7 @@ use App\Model\Home\ForumModel;
 
 use App\Http\Requests\Home\ForumRequest;
 
-use App\Model\User\UserModel;
+use App\Model\User\ProfileModel;
 
 use Session;
 
@@ -71,7 +71,7 @@ class ForumController extends BaseController {
 
 
         return view('home.forum.info', [
-            'user_profile'          => UserModel::getUserProfile($forum_info->user_info_id),
+            'user_profile'          => ProfileModel::getUserProfile($forum_info->user_info_id),
             'data'                  => $forum_info,
             'title'                 => '论坛-'.$forum_info->title,
             'keywords'              => '论坛-'.$forum_info->title,

@@ -10,9 +10,9 @@
 
 namespace App\Model\Home;
 
-use App\Model\User\UserModel;
-
 use DB;
+
+use App\Model\User\ProfileModel;
 
 class ForumModel extends BaseModel {
 
@@ -40,7 +40,7 @@ class ForumModel extends BaseModel {
 
         if(!empty($forum_list)){
             foreach($forum_list as &$forum){
-                $forum->user_info       = UserModel::getUserSimpleInfo($forum->user_info_id);
+                $forum->user_info       = ProfileModel::getUserSimpleInfo($forum->user_info_id);
                 $forum->last_comment    = self::getForumLastComment($forum->id);
                 $forum->total_comment   = self::getTotalComment($forum->id);
             }
@@ -119,7 +119,7 @@ class ForumModel extends BaseModel {
 
         if(!empty($comment_list)){
             foreach($comment_list as $comment){
-                $comment->user_info = UserModel::getUserSimpleInfo($comment->user_info_id);
+                $comment->user_info = ProfileModel::getUserSimpleInfo($comment->user_info_id);
             }
         }
         return $comment_list;

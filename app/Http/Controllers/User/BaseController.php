@@ -12,6 +12,8 @@ namespace App\Http\Controllers\User;
 
 use App\Model\Home\BaseModel;
 
+use App\Model\Home\UserModel;
+use App\Model\User\ProfileModel;
 use Session;
 
 use Request;
@@ -27,7 +29,9 @@ class BaseController extends \App\Http\Controllers\BaseController {
      */
     public function __construct(){
         //检测是否登陆
-        //$this->checkIsLogin();
+        $this->checkIsLogin();
+        //检测用户等级
+        $this->checkAccess();
         //获得导航数据
         $this->getSearch();
 
@@ -59,6 +63,27 @@ class BaseController extends \App\Http\Controllers\BaseController {
      */
     private function getSearch(){
         view()->share('all_search', BaseModel::getSearch());
+    }
+
+    /**
+     * 检测用户等级
+     *
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function checkAccess(){
+        $allow_action = [
+            'App\Http\Controllers\User\ProfileController@getProfile',
+            'App\Http\Controllers\User\ProfileController@postProfile',
+        ];
+        //如果当前角色等级不够，则不允许访问当前页面
+        if(!in_array(Route::currentRouteAction(), $allow_action) && ProfileModel::checkUserLevel() == false ){
+           if(Request::method() == 'POST'){
+               $this->response(400, trans('response.user_access_error'));
+           }else{
+               header('location:'. action('Home\IndexController@getIndex'));die;
+           }
+        }
     }
 
 }

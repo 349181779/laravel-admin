@@ -7,7 +7,7 @@
             <input type="text" class="txt_so" id="search-input" value="" />
             <div id="search_hotword" class="" style="display: none;"></div>
         </div>
-        <input type="submit" class="so_sub" value="搜索一下"  />
+        <input type="submit" class="so_sub" value="百度一下"  />
         <div class="clear"></div>
     </form>
     <div class="search-span" id="search-suggest" style="display:none;">
@@ -19,7 +19,7 @@
         </ul>
     </div>
 </div>
-<div  class="so_radio">
+<div  class="so_radio" style="display: none;;">
     <?php if(!empty($all_search)):?>
     <?php foreach($all_search as $search):?>
     <?php if($search->is_default == 1):?>

@@ -10,8 +10,8 @@
 
 
 return [
-    'success' => 'success',
-    'unauthorized'=>'Unauthorized',
+    'success' => '操作成功',
+    'unauthorized'=>'没有授权',
     'admin_not_exists' => '用户不存在或者密码错误！',
     'admin_disable'=>'当前用户已被禁用，请联系管理员yangyifan@fengqianqian.com！',
     'update_success'=>'更新成功',
@@ -35,6 +35,7 @@ return [
     'save_user_info_to_redis_error'=>'保存用户到redis失败',
     'connet_web_socket_error'=>'连接失败，请重试！',
     'save_user_socket_to_redis_error' => '连接失败，请重试！',
+    'update_profile_success'    => '修改个人资料成功',
     'update_user_profile_error' => '保存用户详细信息失败',
     'update_user_password_error'  => '更新用户密码失败',
     'old_password_error'  => '旧密码错误',
@@ -42,6 +43,7 @@ return [
     'page_error'    => '页面错误',
     'forum_comment_reuqire' => '评论内容不能为空',
     'comment_forum_error'   => '发表帖子评论失败',
+    'comment_forum_success'   => '发表帖子评论成功',
     'no_login'  => '请先登陆',
     'search_empty'  => '搜索内容为空',
     'del_forum_success' => '删除帖子成功',
@@ -59,5 +61,9 @@ return [
     'update_user_access_error' => '更新角色权限失败',
 
     'access_error'  => '没有权限',
+    'user_access_error' => '没有权限，请先实名制信息！',
+
+    'logout_success'    => '退出登陆成功',
+    'logout_error'    => '退出登陆失败',
 
 ];

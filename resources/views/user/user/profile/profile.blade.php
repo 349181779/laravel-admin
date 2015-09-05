@@ -1,6 +1,6 @@
 <div class="user-inr1" style="display:block;">
 	<h4>基本资料</h4>
-	<form name="form1" class="ajax-form" method="post" action="<?php echo action('User\UserController@postProfile') ;?>">
+	<form name="form1" class="ajax-form" method="post" action="<?php echo action('User\ProfileController@postProfile') ;?>">
 		<table width="100%" border="0" class="tab_rgst">
 			<tr>
 				<td width="18%"><div align="right">用户编号：</div></td>
@@ -82,7 +82,7 @@
 			<tr>
 				<td><div align="right">婚姻：</div></td>
 				<td><div class="basicinfo_box">
-						<select id="sense_select" name="marriage" class="select_medium">
+						<select id="sense_select" name="user_profile[marriage]" class="select_medium marriage">
 							<option value="0">请选择</option>
 							<option value="1">未婚</option>
 							<option value="2">已婚</option>
