@@ -157,7 +157,6 @@ class ForumCatController extends BaseController {
         //验证权限
         $this->checkAccess($id);
 
-
         ForumCatModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
     }
 

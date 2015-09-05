@@ -10,8 +10,6 @@
 
 namespace App\Model\User;
 
-use App\Model\Home\BaseModel;
-
 use DB;
 
 class NewsModel extends BaseModel {
@@ -100,10 +98,7 @@ class NewsModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private static function getUserCagetory($user_id = null){
-        //加载函数库
-        load_func('common');
-
-        $user_id = $user_id != null ? $user_id : is_user_login();
+        $user_id = self::getUserId($user_id);
 
         return DB::table('user_news_category')->where('user_info_id', '=', $user_id)->lists('news_cat_id');
     }
@@ -117,15 +112,12 @@ class NewsModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function updateUserCategory(Array $category_array = null, $user_id = null){
+        $user_id = self::getUserId($user_id);
+
         //删除会员当前全部新闻分类
-        self::deleteUserCategory();
+        self::deleteUserCategory($user_id);
 
         if(!empty($category_array)){
-            //加载函数库
-            load_func('common');
-
-            $user_id = $user_id != null ? $user_id : is_user_login();
-
             foreach($category_array as $category){
                 if($category <= 0 ) continue;
 
@@ -146,11 +138,6 @@ class NewsModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private static function deleteUserCategory($user_id = null){
-        //加载函数库
-        load_func('common');
-
-        $user_id = $user_id != null ? $user_id : is_user_login();
-
-        return DB::table('user_news_category')->where('user_info_id', '=', $user_id)->delete();
+        return DB::table('user_news_category')->where('user_info_id', '=', self::getUserId($user_id))->delete();
     }
 }

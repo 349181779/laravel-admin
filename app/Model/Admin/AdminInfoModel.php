@@ -89,7 +89,7 @@ class AdminInfoModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function logout(){
-        Session::flush();
+        Session::forget('admin_info');
         Session::save();
     }
 

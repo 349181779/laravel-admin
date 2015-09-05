@@ -63,7 +63,7 @@ class AccessModel extends BaseModel {
      */
     public static function updateUserAccess(Array $access_array = null, $role_id = null){
         //删除会员当前全部新闻分类
-        self::deleteUserAccess();
+        self::deleteUserAccess($role_id);
 
         if(!empty($access_array)){
             //加载函数库
@@ -91,12 +91,7 @@ class AccessModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private static function deleteUserAccess($role_id = null){
-        //加载函数库
-        load_func('common');
-
-        $role_id = self::getRoleId($role_id);
-
-        return DB::table('role_relation_menu')->where('role_id', '=', $role_id)->delete();
+        return DB::table('role_relation_menu')->where('role_id', '=', self::getRoleId($role_id))->delete();
     }
 
 }
