@@ -190,6 +190,7 @@ class BaseModel extends Model{
         return $data;
     }
 
+
     /**
      * 获得用户id
      *
@@ -202,5 +203,6 @@ class BaseModel extends Model{
         load_func('common');
         return $user_id != null ? $user_id : is_user_login();
     }
+
 }
 
