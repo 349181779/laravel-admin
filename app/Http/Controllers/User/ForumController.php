@@ -71,6 +71,7 @@ class ForumController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSave(Request $requests, $id){
+        $id = !empty($id) ? $id : 1;
         //获得帖子内容
         $forum_info = ForumModel::getInfo((int)$id);
         if(empty($forum_info)) return redirect()->action('Home\ForumController@getIndex');
@@ -106,8 +107,10 @@ class ForumController extends BaseController {
             'updated_at'    => date('Y-m-d H:i:s'),
         ]);
 
+        //跳转地址
+        $href = action('Home\ForumController@getInfo', ['id'=> $data['id']]);
 
-        $this->response(200, 'success', $data = [], $target = true, $href = action('Home\ForumController@getInfo', ['id'=> $data['id']]));
+        $this->response(200, trans('response.comment_forum_success'), $data = [], $target = true, $href );
     }
 
     /**

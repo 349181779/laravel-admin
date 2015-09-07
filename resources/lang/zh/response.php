@@ -44,6 +44,8 @@ return [
     'forum_comment_reuqire' => '评论内容不能为空',
     'comment_forum_error'   => '发表帖子评论失败',
     'comment_forum_success'   => '发表帖子评论成功',
+    'update_forum_error'    => '编辑器帖子失败',
+    'update_forum_success'    => '编辑器帖子成功',
     'no_login'  => '请先登陆',
     'search_empty'  => '搜索内容为空',
     'del_forum_success' => '删除帖子成功',
