@@ -120,7 +120,7 @@ class BaseModel extends Model{
      * @return bool
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getUserId($user_id){
+    public static function getUserId($user_id = null){
         //加载函数库
         load_func('common');
         return $user_id != null ? $user_id : is_user_login();
