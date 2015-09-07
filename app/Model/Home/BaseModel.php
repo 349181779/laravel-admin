@@ -189,5 +189,18 @@ class BaseModel extends Model{
         $data =  array_to_obj(merge_tree_child_node($data));
         return $data;
     }
+
+    /**
+     * 获得用户id
+     *
+     * @param $user_id
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getUserId($user_id){
+        //加载函数库
+        load_func('common');
+        return $user_id != null ? $user_id : is_user_login();
+    }
 }
 

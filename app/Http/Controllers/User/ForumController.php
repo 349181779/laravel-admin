@@ -91,9 +91,9 @@ class ForumController extends BaseController {
      * @param Request $requests
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function postSave(Request $requests, $id){
+    public function postSave(Request $requests){
         $data = $requests->only('id', 'forum_cat_id', 'contents', 'title');
-        $data['user_info_id']   = Session::get('user_info.id');
+        $data['user_info_id']   = ForumModel::getUserId();
 
         if(empty(ForumModel::getInfo((int)$data['id']))){
             $this->response(400, trans('response.page_error'));
