@@ -54,7 +54,7 @@ class LoginController extends BaseController {
 
         switch($login_status){
             case 1:
-                return $this->response(200, trans('response.success'),[], true, url('admin/home'));
+                return $this->response(200, trans('response.success'), [], true, url('admin/home'));
             case -1:
             case -3:
                 return $this->response(401, trans('response.admin_not_exists'));

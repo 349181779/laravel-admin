@@ -34,6 +34,10 @@
 		"classmap": [
 			"database"
 		],
+	  	"files" : [
+		  "app/Functions/common.func.php",
+		  "app/Functions/base.func.php"
+		],
 		"psr-4": {
 			"App\\": "app/"
 		}

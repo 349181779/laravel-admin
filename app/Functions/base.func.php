@@ -7,9 +7,6 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-define('FUNC_PATH', APP_PATH . 'app/libraries/');
-
-
 /**
  * 引入函数库文件
  *
@@ -23,11 +20,11 @@ if(!function_exists('load_func')){
         if(strpos($func_name, ',')){
             $funcs = explode(',', $func_name);
             foreach($funcs as $func_name){
-                $realpath = $pasth == '' ? FUNC_PATH . $func_name . $ext : $pasth . $func_name . $ext;
+                $realpath = $pasth == '' ? app_path() . '/Functions/' . $func_name . $ext : $pasth . $func_name . $ext;
                 require_once($realpath);
             }
         }else{
-            $realpath = $pasth == '' ? FUNC_PATH . $func_name . $ext : $pasth . $func_name . $ext;
+            $realpath = $pasth == '' ? app_path() . '/Functions/' . $func_name . $ext : $pasth . $func_name . $ext;
             require_once($realpath);
         }
     }

@@ -21,4 +21,6 @@ return array(
     $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/mews/captcha/src/helpers.php',
     $vendorDir . '/hprose/hprose/src/Hprose.php',
+    $baseDir . '/app/Functions/common.func.php',
+    $baseDir . '/app/Functions/base.func.php',
 );

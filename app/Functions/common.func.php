@@ -16,7 +16,7 @@
  */
 if(!function_exists('obj_to_array')){
     function obj_to_array($obj){
-        return json_decode(json_encode($obj),true);
+        return json_decode(json_encode($obj), true);
     }
 }
 
@@ -113,16 +113,17 @@ if(!function_exists('merge_tree_child_node')){
      * @param $data
      * @param $pid
      * @param $level
+     * @param $parent_name
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    function merge_tree_child_node($data, $pid = 0, $level = 0){
+    function merge_tree_child_node($data, $pid = 0, $level = 0, $parent_name = 'id'){
         $array = [];
         if(!empty($data)){
             foreach($data as $v){
-                if($v['pid'] == $pid){
+                if($v[$parent_name] == $pid){
                     $v['level']         = $level;
-                    $v['child']         = merge_tree_child_node($data, $v['id'], $level+1);
+                    $v['child']         = merge_tree_child_node($data, $v['id'], $level+1, $parent_name);
                     $array[]            = $v;
                 }
             }
