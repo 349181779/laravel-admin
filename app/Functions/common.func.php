@@ -215,9 +215,11 @@ if(!function_exists('safe_base64_decode')){
 if(!function_exists('curl_post')){
     /**
      * curl_post
+     *
      * @author aaron
      * @param string $url
      * @param string $str_params
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function curl_post($url,$str_params = ''){
         $ch = curl_init();
@@ -237,9 +239,11 @@ if(!function_exists('curl_post')){
 if(!function_exists('curl_get')){
     /**
      * curl_get
+     *
      * @author aaron
      * @param string $url
      * @param string $str_params
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function curl_get($url,$str_params = ''){
         $ch = curl_init();
@@ -263,10 +267,12 @@ if(!function_exists('number_to_ch')){
     /**
      * 日期数字转中文
      * 用于日和月、周
+     *
      * @static
      * @access public
      * @param integer $number 日期数字
      * @return string
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function  number_to_ch($number) {
         $number = intval($number);
@@ -293,8 +299,10 @@ if(!function_exists('number_to_ch')){
 if(!function_exists('get_client_ip')){
     /**
      * 获取客户端IP地址
+     *
      * @param integer $type 返回类型 0 返回IP地址 1 返回IPV4地址数字
      * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     function get_client_ip($type = 0) {
         $type       =  $type ? 1 : 0;
@@ -316,3 +324,20 @@ if(!function_exists('get_client_ip')){
         return $ip[$type];
     }
 }
+
+if(!function_exists('createUrl')){
+    /**
+     * 生成url
+     *
+     * @param $url
+     * @param array $param
+     * @return string
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    function createUrl($url, Array $param){
+        if(!empty($url) && is_array($param)){
+            return $url . '?' . http_build_query($param);
+        }
+    }
+}
+

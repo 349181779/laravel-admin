@@ -101,7 +101,7 @@ class SwooleServer{
      */
     public function onWorkerStart(){
         //引入函数库
-        include dirname(__DIR__) . '/app/libraries/common.func.php';
+        include dirname(__DIR__) . '/app/Functions/common.func.php';
     }
 
     /**

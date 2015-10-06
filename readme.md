@@ -1,6 +1,35 @@
-   首先先扯点蛋，做后台系统大概1年多了，每次都是重复的构建增、删、改、查的页面，重复的劳动力造成了写这个小程序的初衷！
+首先先扯点蛋，做后台系统大概1年多了，每次都是重复的构建增、删、改、查的页面，重复的劳动力造成了写这个小程序的初衷！
    
- #### 构建数据列表页面
+注：
+最的[Wiki](http://laravel-admin.mydoc.io/?t=32996),由于代码没有更新，大概在10月11号以后会更新代码，代码会有差异化！请更新代码后再使用！
+   
+#### 项目地址
+
+* git os [http://git.oschina.net/yangxiansen/laravel-5](http://git.oschina.net/yangxiansen/laravel-5)
+* github [https://github.com/tyua07/laravel-admin](https://github.com/tyua07/laravel-admin)
+
+#### 卖个广告
+
+ 一个好的想法，可以使写项目变得更简单，如果写的不好的地方麻烦或者可以改进的地方，希望大家Pull Requests 我！谢谢（aligaduo）
+
+#### 下一步计划
+
+ps：已经开始部署到预上线环境了，等更新代码哦
+
+#### 数据库
+
+* [sql](http://static.womenshuo.com/@/other/images/laravel.sql)
+* [workbench 模型](http://static.womenshuo.com/@/other/images/后台设计数据库模型.mwb)
+
+##### 联系我
+* qq    547484196
+* email yangyifanphp@gmail.com
+
+
+   
+#### 构建数据列表页面
+------------------------------
+ 
  
 ```
 /**
@@ -34,7 +63,8 @@
 ![列表页.](http://static.womenshuo.com/@/other/images/列表页.png)
 
 
- #### 构建列表页数据
+#### 构建列表页数据
+------------------------------
  
 ```
  /**
@@ -79,8 +109,8 @@
 ```
 列表页全部的逻辑代码，只需要在这里封装搜索条件即可！
 
-
- #### 构建编辑页面
+#### 构建编辑页面
+------------------------------
  
 
 ```
@@ -109,8 +139,8 @@
 
 ![编辑页面](http://static.womenshuo.com/@/other/images/编辑页面.png)
 
-
- #### 构建增加页面
+#### 构建增加页面
+------------------------------
  
 
 ```
@@ -134,8 +164,8 @@
 ```
 
 
-
- #### 构建tree页面
+#### 构建tree页面
+------------------------------
  
 
 ```
@@ -166,7 +196,8 @@
 
 ![tree](http://static.womenshuo.com/@/other/images/tree.png)
 
- #### 构建tab页面
+#### 构建tab页面
+------------------------------
  
 
 ```
@@ -194,20 +225,5 @@
 ![tab](http://static.womenshuo.com/@/other/images/tab.png)
 
 
-#### 项目地址
-* git os [http://git.oschina.net/yangxiansen/laravel-5](http://git.oschina.net/yangxiansen/laravel-5)
-* github [https://github.com/tyua07/laravel-admin](https://github.com/tyua07/laravel-admin)
 
-#### 卖个广告
- 一个好的想法，可以使写项目变得更简单，如果写的不好的地方麻烦或者可以改进的地方，希望大家Pull Requests 我！谢谢（aligaduo）
-
-#### 下一步计划
-因为还没有使用在真实环境，所以，可以还会有变动，这个只是一个雏形，感兴趣的可以自己先fork一下！谢谢（aligaduo）
-
-#### 数据库
-* [sql](http://static.womenshuo.com/@/other/images/laravel.sql)
-* [workbench 模型](http://static.womenshuo.com/@/other/images/后台设计数据库模型.mwb)
-
-
-# 记得 star哦 摸摸大
 

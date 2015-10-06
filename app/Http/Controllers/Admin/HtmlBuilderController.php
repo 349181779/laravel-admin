@@ -174,6 +174,7 @@ class HtmlBuilderController extends BaseController {
      * @param $notice   表单提示
      * @param $class    表单class
      * @param $rule     表单验证规则
+     * @param $err_message  表单验证提示文字
      * @param $message  表单验证提示文字
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
