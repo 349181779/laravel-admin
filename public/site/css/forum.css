@@ -1,0 +1,87 @@
+/* CSS Document */
+#pt {
+margin: 2px 0;
+height: 29px;
+border: none;
+line-height: 29px;}
+#pt .z a, #pt .z em, #pt .z span {
+float: left;
+height: 29px;}
+.nvhm {
+width: 16px;
+background: url(../images/search.png) no-repeat 0 0;
+line-height: 200px;
+overflow: hidden;
+}
+#pt .z em {
+width: 20px;
+background: url(../images/pt_item.png) no-repeat 3px 10px;
+line-height: 200px;
+overflow: hidden;}
+.forum_cl{ float:left; width:16%;}
+.forum_cr{ float:left; width:84%;}
+.post_content{ position:relative;}
+.post_content .ribbion-green {
+position: absolute;
+right: 0px;
+background: #3eaf0e;
+width: 50px;
+top: 10px;
+height: 25px;
+text-align: center;
+padding-left: 0;
+vertical-align: middle;
+color: white;
+font-size: 12px;
+line-height: 25px;}
+.c_q_title h2 {
+color: #333333;
+font-size: 18px;
+font-weight: bold;
+float:left;
+display:inline;
+padding-left:10px;}
+.forum_cl p{ 
+text-align:center; 
+line-height:22px;
+margin-top:10px;}
+.post_title{
+ margin-bottom:10px;
+ padding-bottom:10px;
+ border-bottom:dashed 1px #ccc;}
+ hr{
+ margin-top:2em;
+ border:0;
+ border-top:1px solid #eeeeee;}
+ .pull-right{
+  float:right;}
+  .fp_c{
+  min-height:122px;
+  padding:10px;}
+  .replylogin_forum{
+  padding:20px;}
+  .replylogin_forum h3{
+  line-height:22px; margin-bottom:10px;}
+  .replylogin_input {
+width: 140px;
+height: 20px;
+border: 1px solid #ccc;}
+.replylogin_submit {
+padding: 0 10px;
+height: 20px;
+background-color: #3eaf0e;
+border: 1px solid #3eaf0e;
+line-height: 20px;
+color: #fff;
+cursor: pointer;}
+textarea{
+margin:10px 0;
+resize: none;
+width: 578px; 
+min-height: 220px; 
+z-index: 0; 
+border:solid 1px #ccc}
+.page_btn{ border:solid 1px #eeeeee; padding:20px 0; margin:0;}
+.page_bt ul{ margin-left:20px;}
+.btns button{background-color: #3eaf0e; border:0; padding:5px 10px;color: #fff;cursor: pointer;}
+.fp_c{ width: 979px;overflow: hidden; }
