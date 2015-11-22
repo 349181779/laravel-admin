@@ -11,7 +11,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
-use App\Model\Admin\AdminInfoModel;
+use App\Model\Admin\Admin\AdminInfoModel;
 use App\Http\Requests\Admin\LoginFormRequest;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
@@ -57,7 +57,7 @@ class LoginController extends BaseController
 
         switch ($login_status) {
             case 1:
-                return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, url('admin/home'));
+                return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\HomeController@getIndex'));
             case -1:
             case -3:
                 return $this->response(401, trans('response.admin_not_exists'));

@@ -126,7 +126,7 @@ class AdminLimitController extends BaseController
      */
     public function postAdd(Request $request)
     {
-        $data = $request->all();
+        $data = $request->all();die;
         //写入数据
         $affected_number = AdminLimitModel::create($data);
         return  $affected_number->id > 0  ? $this->response(self::SUCCESS_STATE_CODE, trans('response.add_success'), [], true, createUrl('Admin\Admin\AdminLimitController@getIndex')) : $this->response(self::ERROR_STATE_CODE, trans('response.add_error'), [], false);

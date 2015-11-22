@@ -4,12 +4,13 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo $title;?></title>
+	<title>Laravel</title>
 	@section('header')
         	@include('......admin.block.header')
             <?php echo Html::style('/assets/js/upload/demos/css/uploader.css');?>
             <?php echo Html::style('/assets/js/upload/demos/css/demo.css');?>
             <?php echo Html::style('/assets/js/dropZone/downloads/css/dropzone.css');?>
+            <script type="text/javascript" src="/qiniu.js/qiniu.min.js"></script>
     @show
     <style>
     body{background: #fff;}
@@ -40,7 +41,7 @@
                            <!--下拉选择框 -->
                            <div class="form-group">
                                <label for="source">来源 ：</label>
-                               <select class="form-control" name="source" onchange="changeSource(this)">
+                               <select class="form-control" name="source">
                                    <?php if(!empty($all_image_source)):?>
                                        <?php foreach($all_image_source as $image_souce):?>
                                            <option value="<?php echo $image_souce['id'] ;?>"><?php echo $image_souce['name'] ;?></option>
@@ -54,7 +55,7 @@
                            <!--下拉选择框 -->
                            <div class="form-group">
                                <label for="image_type">图片类型：</label>
-                               <select class="form-control" name="image_type" onchange="changeImageType(this)">
+                               <select class="form-control" name="image_type">
                                    <?php if(!empty($all_image_type)):?>
                                        <?php foreach($all_image_type as $image_type):?>
                                            <option value="<?php echo $image_type['id'] ;?>"><?php echo $image_type['name'] ;?></option>
@@ -74,8 +75,6 @@
 
                <div class="body-nest" id="DropZone">
                  <form action="<?php echo $upload_url ;?>" class="dropzone" id="my-dropzone">
-                     <input type="hidden" name="source">
-                     <input type="hidden" name="image_type">
                     <input type="hidden" name="_token" value="<?php echo  csrf_token();?>">
                  </form>
                  <button style="margin-top:10px;" class="btn btn-info" id="submit-all">确认上传</button>
@@ -88,41 +87,70 @@
     </div>
     <!-- MAIN EFFECT -->
     @section('js')
+    	@include('......admin.block.footer_js')
     	@parent
-        @include('admin.block.base_js')
-
+    	<script type="text/javascript" src="/assets/js/upload/demos/js/demo.min.js"></script>
         <script type="text/javascript" src="/assets/js/upload/src/dmuploader.min.js"></script>
         <script type="text/javascript" src="/assets/js/dropZone/lib/dropzone.js"></script>
         <script type="text/javascript">
 
-            /**
-             * 选择图片资源
-             */
-            function changeSource(obj){
-                var _this = $(obj)
-                $('.dropzone').find('input[name=source]').val(_this.val())
-            }
+            $('#drag-and-drop-zone').dmUploader({
+                dataType: 'json',
+                allowedTypes: 'image/*',
+                extFilter: 'jpg;png;gif',
+                onInit: function() {
+                    $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');
+                },
+                onBeforeUpload: function(id) {
+                    $.danidemo.addLog('#demo-debug', 'default', 'Starting the upload of #' + id);
 
-            /**
-             * 选择图片类型
-             */
-            function changeImageType(obj){
-                var _this = $(obj)
-                $('.dropzone').find('input[name=image_type]').val(_this.val())
-            }
+                    $.danidemo.updateFileStatus(id, 'default', 'Uploading...');
+                },
+                onNewFile: function(id, file) {
+                    $.danidemo.addFile('#demo-files', id, file);
+                },
+                onComplete: function() {
+                    $.danidemo.addLog('#demo-debug', 'default', 'All pending tranfers completed');
+                },
+                onUploadProgress: function(id, percent) {
+                    var percentStr = percent + '%';
 
+                    $.danidemo.updateFileProgress(id, percentStr);
+                },
+                onUploadSuccess: function(id, data) {
+                    $.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
 
-            //触发事件
-            $('select[name=source]').trigger('change')
-            $('select[name=image_type]').trigger('change')
+                    $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
 
-            //上传
+                    $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
+
+                    $.danidemo.updateFileProgress(id, '100%');
+                },
+                onUploadError: function(id, message) {
+                    $.danidemo.updateFileStatus(id, 'error', message);
+
+                    $.danidemo.addLog('#demo-debug', 'error', 'Failed to Upload file #' + id + ': ' + message);
+                },
+                onFileTypeError: function(file) {
+                    $.danidemo.addLog('#demo-debug', 'error', 'File /'+ file.name + '/ cannot be added: must be an image');
+                },
+                onFileSizeError: function(file) {
+                    $.danidemo.addLog('#demo-debug', 'error', 'File /'+ file.name + '/ cannot be added: size excess limit');
+                },
+                /*onFileExtError: function(file){
+                  $.danidemo.addLog('#demo-debug', 'error', 'File /'' + file.name + '/' has a Not Allowed Extension');
+                },*/
+                onFallbackMode: function(message) {
+                    $.danidemo.addLog('#demo-debug', 'info', 'Browser not supported(do something else here!): ' + message);
+                }
+            });
+            </script>
+        <script>
             Dropzone.options.myDropzone = {
 
                 // Prevents Dropzone from uploading dropped files immediately
                 autoProcessQueue: false,
 
-                //初始化
                 init: function() {
                     var submitButton = document.querySelector("#submit-all")
                     myDropzone = this; // closure
@@ -136,19 +164,6 @@
                     this.on("addedfile", function() {
                         // Show submit button here and/or inform user to click it.
                     });
-
-                },
-
-                //上传成功回调
-                success: function(file){
-                    var _data = $.parseJSON(file.xhr.response);
-                    if (_data.code == HTTP_CODE.SUCCESS_CODE) {
-                        toastr.success(_data.msg);
-                        return file.previewElement.classList.add("dz-success");
-                    }else{
-                        toastr.warning(_data.msg);
-                        return file.previewElement.classList.add("dz-error");
-                    }
 
                 }
             };

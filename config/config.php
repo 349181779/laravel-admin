@@ -3,6 +3,8 @@
 return [
 
 
+    'site_name' => '演示后台',
+    'version' => 'v 0.0.1',//后台版本号
 
     //分页
     'page_limit' => '10',//分页条数
@@ -12,9 +14,6 @@ return [
     'user_list_hash_table' => 'user_list',//用户列表hash
     'websocket_list'    => 'web_socket_list',//用户连接 web socket 列表数据
 
-    //极光推送配置
-
-    //楼下100配送员极光推送配置
     //城市配置
 
     //图片类型

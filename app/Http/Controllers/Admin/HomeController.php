@@ -11,7 +11,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
-use App\Model\Admin\AdminInfoModel;
+use App\Model\Admin\Admin\AdminInfoModel;
 
 class HomeController extends BaseController
 {
@@ -29,10 +29,9 @@ class HomeController extends BaseController
 	 */
 	public function getIndex()
     {
-        return redirect(createUrl('Admin\Order\OrderList\OrderListController@getIndex'));
-//        return view('admin.home.index', [
-//            'title' => '楼下100后台管理系统',
-//        ]);
+        return view('admin.home.index', [
+            'title' => config('config.site_name'),
+        ]);
 	}
 
 	/**

@@ -1691,6 +1691,7 @@
             cache: this.options.cache,
             contentType: this.options.contentType,
             dataType: this.options.dataType,
+            headers:{"X-Requested-With":"XMLHttpRequest"},
             success: function (res) {
                 res = calculateObjectValue(that.options, that.options.responseHandler, [res], res);
 

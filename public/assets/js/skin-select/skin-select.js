@@ -6,9 +6,11 @@ $(document).ready(function() {
 
 		if($(this).hasClass('active')) {
 			$(this).removeClass('active')
-			$('#skin-select').animate({ left:0 }, 100);	
-			$('.wrap-fluid').css({"width":"auto","margin-left":"250px"});
-			$('.navbar').css({"margin-left":"240px"});
+			//$('#skin-select').animate({ left:0 }, 100);
+
+			//$('#skin-select').css({"left":"0"});
+			//$('.wrap-fluid').css({"width":"auto","margin-left":"250px"});
+			//$('.navbar').css({"margin-left":"240px"});
 
 			$('#skin-select li').css({"text-align":"left"});
 			$('#skin-select li span, ul.topnav h4, .side-dash, .noft-blue, .noft-purple-number, .noft-blue-number, .title-menu-left').css({"display":"inline-block", "float":"none"});
@@ -39,7 +41,8 @@ $(document).ready(function() {
 			
 
 			//$('#skin-select').animate({ left:-200 }, 100);
-			$('#skin-select').animate({ left:-200 }, 100);
+			//$('#skin-select').animate({ left:-200 }, 100);
+			$('#skin-select').css({ left:-200 });
 
 			$('.wrap-fluid').css({"width":"auto", "margin-left":"50px"});
 			$('.navbar').css({"margin-left":"50px"});

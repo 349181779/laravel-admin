@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <div id="logo-login">
-          <h1>管理系统 <span><?php echo Config::get('version.version') ;?></span> </h1>
+          <h1>管理系统 <span><?php echo config('config.version') ;?></span> </h1>
         </div>
       </div>
     </div>
@@ -63,8 +63,8 @@
     </div>
     <p>&nbsp;</p>
     <div style="text-align:center;margin:0 auto;">
-      <h6 style="color:#fff;">Copyright(C)2014 louxia100.com All Rights Reserved<br />
-        louxia100.com</h6>
+      <h6 style="color:#fff;">Copyright(C)<?php echo date('Y') ;?> <?php echo config('config.site_name');?> All Rights Reserved<br />
+        </h6>
     </div>
   </div>
 </div>

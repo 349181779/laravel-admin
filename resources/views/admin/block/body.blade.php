@@ -1,9 +1,4 @@
 <body bg-action="app">
-<!-- Preloader -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-
 <!-- TOP NAVBAR -->
 @section('top_side')
 @include('admin.block.top_side')
@@ -21,7 +16,6 @@
 
     <div class="container-fluid paper-wrap bevel tlbr">
         <!-- CONTENT -->
-
 
 
 

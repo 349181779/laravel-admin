@@ -1,12 +1,12 @@
 //Sliding Effect Control
-head.js("/assets/js/skin-select/jquery.cookie.js");
+//head.js("/assets/js/skin-select/jquery.cookie.js");
 head.js("/assets/js/skin-select/skin-select.js");
 
 //Showing Date
-head.js("/assets/js/clock/date.js");
+//head.js("/assets/js/clock/date.js");
 
 //Bootstrap
-head.js("/assets/js/bootstrap.js");
+//head.js("/assets/js/bootstrap.js");
 
 //NEWS STICKER
 head.js("/assets/js/newsticker/jquery.newsTicker.js", function() {
@@ -275,16 +275,16 @@ head.js("/assets/js/chart/jquery.sparkline.js", function() {
 //------------------------------------------------------------- 
 
 //DIGITAL CLOCK
-head.js("/assets/js/clock/jquery.clock.js", function() {
-
-    //clock
-    $('#digital-clock').clock({
-        offset: '+5',
-        type: 'digital'
-    });
-
-
-});
+//head.js("/assets/js/clock/jquery.clock.js", function() {
+//
+//    //clock
+//    $('#digital-clock').clock({
+//        offset: '+5',
+//        type: 'digital'
+//    });
+//
+//
+//});
 
 
 //------------------------------------------------------------- 

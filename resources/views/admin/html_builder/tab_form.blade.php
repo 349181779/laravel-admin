@@ -29,26 +29,61 @@
 
                 </div>
 
-                <div class="body-nest" id="tab">
+                <!-- tab  -->
+                <div>
 
-                    <div id="wizard-tab">
-                        <?php if (!empty($tabs_schemas)): ?>
+                    <?php if (!empty($tabs_schemas)): ?>
+
+                        <!-- 导航 tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
                             <?php foreach ($tabs_schemas as $k => $tabs_schema): ?>
                                 <?php $data = $tab_data[$k]; ?>
                                 <?php $confirm_button = $tab_confirm_button[$k]; ?>
                                 <?php $tabs_schema = unserialize($tabs_schema); ?>
-
-                                <h2><?php echo $tabs_schema->title; ?></h2>
-                                <section>
-                                    <?php $schemas = $tabs_schema->form_schema; ?>
-                                    @include('admin.html_builder.edit_form')
-                                </section>
+                                    <?php if($k == 0) :?>
+                                        <li role="presentation" class="active">
+                                            <a href="#<?php echo $k;?>" aria-controls="<?php echo $k;?>" role="tab" data-toggle="tab"><?php echo $tabs_schema->title; ?></a>
+                                        </li>
+                                    <?php else:?>
+                                        <li role="presentation" class="">
+                                            <a href="#<?php echo $k;?>" aria-controls="<?php echo $k;?>" role="tab" data-toggle="tab"><?php echo $tabs_schema->title; ?></a>
+                                        </li>
+                                    <?php endif;?>
                             <?php endforeach; ?>
-                        <?php endif; ?>
+                        </ul>
+                        <!-- 导航 tabs -->
 
-                    </div>
+                        <!-- 内容  tabs-->
+                        <div class="tab-content">
+                            <?php foreach ($tabs_schemas as $k => $tabs_schema): ?>
+                                <?php $data = $tab_data[$k]; ?>
+                                <?php $confirm_button = $tab_confirm_button[$k]; ?>
+                                <?php $tabs_schema = unserialize($tabs_schema); ?>
+                                <?php if($k == 0) :?>
+                                    <div role="tabpanel" class="tab-pane active" id="<?php echo $k;?>">
+                                        <?php $schemas  = $tabs_schema->form_schema; ?>
+                                        <?php $title    = $tabs_schema->title; ?>
+                                        <?php $method   = $tabs_schema->method; ?>
+                                        @include('admin.html_builder.edit_form')
+                                    </div>
+                                <?php else:?>
+                                    <div role="tabpanel" class="tab-pane " id="<?php echo $k;?>">
+                                        <?php $schemas  = $tabs_schema->form_schema; ?>
+                                        <?php $title    = $tabs_schema->title; ?>
+                                        <?php $method   = $tabs_schema->method; ?>
+                                        @include('admin.html_builder.edit_form')
+                                    </div>
+                                <?php endif;?>
+                            <?php endforeach; ?>
+                        </div>
+                        <!--  内容  tabs -->
 
+
+                    <?php endif; ?>
                 </div>
+                <!-- tab  -->
+
+
             </div>
         </div>
 

@@ -53,6 +53,31 @@ class AdminMenuController extends BaseController
     }
 
     /**
+     * 搜索
+     *
+     * @param Request $request
+     * @author zhuweijian <zhuweijain@louxia100.com>
+     */
+    public function getSearch(Request $request)
+    {
+
+        //接受参数
+        $search = $request->get('search', '');
+        $sort   = $request->get('sort', 'id');
+        $order  = $request->get('order', 'asc');
+        $limit  = $request->get('limit',0);
+        $offset = $request->get('offset', config('config.page_limit'));
+
+        $data = AdminInfoModel::search($map = [], $sort, $order, $limit, $offset);
+
+        echo json_encode([
+            'total' => $data['count'],
+            'rows'  => $data['data'],
+        ]);
+    }
+
+
+    /**
      * 编辑菜单
      *
      * @param  int  $id
@@ -126,8 +151,7 @@ class AdminMenuController extends BaseController
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getLimitMenu(Request $request)
-    {
+    public function getLimitMenu(Request $request){
         $limit_id = $request->get('limit_id');
         return view('admin.admin.limit.index', [
             'all_user_menu' => AdminMenuModel::getFullUserMenu($limit_id),

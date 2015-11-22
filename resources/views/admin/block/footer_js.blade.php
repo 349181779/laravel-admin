@@ -9,7 +9,6 @@
         $view.query = function () {
             $ajax("<?php echo createUrl('Admin\Admin\AdminMenuController@getAdminTopMenu') ?>").success(function (r) {
                 if (r.code == 200) {
-
                     $view.top_bar = r.data;
                     $view.$update();
                 } else {
@@ -29,9 +28,6 @@
             //设置cookie
             cookie("menu_id", $view.menu_id);
 
-            //$('.topnav a').removeClass('topnav_hover');
-            //$(obj).addClass('topnav_hover');
-
             $ajax("<?php echo createUrl('Admin\Admin\AdminMenuController@getAdminMenu') ?>").param({'parent_id': $view.menu_id}).success(function (r) {
                 if (r.code == 200) {
                     $view.side_menu = r.data;
@@ -44,5 +40,11 @@
         };
         $view.click();
     });
+
+    //顶部菜单给定选中状态
+    $(document).on('click','#topbar li',function(){
+        $("#topbar a").removeClass('topnav_hover');
+        $(this).find('a').addClass('topnav_hover');
+    })
 
 </script>

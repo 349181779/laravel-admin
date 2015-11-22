@@ -159,34 +159,6 @@
                                             </div>
                                         </div>
 
-                                <?php elseif ($schema['type'] == 'map'): ?>
-                                <!-- 地图 -->
-                                <div class="form-group">
-                                    <label
-                                            class="col-sm-3 control-label"><strong><?php echo $schema['title']; ?>
-                                            ：</strong></label>
-
-                                    <div class="col-sm-3">
-                                        <input type="text"
-                                               name="<?php echo $schema['name']; ?>"
-                                               value="<?php echo $schema['default']; ?>"
-                                               class="form-control <?php echo $schema['class']; ?>"
-                                               autocomplete="false">
-                                        <span class="help-block"><?php echo $schema['notice']; ?></span>
-
-                                        <div class="col-xs-12 col-md-12" style="margin:10px 0;">
-                                            <button onclick="showChoseMapDialog(this, <?php echo $schema['default']; ?>)" type="button"
-                                                    class="btn btn-info btn-lg" style="margin-left: 10px;">
-                                                <span class="entypo-picture"></span>&nbsp;&nbsp;查看地图
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
                                     <?php elseif ($schema['type'] == 'date'): ?>
                                         <!-- 日期框 -->
                                         <div class="form-group">
@@ -251,6 +223,33 @@
                                             </div>
                                         </div>
 
+                                    <?php elseif ($schema['type'] == 'upload_image'): ?>
+                                            <!-- 图片上传框 -->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><strong><?php echo $schema['title']; ?>：</strong></label>
+
+                                        <div class="col-sm-9">
+                                            <div class="col-xs-2 col-md-2">
+                                                <a href="javascript:void(0)" class="thumbnail">
+                                                    <img src="<?php echo $schema['default']; ?>" style="border:1px solid #000;padding: 5px;width: 150px;height: 150px;"/>
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-12 col-md-12" style="margin:10px 0;">
+                                                <div class="col-sm-3" style="padding-left: 0;">
+                                                    <input type="file" name="<?php echo $schema['name']; ?>" class="form-control" multiple="multiple">
+                                                </div>
+                                            </div>
+                                            <span class="help-block"><?php echo $schema['notice']; ?></span>
+
+                                            <div class="alert alert-danger hide" role="alert">
+                                                                    <span class="glyphicon glyphicon-exclamation-sign"
+                                                                          aria-hidden="true"></span>
+                                                <span class="sr-only">Error:</span>
+                                                <span class="err_message"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <?php elseif ($schema['type'] == 'ueditor'): ?>
                                         <!-- 百度富文本编辑器 -->
                                         <div class="form-group">
@@ -288,6 +287,47 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                    <?php elseif ($schema['type'] == 'ckeditor'): ?>
+                                            <!-- ckeditor 富文本编辑器 -->
+                                    <div class="form-group">
+                                        <label
+                                                class="col-sm-3 control-label"><strong><?php echo $schema['title']; ?>
+                                                ：</strong></label>
+
+                                        <div class="col-sm-6">
+                                                        <textarea name="<?php echo $schema['name']; ?>"
+                                                                  id="<?php echo $schema['name']; ?>"
+                                                                  datatype="<?php echo $schema['rule']; ?>"
+                                                                  errormsg="<?php echo $schema['err_message']; ?>"
+                                                                  class=" <?php echo $schema['class']; ?>"><?php echo $data->$schema['name'] == '' ? '' : $data->$schema['name'];; ?> </textarea>
+
+                                            <!-- 实例化编辑器 -->
+                                            <script type="text/javascript">
+                                                $(function (){
+                                                    <?php if (!empty($schema['default'])) :?>
+                                                        editor = CKEDITOR.replace("<?php echo $schema['name'] ;?>", {
+                                                        <?php if (!empty($schema['default'])) :?>
+                                                                       <?php echo "{$schema['default']}";?>
+                                                        <?php endif;?>
+                                                    });
+                                                    <?php else:?>
+                                                        editor = CKEDITOR.replace("<?php echo $schema['name'] ;?>");
+                                                    <?php endif;?>
+                                                })
+
+                                            </script>
+
+                                            <span class="help-block"><?php echo $schema['notice']; ?></span>
+
+                                            <div class="alert alert-danger hide" role="alert">
+                                                            <span class="glyphicon glyphicon-exclamation-sign"
+                                                                  aria-hidden="true"></span>
+                                                <span class="sr-only">Error:</span>
+                                                <span class="err_message"></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <?php elseif ($schema['type'] == 'radio'): ?>
                                         <!-- 单选框 -->

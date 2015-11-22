@@ -24,7 +24,9 @@ body {
     -webkit-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
 }
+
 textarea{resize:none;}
 /*
   PREALOADER
@@ -136,6 +138,7 @@ a{cursor: pointer;}
     margin-top: 10px!important;
     min-height: 65px!important;
     position: relative!important;
+    margin-left:240px;
 }
 .navbar-inner {
     min-height: 60px!important;
@@ -2712,7 +2715,7 @@ b#speed {
     filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .content-wrap {
-    padding: 0 30px;
+    padding: 0 10px;
 }
 #paper-top {
     border-bottom: 1px solid #DDDDDD;
@@ -2845,7 +2848,7 @@ b#speed {
         display: none!important;
     }
     #skin-select {
-        left:-250px!important;
+        left:0;
         top: 31px!important;
     }
     #menu-showhide, .menu-left-nest {
@@ -2860,6 +2863,8 @@ b#speed {
         margin: 0 10px!important;
     }
     .wrap-fluid {
+		width:auto;
+        margin-left: 250px;
         float: right!important;
         width: 100%!important;
     }

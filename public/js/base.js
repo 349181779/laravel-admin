@@ -5,7 +5,8 @@
 //网络请求状态码
 var HTTP_CODE = {
     'SUCCESS_CODE'  : 200,//请求成功
-    'ERROR_CODE'    : 400 //请求失败
+    'ERROR_CODE'    : 400, //请求失败
+    'REDIRECT_CODE' : 302, //跳转
 }
 
 
@@ -14,7 +15,8 @@ $(function(){
 
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            'X-Requested-With' : 'XMLHttpRequest'
         }
     });
 
@@ -106,27 +108,36 @@ $(function(){
             callable = $.get;
         }
 
-        $.ajax(action, {
-            type : method,
-            files: $(":file", this),
-            data:formContent,
-            iframe: true,
-            dataType: "json",
-            processData: true
-        }).success(function (data) {
-            parseResponseJson(data);
-            $('[type=submit]', form).removeClass('disabled');
-        });
+        if ($(':file').size() > 0 ) {
+            $.ajax(action, {
+                type : method,
+                files: $(":file", this),
+                data :formContent,
+                iframe: true,
+                dataType: "json",
+                processData: true
+            }).success(function (data) {
+                parseResponseJson(data);
+                $('[type=submit]', form).removeClass('disabled');
+            });
+        } else {
+            $.ajax(action, {
+                type : method,
+                files: $(":file", this),
+                data :formContent,
+                dataType: "json",
+                processData: true
+            }).success(function (data) {
+                parseResponseJson(data);
+                $('[type=submit]', form).removeClass('disabled');
+            });
+        }
 
-        //callable(action, formContent, function (data) {
-        //    parseResponseJson(data);
-        //    $('[type=submit]', form).removeClass('disabled');
-        //});
+
 
         //返回
         return false;
     });
-
 
     //双向选择器
     var leftSel = $("#selectL");
@@ -160,7 +171,6 @@ $(function(){
 
 })
 
-
 /**
  * 过滤 表单提交内容
  *
@@ -182,6 +192,49 @@ function filterFormContents(content)
     }
 
     return params.join('&');
+}
+
+/**
+ * 反序列化
+ *
+ * @param content
+ * @returns {*}
+ */
+function unserialize(content)
+{
+    console.log(content);return;
+    var data = content.split('&');
+    var json = [];
+    data.forEach(function(param){
+        param = param.split('=');
+        var value = "'"+param[0]+"' : " + "'"+(param[1])+"'";
+        json.push(value);
+    })
+    console.log(json);return;
+    return $.parseJSON("{" + json.join(',') + "}");
+}
+
+/**
+ * 把url 参数字符串 解析成 json
+ *
+ * @param url
+ * @returns {{}}
+ */
+function parseQueryString(url)
+{
+    var obj={};
+    var keyvalue=[];
+    var key="",value="";
+    var paraString=url.substring(0,url.length).split("&");
+    for(var i in paraString)
+    {
+        keyvalue=paraString[i].split("=");
+        key=keyvalue[0];
+        value=decodeURIComponent(keyvalue[1]);
+        value = decodeURIComponent(value.replace(/\+/g, ' '));
+        obj[key]=value;
+    }
+    return obj;
 }
 
 /**
@@ -231,7 +284,9 @@ function parseResponseJson(data){
             location.href = data.href;
         },1000)
 
-    }else{
+    } else if (data.code == HTTP_CODE.REDIRECT_CODE) {
+        location.href = data.href;
+    } else{
         toastr.warning(data.msg);
     }
 }
@@ -485,40 +540,4 @@ function editHours(obj){
         return;
     }
     _this.next('input').val(_shop_hours_val == '' ? _value : _shop_hours_val.join(',') + ',' + _value);
-}
-
-/**
- * 弹出选择地图提示框
- */
-function showChoseMapDialog(obj, city){
-    var _this = $(obj);
-    console.log(getMapUlr+"?city="+city)
-    layer.open({
-        title:'地图',
-        type: 2,
-        content: [getMapUlr+"?city="+city] ,//这里content是一个普通的String
-        zIndex: layer.zIndex,
-        btn: ['确认', '取消'],
-        yes: function(layero, index){
-            var body = layer.getChildFrame('body', 0);
-            var size = body.find('.chose_icon').size();//选中数量
-            if(size <= 0){
-                alert('请选择图片');
-                return;
-            }
-
-            //设置图片
-            var imagePath       = body.find('.chose_icon').parents('.imagebox').find('img').attr('data-src');
-            var imageRealPath   = body.find('.chose_icon').parents('.imagebox').find('img').attr('src');
-            //设置input值
-            _this.parents('.form-group').find('input[type=hidden]').val(imagePath);
-            //修改图片src属性
-            _this.parents('.form-group').find('img').attr('src', imageRealPath);
-            layer.closeAll()
-
-        },
-        cancel: function(layero, index){
-            layer.closeAll()
-        }
-    });
 }

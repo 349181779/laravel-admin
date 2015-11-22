@@ -10,6 +10,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Admin\AdminFunctionModel;
 use App\Model\Admin\MenuModel;
 use Illuminate\Http\Request;
 use Route;
@@ -36,7 +37,12 @@ class BaseController extends \App\Http\Controllers\BaseController
         //获得全部菜单
         $this->getAllMenu();
         //验证权限
-        //$this->checkAccess();
+        if ( $this->checkAccess() == false) {
+            if (isAjax() == true) {
+                echo $this->responseContent(self::ERROR_STATE_CODE, trans('response.unauthorized'));die;
+            }
+            echo '<script>alert("'.trans('response.unauthorized').'");window.location.href="'.createUrl("Admin\HomeController@getIndex").'"</script>';die;
+        }
     }
 
     /**
@@ -47,7 +53,9 @@ class BaseController extends \App\Http\Controllers\BaseController
      */
     private function checkIsLogin()
     {
-        return isAdminLogin() <= 0 && header('location:' . createUrl('Admin\LoginController@getIndex'));die;
+        if ( isAdminLogin() <= 0 ) {
+            echo "<script>window.location.href='".createUrl('Admin\LoginController@getIndex')."'</script>";
+        }
     }
 
     /**
@@ -67,40 +75,28 @@ class BaseController extends \App\Http\Controllers\BaseController
      */
     private function checkAccess()
     {
+        return true;
         //获得当前路由
         $action = $this->getCurrentAction();
 
-        $all_user_function = AdminLimitFunctionModel::getUserFunction();
-        //判断当前控制器是否存在 当前角色函数列表
+        $all_user_function  = AdminLimitFunctionModel::getUserFunction();
+        $all_function       = AdminFunctionModel::lists('function_name');
 
-        if (in_array($action['controller'], $all_user_function)){
-            return true;
-        } elseif (in_array(implode(self::CONNECTION, $action), $all_user_function)){
+        //如果当前权限，没有设定到权限控制表里面，则返回true
+        if ( !in_array($action['controller'], $all_function) && !in_array(implode(self::CONNECTION, $action), $all_function) ) {
             return true;
         }
+        //判断当前控制器是否存在 当前角色函数列表
 
-        $this->response(self::ERROR_STATE_CODE, trans('response.access_error'));
+//        if (in_array($action['controller'], $all_user_function) && array_search($action['controller'], $all_user_function)){
+//            echo 11;die;
+//            return true;
+//        } else
 
-    }
-
-    /**
-     * 获取当前控制器名
-     *
-     * @return string
-     */
-    public function getCurrentControllerName()
-    {
-        return getCurrentAction()['controller'];
-    }
-
-    /**
-     * 获取当前方法名
-     *
-     * @return string
-     */
-    public function getCurrentMethodName()
-    {
-        return getCurrentAction()['method'];
+        if (in_array(implode(self::CONNECTION, $action), $all_user_function)){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -111,49 +107,7 @@ class BaseController extends \App\Http\Controllers\BaseController
     public function getCurrentAction()
     {
         $action = \Route::current()->getActionName();
-        list($class, $method) = explode('@', $action);
+        list($class, $method) = explode(self::CONNECTION, $action);
         return ['controller' => str_replace("App\\Http\\Controllers\\", "", $class), 'method' => $method];
-    }
-
-    /**
-     * 获得当前url
-     *
-     * @return string
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    private function getCurrentUrl()
-    {
-        if(!empty($_SERVER['REQUEST_URI']) && strrpos($_SERVER['REQUEST_URI'], 'index')){
-            return url($_SERVER['REQUEST_URI']);
-        }
-
-        $current_action = Route::currentRouteAction();
-
-        $tmp = explode('\\', $current_action);
-
-        //获得当前命名空间
-        $namespace = $tmp[count($tmp) - 2];
-
-        //获得当前控制器名称
-        $action_name = end($tmp);
-
-        return action($namespace . '\\' . $action_name);
-    }
-
-    /**
-     * 显示错误信息
-     *
-     * @param $info
-     * @param $time
-     * @return \Illuminate\View\View
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function error($info, $time = 3, $jump_url = '')
-    {
-        //跳转地址
-        $jump_url = $jump_url != '' ? $jump_url : action('Admin\HomeController@getIndex');
-
-        echo $info;
-        echo "<script>setTimeout(function(){window.location.href = '{$jump_url}'} ,{$time} * 1000)</script>";die;
     }
 }

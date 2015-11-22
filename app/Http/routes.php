@@ -14,34 +14,23 @@
 Blade::setContentTags('<%', '%>');         // for variables and all things Blade
 Blade::setEscapedContentTags('<%%', '%%>');     // for escaped data
 
+    //重定向
+Route::get('/', function() {
+	return redirect()->action('Admin\HomeController@getIndex');
+});
 //后台
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
     //登录
     Route::controller('login', 'LoginController');
     //首页
     Route::controller('home', 'HomeController');
-    //权限
-    Route::controller('role', 'RoleController');
     //后台菜单
     Route::controller('menu', 'MenuController');
-
-
-//运营管理
-
-
-
-    //文章管理
-        //文章分类
-        Route::controller('article-cat', 'ArticleCatController');
-        //文章
-        Route::controller('article', 'ArticleController');
-    //友情链接
-        //友情链接
-        Route::controller('friend-link', 'FriendLinkController');
-
-
-//系统设置
-
+	//文章管理
+		//文章分类
+		Route::controller('article-cat', 'ArticleCatController');
+		//文章
+		Route::controller('article', 'ArticleController');
     //权限管理
         Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
             //后台用户
@@ -55,29 +44,13 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
             //后台日志
             Route::controller('log', 'AdminLogController');
         });
-
-
-
-//商家管理
-    //图片管理
-    Route::group(['prefix'=>'image', 'namespace' => 'Image'], function(){
-        //图片列表
-        Route::controller('list', 'ImageController');
-    });
-
-
-
-
-
-    //工具
-    Route::group(['prefix'=>'tools', 'namespace' => 'Tools'], function(){
-        //地图
-        Route::controller('map', 'MapController');
-    });
-
-
+	//商家管理
+		//图片管理
+		Route::group(['prefix'=>'image', 'namespace' => 'Image'], function(){
+			//图片列表
+			Route::controller('list', 'ImageController');
+		});
 });
-
 //工具
 Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     //上传

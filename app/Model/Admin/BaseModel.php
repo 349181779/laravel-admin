@@ -16,8 +16,19 @@ use DB;
 
 use \Session;
 
-class BaseModel extends Model{
+class BaseModel extends Model
+{
 
+
+    const SEPARATED         = ','; //分隔符
+    const HOTEL_TYPE_1      = 1;//酒店
+    const HOTEL_TYPE_2      = 2;//民宿
+    const HOTEL_TYPE_3      = 3;//公寓式
+    const HOTEL_NOT_EXISTS  = -100;//酒店不存在
+    const LANG_ZH           = 'zh';//中文语言包
+    const LANG_KOREA        = 'korea';//韩文语言包
+
+    public static $locale   = null;//语言
 
     /**
      * 搜索
@@ -48,13 +59,16 @@ class BaseModel extends Model{
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function scopeMultiwhere($query, $arr){
+    public function scopeMultiwhere($query, $arr)
+    {
         if (!is_array($arr)) {
             return $query;
         }
-        if(empty($arr)){
+
+        if (empty($arr)) {
             return $query;
         }
+
         foreach ($arr as $key => $value) {
             //判断$arr
             if(is_array($value)){
@@ -81,84 +95,6 @@ class BaseModel extends Model{
     }
 
     /**
-     * 组合性别
-     *
-     * @param $sex
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    protected static function mergeUserSex($sex){
-        if(empty($sex)){
-            return;
-        }
-        switch($sex){
-            case 1:
-                return trans('response.sex_1');
-            case 2:
-                return trans('response.sex_2');
-            default:
-                return trans('response.sex_3');
-        }
-    }
-
-    /**
-     * 组合状态
-     *
-     * @param $sex
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    protected static function mergeStatus($status){
-        if(empty($status)){
-            return;
-        }
-        switch($status){
-            case 1:
-                return trans('response.on');
-            default:
-                return trans('response.off');
-        }
-    }
-
-    /**
-     * 组合是否默认
-     *
-     * @param $sex
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    protected static function mergeIsDefault($is_default){
-        if(empty($is_default)){
-            return;
-        }
-
-        switch($is_default){
-            case 1:
-                return trans('response.is_default');
-            default:
-                return trans('response.not_is_default');
-        }
-    }
-
-    /**
-     * 组合是否是下午茶或蛋糕
-     *
-     * @param $is_speed
-     * @return string
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    protected static function mergeIsSpeed($is_speed)
-    {
-        if(empty($is_speed)){
-            return $is_speed;
-        }
-
-        switch ($is_speed) {
-            case 1:
-                return trans('response.is_speed_1');
-            case 2:
-                return trans('response.is_speed_2');
-        }
-    }
-
-    /**
      * 组合图片路径
      *
      * @param $image_src
@@ -166,7 +102,8 @@ class BaseModel extends Model{
      * @return string
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    protected static function mergeImagePath($image_src, $image_type = 1){
+    protected static function mergeImagePath($image_src, $image_type = 1)
+    {
         return config('config.file_url').$image_src;
     }
 
@@ -179,7 +116,8 @@ class BaseModel extends Model{
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllForSchemaOption($name, $id = 0, $first = true){
+    public static function getAllForSchemaOption($name, $id = 0, $first = true)
+    {
         $data = $id > 0 ? mergeTreeNode(objToArray(self::where('id', '<>' , $id)->get())) : mergeTreeNode(objToArray(self::all()));
         $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
         return $data;
@@ -194,7 +132,8 @@ class BaseModel extends Model{
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllParentName($name, $id = 0, $first = true){
+    public static function getAllParentName($name, $id = 0, $first = true)
+    {
         $data = $id > 0 ? mergeTreeNode(objToArray(self::where('id', '<>' , $id)->get())) : mergeTreeNode(objToArray(self::all()));
 
         $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
@@ -209,7 +148,8 @@ class BaseModel extends Model{
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAllFunctionName($name, $id = 0, $first = true){
+    public static function getAllFunctionName($name, $id = 0, $first = true)
+    {
         $data = $id > 0 ? mergeTreeNode(objToArray(self::where('id', '<>' , $id)->get())) : mergeTreeNode(objToArray(self::all()));
 
         $first == true && array_unshift($data, ['id' => '0', $name => '顶级函数']);
@@ -222,28 +162,28 @@ class BaseModel extends Model{
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getLastSql(){
+    public static function getLastSql($type = false)
+    {
 
         $sql = DB::getQueryLog();
-        var_dump($sql);die;
+        if ($type == true ) {
+            var_dump($sql);die;
+        }
+
         $query = end($sql);
-        return $query;
+        var_dump($query);die;
     }
 
     /**
-     * 删除信息
+     * 获得当前语言
      *
-     * @param $id
-     * @return bool
+     * @return string
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function del($id){
-        if($id > 0 ){
-            return self::where('id', '=', $id)->update([
-                'deleted_at'    => date('Y-m-d H:i:s'),
-            ]);
-        }
-        return false;
+    public static function getLocale()
+    {
+        $locale = \Cookie::get('locale');
+        return !empty($locale) ? $locale : 'zh';
     }
 
     /**
@@ -251,7 +191,8 @@ class BaseModel extends Model{
      *
      * @param null $role_id
      */
-    protected static function getRoleId($role_id = null){
+    protected static function getRoleId($role_id = null)
+    {
         return $role_id != null ? $role_id : Session::get('admin_info.role_id');
     }
 

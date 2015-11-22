@@ -23,7 +23,7 @@ class LoginFormRequest extends BaseFormRequest  {
 	public function rules(){
 		return [
             'admin_name'    => ['required'],
-            'password'      => ['required', 'regex:[\S{5,}]'],
+            'password'      => ['required', 'regex:[\S{6,}]'],
 		];
 	}
 
@@ -37,7 +37,7 @@ class LoginFormRequest extends BaseFormRequest  {
         return [
             'admin_name.required'   => trans('validate.admin_name_require'),
             'password.required'     => trans('validate.password_require'),
-            'password.size'         => trans('validate.password_size_error')
+            'password.regex'        => trans('validate.password_size_error')
         ];
     }
 

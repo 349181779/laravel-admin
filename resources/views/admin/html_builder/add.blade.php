@@ -1,6 +1,7 @@
 @section('header')
 @include('admin.block.header')
 @include('UEditor::head');
+<script src="/ckeditor/ckeditor.js"></script>
 @show
 
 
@@ -20,7 +21,7 @@
 <script>
     $(document).ready(function () {
         //验证表单
-        //checkForm($("form"))
+        checkForm($("form"))
     });
 </script>
 <!-- /MAIN EFFECT -->

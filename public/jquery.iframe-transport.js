@@ -130,7 +130,10 @@
     // Use the data from the original AJAX options, as it doesn't seem to be 
     // copied over since jQuery 1.7.
     // See https://github.com/cmlenz/jquery-iframe-transport/issues/6
-    options.data = origOptions.data;
+
+    //反序列化
+    options.data = parseQueryString(origOptions.data);
+    console.log(options.data);
 
     if (files.length) {
       form = $("<form enctype='multipart/form-data' method='post'></form>").
@@ -170,6 +173,8 @@
       $("<input type='hidden' name='X-HTTP-Accept'>").
         attr("value", accepts).appendTo(form);
 
+
+
       // Move the file fields into the hidden form, but first remember their
       // original locations in the document by replacing them with disabled
       // clones. This should also avoid introducing unwanted changes to the
@@ -177,7 +182,11 @@
       markers = files.after(function(idx) {
         return $(this).clone().prop("disabled", true);
       }).next();
+
       files.appendTo(form);
+
+      //压入_token到表单
+      $('input[name=_token]').clone(true).appendTo(form)
 
       return {
 

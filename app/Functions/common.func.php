@@ -76,18 +76,18 @@ if(!function_exists('isUserLogin')){
     }
 }
 
+/**
+ * 组合tree节点
+ *
+ * @param $data
+ * @param $pid
+ * @param $level
+ * @param $parent_id
+ * @param $current_id
+ * @return array
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('mergeTreeNode')){
-    /**
-     * 组合tree节点
-     *
-     * @param $data
-     * @param $pid
-     * @param $level
-     * @param $parent_id
-     * @param $current_id
-     * @return array
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function mergeTreeNode($data, $pid = 0, $level = 0, $parent_id = 0, $current_id = 0){
         $array = [];
         if(!empty($data)){
@@ -106,17 +106,17 @@ if(!function_exists('mergeTreeNode')){
     }
 }
 
+/**
+ * 组合tree节点
+ *
+ * @param $data
+ * @param $pid
+ * @param $level
+ * @param $parent_name
+ * @return array
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('mergeTreeChildNode')){
-    /**
-     * 组合tree节点
-     *
-     * @param $data
-     * @param $pid
-     * @param $level
-     * @param $parent_name
-     * @return array
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function mergeTreeChildNode($data, $pid = 0, $level = 0, $parent_name = 'parent_id'){
         $array = [];
         if(!empty($data)){
@@ -132,14 +132,15 @@ if(!function_exists('mergeTreeChildNode')){
         return $array;
     }
 }
+
+/**
+ * 获得当前页面的“所在位置”
+ *
+ * @param $data
+ * @param int $pid
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('getLocation')){
-    /**
-     * 获得当前页面的“所在位置”
-     *
-     * @param $data
-     * @param int $pid
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function getLocation($category, $pid = 0){
         $data = [];
 
@@ -156,13 +157,13 @@ if(!function_exists('getLocation')){
     }
 }
 
+/**
+ * 另一个打印函数
+ *
+ * @param array $array
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('p')){
-    /**
-     * 另一个打印函数
-     *
-     * @param array $array
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function p(Array $array){
         echo '<pre>';
         print_r($array);
@@ -170,27 +171,27 @@ if(!function_exists('p')){
     }
 }
 
+/**
+ * 加密密码
+ *
+ * @param $password
+ * @return bool|false|string
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('passwordEncrypt')){
-    /**
-     * 加密密码
-     *
-     * @param $password
-     * @return bool|false|string
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function passwordEncrypt($password){
         return password_hash($password, PASSWORD_DEFAULT);
     }
 }
 
+/**
+ * 安全的base64编码
+ *
+ * @param $str
+ * @return mixed
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('safeBase64Encode')){
-    /**
-     * 安全的base64编码
-     *
-     * @param $str
-     * @return mixed
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function safeBase64Encode($str){
         $find = array("+", "/");
         $replace = array("-", "_");
@@ -198,14 +199,14 @@ if(!function_exists('safeBase64Encode')){
     }
 }
 
+/**
+ * 安全的base64解码
+ *
+ * @param $str
+ * @return mixed
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('safeBase64Decode')){
-    /**
-     * 安全的base64解码
-     *
-     * @param $str
-     * @return mixed
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function safeBase64Decode($str){
         $find = array("-", "_");
         $replace = array("+", "/");
@@ -213,15 +214,15 @@ if(!function_exists('safeBase64Decode')){
     }
 }
 
+/**
+ * curl_post
+ *
+ * @author aaron
+ * @param string $url
+ * @param string $str_params
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('curlPost')){
-    /**
-     * curl_post
-     *
-     * @author aaron
-     * @param string $url
-     * @param string $str_params
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function curlPost($url,$str_params = ''){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);                                    // 设置访问链接
@@ -237,15 +238,15 @@ if(!function_exists('curlPost')){
     }
 }
 
+/**
+ * curl_get
+ *
+ * @author aaron
+ * @param string $url
+ * @param string $str_params
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('curlGet')){
-    /**
-     * curl_get
-     *
-     * @author aaron
-     * @param string $url
-     * @param string $str_params
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function curlGet($url,$str_params = ''){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);                                    // 设置访问链接
@@ -264,17 +265,17 @@ if(!function_exists('curlGet')){
     }
 }
 
+/**
+ * 日期数字转中文
+ * 用于日和月、周
+ *
+ * @static
+ * @access public
+ * @param integer $number 日期数字
+ * @return string
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('numberToCh')){
-    /**
-     * 日期数字转中文
-     * 用于日和月、周
-     *
-     * @static
-     * @access public
-     * @param integer $number 日期数字
-     * @return string
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function  numberToCh($number) {
         $number = intval($number);
         $array  = array('一','二','三','四','五','六','七','八','九','十');
@@ -297,14 +298,14 @@ if(!function_exists('numberToCh')){
 }
 
 
+/**
+ * 获取客户端IP地址
+ *
+ * @param integer $type 返回类型 0 返回IP地址 1 返回IPV4地址数字
+ * @return mixed
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('getClientIp')){
-    /**
-     * 获取客户端IP地址
-     *
-     * @param integer $type 返回类型 0 返回IP地址 1 返回IPV4地址数字
-     * @return mixed
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function getClientIp($type = 0) {
         $type       =  $type ? 1 : 0;
         static $ip  =   NULL;
@@ -326,15 +327,15 @@ if(!function_exists('getClientIp')){
     }
 }
 
+/**
+ * 生成url
+ *
+ * @param $url
+ * @param array $param
+ * @return string
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 if(!function_exists('createUrl')){
-    /**
-     * 生成url
-     *
-     * @param $url
-     * @param array $param
-     * @return string
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
     function createUrl($url, Array $param = []){
         if(!empty($url)){
             if(!empty($param)){
@@ -342,6 +343,22 @@ if(!function_exists('createUrl')){
             }
             return action($url);
         }
+    }
+}
+
+/**
+ * 是否是ajax提交
+ *
+ * @return bool
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+if(!function_exists('isAjax')){
+    function isAjax()
+    {
+        if (isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest") {
+            return true;
+        }
+        return false;
     }
 }
 

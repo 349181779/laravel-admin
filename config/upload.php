@@ -11,11 +11,11 @@
 
 return [
     'upyun' => [
-        'bucketname'    => 'louxiaimage', //空间名称
-        'username'      => 'louxia100',//'yangyifan',//操作员名称
-        'password'      => 'louxia8upyun',//'yangyifan',//密码
-        'imagesHots'    => 'http://louxiaimage.b0.upaiyun.com',//图片地址
-        'fileHost'      => 'http://static.louxia100.com'//静态文件地址
+        'bucketname'    => '', //空间名称
+        'username'      => '',//'yangyifan',//操作员名称
+        'password'      => '',//'yangyifan',//密码
+        'imagesHots'    => '',//图片地址
+        'fileHost'      => ''//静态文件地址
     ],
 
     'qiniu' => [
