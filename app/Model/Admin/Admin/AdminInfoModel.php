@@ -53,17 +53,17 @@ class AdminInfoModel extends BaseModel
 
         //判断改用户是否存在
         if(empty($user_info)){
-            return -1;
+            return self::ACCOUNT_NOT_EXISTS;
         }
 
         //判断改用户是否被禁用
         if($user_info->state != 1){
-            return -2;
+            return self::ACCOUNT_ERROR;
         }
 
         //判断密码是否正确
         if (self::checkPassword($params['password'], $user_info) == false) {
-            return -3;
+            return self::ACCOUNT_PASSWORD_ERRPR;
         }
 
         //更新用户信息
@@ -72,7 +72,7 @@ class AdminInfoModel extends BaseModel
         //保存用户session信息
         $user_info->ip = $params['ip'];
         self::saveUserSession($user_info);
-        return 1;
+        return self::LOGIN_SUCCESS;
     }
 
     /**

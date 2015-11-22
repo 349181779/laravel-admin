@@ -70,5 +70,11 @@
 </div>
 @include('admin.block.footer_js')
 <script src="/Validform-v5.3.2/Validform_v5.3.2.js"></script>
+<script>
+  $(document).ready(function () {
+    //验证表单
+    checkForm($("form"))
+  });
+</script>
 </body>
 </html>

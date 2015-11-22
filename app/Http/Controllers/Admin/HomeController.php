@@ -43,7 +43,7 @@ class HomeController extends BaseController
 	public function getLogout()
     {
         AdminInfoModel::logout();
-        $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\LoginController@getIndex'));
+        return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\LoginController@getIndex'));
 	}
 
 }
