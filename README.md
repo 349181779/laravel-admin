@@ -6,3 +6,4 @@
 * 代码在继续完善中，已经用于生产环境使用，很多细节待完善，文档也会慢慢更新的！
 * 需要下载一份sql执行到你的本地，然后使用这份sql的数据,sql地址保存在"资料文件"--> laravel.sql
 * email:yangyifanphp@gmail.com
+* 账户:yangyifan,密码：qiqi..
