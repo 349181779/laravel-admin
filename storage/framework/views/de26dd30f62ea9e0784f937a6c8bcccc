@@ -1,0 +1,25 @@
+<body bg-action="app">
+<!-- TOP NAVBAR -->
+<?php $__env->startSection('top_side'); ?>
+<?php echo $__env->make('admin.block.top_side', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->yieldSection(); ?>
+<!-- /END OF TOP NAVBAR -->
+
+<!-- SIDE MENU -->
+<?php $__env->startSection('side_menu'); ?>
+<?php echo $__env->make('admin.block.side_menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->yieldSection(); ?>
+<!-- END OF SIDE MENU -->
+
+<!--  PAPER WRAP -->
+<div class="wrap-fluid">
+
+    <div class="container-fluid paper-wrap bevel tlbr">
+        <!-- CONTENT -->
+
+
+        <!-- 面包屑 -->
+        <?php $__env->startSection('bread'); ?>
+        <?php echo $__env->make('admin.block.bread', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->yieldSection(); ?>
+                <!-- END 面包屑 -->
