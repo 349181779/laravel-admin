@@ -1,0 +1,11 @@
+<?php $__env->startSection('header'); ?>
+<?php echo $__env->make('admin.block.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<link href="<?php echo elixir('dist/builder_tree.css');?>" rel="stylesheet" >
+<?php echo $__env->yieldSection(); ?>
+<?php echo $__env->make('admin.block.body', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.html_builder.tree_form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.block.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<script src="<?php echo elixir('dist/builder_tree.js');?>"></script> 
+</html>
+
+

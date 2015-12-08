@@ -1,6 +1,0 @@
-把laypage整个目录放入你的项目，只需引入laypage.js即可，其它一律无视。
-详细文档打开demo，或者直接进入官网：http://sentsin.com/layui/laypage
-
-使用时请保留来源，感谢支持。
-
-MIT 最终解释权：贤心（sentsin.com） 

@@ -5,8 +5,6 @@
     <title><?php echo $title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php echo $__env->make('admin.block.base_header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php echo Html::style('/assets/css/style.css');?>
-<?php echo Html::style('/assets/js/button/ladda/ladda.min.css');?>
 <script>
     var logout_url = '<?php echo createUrl("Admin\HomeController@getLogout") ;?>';
 </script>

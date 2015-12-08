@@ -1,0 +1,1 @@
+function getEmailContent(t){$.ajax(getEmailContentUrl,{type:"post",data:{order_id:order_id,is_host:t},dataType:"html"}).success(function(t){$(".email_content").html(t)})}function sendEmailContent(t){$.ajax(sendEmailContentUrl,{type:"post",data:{order_id:order_id,is_host:t},dataType:"json"}).success(function(t){parseResponseJson(t)})}$(function(){getEmailContent(0,0)});

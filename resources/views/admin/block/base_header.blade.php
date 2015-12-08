@@ -1,12 +1,9 @@
-<?php echo Html::style('/assets/css/loader-style.css'); ?>
-<?php echo Html::style('/assets/css/bootstrap.min.css'); ?>
+<link rel="stylesheet" href="<?php echo elixir('dist/base.css');?>">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <?php echo Html::script('http://html5shim.googlecode.com/svn/trunk/html5.js');?>
 <![endif]-->
-
-<?php echo Html::script('/assets/js/jquery.min.js'); ?>
-<?php echo Html::script('/cookie/cookie.js'); ?>
+<script src="<?php echo elixir('dist/base.js');?>"></script>
 <script>
     //定义全局url
     fileUrl             = '<?php echo config("config.file_url");?>';//资源网址

@@ -18,11 +18,6 @@
                         <input type="text" placeholder="手机号码" id="mobile" class="form-control">
                     </div>
                     <div class="form-group">
-                        <section class="button-demo">
-                            <button class="ladda-button" data-size="xs" data-color="blue" data-style="slide-up">Slide
-                                Up
-                            </button>
-                        </section>
                     </div>
                 </form>
             </div>

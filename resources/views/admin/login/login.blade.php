@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-@include('admin.block.base_header')
-<?php echo Html::style('/assets/css/signin.css');?>
-<link rel="stylesheet" href="/toastr/toastr.css"/>
 
+@include('admin.block.base_header')
+  <link rel="stylesheet" href="<?php echo elixir('dist/login.css');?>">
+  <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <!-- Preloader -->
@@ -64,17 +64,11 @@
     <p>&nbsp;</p>
     <div style="text-align:center;margin:0 auto;">
       <h6 style="color:#fff;">Copyright(C)<?php echo date('Y') ;?> <?php echo config('config.site_name');?> All Rights Reserved<br />
-        </h6>
+      </h6>
     </div>
   </div>
 </div>
 @include('admin.block.footer_js')
-<script src="/Validform-v5.3.2/Validform_v5.3.2.js"></script>
-<script>
-  $(document).ready(function () {
-    //验证表单
-    checkForm($("form"))
-  });
-</script>
+<script src="<?php echo elixir('dist/login.js');?>"></script>
 </body>
 </html>
