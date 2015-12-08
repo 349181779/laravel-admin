@@ -39,7 +39,15 @@
             }).get();
         };
         $view.click();
+
+        //保存点击左侧菜单id
+        $view.saveChildMenuId = function (child_menu_id) {
+            child_menu_id > 0 && cookie("child_menu_id", child_menu_id);
+        }
+
     });
+
+
 
     //顶部菜单给定选中状态
     $(document).on('click','#topbar li',function(){

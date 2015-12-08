@@ -29,9 +29,7 @@ class HomeController extends BaseController
 	 */
 	public function getIndex()
     {
-        return view('admin.home.index', [
-            'title' => config('config.site_name'),
-        ]);
+        return view('admin.home.index');
 	}
 
 	/**

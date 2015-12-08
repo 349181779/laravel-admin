@@ -22,6 +22,7 @@ return[
     'delete_error'  => '删除失败',
     'on'=>'开启',
     'off'=>'关闭',
+    'active'=>'申请',
     'upload_file_error' => '上传文件错误',
     'file_unkown'=>'未知文件',
     'sex_1' => '男',
@@ -56,56 +57,29 @@ return[
     'not_use'   => '未使用',
     'use'   => '已使用',
     'empty' => '无',
-
-    'update_user_news_category_success' => '更新新闻分类成功',
-    'update_user_news_category_error' => '更新新闻分类失败',
-
-    'upload_avatar_success' => '上传头像成功',
-    'upload_avatar_error' => '上传头像失败',
+    'week_1' => '周一',
+    'week_2' => '周二',
+    'week_3' => '周三',
+    'week_4' => '周四',
+    'week_5' => '周五',
+    'week_6' => '周六',
+    'week_7' => '周日',
+    'update_order_state_success' => '更新订单状态成功',
+    'update_order_state_error' => '更新订单状态失败',
+    'cancel_order_success' => '取消订单成功',
+    'cancel_order_error' => '取消订单失败',
+    'return_order_remark' => '返还订单状态为：:state',
+    'return_order_state_require' => '需要返还的订单状态不能为空',
+    'return_order_state_error' => '返还订单状态失败',
+    'return_order_state_success' => '返还订单状态成功',
 
     'update_user_access_success' => '更新角色权限成功',
     'update_user_access_error' => '更新角色权限失败',
 
     'access_error'  => '没有权限',
-    'user_access_error' => '没有权限，请先实名制信息！',
 
     'logout_success'    => '退出登陆成功',
     'logout_error'    => '退出登陆失败',
-
-    //优惠券类型
-    'coupon_type_of_type1' => '全场优惠券',
-    'coupon_type_of_type2' => '单品牌使用',
-    'coupon_type_of_type3' => '单商品使用',
-    'coupon_type_of_type4' => '重复使用券',
-
-    'is_speed_1'    => '下午茶',
-    'is_speed_2'    => '蛋糕',
-
-    'is_freight_1'  => '免邮',
-    'is_freight_2'  => '不免邮',
-
-    'is_new_1'      => '新用户',
-    'is_new_2'      => '老用户可用',
-    'is_new_3'      => '不限制',
-
-    'coupon_type_1' => '未发放',
-    'coupon_type_2' => '未使用',
-    'coupon_type_3' => '已使用',
-    'coupon_type_4' => '已过期',
-    'coupon_type_5' => '已取消',
-
-    'create_coupon_success' => '添加优惠券成功',
-    'create_coupon_error' => '添加优惠券失败',
-
-    //充值卡状态
-    'prepaid_card_state_1' => '已使用',
-    'prepaid_card_state_2' => '未使用',
-
-    'prepaid_card_add_success'  => '添加充值卡成功',
-    'prepaid_card_add_error'  => '添加充值卡失败',
-    //充值卡未使用
-    'prepaid_user_name'    => '未使用',
-
 
     //用户信息
     'user_sex_1'    =>  '男',
@@ -131,12 +105,6 @@ return[
     'is_state_1'        =>  '默认',
     'is_state_2'        =>  '不默认',
 
-    //用户账户明细状态
-    'bill_state_1'        =>  '收入',
-    'bill_state_2'        =>  '支出',
-    'bill_state_3'        =>  '充值',
-    'BALANCE_NOT_ENOUGH'  => '用户余额少于明细金额，不能减少用户金额',
-    'add_balance_error'     => '添加用户金额失败',
 
     //推送
     'push_success'  => '推送成功',
@@ -181,15 +149,10 @@ return[
 
 
     //广告
-    'brand'                         => '品牌id',
-    'goods'                         => '商品id',
+    'brand'                         => '品牌',
+    'goods'                         => '商品',
     'collection'                    => '商品集合',
     'url'                           => 'url链接网址',
-    'shop_id'                       => '门店id',
-
-    //App广告
-    'ad_position_type1' => 'PC端',
-    'ad_position_type2' => 'APP端',
 
 
     //站点
@@ -250,27 +213,17 @@ return[
 
 
     //订单来源
-    'pay_source_1' => '支付宝移动客户端',
-    'pay_source_2' => '支付宝移动网页',
-    'pay_source_3' => '支付宝网站即时到帐',
-    'pay_source_4' => '货到付款',
-    'pay_source_5' => 'bank',
-    'pay_source_6' => '微信支付',
-    'pay_source_7' => '微信移动客户端',
-    'order_visitor_no'  =>'当前没有需要导出的数据',
+    'pay_source_1' => '免费',
+    'pay_source_2' => '支付宝',
+    'pay_source_3' => 'eximbay',
 
     //订单状态
+    'PAY_STATUS_-1'                 => '请选择',
     'PAY_STATUS_0'                  => '未付款',
     'PAY_STATUS_1'                  => '已付款',
-    'PAY_STATUS_2'                  => '已审核',
-    'PAY_STATUS_3'                  => '已分配',
-    'PAY_STATUS_4'                  => '已配货',
-    'PAY_STATUS_5'                  => '已发货',
-    'PAY_STATUS_6'                  => '已完成',
-    'PAY_STATUS_7'                  => '申请退货',
-    'PAY_STATUS_8'                  => '已取消',
-    'PAY_STATUS_9'                  => '货到付款',
-    'PAY_STATUS_10'                 => '预定订单',
+    'PAY_STATUS_2'                  => '已确认',
+    'PAY_STATUS_8'                  => '已完成',
+    'PAY_STATUS_9'                  => '已取消',
 
     //订单详情
     'get_order_info_error'  => '获取订单基本信息失败',
@@ -281,8 +234,9 @@ return[
     'get_order_comment_error'   => '获取订单留评论信息失败',
 
     //订单列表时间查询类型
-    'order_list_date_type1' => '订单创建时间',
-    'order_list_date_type2' => '订单配送时间',
+    'order_list_date_type1' => '入住日期',
+    'order_list_date_type2' => '退房日期',
+    'order_list_date_type3' => '预定日期',
 
     //邀请码
     'query_invite_data_success' => '获得邀请码信息成功',
@@ -299,9 +253,6 @@ return[
     //图片
     'image_used'    => '已使用',
     'image_not_use' => '未使用',
-    'upload_image_success' => '上传图片成功',
-    'upload_image_error' => '上传图片失败',
-    'image_exists'  => '图片已经存在',
 
     //后台菜单
     'get_menu_error'    => '获得菜单失败',
@@ -325,99 +276,26 @@ return[
     'save_shop_error4'       => '更新门店联系信息失败',
 
     //商品品牌信息
-
-    //平台商品分类等级
-    'sys_category_1' => '一级分类',
-    'sys_category_2' => '二级分类',
+    'goods_brand_state_1'   => '开启',
+    'goods_brand_state_2'   => '关闭',
 
     //订单模块
     'order_id_require'  =>'订单不能为空',
     'delivery_admin_not_exists'  =>'配送员不存在',
-    'CHECK_STATUS_ADMIN_LOG'        => ':log_content, 配货员是：:admin_name ,手机号码是 :mobile',
-    'station_require'  =>'配送站点不能为空',
-    'order_error1'  => '当前订单已经分配到第三方物流，不允许再操作',
-    'order_error2'  => '配送员不能为空',
-    'order_error3'  => '不能完成此订单',
-    'order_error5'  => '审核订单失败',
-    'order_error6'  => '分配订单失败',
-    'order_error7'  => '配货订单失败',
-    'order_error8'  => '分配配送员失败',
-    'order_error9'  => '推送订单信息给配送员失败',
-    'order_error10' => '完成订单失败',
-    'order_error11' => '返还用户余额失败',
-    'EDIT_ORDER_SPEND_ADMIN_LOG'    => '修改订单:order_id配送时间为:send_date',
-    'check_order_success'   => '处理订单成功',
-    'update_order_send_date_success'   => '更新订单配送时间成功',
-    'update_order_send_date_error'   => '更新订单配送时间失败',
-    'ORDER_NOT_EDIT'                => '此订单现在完成状态不允许修改任何信息',
-    'RETURN_ORDER_ADMIN_LOG'        => '返回订单id为：:order_id的状态为：state',
-    'ORDER_STATUS_ERROR'            => '您选择的订单状态有误，请重新选择',
-    'ORDER_STATUS_ERROR_NOT_MODIFY' => '您选择的订单是货到付款,不能修改状态为已付款',
-    'ORDER_PAY_SOURCE_NOT_HUODAO'   => '您选择的订单支付来源不是货到付款，请重新选择',
-    'get_order_user_info_success' => '获得订单会员信息成功',
-    'get_order_user_info_error' => '获得订单会员信息失败',
-
     //station模块
-
+    'station_require'  =>'配送站点不能为空',
 
     //区域
     'get_all_region_list_error' => '获得全部地址信息失败',
     'get_all_area_list_error'   => '获得当前区域信息失败',
 
-    //APP首页栏目内容管理
-    'index_cat_list_type1' => '最食惠',
-    'index_cat_list_type2' => '今天喝啥约',
-    'index_cat_list_type3' => '送送 ',
-    'index_cat_list_type4' => '寻鲜记',
-
-    //商品蛋糕（适合人数）
-    'goods_cake_renshu1' => '1人',
-    'goods_cake_renshu2' => '2~3人',
-    'goods_cake_renshu3' => '4~6人 ',
-    'goods_cake_renshu4' => '7人',
-
-    //商品蛋糕（甜度）
-    'goods_cake_sweet1' => '1',
-    'goods_cake_sweet2' => '2',
-    'goods_cake_sweet3' => '3',
-    'goods_cake_sweet4' => '4',
-    'goods_cake_sweet5' => '5',
-
-    //商品结单时间
-    'finish_order_date1' => '-1点',
-    'finish_order_date2' => '0点',
-    'finish_order_date3' => '1点',
-    'finish_order_date4' => '2点',
-    'finish_order_date5' => '3点',
-    'finish_order_date6' => '4点',
-    'finish_order_date7' => '5点',
-    'finish_order_date8' => '6点',
-    'finish_order_date9' => '7点',
-    'finish_order_date10' => '8点',
-    'finish_order_date11' => '9点',
-    'finish_order_date12' => '10点',
-    'finish_order_date13' => '11点',
-    'finish_order_date14' => '12点',
-    'finish_order_date15' => '13点',
-    'finish_order_date16' => '14点',
-    'finish_order_date17' => '15点',
-    'finish_order_date18' => '16点',
-    'finish_order_date19' => '17点',
-    'finish_order_date20' => '18点',
-    'finish_order_date21' => '19点',
-    'finish_order_date22' => '20点',
-    'finish_order_date23' => '21点',
-    'finish_order_date24' => '22点',
-    'finish_order_date25' => '23点',
-
-    //添加商品错误提示
-    'add_goods_error1' => '商品蛋糕添加错误，goods_id不存在',
-    'add_goods_error2' => '商品蛋糕添加错误，商品基本信息添加失败',
-    'add_goods_error3' => '商品蛋糕添加错误，商品图片添加失败',
-    'add_goods_error4' => '商品蛋糕添加错误，商品属性添加失败',
-    'add_goods_error5' => '商品蛋糕添加错误，商品sku信息添加失败',
-    'add_goods_error6' => '商品蛋糕添加错误，商品sku_itme信息添加失败',
-    'add_goods_error7' => '商品蛋糕添加错误，商品sku_type信息添加失败',
-    'add_goods_error8' => '商品蛋糕添加错误，商品品牌信息添加失败',
+    //商品订单
+    'product_order_list_date_type1' => '付款时间',
+    'product_order_list_date_type2' => '商家确认时间',
+    'product_order_list_date_type3' => '完成时间',
+    'product_order_list_date_type4' => '创建时间',
+    'send_email_success' => '发送邮件成功',
+    'send_email_error' => '发送邮件失败',
 
 ];
+

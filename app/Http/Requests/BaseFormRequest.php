@@ -10,17 +10,18 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use App\Http\Controllers\BaseController;
 
-class BaseFormRequest extends Request {
-
+class BaseFormRequest extends Request
+{
 
     /**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
 	 */
-	public function authorize(){
+	public function authorize()
+    {
 		return true;
 	}
 
@@ -31,28 +32,21 @@ class BaseFormRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			//
-		];
+		return [];
 	}
 
     /**
      * 重写validate 响应
      *
      * @param array $errors
+     * @param object BaseController
      * @return \Symfony\Component\HttpFoundation\Response|void
      */
-    public function response(array $errors){
-
+    public function response(array $errors)
+    {
         $errors = array_values($errors);
 
-        die(json_encode([
-            'code'  => 422,
-            'msg'   => $errors[0][0],
-            'data'  => [],
-            'target'=> false,
-            'href'  => ''
-        ]));
+        return (new BaseController())->response($code = BaseController::ERROR_STATE_CODE, $errors[0][0], $data = [], $target = false, $href = '');
     }
 
 }

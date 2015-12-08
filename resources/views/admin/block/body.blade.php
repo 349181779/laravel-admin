@@ -18,4 +18,8 @@
         <!-- CONTENT -->
 
 
-
+        <!-- 面包屑 -->
+        @section('bread')
+        @include('admin.block.bread')
+        @show
+                <!-- END 面包屑 -->

@@ -10,24 +10,24 @@
 
 namespace App\Model\Admin\Admin;
 
-use Session;
-
-use DB;
-
-class AdminMenuModel extends BaseModel {
+class AdminMenuModel extends BaseModel
+{
 
     protected $table    = 'admin_menu';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
+    private static $all_menu = null;//全部菜单
 
     /**
-     * 获得全部文章分类
+     * 获得全部菜单导航
      *
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAll()
     {
-        return self::mergeData(self::all());
+        if (is_null(self::$all_menu)) {
+            self::$all_menu = self::mergeData(self::all());
+        }
+        return self::$all_menu;
     }
 
     /**
@@ -35,7 +35,7 @@ class AdminMenuModel extends BaseModel {
      *
      * @param $roles
      * @return mixed
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data)
     {
@@ -46,7 +46,7 @@ class AdminMenuModel extends BaseModel {
                 $v->handle       = '<a href="'.createUrl('Admin\Admin\AdminMenuController@getEdit',['id' => $v->id]).'" >修改</a>';
                 //父级菜单
                 if ($v['parent_id']) {
-                    $v['parent_name'] = self::where(array('id' => $v['parent_id']))->pluck('menu_name');
+                    $v['parent_name'] = self::multiwhere( ['id' => $v['parent_id']] )->pluck('menu_name');
                 } else if($v['parent_id'] == 0) {
                     $v['parent_name'] = trans('response.top_classification');
                 }
@@ -65,9 +65,10 @@ class AdminMenuModel extends BaseModel {
      */
     public static function getFullUserMenu($limit_id = null)
     {
-        $limit_id       = self::getRoleId($limit_id);
-        $all_menu       = self::all();
+        $limit_id       = AdminInfoModel::getAdminLimit($limit_id);
+        $all_menu       = self::getAll();
         $all_user_menu  = AdminLimitMenuModel::getUserRelationMenu($limit_id);
+
         if (!empty($all_menu)) {
             foreach ($all_menu as &$menu) {
                 $menu->checked = in_array($menu->id, $all_user_menu) ? true : false;
@@ -110,7 +111,11 @@ class AdminMenuModel extends BaseModel {
         if (empty($all_menu_id)) {
             return false;
         }
-        return mergeTreeChildNode(objToArray(self::mergeMenuUrl(self::multiwhere(['parent_id' => ['>', 0], 'id' => ['IN', $all_menu_id]] )->orderBy('sort', 'asc')->get())), $parent_id);
+        return mergeTreeChildNode(objToArray(
+            self::mergeMenuUrl(self::multiwhere(['parent_id' => ['>', 0], 'id' => ['IN', $all_menu_id]] )->
+            orderBy('sort', 'asc')->
+            get()
+            )), $parent_id);
     }
 
     /**
@@ -134,5 +139,44 @@ class AdminMenuModel extends BaseModel {
         return $menu_list;
     }
 
+    /**
+     * 获得当前用户全部菜单--递归（左侧菜单显示）
+     *
+     * @return array
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getUserMenuSide()
+    {
+        return mergeTreeNode(objToArray(self::getAll()), 0, 0, 'parent_id');
+    }
+
+    /**
+     * 获得当前路由的菜单id
+     *
+     * @param $menu_route
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getMenuId($menu_route)
+    {
+        if (!empty($menu_route)) {
+            return self::multiwhere( ['menu_url' => $menu_route] )->pluck('id');
+        }
+        return false;
+    }
+
+    /**
+     * 组合后台当前位置
+     *
+     * @param $menu_id
+     * @return array
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function mergeLocation($menu_id)
+    {
+        $all_menu = self::getAll();//获得全部路由
+
+        return array_reverse(getLocation($all_menu, $menu_id));
+    }
 
 }

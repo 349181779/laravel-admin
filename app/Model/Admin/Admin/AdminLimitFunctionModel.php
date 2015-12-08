@@ -10,10 +10,10 @@
 
 namespace App\Model\Admin\Admin;
 
-class AdminLimitFunctionModel extends BaseModel {
+class AdminLimitFunctionModel extends BaseModel
+{
 
     protected $table    = 'admin_limit_function';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 获得全部用户函数
@@ -44,7 +44,7 @@ class AdminLimitFunctionModel extends BaseModel {
 
         if (!empty($function_array)) {
 
-            $limit_id = self::getRoleId($limit_id);
+            $limit_id = AdminInfoModel::getAdminLimit($limit_id);
 
             foreach ($function_array as $function) {
                 if($function <= 0 ) continue;
@@ -64,7 +64,7 @@ class AdminLimitFunctionModel extends BaseModel {
      */
     private static function deleteLimitFunction($limit_id = null)
     {
-        return self::multiwhere(['limit_id' => self::getRoleId($limit_id) ])->delete();
+        return self::multiwhere(['limit_id' => AdminInfoModel::getAdminLimit($limit_id) ])->delete();
     }
 
     /**
@@ -77,7 +77,10 @@ class AdminLimitFunctionModel extends BaseModel {
     public static function getUserFunction($limit_id = null)
     {
         $limit_id = $limit_id == null ? AdminInfoModel::getAdminLimit() : $limit_id;
-        return self::multiwhere(['limit_id' => $limit_id])->join('ali_admin_function AS f', 'ali_admin_limit_function.function_id', '=', 'f.id')->lists('function_name');
+
+        return  self::multiwhere(['limit_id' => $limit_id])->
+                join(tableName('admin_function') . ' AS f', tableName('admin_limit_function') .'.function_id', '=', 'f.id')->
+                lists('function_name');
     }
 
 

@@ -34,6 +34,9 @@ class HtmlBuilderController extends BaseController {
     public $tab_schema          = [];//选项卡字段
     public $tab_data            = [];//选项卡数据
     public $tab_confirm_button  = [];//选项卡确认按钮数据
+    public $tab_title           = '';//网站标题
+    public $tab_description     = '';//网站描述
+    public $tab_keywords        = '';//网站关键字
 
     public $tree_data           = [];//tree 数据
 
@@ -194,10 +197,11 @@ class HtmlBuilderController extends BaseController {
      * @param $err_message          表单验证提示文字
      * @param $option               选项
      * @param $option_value_schema  选项默认值
+     * @param $attr                 属性 数组格式
      * @return $option_value_name   下拉列表框选项名称
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = '', $option_value_name = '')
+    public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = '', $option_value_name = '', $attr = [])
     {
         array_push($this->form_schema, [
             'name'                  => $name,
@@ -210,7 +214,8 @@ class HtmlBuilderController extends BaseController {
             'err_message'           => $err_message,
             'option'                => $option,
             'option_value_schema'   => $option_value_schema,
-            'option_value_name'     => $option_value_name
+            'option_value_name'     => $option_value_name,
+            'attr'                  => $attr,
         ]);
         return $this;
     }
@@ -307,6 +312,20 @@ class HtmlBuilderController extends BaseController {
     }
 
     /**
+     * 构建tab网站标题
+     *
+     * @return Response
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderTabTitle($title, $description = '', $keywords = '')
+    {
+        $this->tab_title        = $title;
+        $this->tab_description  = $description;
+        $this->tab_keywords     = $keywords;
+        return $this;
+    }
+
+    /**
      * 构建Tab 字段
      *
      * @param $obj
@@ -331,21 +350,25 @@ class HtmlBuilderController extends BaseController {
     /**
      * 构建Tab HTML页面
      *
-     * @param array $data
      * @param array $urls
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderTabHtml($data = [], $urls = [])
+    public function builderTabHtml($urls = [], $method = 'post', $post_url = '')
     {
+        //提交地址，针对 添加 tab 页面
+        $post_url = empty($post_url) ? \URL::current() : $post_url;
+
         return View('admin/html_builder/tab',[
             'tabs_schemas'      => $this->tab_schema,//tab 字段
             'tab_data'          => $this->tab_data,//tab 数据
             'urls'              => $urls,
-            'title'             => $this->title,//网站标题
-            'description'       => $this->description,//网站描述
-            'keywords'          => $this->keywords,//网站关键字
+            'title'             => $this->tab_title,//网站标题
+            'description'       => $this->tab_description,//网站描述
+            'keywords'          => $this->tab_keywords,//网站关键字
             'tab_confirm_button'=> $this->tab_confirm_button,//tab 确认按钮按钮
+            'post_url'          => $post_url,//提交地址
+            'method'            => $method,//提交方式
         ]);
     }
 
@@ -392,9 +415,6 @@ class HtmlBuilderController extends BaseController {
      */
     public function loadScription($scription = '')
     {
-//        if(checkdnsrr($_SERVER['SERVER_NAME'] . $scription, 'A')){
-//            $this->scription[] = $scription;
-//        }
         $this->scription[] = $scription;
         return $this;
     }

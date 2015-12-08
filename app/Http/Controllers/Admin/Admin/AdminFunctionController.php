@@ -5,15 +5,15 @@
 // +----------------------------------------------------------------------
 // | AdminFunctionController.php: 后台函数控制器
 // +----------------------------------------------------------------------
-// | Author: zhuweijian <zhuweijain@louxia100.com>
+// | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Admin\Admin;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Model\Admin\AdminFunctionModel;
-use App\Model\Admin\AdminLimitFunctionModel;
+use App\Model\Admin\Admin\AdminFunctionModel;
+use App\Model\Admin\Admin\AdminLimitFunctionModel;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\HtmlBuilderController;
 
@@ -25,7 +25,7 @@ class AdminFunctionController extends BaseController
     /**
      * 构造方法
      *
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public  function __construct(HtmlBuilderController $html_builder)
     {
@@ -37,7 +37,7 @@ class AdminFunctionController extends BaseController
      * 获得后台函数
      *
      * @return Response
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex()
     {
@@ -55,7 +55,7 @@ class AdminFunctionController extends BaseController
      * 搜索
      *
      * @param Request $request
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request)
     {
@@ -80,7 +80,7 @@ class AdminFunctionController extends BaseController
      * 编辑函数
      *
      * @param  int  $id
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit(Request $request)
     {
@@ -88,7 +88,7 @@ class AdminFunctionController extends BaseController
         return  $this->html_builder->
                 builderTitle('权限函数')->
                 builderFormSchema('function_name', '函数名称', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('parent_id', '父级函数', $type = 'select', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '',AdminFunctionModel::getAllFunctionName('function_name'),$info->parent_id,'function_name')->
+                builderFormSchema('parent_id', '父级函数', $type = 'select', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '',AdminFunctionModel::getAllFunctionName('function_name', $info->id), $info->parent_id,'function_name')->
                 builderConfirmBotton('确认', createUrl('Admin\Admin\AdminFunctionController@postEdit'), 'btn btn-success')->
                 builderEditData($info)->
                 builderEdit();

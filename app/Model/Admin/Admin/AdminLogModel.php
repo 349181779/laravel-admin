@@ -5,20 +5,24 @@
 // +----------------------------------------------------------------------
 // | AdminLogModel.php: 后台日志模型
 // +----------------------------------------------------------------------
-// | Author: zhuweijian <zhuweijain@louxia100.com>
+// | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Model\Admin\Admin;
 
-use Session;
-use DB;
-
-class AdminLogModel extends BaseModel {
+class AdminLogModel extends BaseModel
+{
 
     protected $table    = 'admin_log';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     private static $log_type_arr;//日志类型
+
+    const LOG_ERROR_0 = 0;//添加日志失败
+    const LOG_ERROR_1 = -1;//操作员ID不能为空
+    const LOG_ERROR_2 = -2;//操作员登录名不能为空
+    const LOG_ERROR_3 = -3;//操作日志不能为空
+    const LOG_ERROR_4 = -4;//日志类型不能为空
+    const LOG_SUCCESS = 1;//添加日志成功
 
     /**
      * 搜索
@@ -28,7 +32,7 @@ class AdminLogModel extends BaseModel {
      * @param $order
      * @param $offset
      * @return mixed
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function search($map, $sort, $order, $limit, $offset)
     {
@@ -40,8 +44,7 @@ class AdminLogModel extends BaseModel {
                 take($limit)->
                 get()
             ),
-            'count' => self::multiwhere($map)->
-                       count(),
+            'count' => self::multiwhere($map)->count(),
         ];
     }
 
@@ -50,9 +53,10 @@ class AdminLogModel extends BaseModel {
      *
      * @param $roles
      * @return mixed
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function mergeData($data){
+    public static function mergeData($data)
+    {
         if(!empty($data)){
             foreach($data as &$v){
                 //组合日志类型
@@ -65,7 +69,7 @@ class AdminLogModel extends BaseModel {
     /**
      * 获得全部日志类型
      *
-     * @author zhuweijian<zhueweijian@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     private static function getAllLogType()
     {
@@ -87,7 +91,7 @@ class AdminLogModel extends BaseModel {
     /**
      * 组合日志类型
      *
-     * @author zhuweijian<zhueweijian@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function mergeLogType($log_type)
     {
@@ -104,9 +108,9 @@ class AdminLogModel extends BaseModel {
     }
 
     /**
-     * 配送站点列表
+     * 组合日志类型 (for select)
      *
-     * @author zhuweijian<zhueweijian@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function adminLogLogTypeName()
     {
@@ -132,37 +136,40 @@ class AdminLogModel extends BaseModel {
      * @param type $log_content 日志内容
      * @param type $log_type    日志类型
      * @return int 返回状态码     1:success 小于1：error
-     * @auther zhuweijian<zhuweijian@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
 
-      public static  function writeAdminLog($admin_id,$admin_name,$log_content,$log_type){
+      public static  function writeAdminLog($log_content, $log_type)
+      {
+          $admin_id     = isAdminLogin();
+          $admin_name   = AdminInfoModel::getAdminName($admin_id);
 
-            if(empty($admin_id)){
-                return -1;//操作员ID不能为空
-            }else if(empty ($admin_name)){
-                return -2;//操作员登录名不能为空
-            }else if(empty ($log_content)){
-                return -3;//操作日志不能为空
-            }else if(empty ($log_type)){
-                return -4;//日志类型不能为空
-            }
+          if (empty($admin_id)) {
+            return self::LOG_ERROR_1;//操作员ID不能为空
+          } elseif(empty ($admin_name)) {
+            return self::LOG_ERROR_2;//操作员登录名不能为空
+          } elseif(empty ($log_content)) {
+            return self::LOG_ERROR_3;//操作日志不能为空
+          } elseif(empty ($log_type)) {
+            return self::LOG_ERROR_4;//日志类型不能为空
+          }
 
-            //组合数据
-            $data = array(
-                'admin_id'=>    $admin_id,
-                'admin_name'=>  $admin_name,
-                'log_content'=> $log_content,
-                'log_type'=>    $log_type,
-            );
+          //组合数据
+          $data = [
+              'admin_id'      => $admin_id,
+              'admin_name'    => $admin_name,
+              'log_content'   => $log_content,
+              'log_type'      => $log_type,
+          ];
 
-            $admin_log_id = self::create($data);
+          $admin_log_id = self::create($data);
 
-            if($admin_log_id < 0){
-                return 0;//添加失败
-            }else{
-                return 1;//添加成功
-            }
+          if ($admin_log_id < 0) {
+            return self::LOG_ERROR_0;//添加失败
+          }
+          return self::LOG_SUCCESS;//添加成功
         }
+
 
 
 }

@@ -28,7 +28,7 @@ class LoginController extends BaseController
     {
         parent::__construct();
         //判断是否已经登录
-        if(isAdminLogin() > 0 ) return header('location:' . createUrl('Admin\HomeController@getIndex'));
+        if(isAdminLogin() > 0 )  header('location:' . createUrl('Admin\HomeController@getIndex'));
     }
 
 	/**
@@ -60,14 +60,14 @@ class LoginController extends BaseController
                 return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\HomeController@getIndex'));
             case AdminInfoModel::ACCOUNT_NOT_EXISTS:
             case AdminInfoModel::ACCOUNT_PASSWORD_ERRPR:
-                return $this->response(401, trans('response.admin_not_exists'));
+                return $this->response(self::ERROR_STATE_CODE, trans('response.admin_not_exists'));
             case AdminInfoModel::ACCOUNT_ERROR:
-                return $this->response(401, trans('response.admin_disable'));
+                return $this->response(self::ERROR_STATE_CODE, trans('response.admin_disable'));
 
         }
 
         //登陆失败
-        return $this->response(401, trans('response.unauthorized'));
+        return $this->response(self::ERROR_STATE_CODE, trans('response.unauthorized'));
 	}
 
 }

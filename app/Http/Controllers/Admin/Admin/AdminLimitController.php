@@ -5,16 +5,17 @@
 // +----------------------------------------------------------------------
 // | AdminLimitController.php: 后台角色控制器
 // +----------------------------------------------------------------------
-// | Author: zhuweijian <zhuweijain@louxia100.com>
+// | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Admin\Admin;
 
 use App\Http\Requests;
-use App\Model\Admin\AdminLimitModel;
+use App\Model\Admin\Admin\AdminLimitModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\HtmlBuilderController;
+use App\Http\Requests\Admin\Admin\AdminLimitRequest;
 
 class AdminLimitController extends BaseController
 {
@@ -24,7 +25,7 @@ class AdminLimitController extends BaseController
     /**
      * 构造方法
      *
-     * @Author: zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function __construct(HtmlBuilderController $html_builder)
     {
@@ -36,7 +37,7 @@ class AdminLimitController extends BaseController
      * 获得后台角色列表
      *
      * @return Response
-     * @Author: zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex()
     {
@@ -54,7 +55,7 @@ class AdminLimitController extends BaseController
      * 获取后台角色列表
      *
      * @param Request $request
-     * @Author: zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request)
     {
@@ -78,7 +79,7 @@ class AdminLimitController extends BaseController
      * 编辑后台角色
      *
      * @param  int  $id
-     * @Author: zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit(Request $request)
     {
@@ -93,9 +94,9 @@ class AdminLimitController extends BaseController
     /**
      * 更新后台角色
      *
-     * @Author: zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function postEdit(Request $request)
+    public function postEdit(AdminLimitRequest $request)
     {
         $Model  = AdminLimitModel::findOrFail($request->get('id'));
 
@@ -107,7 +108,7 @@ class AdminLimitController extends BaseController
     /**
      * 添加后台角色界面
      *
-     * @uthor zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getAdd()
     {
@@ -124,11 +125,10 @@ class AdminLimitController extends BaseController
      * @param Request $request
      * @author zhuweijian <zhuweijain@louxia100.com>
      */
-    public function postAdd(Request $request)
+    public function postAdd(AdminLimitRequest $request)
     {
-        $data = $request->all();die;
         //写入数据
-        $affected_number = AdminLimitModel::create($data);
+        $affected_number = AdminLimitModel::create($request->all());
         return  $affected_number->id > 0  ? $this->response(self::SUCCESS_STATE_CODE, trans('response.add_success'), [], true, createUrl('Admin\Admin\AdminLimitController@getIndex')) : $this->response(self::ERROR_STATE_CODE, trans('response.add_error'), [], false);
     }
 

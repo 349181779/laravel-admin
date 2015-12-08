@@ -55,7 +55,7 @@
                     <a style="margin:0 0 10px; 0" href="javascript:void(0)" class="pull-right btn btn-info" onClick="jQuery('#example-advanced').treetable('expandAll'); return false;">展开</a>
                     <a style="margin:0 10px 10px; 0;" href="javascript:void(0)" class="pull-right btn btn-info" onClick="jQuery('#example-advanced').treetable('collapseAll'); return false;">收缩</a>
 
-                    <table id="example-advanced" class="table-striped">
+                    <table id="example-advanced" class="table-bordered table-hover">
 
 
                         <thead>

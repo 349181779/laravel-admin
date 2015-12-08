@@ -5,17 +5,15 @@
 // +----------------------------------------------------------------------
 // | AdminLimitModel.php: 后台角色模型
 // +----------------------------------------------------------------------
-// | Author: zhuweijian <zhuweijain@louxia100.com>
+// | @author yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Model\Admin\Admin;
 
-use \DB;
-
-class AdminLimitModel extends BaseModel {
+class AdminLimitModel extends BaseModel
+{
 
     protected $table    = 'admin_limit';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 搜索
@@ -25,7 +23,7 @@ class AdminLimitModel extends BaseModel {
      * @param $order
      * @param $offset
      * @return mixed
-     * Author: zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function search($map, $sort, $order, $limit, $offset)
     {
@@ -48,7 +46,7 @@ class AdminLimitModel extends BaseModel {
      *
      * @param $data
      * @return mixed
-     * @Author: zhuweijian <zhuweijain@louxia100.com>
+     * @@author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data)
     {

@@ -10,14 +10,10 @@
 
 return [
 
-
-    //资源表
-    'resource_table_name'   => 'resource',//资源主表
-    'resource_slave_table_name' => 'resource_slave',//资源从表
-
-    //文章
-    'article_cat_table_name' => 'article_cat',//文章分类表
-
     //后台用户
-    'admin_tbale_name'  => 'admin_info',//后台用户表
+        'admin_info'                    => 'admin_info',
+        'admin_limit'                   => 'admin_limit',
+        'admin_limit_function'          => 'admin_limit_function',
+        'admin_function'                => 'admin_function',
+
 ];

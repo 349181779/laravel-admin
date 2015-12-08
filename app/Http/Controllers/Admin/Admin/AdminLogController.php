@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------
 // | AdminInfoController.php: 后台日志控制器
 // +----------------------------------------------------------------------
-// | Author: zhuweijian <zhuweijain@louxia100.com>
+// | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Admin\Admin;
@@ -13,7 +13,8 @@ namespace App\Http\Controllers\Admin\Admin;
 use App\Http\Requests;
 use App\Model\Admin\MergeModel;
 use Illuminate\Http\Request;
-use App\Model\Admin\AdminLogModel;
+use App\Model\Admin\Admin\AdminLogModel;
+use App\Model\Admin\Admin\AdminMergeModel;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\HtmlBuilderController;
 
@@ -37,7 +38,7 @@ class AdminLogController extends BaseController
      * 获得后台日志
      *
      * @return Response
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex()
     {
@@ -48,7 +49,7 @@ class AdminLogController extends BaseController
                 builderSchema('log_content','操作日志')->
                 builderSchema('log_type_name', '类型')->
                 builderSchema('create_date', '订单操作记录时间')->
-                builderSearchSchema('admin_id', '操作人员', $type = 'select', $default = '', $class = '', MergeModel::adminLogAdminName(), '0', 'name')->
+                builderSearchSchema('admin_id', '操作人员', $type = 'select', $default = '', $class = '', AdminMergeModel::adminLogAdminName(), '0', 'name')->
                 builderSearchSchema($name = 'log_content', $title = '操作内容 ', $type = 'text', $class = '', $option = '', $option_value_schema = '')->
                 builderSearchSchema('log_type', '日志类型', $type = 'select', $default = '', $class = '', AdminLogModel::adminLogLogTypeName(), '0', 'name')->
                 builderSearchSchema('create_time_start', '日志创建开始时间', $type = 'date', $default = "dateFmt:'yyyy-MM-dd'",  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = '')->
@@ -61,7 +62,7 @@ class AdminLogController extends BaseController
      * 搜索
      *
      * @param Request $request
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request)
     {

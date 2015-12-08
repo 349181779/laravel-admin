@@ -3,7 +3,6 @@
 @section('header')
 @include('admin.block.header')
 <style>
-
   .horizontal {display: inline-block;margin-left: 10px;}
   dd{width: 120px;height: auto;}
 </style>
@@ -46,4 +45,3 @@
   }
 
 </script>
-

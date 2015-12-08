@@ -12,7 +12,8 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\BaseFormRequest;
 
-class LoginFormRequest extends BaseFormRequest  {
+class LoginFormRequest extends BaseFormRequest
+{
 
 	/**
 	 * 验证错误规则

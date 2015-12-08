@@ -13,7 +13,7 @@ namespace App\Http\Controllers\Admin\Admin;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Admin\AdminInfoRequest;
-use App\Model\Admin\AdminInfoModel;
+use App\Model\Admin\Admin\AdminInfoModel;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\HtmlBuilderController;
 
@@ -37,7 +37,7 @@ class AdminInfoController extends BaseController
      * 获得后台用户
      *
      * @return Response
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex(Request $request)
     {
@@ -61,11 +61,10 @@ class AdminInfoController extends BaseController
      * 搜索
      *
      * @param Request $request
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request)
     {
-
         //接受参数
         $search     = $request->get('search', '');
         $sort       = $request->get('sort', 'id');
@@ -74,6 +73,9 @@ class AdminInfoController extends BaseController
         $offset     = $request->get('offset', config('config.page_limit'));
         $limit_id   = $request->limit_id;
 
+        //admin_info 表名
+        $admin_info_table_name = tableName('admin_info');
+
         //解析params
         parse_str($search);
 
@@ -81,9 +83,10 @@ class AdminInfoController extends BaseController
         $map = [];
 
         if (!empty($limit_id)) {
-            $map['ali_admin_info.limit_id'] = $limit_id;
-        }else if (!empty($admin_name)) {
-            $map['ali_admin_info.admin_name'] = ['like','%'.$admin_name.'%'];
+            $map[$admin_info_table_name . '.limit_id'] = $limit_id;
+        }
+        if (!empty($admin_name)) {
+            $map[$admin_info_table_name . '.admin_name'] = ['like','%'.$admin_name.'%'];
         }
 
         $data = AdminInfoModel::search($map, $sort, $order, $limit, $offset);
@@ -99,7 +102,7 @@ class AdminInfoController extends BaseController
      * 编辑角色
      *
      * @param  int  $id
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit(Request $request)
     {
@@ -107,11 +110,12 @@ class AdminInfoController extends BaseController
 
         return  $this->html_builder->
                 builderTitle('编辑后台用户')->
-                builderFormSchema('admin_name', '管理员名称', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('password', '登录密码', $type = 'password', $default = '',  $notice = '', $class = '', $rule = '')->
+                builderFormSchema('admin_name', '管理员名称', $type = 'text')->
+                builderFormSchema('password', '登录密码', $type = 'password', '', '', '', '')->
+                builderFormSchema('password_confirmation', '确认密码', $type = 'password', '', '', '', '')->
                 builderFormSchema('limit_id', '角色', $type = 'select', $default = '', $notice = '', $class = '', $rule = '*', $err_message = '', AdminInfoModel::adminInfoLimitName(), '', 'name')->
                 builderFormSchema('mobile', '手机', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('state', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', [1=>'开启', '2'=>'关闭'] ,$infos->state)->
+                builderFormSchema('state', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'] ,$infos->state)->
                 builderConfirmBotton('确认', createUrl('Admin\Admin\AdminInfoController@postEdit'), 'btn btn-success')->
                 builderEditData($infos)->
                 builderEdit();
@@ -125,7 +129,7 @@ class AdminInfoController extends BaseController
     public function postEdit(AdminInfoRequest $request)
     {
 
-        $data   = $request->all();
+        $data   = $request->except('password_confirmation');
 
         $Model  = AdminInfoModel::findOrFail($data['id']);
 
@@ -150,11 +154,12 @@ class AdminInfoController extends BaseController
     {
         return  $this->html_builder->
                 builderTitle('添加后台用户')->
-                builderFormSchema('admin_name', '管理员名称', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('password', '登录密码', $type = 'password', $default = '',  $notice = '', $class = '', $rule = '')->
+                builderFormSchema('admin_name', '管理员名称', $type = 'text')->
+                builderFormSchema('password', '登录密码', $type = 'password')->
+                builderFormSchema('password_confirmation', '确认密码', $type = 'password')->
                 builderFormSchema('limit_id', '角色', $type = 'select', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', AdminInfoModel::adminInfoLimitName(),'0','name')->
                 builderFormSchema('mobile', '手机', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('state', '状态', 'radio', '', '当前角色是否开启，如果关闭，则属于当前角色都不可用', '', '', '', [1=>'开启', '2'=>'关闭'] ,'1')->
+                builderFormSchema('state', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'] ,'1')->
                 builderConfirmBotton('确认', createUrl('Admin\Admin\AdminInfoController@postAdd'), 'btn btn-success')->
                 builderAdd();
     }
@@ -167,7 +172,7 @@ class AdminInfoController extends BaseController
      */
     public function postAdd(AdminInfoRequest $request)
     {
-        $data = $request->all();
+        $data = $request->except('password_confirmation');
 
         $data['password'] = bcrypt($data['password']);
         //写入数据

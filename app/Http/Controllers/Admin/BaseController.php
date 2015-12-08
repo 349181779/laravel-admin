@@ -10,18 +10,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\AdminFunctionModel;
-use App\Model\Admin\MenuModel;
+use App\Model\Admin\Admin\AdminFunctionModel;
+use App\Model\Admin\Admin\AdminInfoModel;
+use App\Model\Admin\Admin\AdminMenuModel;
 use Illuminate\Http\Request;
 use Route;
 use View;
-use App\Model\Admin\AdminLimitFunctionModel;
+use App\Model\Admin\Admin\AdminLimitFunctionModel;
 
 class BaseController extends \App\Http\Controllers\BaseController
 {
     private $request;
 
     const CONNECTION = '@';//控制器名称和方法名称连接符号
+    private static $route_arr = null;//当前路由数组
 
     /**
      * 构造方法
@@ -35,7 +37,11 @@ class BaseController extends \App\Http\Controllers\BaseController
         //检测登录
         $this->checkIsLogin();
         //获得全部菜单
-        $this->getAllMenu();
+        $this->showAllMenu();
+        //显示管理者信息
+        $this->showAdminInfo();
+        //获得当前位置信息
+        $this->getLocation();
         //验证权限
         if ( $this->checkAccess() == false) {
             if (isAjax() == true) {
@@ -63,9 +69,29 @@ class BaseController extends \App\Http\Controllers\BaseController
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private function getAllMenu()
+    private function showAllMenu()
     {
-        view()->share('menu_tree_data', MenuModel::getUserMenuSide());
+        view()->share('menu_tree_data', AdminMenuModel::getUserMenuSide());
+    }
+
+    /**
+     * 显示管理者信息
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function showAdminInfo()
+    {
+        view()->share('admin_info', AdminInfoModel::getAdminInfo());
+    }
+
+    /**
+     * 获得当前位置信息
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function getLocation()
+    {
+        view()->share('location_arr', AdminMenuModel::mergeLocation( AdminMenuModel::getMenuId(implode(self::CONNECTION, $this->getCurrentAction())) ));
     }
 
     /**
@@ -75,10 +101,11 @@ class BaseController extends \App\Http\Controllers\BaseController
      */
     private function checkAccess()
     {
-        return true;
+
         //获得当前路由
         $action = $this->getCurrentAction();
 
+        return true;
         $all_user_function  = AdminLimitFunctionModel::getUserFunction();
         $all_function       = AdminFunctionModel::lists('function_name');
 
@@ -103,11 +130,15 @@ class BaseController extends \App\Http\Controllers\BaseController
      * 获取当前控制器与方法
      *
      * @return array
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getCurrentAction()
     {
-        $action = \Route::current()->getActionName();
-        list($class, $method) = explode(self::CONNECTION, $action);
-        return ['controller' => str_replace("App\\Http\\Controllers\\", "", $class), 'method' => $method];
+        if (is_null(self::$route_arr)) {
+            $action = \Route::current()->getActionName();
+            list($class, $method) = explode(self::CONNECTION, $action);
+            self::$route_arr =  ['controller' => str_replace("App\\Http\\Controllers\\", "", $class), 'method' => $method];
+        }
+        return self::$route_arr;
     }
 }

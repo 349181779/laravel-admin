@@ -5,15 +5,15 @@
 // +----------------------------------------------------------------------
 // | AdminMenuController.php: 后台菜单控制器
 // +----------------------------------------------------------------------
-// | Author: zhuweijian <zhuweijain@louxia100.com>
+// | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Http\Controllers\Admin\Admin;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Model\Admin\AdminMenuModel;
-use App\Model\Admin\AdminLimitMenuModel;
+use App\Model\Admin\Admin\AdminMenuModel;
+use App\Model\Admin\Admin\AdminLimitMenuModel;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\HtmlBuilderController;
 
@@ -25,7 +25,7 @@ class AdminMenuController extends BaseController
     /**
      * 构造方法
      *
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public  function __construct(HtmlBuilderController $html_builder)
     {
@@ -37,7 +37,7 @@ class AdminMenuController extends BaseController
      * 获得后台菜单
      *
      * @return Response
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getIndex()
     {
@@ -56,7 +56,7 @@ class AdminMenuController extends BaseController
      * 搜索
      *
      * @param Request $request
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getSearch(Request $request)
     {
@@ -81,7 +81,7 @@ class AdminMenuController extends BaseController
      * 编辑菜单
      *
      * @param  int  $id
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getEdit(Request $request)
     {
@@ -90,7 +90,7 @@ class AdminMenuController extends BaseController
         return  $this->html_builder->
                 builderTitle('编辑后台菜单')->
                 builderFormSchema('menu_name', '菜单名称', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('parent_id', '父级菜单', $type = 'select', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '',AdminMenuModel::getAllParentName('menu_name'),$info->parent_id,'menu_name')->
+                builderFormSchema('parent_id', '父级菜单', $type = 'select', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '',AdminMenuModel::getAllParentName('menu_name', $info->id), $info->parent_id,'menu_name')->
                 builderFormSchema('menu_url', '菜单URL', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
                 builderFormSchema('sort', '排序', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
                 builderConfirmBotton('确认', createUrl('Admin\Admin\AdminMenuController@postEdit'), 'btn btn-success')->

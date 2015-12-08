@@ -3,11 +3,12 @@
         <h1><?php echo config('config.site_name') ;?><span><?php echo config('config.version') ;?></span></h1>
     </div>
 
-    <a id="toggle">
+    <a id="toggle" class="hidden">
         <span class="entypo-menu"></span>
     </a>
 
-    <div class="dark">
+    <!-- 搜索菜单 -->
+    <div class="dark hidden">
         <form action="#">
                 <span>
                     <input type="text" name="search" value="" class="search rounded id_search"
@@ -15,8 +16,9 @@
                 </span>
         </form>
     </div>
+    <!-- 搜索菜单 -->
 
-    <div class="search-hover">
+    <div class="search-hover hidden">
         <form id="demo-2">
             <input type="search" placeholder="Search Menu..." class="id_search">
         </form>
@@ -25,8 +27,8 @@
     <div class="skin-part">
         <div id="tree-wrap">
             <div class="side-bar">
-                <ul id="menu-showhide" class="topnav menu-left-nest" >
-                    <li>
+                <ul id="menu-showhide " class="topnav menu-left-nest" >
+                    <li class="hidden">
                         <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
 
                             <span class="component"></span>
@@ -38,8 +40,7 @@
                     <!-- 循环 左侧导航菜单 -->
                     <li bg-render="item in side_menu">
                         <script type="text/html">
-                            <a class="tooltip-tip" href="javascript:void(0)" title="{{: item.menu_name}}">
-                                <i class="icon-monitor"></i>
+                            <a class="tooltip-tip" href="javascript:void(0)" style="cursor: default;" title="{{: item.menu_name}}">
                                 <span bg-text="item.menu_name"></span>
 
                             </a>
@@ -49,13 +50,20 @@
 
                         <ul style="display: block;"  >
                                 {{for childItem in item.child }}
-                                    <li>
-                                    <a class="tooltip-tip2 ajax-load" href="{{: childItem.menu_url}}" title="">
-                                        <i class="icon-attachment"></i>
-                                        <span bg-text="childItem.menu_name" ></span>
-                                        </a>
+                                    {{if childItem.id == cookie("child_menu_id") }}
+                                        <li>
+                                            <a class="topnav_hover tooltip-tip2 ajax-load " bg-click="saveChildMenuId({{: childItem.id}})" href="{{: childItem.menu_url}}" title="">
+                                                <span bg-text="childItem.menu_name" ></span>
+                                            </a>
                                         </li>
-                                 {{/for}}
+                                    {{else}}
+                                        <li>
+                                            <a class="tooltip-tip2 ajax-load" bg-click="saveChildMenuId({{: childItem.id}})" href="{{: childItem.menu_url}}" title="">
+                                                <span bg-text="childItem.menu_name" ></span>
+                                            </a>
+                                        </li>
+                                    {{/if}}
+                                {{/for}}
                         </ul>
 
                         <!-- 三级菜单 -->

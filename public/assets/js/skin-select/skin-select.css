@@ -11,7 +11,7 @@
 #skin-select {
     height: auto;
     position: absolute;
-    top: 20px;
+    top: 3px;
     width: 250px;
     z-index: 1000;
 }

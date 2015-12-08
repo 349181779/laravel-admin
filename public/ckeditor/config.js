@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 
-    config.toolbar = 'Full';
+    config.toolbar = 'Custom';
 
     config.toolbar_Full =
         [
@@ -31,5 +31,21 @@ CKEDITOR.editorConfig = function( config ) {
     config.toolbar_Basic =
         [
             ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink','-','About']
+        ];
+
+    config.toolbar_Custom =
+        [
+            ['Source','-','Save','-','Templates'],
+            ['Paste','PasteText','PasteFromWord',],
+            ['Undo','Redo'],
+            '/',
+            ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+            ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+            ['Link','Unlink'],
+            ['Image','Flash','Table','HorizontalRule','SpecialChar'],
+            '/',
+            ['Styles','Format','Font','FontSize'],
+            ['TextColor','BGColor'],
+            ['Maximize']
         ];
 };

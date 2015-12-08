@@ -54,27 +54,33 @@
                         <!-- 导航 tabs -->
 
                         <!-- 内容  tabs-->
-                        <div class="tab-content">
-                            <?php foreach ($tabs_schemas as $k => $tabs_schema): ?>
-                                <?php $data = $tab_data[$k]; ?>
-                                <?php $confirm_button = $tab_confirm_button[$k]; ?>
-                                <?php $tabs_schema = unserialize($tabs_schema); ?>
-                                <?php if($k == 0) :?>
+                            <form method="<?php echo $method; ?>" action="<?php echo $post_url; ?>" class="form-horizontal bucket-form ajax-form" enctype="multipart/form-data" >
+                                <div class="tab-content">
+                                    <?php foreach ($tabs_schemas as $k => $tabs_schema): ?>
+                                    <?php $data = $tab_data[$k]; ?>
+                                    <?php $confirm_button = $tab_confirm_button[$k]; ?>
+                                    <?php $tabs_schema = unserialize($tabs_schema); ?>
+                                    <?php if($k == 0) :?>
                                     <div role="tabpanel" class="tab-pane active" id="<?php echo $k;?>">
                                         <?php $schemas  = $tabs_schema->form_schema; ?>
                                         <?php $title    = $tabs_schema->title; ?>
                                         <?php $method   = $tabs_schema->method; ?>
-                                        @include('admin.html_builder.edit_form')
+                                        @include('admin.html_builder.tab_edit_form')
                                     </div>
-                                <?php else:?>
+                                    <?php else:?>
                                     <div role="tabpanel" class="tab-pane " id="<?php echo $k;?>">
                                         <?php $schemas  = $tabs_schema->form_schema; ?>
                                         <?php $title    = $tabs_schema->title; ?>
                                         <?php $method   = $tabs_schema->method; ?>
-                                        @include('admin.html_builder.edit_form')
+                                        @include('admin.html_builder.tab_edit_form')
                                     </div>
-                                <?php endif;?>
-                            <?php endforeach; ?>
+                                    <?php endif;?>
+                                    <?php endforeach; ?>
+
+                                    <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>"/>
+                                </div>
+                            </form>
+
                         </div>
                         <!--  内容  tabs -->
 

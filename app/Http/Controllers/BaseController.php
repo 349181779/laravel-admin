@@ -15,7 +15,8 @@ use App\Http\Requests;
 use Illuminate\Http\Response;
 use App\Model\Admin\BaseModel;
 
-class BaseController extends Controller {
+class BaseController extends Controller
+{
 
     const SUCCESS_STATE_CODE    = 200;//成功状态码
     const ERROR_STATE_CODE      = 400;//失败状态码

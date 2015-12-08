@@ -11,6 +11,7 @@ var HTTP_CODE = {
 
 
 
+
 $(function(){
 
     $.ajaxSetup({
@@ -55,88 +56,13 @@ $(function(){
         "hideMethod": "fadeOut"
     }
 
-    /**
-     * ajax-form
-     * 通过ajax提交表单，通过oneplus提示消息
-     * 示例：<form class="ajax-form" method="post" action="xxx">
-     */
-    $(document).on('submit', 'form.ajax-form', function (e) {
 
-        //获取提交地址，方式
-        var action = $(this).attr('action');
-        var method = $(this).attr('method');
 
-        if(method.toLocaleLowerCase() == 'get'){
-            return;
-        }
 
+    $('.ajax-form').on('submit', function (e) {
+        ajaxForm(this);
         //取消默认动作，防止表单两次提交
         e.preventDefault();
-
-        //禁用提交按钮，防止重复提交
-        var form = $(this);
-
-
-
-        //如果禁止base.js 解析 则跳过
-        if(form.find('input[name=status]').val() == 'false'){
-            return;
-        }
-
-        //$('[type=submit]', form).addClass('disabled');
-
-
-
-        //检测提交地址
-        if (!action) {
-            return false;
-        }
-
-        //默认提交方式为get
-        if (!method) {
-            method = 'get';
-        }
-
-        //获取表单内容
-        var formContent = filterFormContents($(this).serialize());
-
-        //发送提交请求
-        var callable;
-        if (method == 'post') {
-            callable = $.post;
-        } else {
-            callable = $.get;
-        }
-
-        if ($(':file').size() > 0 ) {
-            $.ajax(action, {
-                type : method,
-                files: $(":file", this),
-                data :formContent,
-                iframe: true,
-                dataType: "json",
-                processData: true
-            }).success(function (data) {
-                parseResponseJson(data);
-                $('[type=submit]', form).removeClass('disabled');
-            });
-        } else {
-            $.ajax(action, {
-                type : method,
-                files: $(":file", this),
-                data :formContent,
-                dataType: "json",
-                processData: true
-            }).success(function (data) {
-                parseResponseJson(data);
-                $('[type=submit]', form).removeClass('disabled');
-            });
-        }
-
-
-
-        //返回
-        return false;
     });
 
     //双向选择器
@@ -168,8 +94,109 @@ $(function(){
     });
     //双向选择器
 
+    //菜单折叠
+    $(document).on('click','.tooltip-tip',function(){
+        var css = $(this).next('ul').css('display');
+        if(css == 'none'){
+            //再展示点击的菜单
+            $(this).next('ul').slideDown('normal');
+            //给当前菜单添加选中状态
+            $('.menu-div a').removeClass('topnav_hover');
+        }else{
+            $(this).next('ul').slideUp('normal');
+        }
+    });
+    //菜单折叠
 
 })
+
+/**
+ * 更新 Ckeditor
+ *
+ */
+function updateCkeditroData(){
+    try {
+        for (instance  in CKEDITOR.instances ) {
+            CKEDITOR.instances[instance].updateElement();
+            return true;
+        }
+    }catch(e){
+    }
+
+}
+
+/**
+ * ajax-form
+ * 通过ajax提交表单，通过oneplus提示消息
+ * 示例：<form class="ajax-form" method="post" action="xxx">
+ */
+function ajaxForm(obj)
+{
+    var _this = $(obj);
+    //获取提交地址，方式
+    var action = _this.attr('action');
+    var method = _this.attr('method');
+
+    if(method.toLocaleLowerCase() == 'get'){
+        return;
+    }
+
+    //更新 Ckeditor
+    updateCkeditroData()
+
+
+    //禁用提交按钮，防止重复提交
+    var form = _this;
+    //如果禁止base.js 解析 则跳过
+    if(form.find('input[name=status]').val() == 'false'){
+        return;
+    }
+    //$('[type=submit]', form).addClass('disabled');
+    //检测提交地址
+    if (!action) {
+        return false;
+    }
+    //默认提交方式为get
+    if (!method) {
+        method = 'get';
+    }
+    //获取表单内容
+    var formContent = filterFormContents(_this.serialize());
+    //发送提交请求
+    var callable;
+    if (method == 'post') {
+        callable = $.post;
+    } else {
+        callable = $.get;
+    }
+
+    if ($(':file').size() > 0 ) {
+        $.ajax(action, {
+            type : method,
+            files: $(":file", obj),
+            data :formContent,
+            iframe: true,
+            dataType: "json",
+            processData: true
+        }).success(function (data) {
+            parseResponseJson(data);
+            $('[type=submit]', form).removeClass('disabled');
+        });
+    } else {
+        $.ajax(action, {
+            type : method,
+            files: $(":file", obj),
+            data :formContent,
+            dataType: "json",
+            processData: true
+        }).success(function (data) {
+            parseResponseJson(data);
+            $('[type=submit]', form).removeClass('disabled');
+        });
+    }
+    //返回
+    return false;
+}
 
 /**
  * 过滤 表单提交内容

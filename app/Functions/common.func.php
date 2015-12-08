@@ -15,7 +15,8 @@
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('objToArray')){
-    function objToArray($obj){
+    function objToArray($obj)
+    {
         return json_decode(json_encode($obj), true);
     }
 }
@@ -28,7 +29,8 @@ if(!function_exists('objToArray')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('arrayToObj')){
-    function arrayToObj($array){
+    function arrayToObj($array)
+    {
         return json_decode(json_encode($array));
     }
 }
@@ -42,7 +44,8 @@ if(!function_exists('arrayToObj')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('hashUserSign')){
-    function hashUserSign($params){
+    function hashUserSign($params)
+    {
         if(!is_array($params)){
             $params = (array)$params;
         }
@@ -59,8 +62,11 @@ if(!function_exists('hashUserSign')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('isAdminLogin')){
-    function isAdminLogin(){
-        return hashUserSign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.id') : false;
+    function isAdminLogin()
+    {
+        //admin_info 表名
+        $table_name = tableName('admin_info');
+        return hashUserSign(Session::get($table_name . '.admin_user_data')) == Session::get($table_name . '.sign') ? Session::get($table_name . '.id') : false;
     }
 }
 
@@ -71,7 +77,8 @@ if(!function_exists('isAdminLogin')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('isUserLogin')){
-    function isUserLogin(){
+    function isUserLogin()
+    {
         return hashUserSign(Session::get('user_info.user_user_data')) == Session::get('user_info.sign') ? Session::get('user_info.id') : false;
     }
 }
@@ -88,7 +95,8 @@ if(!function_exists('isUserLogin')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('mergeTreeNode')){
-    function mergeTreeNode($data, $pid = 0, $level = 0, $parent_id = 0, $current_id = 0){
+    function mergeTreeNode($data, $pid = 0, $level = 0, $parent_id = 0, $current_id = 0)
+    {
         $array = [];
         if(!empty($data)){
             foreach($data as $k=>$v){
@@ -117,7 +125,8 @@ if(!function_exists('mergeTreeNode')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('mergeTreeChildNode')){
-    function mergeTreeChildNode($data, $pid = 0, $level = 0, $parent_name = 'parent_id'){
+    function mergeTreeChildNode($data, $pid = 0, $level = 0, $parent_name = 'parent_id')
+    {
         $array = [];
         if(!empty($data)){
             foreach($data as $v){;
@@ -138,17 +147,20 @@ if(!function_exists('mergeTreeChildNode')){
  *
  * @param $data
  * @param int $pid
+ * @param string $parent_name
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('getLocation')){
-    function getLocation($category, $pid = 0){
+    function getLocation($category, $pid = 0, $parent_name = 'parent_id')
+    {
         $data = [];
 
         if(!empty($category)){
             foreach($category as $location){
+
                 if($location['id'] == $pid){
                     $data[] = $location;
-                    $data = array_merge($data, getLocation($category, $location['pid']));
+                    $data = array_merge($data, getLocation($category, $location[$parent_name]));
                 }
             }
         }
@@ -164,7 +176,8 @@ if(!function_exists('getLocation')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('p')){
-    function p(Array $array){
+    function p(Array $array)
+    {
         echo '<pre>';
         print_r($array);
         echo '</pre>';
@@ -179,7 +192,8 @@ if(!function_exists('p')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('passwordEncrypt')){
-    function passwordEncrypt($password){
+    function passwordEncrypt($password)
+    {
         return password_hash($password, PASSWORD_DEFAULT);
     }
 }
@@ -192,7 +206,8 @@ if(!function_exists('passwordEncrypt')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('safeBase64Encode')){
-    function safeBase64Encode($str){
+    function safeBase64Encode($str)
+    {
         $find = array("+", "/");
         $replace = array("-", "_");
         return str_replace($find, $replace, base64_encode($str));
@@ -207,7 +222,8 @@ if(!function_exists('safeBase64Encode')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('safeBase64Decode')){
-    function safeBase64Decode($str){
+    function safeBase64Decode($str)
+    {
         $find = array("-", "_");
         $replace = array("+", "/");
         return base64_decode(str_replace($find, $replace, $str));
@@ -223,7 +239,8 @@ if(!function_exists('safeBase64Decode')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('curlPost')){
-    function curlPost($url,$str_params = ''){
+    function curlPost($url, $str_params = '')
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);                                    // 设置访问链接
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);                         // 是否返回信息
@@ -247,7 +264,8 @@ if(!function_exists('curlPost')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('curlGet')){
-    function curlGet($url,$str_params = ''){
+    function curlGet($url, $str_params = '')
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);                                    // 设置访问链接
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);                         // 是否返回信息
@@ -276,7 +294,8 @@ if(!function_exists('curlGet')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('numberToCh')){
-    function  numberToCh($number) {
+    function  numberToCh($number)
+    {
         $number = intval($number);
         $array  = array('一','二','三','四','五','六','七','八','九','十');
         $str = '';
@@ -306,7 +325,8 @@ if(!function_exists('numberToCh')){
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 if(!function_exists('getClientIp')){
-    function getClientIp($type = 0) {
+    function getClientIp($type = 0)
+    {
         $type       =  $type ? 1 : 0;
         static $ip  =   NULL;
         if ($ip !== NULL) return $ip[$type];
@@ -335,9 +355,10 @@ if(!function_exists('getClientIp')){
  * @return string
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-if(!function_exists('createUrl')){
-    function createUrl($url, Array $param = []){
-        if(!empty($url)){
+if (!function_exists('createUrl')) {
+    function createUrl($url, Array $param = [])
+    {
+        if (!empty($url)) {
             if(!empty($param)){
                 return action($url) . '?' . http_build_query($param);
             }
@@ -352,7 +373,7 @@ if(!function_exists('createUrl')){
  * @return bool
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-if(!function_exists('isAjax')){
+if (!function_exists('isAjax')) {
     function isAjax()
     {
         if (isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest") {
@@ -362,3 +383,19 @@ if(!function_exists('isAjax')){
     }
 }
 
+if(!function_exists('tableName')) {
+    /**
+     * 获得表名称
+     *
+     * @param $table_name
+     * @return bool|mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    function tableName($table_name)
+    {
+        if (!empty($table_name)) {
+            return config('table_name.' . $table_name);
+        }
+        return false;
+    }
+}

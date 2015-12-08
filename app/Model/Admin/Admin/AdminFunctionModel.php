@@ -10,16 +10,16 @@
 
 namespace App\Model\Admin\Admin;
 
-class AdminFunctionModel extends BaseModel {
+class AdminFunctionModel extends BaseModel
+{
 
     protected $table    = 'admin_function';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 获得全部后台函数分类
      *
      * @return array
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAll()
     {
@@ -31,7 +31,7 @@ class AdminFunctionModel extends BaseModel {
      *
      * @param $roles
      * @return mixed
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data)
     {
@@ -54,9 +54,10 @@ class AdminFunctionModel extends BaseModel {
      */
     public static function getFullUserFunction($limit_id = null)
     {
-        $limit_id           = self::getRoleId($limit_id);
+        $limit_id           = AdminInfoModel::getAdminLimit($limit_id);
         $all_function       = self::all();
         $all_user_function  = AdminLimitFunctionModel::getUserRelationFunnction($limit_id);
+
         if (!empty($all_function)) {
             foreach ($all_function as &$function) {
                 $function->checked = in_array($function->id, $all_user_function) ? true : false;

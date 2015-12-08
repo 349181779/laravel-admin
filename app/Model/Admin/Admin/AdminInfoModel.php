@@ -12,17 +12,11 @@ namespace App\Model\Admin\Admin;
 
 use Session;
 use DB;
+use App\Model\Admin\MergeModel;
 
 class AdminInfoModel extends BaseModel
 {
-
     protected $table    = 'admin_info';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
-
-    const ACCOUNT_NOT_EXISTS        = -1;//账户不存在
-    const ACCOUNT_ERROR             = -2;//状态错误
-    const ACCOUNT_PASSWORD_ERRPR    = -3;//密码不存在
-    const LOGIN_SUCCESS             = 1;//登陆成功
 
     /**
      * 判断是否登录状态
@@ -45,10 +39,13 @@ class AdminInfoModel extends BaseModel
      */
     public static function login($params)
     {
+        $admin_info_table_name  = tableName('admin_info');//admin_info表名
+        $admin_limit_table_name = tableName('admin_limit');//admin_limit表名
+
         //查找用户
-        $user_info =    self::multiwhere(['admin_info.admin_name' => $params['admin_name']])->
-                        select(['admin_info.*', 'al.limit_name'])->
-                        leftJoin('admin_limit AS al', 'admin_info.limit_id', '=', 'al.id')->
+        $user_info =    self::multiwhere([$admin_info_table_name . '.admin_name' => $params['admin_name']])->
+                        select([$admin_info_table_name . '.*', 'al.limit_name'])->
+                        leftJoin($admin_limit_table_name . ' AS al', $admin_info_table_name . '.limit_id', '=', 'al.id')->
                         first();
 
         //判断改用户是否存在
@@ -92,7 +89,7 @@ class AdminInfoModel extends BaseModel
         if (strlen($user_info->password) == 32) {
             //如果md5验证成功，则把当前密码修改成password_hash方式
             if (md5($password) === $user_info->password) {
-                return self::where('id', '=', $user_info->id)->update(['password'  => bcrypt($password),]);
+                return self::multiwhere(['id' => $user_info->id])->update(['password'  => bcrypt($password),]);
             }
             return false;
         }
@@ -129,7 +126,7 @@ class AdminInfoModel extends BaseModel
             'ip'            => $user_info['ip'],
         ];
         $user_info['sign'] = hashUserSign($user_info['admin_user_data']);
-        Session::put('admin_info', $user_info);
+        Session::put(tableName('admin_info') . '', $user_info);
         Session::save();
     }
 
@@ -140,7 +137,7 @@ class AdminInfoModel extends BaseModel
      */
     public static function logout()
     {
-        Session::forget('admin_info');
+        Session::forget(tableName('admin_info'));
         Session::save();
     }
 
@@ -152,22 +149,25 @@ class AdminInfoModel extends BaseModel
      * @param $order
      * @param $offset
      * @return mixed
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     protected static function search($map, $sort, $order, $limit, $offset)
     {
+        $admin_info_table_name  = tableName('admin_info');//admin_info表名
+        $admin_limit_table_name = tableName('admin_limit');//admin_limit表名
+
         return [
             'data' => self::mergeData(
                 self::multiwhere($map)->
-                select('admin_info.id', 'admin_info.admin_name','admin_info.state','admin_info.last_login','admin_info.create_date','admin_info.mobile','l.limit_name','admin_info.limit_id')->
-                join('admin_limit as l', 'admin_info.limit_id', '=', 'l.id')->
+                select($admin_info_table_name . '.id', $admin_info_table_name . '.admin_name', $admin_info_table_name .'.state',$admin_info_table_name .'.last_login',$admin_info_table_name . '.create_date',$admin_info_table_name .'.mobile','l.limit_name',$admin_info_table_name .'.limit_id')->
+                join($admin_limit_table_name . ' as l', $admin_info_table_name . '.limit_id', '=', 'l.id')->
                 orderBy($sort, $order)->
                 skip($offset)->
                 take($limit)->
                 get()
             ),
             'count' => self::multiwhere($map)->
-                       join('admin_limit as l', 'admin_info.limit_id', '=', 'l.id')->
+                       join($admin_limit_table_name . ' as l', $admin_info_table_name . '.limit_id', '=', 'l.id')->
                        count(),
         ];
     }
@@ -175,7 +175,7 @@ class AdminInfoModel extends BaseModel
     /**
      * 组合数据
      *
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function mergeData($data)
     {
@@ -193,31 +193,9 @@ class AdminInfoModel extends BaseModel
     }
 
     /**
-     * 配送站点列表
-     *
-     * @author zhuweijian <zhuweijain@louxia100.com>
-     */
-
-    public static function adminInfoStationName()
-    {
-        $map=[];
-        $roles = StationModel::multiwhere($map)->lists('station_name','id') ;
-        if (!empty($roles)) {
-            $data = [];
-            foreach ($roles as $k =>$v) {
-                $data[] = [
-                    'id'    => $k,
-                    'name'  => $v,
-                ];
-            }
-        }
-        return $data;
-    }
-
-    /**
      * 用户权限列表
      *
-     * @author zhuweijian <zhuweijain@louxia100.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
 
     public static function adminInfoLimitName()
@@ -243,56 +221,56 @@ class AdminInfoModel extends BaseModel
      *
      * @param $admin_id
      * @return bool|\Illuminate\Support\Collection|null|static
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAdminInfo($admin_id)
+    public static function getAdminInfo($admin_id = null)
     {
-        if ($admin_id <= 0) {
-            return false;
-        }
+        $admin_id <= 0 && $admin_id = isAdminLogin();
 
         return self::find($admin_id);
-    }
-
-    /**
-     * 获得当前用户站点id
-     *
-     * @return bool
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public static function getStationId()
-    {
-        return hashUserSign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.station_id') : false;
-    }
-
-    /**
-     * 获得当前用户城市id
-     *
-     * @return bool
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public static function getCityId()
-    {
-        return hashUserSign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.city_id') : false;
     }
 
     /**
      * 获得当前用户角色id
      *
      * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAdminLimit()
+    public static function getAdminLimit($limit_id = null)
     {
-        return hashUserSign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.limit_id') : false;
+        $admin_info_table_name  = tableName('admin_info');//admin_info表名
+
+        return hashUserSign(Session::get($admin_info_table_name .'.admin_user_data')) == Session::get($admin_info_table_name .'.sign') ? Session::get($admin_info_table_name .'.limit_id') : '';
     }
 
     /**
      * 获得当前用户名称
      *
      * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getAdminName()
+    public static function getAdminName($admin_id = null)
     {
-        return hashUserSign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.admin_name') : false;
+        if (!is_null($admin_id)) return self::getAdminNameForId($admin_id);
+
+        $admin_info_table_name  = tableName('admin_info');//admin_info表名
+
+        return hashUserSign(Session::get($admin_info_table_name .'.admin_user_data')) == Session::get($admin_info_table_name . '.sign') ? Session::get($admin_info_table_name .'.admin_name') : '';
     }
 
+    /**
+     * 获得管理员名称
+     *
+     * @param $admin_id
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function getAdminNameForId($admin_id)
+    {
+
+        if ($admin_id > 0 ) {
+            return self::multiwhere( ['id' => $admin_id] )->pluck('admin_name');
+        }
+        return false;
+    }
 }

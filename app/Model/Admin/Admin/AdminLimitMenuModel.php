@@ -10,10 +10,10 @@
 
 namespace App\Model\Admin\Admin;
 
-class AdminLimitMenuModel extends BaseModel {
+class AdminLimitMenuModel extends BaseModel
+{
 
     protected $table    = 'admin_limit_menu';//定义表名
-    protected $guarded  = ['id'];//阻挡所有属性被批量赋值
 
     /**
      * 获得全部用户分类
@@ -42,7 +42,7 @@ class AdminLimitMenuModel extends BaseModel {
 
         if (!empty($access_array)) {
 
-            $limit_id = self::getRoleId($limit_id);
+            $limit_id = AdminInfoModel::getAdminLimit($limit_id);
 
             foreach ($access_array as $access) {
                 if($access <= 0 ) continue;
@@ -62,7 +62,7 @@ class AdminLimitMenuModel extends BaseModel {
      */
     private static function deleteLimitMenu($limit_id = null)
     {
-        return self::where('limit_id', '=', self::getRoleId($limit_id))->delete();
+        return self::where('limit_id', '=', AdminInfoModel::getAdminLimit($limit_id))->delete();
     }
 
     /**
@@ -78,7 +78,5 @@ class AdminLimitMenuModel extends BaseModel {
 
         return self::multiwhere(['limit_id' => $limit_id])->lists('menu_id');
     }
-
-
 
 }

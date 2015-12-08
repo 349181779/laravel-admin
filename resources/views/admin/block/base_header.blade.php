@@ -11,8 +11,6 @@
     //定义全局url
     fileUrl             = '<?php echo config("config.file_url");?>';//资源网址
     choseImageDialog    = "<?php echo url('admin/resource/chose-image-dialog');?>";//弹出选择图片提示框 url
-    getCityUlr          = "<?php echo createUrl('Admin\RegionController@getAllRegion') ?>";//获得全部地址
-    getAreaUlr          = "<?php echo createUrl('Admin\RegionController@getCurrentArea') ?>";//获得全部区域
 </script>
 <style>
     .wrap-fluid {
