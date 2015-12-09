@@ -57,7 +57,7 @@ class LoginController extends BaseController
 
         switch ($login_status) {
             case AdminInfoModel::LOGIN_SUCCESS:
-                return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\HomeController@getIndex'));
+                return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\Admin\AdminInfoController@getIndex'));
             case AdminInfoModel::ACCOUNT_NOT_EXISTS:
             case AdminInfoModel::ACCOUNT_PASSWORD_ERRPR:
                 return $this->response(self::ERROR_STATE_CODE, trans('response.admin_not_exists'));
