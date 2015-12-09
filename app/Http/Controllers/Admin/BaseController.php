@@ -36,8 +36,6 @@ class BaseController extends \App\Http\Controllers\BaseController
         $this->request = new Request();
         //检测登录
         $this->checkIsLogin();
-        //获得全部菜单
-        $this->showAllMenu();
         //显示管理者信息
         $this->showAdminInfo();
         //获得当前位置信息
@@ -65,23 +63,13 @@ class BaseController extends \App\Http\Controllers\BaseController
     }
 
     /**
-     * 获得全部菜单
-     *
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    private function showAllMenu()
-    {
-        view()->share('menu_tree_data', AdminMenuModel::getUserMenuSide());
-    }
-
-    /**
      * 显示管理者信息
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     private function showAdminInfo()
     {
-        view()->share('admin_info', AdminInfoModel::getAdminInfo());
+        view()->share('admin_info', AdminInfoModel::getAdminInfoForSession());
     }
 
     /**

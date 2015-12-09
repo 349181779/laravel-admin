@@ -122,10 +122,14 @@ class AdminInfoModel extends BaseModel
         $user_info['admin_user_data'] = [
             'id'            => $user_info['id'],
             'email'         => $user_info['email'],
-            'updated_at'    => $user_info['updated_at'],
+            'last_login'    => $user_info['last_login'],
             'ip'            => $user_info['ip'],
         ];
         $user_info['sign'] = hashUserSign($user_info['admin_user_data']);
+
+        //删除用户敏感信息
+        unset($user_info['password']);
+
         Session::put(tableName('admin_info') . '', $user_info);
         Session::save();
     }
@@ -256,6 +260,19 @@ class AdminInfoModel extends BaseModel
         $admin_info_table_name  = tableName('admin_info');//admin_info表名
 
         return hashUserSign(Session::get($admin_info_table_name .'.admin_user_data')) == Session::get($admin_info_table_name . '.sign') ? Session::get($admin_info_table_name .'.admin_name') : '';
+    }
+
+    /**
+     * 获得用户信息 for session
+     *
+     * @param null $admin_id
+     * @return array
+     */
+    public static function getAdminInfoForSession()
+    {
+        $admin_info_table_name  = tableName('admin_info');//admin_info表名
+
+        return hashUserSign(Session::get($admin_info_table_name .'.admin_user_data')) == Session::get($admin_info_table_name .'.sign') ? arrayToObj(Session::get($admin_info_table_name)) : [];
     }
 
     /**

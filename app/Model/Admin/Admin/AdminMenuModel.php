@@ -10,6 +10,9 @@
 
 namespace App\Model\Admin\Admin;
 
+use \Carbon\Carbon;
+use \Cache;
+
 class AdminMenuModel extends BaseModel
 {
 
@@ -86,13 +89,25 @@ class AdminMenuModel extends BaseModel
      */
     public static function getAdminTopMenu($limit_id = null)
     {
+        //缓存key
+        $cache_key = config('config.admin_top_menu_cache') . self::SEPARATED . $limit_id;
+
+        if (Cache::has($cache_key)) {
+            return json_decode(Cache::get($cache_key), true);
+        }
+
         //获得当前角色全部menu_id
         $all_menu_id = AdminLimitMenuModel::getAdminAllMenuId($limit_id);
 
         if (empty($all_menu_id)) {
             return false;
         }
-        return self::mergeMenuUrl(self::multiwhere(['id' => ['IN', $all_menu_id], 'parent_id' => 0])->orderBy('sort', 'asc')->get());
+        $data = self::mergeMenuUrl(self::multiwhere(['id' => ['IN', $all_menu_id], 'parent_id' => 0])->orderBy('sort', 'asc')->get());
+
+        //设置缓存
+        $expiresAt = Carbon::now()->addMinutes(10);
+        Cache::put($cache_key, json_encode($data), $expiresAt);
+        return $data;
     }
 
     /**
@@ -105,17 +120,28 @@ class AdminMenuModel extends BaseModel
      */
     public static function getAdminMenu($parent_id = 0, $limit_id = null)
     {
+        //缓存key
+        $cache_key = config('config.admin_child_menu_cache') . self::SEPARATED . $parent_id . self::SEPARATED . $limit_id;
+
+        if (Cache::has($cache_key)) {
+            return json_decode(Cache::get($cache_key), true);
+        }
+
         //获得当前角色全部menu_id
         $all_menu_id = AdminLimitMenuModel::getAdminAllMenuId($limit_id);
 
         if (empty($all_menu_id)) {
             return false;
         }
-        return mergeTreeChildNode(objToArray(
-            self::mergeMenuUrl(self::multiwhere(['parent_id' => ['>', 0], 'id' => ['IN', $all_menu_id]] )->
-            orderBy('sort', 'asc')->
-            get()
-            )), $parent_id);
+        $data =     mergeTreeChildNode(objToArray(
+                    self::mergeMenuUrl(self::multiwhere(['parent_id' => ['>', 0], 'id' => ['IN', $all_menu_id]] )->
+                    orderBy('sort', 'asc')->
+                    get()
+                    )), $parent_id);
+        //设置缓存
+        $expiresAt = Carbon::now()->addMinutes(10);
+        Cache::put($cache_key, json_encode($data), $expiresAt);
+        return $data;
     }
 
     /**
@@ -174,9 +200,21 @@ class AdminMenuModel extends BaseModel
      */
     public static function mergeLocation($menu_id)
     {
+        //缓存key
+        $cache_key = config('config.page_location_cache') . self::SEPARATED . $menu_id;
+
+        if (Cache::has($cache_key)) {
+            return json_decode(Cache::get($cache_key));
+        }
+
         $all_menu = self::getAll();//获得全部路由
 
-        return array_reverse(getLocation($all_menu, $menu_id));
+        $data = array_reverse(getLocation($all_menu, $menu_id));
+
+        //设置缓存
+        $expiresAt = Carbon::now()->addMinutes(10);
+        Cache::put($cache_key, json_encode($data), $expiresAt);
+        return $data;
     }
 
 }
