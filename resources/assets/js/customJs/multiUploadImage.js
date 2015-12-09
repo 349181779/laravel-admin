@@ -44,13 +44,13 @@ function batchUploadImages(obj, shop_id){
  * @param id
  * @param shop_id
  */
-function setCurImageToTop(obj, id, shop_id)
+function setCurImageToTop(obj, id, product_id)
 {
     var _this = $(obj);
 
     $.ajax(setCurImageToTopUrl, {
         type : 'post',
-        data:{id: id, shop_id: shop_id},
+        data:{id: id, product_id: product_id},
         dataType: "json",
     }).success(function (data) {
         if(data.code == HTTP_CODE.SUCCESS_CODE){
@@ -71,9 +71,9 @@ function setCurImageToTop(obj, id, shop_id)
  *
  * @param obj
  * @param id
- * @param shop_id
+ * @param product_id
  */
-function delImageToTop(obj, id, shop_id)
+function delImageToTop(obj, id, product_id)
 {
     var _this = $(obj);
 
@@ -83,7 +83,7 @@ function delImageToTop(obj, id, shop_id)
     }, function(){
         $.ajax(delImageToTopUrl, {
             type : 'post',
-            data:{id: id, shop_id: shop_id},
+            data:{id: id, product_id: product_id},
             dataType: "json",
         }).success(function (data) {
             if(data.code == HTTP_CODE.SUCCESS_CODE){

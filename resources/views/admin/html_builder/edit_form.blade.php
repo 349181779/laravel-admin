@@ -91,10 +91,10 @@
 
 
                             <div class="form-group">
-                                <div class="col-lg-offset-3 col-lg-10">
+                                <div class="col-lg-offset-3 col-lg-10 row-block">
                                     <section class="button-submit">
                                         <button data-style="slide-up"
-                                                class="ladda-button <?php echo $confirm_button['class']; ?>"
+                                                class="ladda-button <?php echo $confirm_button['class']; ?>  pull-cnter col-md-1"
                                                 data-size="l"
                                                 >
                                             <span class="ladda-label"><?php echo $confirm_button['title']; ?></span>

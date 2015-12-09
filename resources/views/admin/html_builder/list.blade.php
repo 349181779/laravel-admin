@@ -1,9 +1,9 @@
 @section('header')
-@include('admin.block.header')
-<link href="<?php echo elixir('dist/builder_list.css');?>" rel="stylesheet" >
-<style>
-    .fixed-table-toolbar .search{padding:0;width: auto;}
-</style>
+    @include('admin.block.header')
+    <link href="<?php echo elixir('dist/builder_list.css');?>" rel="stylesheet" >
+    <style>
+        .fixed-table-toolbar .search{padding:0;width: auto;}
+    </style>
 @show
 @include('admin.block.body')
 @include('admin.html_builder.list_form')

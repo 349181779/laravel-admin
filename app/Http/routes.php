@@ -22,7 +22,7 @@ Route::get('/', function() {
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
     //重定向
     Route::get('/', function() {
-        //return redirect()->action('Admin\HomeController@getIndex');
+        return redirect()->action('Admin\Admin\AdminInfoController@getIndex');
     });
     //登录
     Route::controller('login', 'LoginController');

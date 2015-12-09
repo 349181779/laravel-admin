@@ -1,0 +1,15 @@
+<?php $__env->startSection('header'); ?>
+    <?php echo $__env->make('admin.block.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <link href="<?php echo elixir('dist/builder_list.css');?>" rel="stylesheet" >
+    <style>
+        .fixed-table-toolbar .search{padding:0;width: auto;}
+    </style>
+<?php echo $__env->yieldSection(); ?>
+<?php echo $__env->make('admin.block.body', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.html_builder.list_form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<script>
+    var tableName = '<?php echo $table_name ;?>';
+</script>  
+<script src="<?php echo elixir('dist/builder_list.js');?>"></script> 
+<?php echo $__env->make('admin.block.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</html>

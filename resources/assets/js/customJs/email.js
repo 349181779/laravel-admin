@@ -25,14 +25,20 @@ function getEmailContent(is_host){
  *
  * @param obj
  */
-function sendEmailContent(is_host){
+function sendEmailContent(is_host, is_cancel, obj){
+
+    //禁止按钮
+    $(obj).find('button').attr('disabled', 'disabled');
 
     $.ajax(sendEmailContentUrl, {
         type : 'post',
         data: {'order_id' : order_id, is_host : is_host},
         dataType: "json",
     }).success(function (data) {
-        parseResponseJson(data);;
+        parseResponseJson(data);
+
+        //释放按钮
+        $(obj).find('button').removeAttr('disabled');
     });
 
 }

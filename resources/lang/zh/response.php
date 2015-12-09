@@ -75,6 +75,16 @@ return[
 
     'update_user_access_success' => '更新角色权限成功',
     'update_user_access_error' => '更新角色权限失败',
+    'delete_image_error_1' => '当前图片是默认图片，不允许删除',
+
+    'hotel_email_title_1' => '[在首尔旅游网] :date :hotel_name 预订已成功',
+    'hotel_email_title_2' => '[짜이서울] :date :hotel_name 예약 확인 내역',
+
+    'goods_email_title_1' => '[在首尔旅游网] 2015-12-22 梦之家 (Dream House) 预订已取消',
+    'goods_email_title_2' => '[짜이서울] 2015-12-22 梦之家 (Dream House) 예약 취소 내용 전송드립니다.',
+
+    'goods_email_title_3' => '[在首尔旅游网] 2015-12-24 梦之家(Dream House) 预订已成功',
+    'goods_email_title_4' => '[짜이서울] 2015-12-24 梦之家(Dream House) 예약 확인 내역',
 
     'access_error'  => '没有权限',
 

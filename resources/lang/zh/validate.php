@@ -51,7 +51,7 @@ return [
     //后台会员
     'role_id_require'   => '角色不能为空',
     'role_id_error' => '角色格式不正确',
-    'role_name_unique' => '角色名称不能重复',
+    'role_name_unique' => '角色名称不能为空',
     'role_not_exists' => '角色不存在',
     'admin_require' => '角色不能空',
     'admin_error'   => '角色格式不正确',

@@ -8,6 +8,5 @@
 @include('admin.block.body')
 @include('admin.html_builder.add_form')
 @include('admin.block.footer')
-<link href="<?php echo elixir('dist/builder_update.css');?>" rel="stylesheet" >
  <script src="<?php echo elixir('dist/builder_update.js');?>"></script>
 </html>

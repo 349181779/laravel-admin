@@ -167,7 +167,7 @@ function ajaxForm(obj)
     updateCkeditroData()
 
 	startButtonAnmate();
-	
+    
 	//禁用提交按钮，防止重复提交
     var form = _this;	
 	

@@ -94,7 +94,7 @@
                                 <div class="col-lg-offset-3 col-lg-10">
                                     <section class="button-submit">
                                         <button data-style="slide-up"
-                                                class="ladda-button <?php echo $confirm_button['class']; ?>"
+                                                class="ladda-button <?php echo $confirm_button['class']; ?> col-md-1 pull-cnter"
                                                 data-size="l"
                                                 >
                                             <span class="ladda-label"><?php echo $confirm_button['title']; ?></span>

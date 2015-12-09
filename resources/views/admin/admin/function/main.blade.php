@@ -39,7 +39,16 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <input type="checkbox"  onclick='checke_all(this)'   />全选
-                                                <input type="submit" class="btn btn-info center-block" value="确认">
+
+                                                <section class="button-submit">
+                                                    <button data-style="slide-up"
+                                                            class=" btn btn-success ladda-button pull-cnter col-md-1"
+                                                            data-size="l"
+                                                            >
+                                                        <span class="ladda-label">确认</span>
+                                                    </button>
+                                                </section>
+
                                             </div>
                                         </div>
 
