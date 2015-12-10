@@ -15,6 +15,8 @@ class AdminLimitModel extends BaseModel
 
     protected $table    = 'admin_limit';//定义表名
 
+    private static $all_limit = null;//全部角色
+
     /**
      * 搜索
      *
@@ -63,6 +65,20 @@ class AdminLimitModel extends BaseModel
             }
         }
         return $data;
+    }
+
+    /**
+     * 获得全部角色
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|null|static[]
+     * @@author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getAllLimit()
+    {
+        if (is_null(self::$all_limit)) {
+            self::$all_limit = self::all();
+        }
+        return self::$all_limit;
     }
 
 }

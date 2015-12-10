@@ -11,9 +11,18 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'event.name' => [
-			'EventListener',
-		],
+			'event.name' => [
+					'EventListener',
+			],
+			'App\Events\Admin\Cache\LocationEvent' => [
+					'App\Listeners\Admin\Cache\LocationListener'
+			],
+			'App\Events\Admin\Cache\AdminTopMenuEvent' => [
+					'App\Listeners\Admin\Cache\AdminTopMenuListener'
+			],
+			'App\Events\Admin\Cache\AdminChildMenuEvent' => [
+					'App\Listeners\Admin\Cache\AdminChildMenuListener'
+			],
 	];
 
 	/**

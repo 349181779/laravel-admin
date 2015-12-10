@@ -40,6 +40,7 @@ class BaseController extends \App\Http\Controllers\BaseController
         $this->showAdminInfo();
         //获得当前位置信息
         $this->getLocation();
+        \App\Library\Cache::clearAll();
         //验证权限
         if ( $this->checkAccess() == false) {
             if (isAjax() == true) {

@@ -10,8 +10,11 @@
 
 namespace App\Model\Admin\Admin;
 
-use \Carbon\Carbon;
 use \Cache;
+use App\Events\Admin\Cache\AdminChildMenuEvent;
+use App\Events\Admin\Cache\AdminTopMenuEvent;
+use App\Events\Admin\Cache\LocationEvent;
+use App\Library\Cache AS CacheLibrary;
 
 class AdminMenuModel extends BaseModel
 {
@@ -105,8 +108,8 @@ class AdminMenuModel extends BaseModel
         $data = self::mergeMenuUrl(self::multiwhere(['id' => ['IN', $all_menu_id], 'parent_id' => 0])->orderBy('sort', 'asc')->get());
 
         //设置缓存
-        $expiresAt = Carbon::now()->addMinutes(10);
-        Cache::put($cache_key, json_encode($data), $expiresAt);
+        //Cache::tags([getCacheTag('menu')])->put($cache_key, json_encode($data), CacheLibrary::getCacheExpires());
+        Cache::put($cache_key, json_encode($data), CacheLibrary::getCacheExpires());
         return $data;
     }
 
@@ -139,8 +142,8 @@ class AdminMenuModel extends BaseModel
                     get()
                     )), $parent_id);
         //设置缓存
-        $expiresAt = Carbon::now()->addMinutes(10);
-        Cache::put($cache_key, json_encode($data), $expiresAt);
+        //Cache::tags([getCacheTag('menu')])->put($cache_key, json_encode($data), CacheLibrary::getCacheExpires());
+        Cache::put($cache_key, json_encode($data), CacheLibrary::getCacheExpires());
         return $data;
     }
 
@@ -202,19 +205,29 @@ class AdminMenuModel extends BaseModel
     {
         //缓存key
         $cache_key = config('config.page_location_cache') . self::SEPARATED . $menu_id;
-
         if (Cache::has($cache_key)) {
             return json_decode(Cache::get($cache_key));
         }
 
-        $all_menu = self::getAll();//获得全部路由
-
-        $data = array_reverse(getLocation($all_menu, $menu_id));
+        $all_menu   = self::getAll();//获得全部路由
+        $data       = array_reverse(getLocation($all_menu, $menu_id));
 
         //设置缓存
-        $expiresAt = Carbon::now()->addMinutes(10);
-        Cache::put($cache_key, json_encode($data), $expiresAt);
+        //Cache::tags([getCacheTag('menu')])->put($cache_key, json_encode($data), CacheLibrary::getCacheExpires());
+        Cache::put($cache_key, json_encode($data), CacheLibrary::getCacheExpires());
         return $data;
+    }
+
+    /**
+     * 创建全部菜单相关缓存
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function triggerAllMenuCache()
+    {
+        event(new AdminTopMenuEvent());//创建顶部菜单缓存
+        event(new AdminChildMenuEvent());//创建子菜单缓存
+        event(new LocationEvent());//创建当前位置缓存
     }
 
 }

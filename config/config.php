@@ -9,9 +9,13 @@ return [
     'page_limit' => '10',//分页条数
     'order_page_limit' => '50',//订单分页条数
 
-    //redis缓存名称
-    'admin_child_menu_cache'    => 'admin_child_menu',
-    'admin_top_menu_cache'      => 'admin_top_menu',
-    'page_location_cache'      => 'page_location',
+	//redis缓存名称
+	'admin_child_menu_cache'    => 'admin_child_menu',
+	'admin_top_menu_cache'      => 'admin_top_menu',
+	'page_location_cache'      => 'page_location',
+
+	'cache_tag' => [
+		'menu' => 'menu'
+	],
 
 ];

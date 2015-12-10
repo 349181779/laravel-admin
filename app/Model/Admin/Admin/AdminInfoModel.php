@@ -69,7 +69,22 @@ class AdminInfoModel extends BaseModel
         //保存用户session信息
         $user_info->ip = $params['ip'];
         self::saveUserSession($user_info);
+
+        //触发事件
+        self::triggerEvent();
+
         return self::LOGIN_SUCCESS;
+    }
+
+    /**
+     * 触发事件
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function triggerEvent()
+    {
+        //触发全部菜单缓存
+        //AdminMenuModel::triggerAllMenuCache();
     }
 
     /**

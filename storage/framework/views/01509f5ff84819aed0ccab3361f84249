@@ -7,7 +7,6 @@
 <script>
     //定义全局url
     fileUrl             = '<?php echo config("config.file_url");?>';//资源网址
-    choseImageDialog    = "<?php echo url('admin/resource/chose-image-dialog');?>";//弹出选择图片提示框 url
 </script>
 <style>
     .wrap-fluid {
