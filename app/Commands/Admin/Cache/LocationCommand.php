@@ -8,7 +8,7 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Commands\Admin;
+namespace App\Commands\Admin\Cache;
 
 use App\Commands\Command;
 use Illuminate\Queue\SerializesModels;
@@ -26,6 +26,7 @@ class LocationCommand extends Command implements SelfHandling, ShouldBeQueued
 	 * Create a new command instance.
 	 *
 	 * @return void
+	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function __construct()
 	{
@@ -36,17 +37,29 @@ class LocationCommand extends Command implements SelfHandling, ShouldBeQueued
 	 * Execute the command.
 	 *
 	 * @return void
+	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function handle()
 	{
-        $all_menu = AdminMenuModel::getAll();
+		//生成全部菜单“当前位置缓存”
+		self::createAllLocationCache();
+	}
 
-        if (!empty($all_menu)) {
-            foreach ($all_menu as $menu) {
-                //生产缓存
-                if ($menu->parent_id != 0) AdminMenuModel::mergeLocation($menu->id);
-            }
-        }
+	/**
+	 * 生成全部菜单“当前位置缓存”
+	 *
+	 * @author yangyifan <yangyifanphp@gmail.com>
+	 */
+	private static function createAllLocationCache()
+	{
+		$all_menu = AdminMenuModel::getAll();
+
+		if (!empty($all_menu)) {
+			foreach ($all_menu as $menu) {
+				//生产缓存
+				if ($menu->parent_id != 0) AdminMenuModel::mergeLocation($menu->id);
+			}
+		}
 	}
 
 }

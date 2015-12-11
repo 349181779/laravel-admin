@@ -58,7 +58,7 @@ class Image
      */
     public static function getDefaultImage()
     {
-        return self::getImageHost() . '/' . 'Public/load.png';
+        return self::getImageHost() . '/' . 'files/source/98.pic_hd.jpg';
     }
 
     /**
@@ -155,7 +155,10 @@ class Image
      */
     public static function getImageRealPath($source_type, $image_name, $id)
     {
-        return config('upload.upyun.imagesHots') . self::getImagePath($source_type, $image_name, $id);
+        if (trim($image_name) != '') {
+            return config('upload.upyun.imagesHots') . self::getImagePath($source_type, $image_name, $id);
+        }
+        return self::getDefaultImage();
     }
 
     /**
@@ -173,24 +176,24 @@ class Image
     public static function uploadImage($request, $upload, $input_name, $source_type, $image_type, $id)
     {
         set_time_limit(0);
-
-        if ($request->hasFile($input_name)) {
-
-            $file = $request->file($input_name);
-
-            if ($file->isValid()) {
-                //组合图片名称
-                $image_name = self::mergeImageName($source_type, $image_type, $file, $id);
-
-                $status     = $upload->write(self::getImagePath($source_type, $image_name, $id), $file);
-                if (!empty($status)) {
-                    //返回成功状态
-                    return ['state' => self::SUCCESS, 'image_name' => $image_name];
+        try {
+            if ($request->hasFile($input_name)) {
+                $file = $request->file($input_name);
+                if ($file->isValid()) {
+                    //组合图片名称
+                    $image_name = self::mergeImageName($source_type, $image_type, $file, $id);
+                    $status     = $upload->write(self::getImagePath($source_type, $image_name, $id), $file);
+                    if (!empty($status)) {
+                        //返回成功状态
+                        return ['state' => self::SUCCESS, 'image_name' => $image_name];
+                    }
+                    return self::UPLOAD_ERROR;//上传图片错误
                 }
-                return self::UPLOAD_ERROR;//上传图片错误
             }
+
+        }catch (\Exception $e){
+            return self::UPDATE_ERROR_1;//没有文件被上传
         }
-        return self::UPDATE_ERROR_1;//没有文件被上传
     }
 
 

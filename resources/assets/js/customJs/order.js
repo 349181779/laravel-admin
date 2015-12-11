@@ -112,14 +112,14 @@ var order_info = bingo.action(function ($view, $ajax) {
             if(r.code == 200){
                 $view.order_info = r.data;
                 //加载订单步骤状态
-                loadOrderStep(r.data.step_state)
+                loadOrderStep(r.data.step_state);
             }else{
                 toastr.warning(r.msg);
             }
             $view.$update();
         }).get();
     };
-    get_order_info_url && $view.onInitData(function () {
+    get_order_info_url != '' && $view.onInitData(function () {
         $view.query_info();
     });
 
@@ -134,7 +134,7 @@ var order_info = bingo.action(function ($view, $ajax) {
             }
         }).get();
     };
-    get_order_goods_url && $view.onInitData(function () {
+    get_order_goods_url != '' && $view.onInitData(function () {
         $view.query_goods();
     });
 
@@ -149,7 +149,7 @@ var order_info = bingo.action(function ($view, $ajax) {
             }
         }).get();
     };
-    get_order_comment_url && $view.onInitData(function () {
+    get_order_comment_url != '' && $view.onInitData(function () {
         $view.query_comment();
     });
 
@@ -165,7 +165,7 @@ bingo.command('bg-form-ajax', function () {
             $attr.$init(function (value) {
                 $node.on('submit', function () {
                     ajaxForm(this);
-                    $node.preventDefault()
+                    $node.preventDefault();
                 });
             });
 

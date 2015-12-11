@@ -15,6 +15,7 @@ use App\Model\Admin\Admin\AdminInfoModel;
 use App\Http\Requests\Admin\LoginFormRequest;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
+use App\Model\Admin\Admin\AdminMenuModel;
 
 class LoginController extends BaseController
 {
@@ -28,7 +29,7 @@ class LoginController extends BaseController
     {
         parent::__construct();
         //判断是否已经登录
-        if(isAdminLogin() > 0 )  header('location:' . createUrl('Admin\HomeController@getIndex'));
+        if(isAdminLogin() > 0 ) return header('location:' . createUrl('Admin\Admin\AdminInfoController@getIndex'));
     }
 
 	/**
@@ -39,8 +40,21 @@ class LoginController extends BaseController
 	 */
 	public function getIndex()
     {
+        //触发登陆后台之后必要的缓存
+        self::triggerCreateCache();
         return view('admin.login.login');
 	}
+
+    /**
+     * 触发登陆后台之后必要的缓存 （异步事件，不需要担心响应）
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function triggerCreateCache()
+    {
+        //触发全部菜单缓存
+        AdminMenuModel::triggerAllMenuCache();
+    }
 
 	/**
 	 * 处理登录操作

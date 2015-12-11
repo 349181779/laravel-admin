@@ -3,45 +3,46 @@
 // +----------------------------------------------------------------------
 // | date: 2015-12-11
 // +----------------------------------------------------------------------
-// | AdminChildMenuEvent.php: 后端处理顶级菜单缓存事件
+// | LoginEvent.php: 后端登陆事件
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Events\Admin\Cache;
+namespace App\Events\Admin\Login;
 
 use App\Events\Event;
+use App\Model\Admin\Admin\AdminInfoModel;
 use Illuminate\Queue\SerializesModels;
-use App\Commands\Admin\Cache\AdminTopMenuCommand;
 
-class AdminTopMenuEvent extends Event
+class LoginEvent extends Event
 {
 
 	use SerializesModels;
+
+	private $user_info;
 
 	/**
 	 * Create a new event instance.
 	 *
 	 * @return void
-	 * @author yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function __construct()
+	public function __construct($user_info)
 	{
-
+		$this->user_info = $user_info;
 	}
 
 	/**
-	 * 处理事件
+	 * 登陆成功触发事件
 	 *
-	 * @return bool
-	 * @author yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function handle()
 	{
-		\Bus::dispatch(
-			new AdminTopMenuCommand()
-		);
-		return true;
+		//更新用户信息
+		AdminInfoModel::updateAdminInfo($this->user_info);
+
+        return true;
 	}
 
 }

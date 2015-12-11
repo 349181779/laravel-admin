@@ -13,6 +13,7 @@ namespace App\Model\Admin\Admin;
 use Session;
 use DB;
 use App\Model\Admin\MergeModel;
+use App\Events\Admin\Login\LoginEvent;
 
 class AdminInfoModel extends BaseModel
 {
@@ -52,39 +53,33 @@ class AdminInfoModel extends BaseModel
         if(empty($user_info)){
             return self::ACCOUNT_NOT_EXISTS;
         }
-
         //判断改用户是否被禁用
         if($user_info->state != 1){
             return self::ACCOUNT_ERROR;
         }
-
         //判断密码是否正确
         if (self::checkPassword($params['password'], $user_info) == false) {
             return self::ACCOUNT_PASSWORD_ERRPR;
         }
-
-        //更新用户信息
-        self::updateAdminInof($user_info);
-
         //保存用户session信息
         $user_info->ip = $params['ip'];
-        self::saveUserSession($user_info);
-
         //触发事件
-        self::triggerEvent();
-
+        self::triggerEvent($user_info);
+        //保存用户session信息
+        self::saveUserSession($user_info);
         return self::LOGIN_SUCCESS;
     }
 
     /**
      * 触发事件
      *
+     * @param $user_info
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private static function triggerEvent()
+    private static function triggerEvent($user_info)
     {
-        //触发全部菜单缓存
-        //AdminMenuModel::triggerAllMenuCache();
+        //触发登陆事件
+        event( new LoginEvent($user_info));
     }
 
     /**
@@ -118,7 +113,7 @@ class AdminInfoModel extends BaseModel
      * @param $admin_info
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private static function updateAdminInof($admin_info)
+    public static function updateAdminInfo($admin_info)
     {
         self::multiwhere(['id' => $admin_info->id])->update([
             'last_login' => date('Y-m-d H:i:s'),
@@ -131,12 +126,12 @@ class AdminInfoModel extends BaseModel
      * @param $user_info
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private static function saveUserSession($user_info)
+    public static function saveUserSession($user_info)
     {
         $user_info = objToArray($user_info);
         $user_info['admin_user_data'] = [
             'id'            => $user_info['id'],
-            'email'         => $user_info['email'],
+            'admin_name'    => $user_info['admin_name'],
             'last_login'    => $user_info['last_login'],
             'ip'            => $user_info['ip'],
         ];
@@ -145,7 +140,7 @@ class AdminInfoModel extends BaseModel
         //删除用户敏感信息
         unset($user_info['password']);
 
-        Session::put(tableName('admin_info') . '', $user_info);
+        Session::put(tableName('admin_info'), $user_info);
         Session::save();
     }
 
@@ -303,6 +298,6 @@ class AdminInfoModel extends BaseModel
         if ($admin_id > 0 ) {
             return self::multiwhere( ['id' => $admin_id] )->pluck('admin_name');
         }
-        return false;
+        return '';
     }
 }

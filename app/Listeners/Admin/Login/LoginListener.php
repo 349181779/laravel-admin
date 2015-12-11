@@ -3,45 +3,44 @@
 // +----------------------------------------------------------------------
 // | date: 2015-12-11
 // +----------------------------------------------------------------------
-// | AdminChildMenuEvent.php: 后端处理顶级菜单缓存事件
+// | LoginListener.php: 后端登陆事件监听
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Events\Admin\Cache;
+namespace App\Listeners\Admin\Login;
 
-use App\Events\Event;
-use Illuminate\Queue\SerializesModels;
-use App\Commands\Admin\Cache\AdminTopMenuCommand;
+use App\Events\Admin\Login\LoginEvent;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class AdminTopMenuEvent extends Event
+class LoginListener implements ShouldBeQueued
 {
 
-	use SerializesModels;
+	use InteractsWithQueue;
 
 	/**
-	 * Create a new event instance.
+	 * Create the event handler.
 	 *
 	 * @return void
 	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function __construct()
 	{
-
+		//
 	}
 
 	/**
-	 * 处理事件
+	 * Handle the event.
 	 *
-	 * @return bool
+	 * @param  LoginEvent  $event
+	 * @return void
 	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
-	public function handle()
+	public function handle(LoginEvent $event)
 	{
-		\Bus::dispatch(
-			new AdminTopMenuCommand()
-		);
-		return true;
+        //监听事件
+        $event->handle();
 	}
 
 }

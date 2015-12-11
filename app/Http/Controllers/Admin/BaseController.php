@@ -46,7 +46,7 @@ class BaseController extends \App\Http\Controllers\BaseController
             if (isAjax() == true) {
                 echo $this->responseContent(self::ERROR_STATE_CODE, trans('response.unauthorized'));die;
             }
-            echo '<script>alert("'.trans('response.unauthorized').'");window.location.href="'.createUrl("Admin\HomeController@getIndex").'"</script>';die;
+            echo '<script>alert("'.trans('response.unauthorized').'");window.location.href="'.createUrl("Admin\Admin\AdminInfoController@getIndex").'"</script>';die;
         }
     }
 

@@ -7,8 +7,9 @@
         <div class="skin skin-flat">
             <?php if ($schema['option']): ?>
             <?php foreach ($schema['option'] as $key => $option): ?>
-            <label for="" class="radio-inline">
-                <input type="radio" id="square-radio-1"
+            <label for="<?php echo $schema['name']; ?>_<?php echo $key; ?>" class="radio-inline">
+                <input type="radio"
+                       id="<?php echo $schema['name']; ?>_<?php echo $key; ?>"
                        name="<?php echo $schema['name']; ?>"
                        value="<?php echo $key; ?>" <?php if ($schema['option_value_schema'] == $key) {
                     echo 'checked="checked"';

@@ -3,12 +3,12 @@
 // +----------------------------------------------------------------------
 // | date: 2015-12-09
 // +----------------------------------------------------------------------
-// | AdminChildMenuCommand.php: 生产后台子菜单缓存 命令
+// | AdminTopMenuCommand.php: 生产后台顶部菜单缓存 命令
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Commands\Admin;
+namespace App\Commands\Admin\Cache;
 
 use App\Commands\Command;
 use Illuminate\Queue\SerializesModels;
@@ -16,8 +16,10 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use App\Model\Admin\Admin\AdminMenuModel;
+use App\Model\Admin\Admin\AdminLimitModel;
 
-class AdminChildMenuCommand extends Command implements SelfHandling, ShouldBeQueued {
+class AdminTopMenuCommand extends Command implements SelfHandling, ShouldBeQueued
+{
 
 	use InteractsWithQueue, SerializesModels;
 
@@ -25,6 +27,7 @@ class AdminChildMenuCommand extends Command implements SelfHandling, ShouldBeQue
 	 * Create a new command instance.
 	 *
 	 * @return void
+	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function __construct()
 	{
@@ -35,11 +38,23 @@ class AdminChildMenuCommand extends Command implements SelfHandling, ShouldBeQue
 	 * Execute the command.
 	 *
 	 * @return void
+	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
 	public function handle()
 	{
-		//获得全部顶级菜单
-		$all_top_menu = AdminMenuModel::getAdminTopMenu();
+		//创建全部顶级菜单缓存
+		self::createAllTopMenuCache();
+	}
+
+	/**
+	 * 创建全部顶级菜单缓存
+	 *
+	 * @author yangyifan <yangyifanphp@gmail.com>
+	 */
+	private static function createAllTopMenuCache()
+	{
+		//获得全部角色
+		$all_limit = AdminLimitModel::getAllLimit();
 
 		if (!empty($all_limit)) {
 			foreach ($all_limit as $limit) {

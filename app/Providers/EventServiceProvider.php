@@ -23,6 +23,12 @@ class EventServiceProvider extends ServiceProvider {
 			'App\Events\Admin\Cache\AdminChildMenuEvent' => [
 					'App\Listeners\Admin\Cache\AdminChildMenuListener'
 			],
+			'App\Events\Admin\Region\ArticleRegionEvent' => [
+					'App\Listeners\Admin\Region\ArticleRegionListener'
+			],
+			'App\Events\Admin\Login\LoginEvent' => [
+					'App\Listeners\Admin\Login\LoginListener'
+			],
 	];
 
 	/**

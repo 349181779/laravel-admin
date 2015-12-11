@@ -8,11 +8,11 @@ $(function (){
  *
  * @param obj
  */
-function getEmailContent(is_host){
+function getEmailContent(is_host, is_cancel){
 
     $.ajax(getEmailContentUrl, {
         type : 'post',
-        data: {'order_id' : order_id, is_host : is_host},
+        data: {'order_id' : order_id, is_host : is_host, is_cancel : is_cancel},
         dataType: "html",
     }).success(function (data) {
         $('.email_content').html(data);
@@ -32,7 +32,7 @@ function sendEmailContent(is_host, is_cancel, obj){
 
     $.ajax(sendEmailContentUrl, {
         type : 'post',
-        data: {'order_id' : order_id, is_host : is_host},
+        data: {'order_id' : order_id, is_host : is_host, is_cancel : is_cancel},
         dataType: "json",
     }).success(function (data) {
         parseResponseJson(data);
