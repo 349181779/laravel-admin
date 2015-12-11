@@ -16,7 +16,7 @@ Blade::setEscapedContentTags('<%%', '%%>');     // for escaped data
 
 //重定向
 Route::get('/', function() {
-    return redirect()->action('Admin\HomeController@getIndex');
+    return redirect()->action('Admin\Admin\AdminInfoController@getIndex');
 });
 //后台
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
