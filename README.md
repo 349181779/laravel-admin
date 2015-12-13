@@ -12,3 +12,4 @@
 #### 教程
 * [用laravel自己创建一个属于自己的后台（一）之 构建后台登陆模块](http://blog.womenshuo.com/?p=137)
 * [用laravel自己创建一个属于自己的后台（二）之 构建权限角色模块](http://blog.womenshuo.com/?p=141)
+* [用laravel自己创建一个属于自己的后台（三）之 压缩网站静态文件](http://blog.womenshuo.com/?p=153)
