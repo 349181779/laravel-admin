@@ -205,9 +205,9 @@ function ajaxForm(obj)
             dataType: "json",
             processData: true
         }).success(function (data) {
-            parseResponseJson(data);
-			//关闭按钮事件
-    		stopButtonAnmate()
+            parseResponseJson(data, ajaxFormCallback);
+            //关闭按钮事件
+            stopButtonAnmate()
         });
     } else {
         $.ajax(action, {
@@ -217,15 +217,25 @@ function ajaxForm(obj)
             dataType: "json",
             processData: true
         }).success(function (data) {
-            parseResponseJson(data);
-			//关闭按钮事件
-    		stopButtonAnmate()
+            parseResponseJson(data, ajaxFormCallback);
+            //关闭按钮事件
+            stopButtonAnmate()
         });
     }
 	
     
     //返回
     return false;
+}
+
+/**
+ * ajax form 回调方法
+ *
+ * @param data
+ */
+function ajaxFormCallback(data)
+{
+    console.log('这里是回调');
 }
 
 /**
@@ -318,7 +328,7 @@ function del(obj, url){
 
     if(url != ''){
         $.get(url, {}, function (data) {
-            parseResponseJson(data);
+            parseResponseJson(data, ajaxFormCallback);
             _this.parents('tr').slideUp();
         })
     }
@@ -330,7 +340,7 @@ function del(obj, url){
  *
  * @param data
  */
-function parseResponseJson(data){
+function parseResponseJson(data, callback){
     if(data.code == HTTP_CODE.SUCCESS_CODE){
         //弹出提示框
         toastr.success(data.msg);
@@ -344,6 +354,9 @@ function parseResponseJson(data){
     } else{
         toastr.warning(data.msg);
     }
+
+    //如果有回调方法，则执行回调方法
+    $.isFunction(callback) && callback(data);
 }
 
 /**
@@ -351,7 +364,7 @@ function parseResponseJson(data){
  */
 function logout(){
     $.get(logout_url, {}, function(data){
-        parseResponseJson($.parseJSON(data));
+        parseResponseJson($.parseJSON(data), ajaxFormCallback);
     })
 }
 
