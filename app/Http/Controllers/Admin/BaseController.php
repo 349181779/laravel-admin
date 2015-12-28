@@ -34,32 +34,16 @@ class BaseController extends \App\Http\Controllers\BaseController
     {
         parent::__construct();
         $this->request = new Request();
-        //检测登录
-        $this->checkIsLogin();
         //显示管理者信息
         $this->showAdminInfo();
         //获得当前位置信息
         $this->getLocation();
-        \App\Library\Cache::clearAll();
         //验证权限
         if ( $this->checkAccess() == false) {
             if (isAjax() == true) {
                 echo $this->responseContent(self::ERROR_STATE_CODE, trans('response.unauthorized'));die;
             }
-            echo '<script>alert("'.trans('response.unauthorized').'");window.location.href="'.createUrl("Admin\Admin\AdminInfoController@getIndex").'"</script>';die;
-        }
-    }
-
-    /**
-     * 检测登录
-     *
-     * @return bool|\Illuminate\Http\RedirectResponse
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    private function checkIsLogin()
-    {
-        if ( isAdminLogin() <= 0 ) {
-            echo "<script>window.location.href='".createUrl('Admin\LoginController@getIndex')."'</script>";
+            echo '<script>alert("'.trans('response.unauthorized').'");window.location.href="'.createUrl("Admin\HomeController@getIndex").'"</script>';die;
         }
     }
 

@@ -18,14 +18,14 @@ Blade::setEscapedContentTags('<%%', '%%>');     // for escaped data
 Route::get('/', function() {
     return redirect()->action('Admin\Admin\AdminInfoController@getIndex');
 });
+//登录
+Route::controller('login', 'Admin\LoginController');
 //后台
-Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
+Route::group(['prefix'=>'admin', 'middleware' => 'admin.base',  'namespace' => 'Admin'], function(){
     //重定向
     Route::get('/', function() {
         return redirect()->action('Admin\Admin\AdminInfoController@getIndex');
     });
-    //登录
-    Route::controller('login', 'LoginController');
     //首页
     Route::controller('home', 'HomeController');
     //权限管理
