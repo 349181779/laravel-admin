@@ -146,7 +146,6 @@ return [
 		'App\Providers\RouteServiceProvider',
 
         //自定义
-        'Illuminate\Html\HtmlServiceProvider',
         'YuanChao\Editor\EndaEditorServiceProvider',
         'Toplan\FilterManager\FilterManagerServiceProvider',
         'Jenssegers\Agent\AgentServiceProvider',
