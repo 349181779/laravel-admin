@@ -16,6 +16,7 @@ return array(
     'YuanChao\\Editor\\' => array($vendorDir . '/yuanchao/laravel-5-markdown-editor/src'),
     'Yangyifan\\Upload\\' => array($vendorDir . '/yangyifan/upload/src'),
     'Yangyifan\\UEditor\\' => array($vendorDir . '/yangyifan/laravel-editor/src'),
+    'Yangyifan\\AutoBuild\\' => array($baseDir . '/packages/yangyifan/auto-build/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
     'TijsVerkoyen\\CssToInlineStyles\\' => array($vendorDir . '/tijsverkoyen/css-to-inline-styles/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),

@@ -42,7 +42,8 @@
 		  "app/Functions/base.func.php"
 		],
 		"psr-4": {
-			"App\\": "app/"
+			"App\\": "app/",
+            "Yangyifan\\AutoBuild\\" : "packages/yangyifan/auto-build/src/"
 		}
 	},
 	"autoload-dev": {

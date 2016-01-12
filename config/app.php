@@ -146,6 +146,9 @@ return [
 		'App\Providers\RouteServiceProvider',
 
         //自定义
+
+		'Yangyifan\AutoBuild\AutoBuildServiceProvider', //自动构建
+
         'YuanChao\Editor\EndaEditorServiceProvider',
         'Toplan\FilterManager\FilterManagerServiceProvider',
         'Jenssegers\Agent\AgentServiceProvider',
@@ -161,6 +164,8 @@ return [
 		'App\Providers\HproseProvider',//远程对象
 		//'App\Providers\ExcelServiceProvider',//excel
 		'Yangyifan\Upload\UploadServiceProvider',//上传
+
+
 
 	],
 
