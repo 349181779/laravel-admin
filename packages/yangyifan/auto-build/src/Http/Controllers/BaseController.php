@@ -25,6 +25,7 @@ class BaseController extends Controller
     const CONSTRUCT_FUNCTION_NAME   = '__construct';//构造方法名称
     const OUT_PUT_DIR               = '/output/';//输出文件目录
     const EXT                       = '.php';//文件类型
+    const EXPLODE                   = ',';//定义全部的字符串分隔符都为 ","
 
     /**
      * 构造方法
@@ -72,10 +73,12 @@ class BaseController extends Controller
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    protected function setQualifiedName($file_name)
+    protected function setQualifiedName()
     {
-        $this->php_class->setQualifiedName($file_name);//设置文件全路径
-        $this->php_class->setName(mb_substr($file_name, strpos($file_name, '/') + 1));//设置class名称
+        $file_info = $this->setFile();
+
+        $this->php_class->setName( $file_info['name'] );//设置文件全路径
+        $this->php_class->setNamespace( $file_info['namespace'] );//设置文件全路径
         return $this;
     }
 
@@ -97,5 +100,31 @@ class BaseController extends Controller
             }
         }
         return $this;
+    }
+
+    /**
+     * 设置文件名称和命名空间
+     *
+     * @return array
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected function setFile()
+    {
+        if (!empty($this->request['file_name'])) {
+            //最后出现的文字
+            $end_str = strripos($this->request['file_name'], '/');
+
+
+            if ( $end_str >= 0  ) {
+                return [
+                    "namespace" => str_replace("/", "\\", mb_substr($this->request['file_name'], 0, $end_str)),
+                    'name'      => mb_substr($this->request['file_name'], $end_str + 1, ( strlen($this->request['file_name']) -1) )
+                ];
+            }
+            return [
+                "namespace" => '',
+                "name"      => $this->request['file_name'],
+            ];
+        }
     }
 }
