@@ -33,7 +33,7 @@ class AutoBuildServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		//设置路由
-		$this->setupRoutes($this->app->router);
+		$this->setupRoutes();
 	}
 
 	/**
@@ -44,9 +44,9 @@ class AutoBuildServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bind('contact',function($app){
-			return new Contact($app);
-		});
+		//$this->app->bind('contact',function($app){
+
+		//});
 	}
 
 	/**
@@ -55,12 +55,10 @@ class AutoBuildServiceProvider extends ServiceProvider
 	 * @param Router $router
 	 * @author yangyifan <yangyifanphp@gmail.com>
 	 */
-	private function setupRoutes(Router $router)
+	private function setupRoutes()
 	{
-		$router->group(['prefix' => "auto-build", 'namespace' => 'Yangyifan\AutoBuild\Http\Controllers'], function($router)
-		{
-			require __DIR__.'/Http/routes.php';
-		});
+		require __DIR__.'/Http/routes.php';
+
 	}
 
 }

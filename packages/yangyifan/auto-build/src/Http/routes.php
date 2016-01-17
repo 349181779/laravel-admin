@@ -1,5 +1,7 @@
 <?php
 
+use \Route;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,7 +13,14 @@
 |
 */
 //自动构建
-Route::controller('/controller', 'IndexController');
-Route::controller('/request', 'RequestController');
+Route::group(['prefix' => "auto-build", 'namespace' => 'Yangyifan\AutoBuild\Http\Controllers'], function(){
+    //生成 Controller
+    Route::controller('/controller', 'ControllerController');
+    //生成 Request
+    Route::controller('/request', 'RequestController');
+    //生成 Model
+    Route::controller('/model', 'ModelController');
+});
+
 
 
