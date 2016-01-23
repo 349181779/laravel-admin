@@ -3,12 +3,12 @@
 // +----------------------------------------------------------------------
 // | date: 2015-09-14
 // +----------------------------------------------------------------------
-// | MergeModel.php: 组合数据模型
+// | BuildControllerModel.php: 组合数据模型
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace Yangyifan\AutoBuild\Model;
+namespace Yangyifan\AutoBuild\Model\Build;
 
 class BuildControllerModel extends BaseModel
 {

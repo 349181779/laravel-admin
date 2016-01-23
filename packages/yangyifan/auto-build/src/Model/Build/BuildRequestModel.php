@@ -8,7 +8,7 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace Yangyifan\AutoBuild\Model;
+namespace Yangyifan\AutoBuild\Model\Build;
 
 class BuildRequestModel extends BaseModel
 {
@@ -160,7 +160,7 @@ class BuildRequestModel extends BaseModel
      * @return array
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private static function getAllRule()
+    public static function getAllRule()
     {
         if (empty(self::$all_rule)) {
             self::$all_rule = [
@@ -178,7 +178,7 @@ class BuildRequestModel extends BaseModel
                 "date_format"       => "时间格式不正确",
                 "different"         => ["different:%s", "不能和%s相同"],
                 "digits"            => ["digits:%d", "字段必须是数字,并且长度为%d"],
-                "digits_between"    => ["digits_between:%d,%d", "字段必须是数字,并且长度在%d-%d之间"],
+                "digits_between"    => ["digits_between:%d,%d", "字段必须是数并，且长度在%d-%d之间"],
                 "boolean"           => "必须是boolean值",
                 "email"             => "邮箱格式不正确",
                 "exists"            => ["exists:%s,%s", "%s不能重复"],
@@ -187,7 +187,7 @@ class BuildRequestModel extends BaseModel
                 "integer"           => "必须为整数",
                 "ip"                => "当前ip格式不正确",
                 "max"               => ["max:%d", "必须大于%d"],
-                "mimes"             => ["mimes:%s", "文件的Mime 类型必须要为%s清单的其中一个值"],
+                "mimes"             => ["mimes:%s", "文件的Mime类型必须要为%s清单的其中一个值"],
                 "min"               => ["min:%d", "必须小于%d"],
                 "not_in"            => ["not_in:%s", "不能在%s其中"],
                 "numeric"           => "必须是数字",

@@ -8,7 +8,7 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace Yangyifan\AutoBuild\Model;
+namespace Yangyifan\AutoBuild\Model\Build;
 
 class BuildModelModel extends BaseModel
 {

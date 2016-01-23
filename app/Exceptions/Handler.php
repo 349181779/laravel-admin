@@ -2,10 +2,9 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Http\Controllers\BaseController;
 
 class Handler extends ExceptionHandler {
-
-	const NOT_FOUND_CODE = 404;
 
 	/**
 	 * A list of the exception types that should not be reported.
@@ -13,7 +12,7 @@ class Handler extends ExceptionHandler {
 	 * @var array
 	 */
 	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException'
+        'Symfony\Component\HttpKernel\Exception\HttpException'
 	];
 
 	/**
@@ -26,21 +25,13 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
-		//500错误
-//		if ($e->getCode() > 0 ) {
-//			return parent::report($e);
-//		}
-//		//404页面跳转
-//		if ($e->getStatusCode() == self::NOT_FOUND_CODE) {
-//			header('location: '.createUrl('Admin\Order\OrderList\OrderListController@getIndex'));die;
-//		}
-
-//        die(json_encode([
-//            'code'	=>$e->getCode(),
-//            'msg'	=>'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
-//        ]));
-
-        return parent::report($e);
+		if (config('config.APP_DEBUG') == false) {
+			die(json_encode([
+                'code' 	=> BaseController::SERVER_ERROR,
+                'msg'	=> 'error', ///'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
+			]));
+		}
+		return parent::report($e);
 	}
 
 	/**
@@ -52,7 +43,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-        return parent::render($request, $e);
+		return parent::render($request, $e);
 	}
 
 }

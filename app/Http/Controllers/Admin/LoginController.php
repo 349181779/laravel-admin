@@ -29,7 +29,7 @@ class LoginController extends BaseController
     {
         parent::__construct();
         //判断是否已经登录
-        if(isAdminLogin() > 0 ) return header('location:' . createUrl('Admin\Admin\AdminInfoController@getIndex'));
+        if(isAdminLogin() > 0 ) redirect()->action('Admin\HomeController@getIndex')->send();
     }
 
 	/**

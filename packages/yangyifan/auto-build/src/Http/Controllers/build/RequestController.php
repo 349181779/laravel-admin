@@ -8,12 +8,12 @@
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace Yangyifan\AutoBuild\Http\Controllers;
+namespace Yangyifan\AutoBuild\Http\Controllers\Build;
 
 use Illuminate\Http\Request;
 use gossi\codegen\model\PhpMethod;
 use Yangyifan\AutoBuild\Http\Requests\BuildControllerRequest;
-use Yangyifan\AutoBuild\Model\BuildRequestModel;
+use Yangyifan\AutoBuild\Model\Build\BuildRequestModel;
 
 class RequestController extends BaseController
 {

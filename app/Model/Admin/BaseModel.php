@@ -18,17 +18,13 @@ use \Session;
 
 class BaseModel extends Model
 {
-
-
     const SEPARATED         = ','; //分隔符
-    const HOTEL_TYPE_1      = 1;//酒店
-    const HOTEL_TYPE_2      = 2;//民宿
-    const HOTEL_TYPE_3      = 3;//公寓式
-    const HOTEL_NOT_EXISTS  = -100;//酒店不存在
     const LANG_ZH           = 'zh';//中文语言包
     const LANG_KOREA        = 'korea';//韩文语言包
 
     public static $locale   = null;//语言
+
+    public $timestamps = false;//关闭时间戳
 
     /**
      * 搜索

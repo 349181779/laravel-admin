@@ -146,14 +146,12 @@ return [
 		'App\Providers\RouteServiceProvider',
 
         //自定义
-
 		'Yangyifan\AutoBuild\AutoBuildServiceProvider', //自动构建
         'Maatwebsite\Excel\ExcelServiceProvider',
         'Yangyifan\UEditor\UEditorServiceProvider',//ueditor
         //'Dingo\Api\Provider\ApiServiceProvider'
 		'Mews\Captcha\CaptchaServiceProvider',//验证码
 		'App\Providers\HtmlDomProvider',//采集库
-		//'App\Providers\ExcelServiceProvider',//excel
 		'Yangyifan\Upload\UploadServiceProvider',//上传
 
 
@@ -205,15 +203,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
         //自定义
-        'Html'          => 'Illuminate\Html\HtmlFacade',#http://laravelcollective.com/docs/5.0/html
-        'Form'          => 'Illuminate\Html\FormFacade',#http://laravelcollective.com/docs/5.0/html
-        'EndaEditor'    => 'YuanChao\Editor\Facade\EndaEditorFacade',//https://github.com/yccphp/laravel-5-markdown-editor
-        'FilterManager' => 'Toplan\FilterManager\Facades\FilterManager',#https://github.com/toplan/FilterManager
-        'Agent'         => 'Jenssegers\Agent\Facades\Agent',//https://github.com/jenssegers/laravel-agent
-        //https://github.com/AlloVince/EvaOAuth
         'Excel'         => 'Maatwebsite\Excel\Facades\Excel', //https://github.com/Maatwebsite/Laravel-Excel
-        'Wechat'        => 'Overtrue\LaravelWechat\Facade',//https://github.com/overtrue/laravel-wechat
         'Captcha'       => 'Mews\Captcha\Facades\Captcha',
 
 	],
