@@ -7,7 +7,7 @@
 
 ## 环境依赖
 
-* php >= 5.4
+* php >= 5.6
 * mysql
 * redis
 
