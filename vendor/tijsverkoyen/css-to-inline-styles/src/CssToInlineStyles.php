@@ -1,14 +1,11 @@
 <?php
 namespace TijsVerkoyen\CssToInlineStyles;
 
-use Symfony\Component\CssSelector\CssSelector;
-use Symfony\Component\CssSelector\Exception\ExceptionInterface;
-
 /**
  * CSS to Inline Styles class
  *
  * @author         Tijs Verkoyen <php-css-to-inline-styles@verkoyen.eu>
- * @version        1.5.4
+ * @version        1.5.5
  * @copyright      Copyright (c), Tijs Verkoyen. All rights reserved.
  * @license        Revised BSD License
  */
@@ -20,13 +17,6 @@ class CssToInlineStyles
      * @var    string
      */
     private $css;
-
-    /**
-     * The processed CSS rules
-     *
-     * @var    array
-     */
-    private $cssRules;
 
     /**
      * Should the generated HTML be cleaned
@@ -137,7 +127,7 @@ class CssToInlineStyles
         }
 
         // process css
-        $this->processCSS();
+        $cssRules = $this->processCSS();
 
         // create new DOMDocument
         $document = new \DOMDocument('1.0', $this->getEncoding());
@@ -155,12 +145,14 @@ class CssToInlineStyles
         $xPath = new \DOMXPath($document);
 
         // any rules?
-        if (!empty($this->cssRules)) {
+        if (!empty($cssRules)) {
             // loop rules
-            foreach ($this->cssRules as $rule) {
-                try {
-                    $query = CssSelector::toXPath($rule['selector']);
-                } catch (ExceptionInterface $e) {
+            foreach ($cssRules as $rule) {
+
+                $selector = new Selector($rule['selector']);
+                $query = $selector->toXPath();
+
+                if (is_null($query)) {
                     continue;
                 }
 
@@ -379,7 +371,7 @@ class CssToInlineStyles
             $html = $document->saveXML(null, LIBXML_NOEMPTYTAG);
 
             // remove the XML-header
-            $html = ltrim(preg_replace('/<?xml (.*)?>/', '', $html));
+            $html = ltrim(preg_replace('/<\?xml (.*)\?>/', '', $html));
         } // just regular HTML 4.01 as it should be used in newsletters
         else {
             // get the HTML
@@ -425,12 +417,13 @@ class CssToInlineStyles
     /**
      * Process the loaded CSS
      *
-     * @return void
+     * @return array
      */
     private function processCSS()
     {
         // init vars
         $css = (string) $this->css;
+        $cssRules = array();
 
         // remove newlines
         $css = str_replace(array("\r", "\n"), '', $css);
@@ -496,7 +489,7 @@ class CssToInlineStyles
                 $ruleSet['order'] = $i;
 
                 // add into global rules
-                $this->cssRules[] = $ruleSet;
+                $cssRules[] = $ruleSet;
             }
 
             // increment
@@ -504,9 +497,11 @@ class CssToInlineStyles
         }
 
         // sort based on specificity
-        if (!empty($this->cssRules)) {
-            usort($this->cssRules, array(__CLASS__, 'sortOnSpecificity'));
+        if (!empty($cssRules)) {
+            usort($cssRules, array(__CLASS__, 'sortOnSpecificity'));
         }
+
+        return $cssRules;
     }
 
     /**

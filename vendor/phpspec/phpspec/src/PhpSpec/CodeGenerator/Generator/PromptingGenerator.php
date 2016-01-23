@@ -26,28 +26,30 @@ use PhpSpec\Locator\ResourceInterface;
 abstract class PromptingGenerator implements GeneratorInterface
 {
     /**
-     * @var \PhpSpec\Console\IO
+     * @var IO
      */
     private $io;
 
     /**
-     * @var \PhpSpec\CodeGenerator\TemplateRenderer
+     * @var TemplateRenderer
      */
     private $templates;
 
     /**
-     * @var \PhpSpec\Util\Filesystem
+     * @var Filesystem
      */
     private $filesystem;
+
     /**
      * @var ExecutionContextInterface
      */
     private $executionContext;
 
     /**
-     * @param IO               $io
+     * @param IO $io
      * @param TemplateRenderer $templates
-     * @param Filesystem       $filesystem
+     * @param Filesystem $filesystem
+     * @param ExecutionContextInterface $executionContext
      */
     public function __construct(IO $io, TemplateRenderer $templates, Filesystem $filesystem = null, ExecutionContextInterface $executionContext = null)
     {
@@ -65,7 +67,7 @@ abstract class PromptingGenerator implements GeneratorInterface
     {
         $filepath = $this->getFilePath($resource);
 
-        if ($this->ifFileAlreadyExists($filepath)) {
+        if ($this->fileAlreadyExists($filepath)) {
             if ($this->userAborts($filepath)) {
                 return;
             }
@@ -114,7 +116,7 @@ abstract class PromptingGenerator implements GeneratorInterface
      *
      * @return bool
      */
-    private function ifFileAlreadyExists($filepath)
+    private function fileAlreadyExists($filepath)
     {
         return $this->filesystem->pathExists($filepath);
     }

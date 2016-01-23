@@ -14,6 +14,7 @@
 namespace PhpSpec\Util;
 
 use PhpSpec\Exception\Generator\NamedMethodNotFoundException;
+use PhpSpec\Exception\Generator\NoMethodFoundInClass;
 
 final class ClassFileAnalyser
 {
@@ -27,6 +28,17 @@ final class ClassFileAnalyser
     {
         $tokens = $this->getTokensForClass($class);
         $index = $this->offsetForDocblock($tokens, $this->findIndexOfFirstMethod($tokens));
+        return $tokens[$index][2];
+    }
+
+    /**
+     * @param string $class
+     * @return int
+     */
+    public function getEndLineOfLastMethod($class)
+    {
+        $tokens = $this->getTokensForClass($class);
+        $index = $this->findEndOfLastMethod($tokens, $this->findIndexOfClassEnd($tokens));
         return $tokens[$index][2];
     }
 
@@ -69,7 +81,7 @@ final class ClassFileAnalyser
     private function findIndexOfFirstMethod(array $tokens)
     {
         for ($i = 0, $max = count($tokens); $i < $max; $i++) {
-            if (is_array($tokens[$i]) && $tokens[$i][0] === T_FUNCTION) {
+            if ($this->tokenIsFunction($tokens[$i])) {
                 return $i;
             }
         }
@@ -134,7 +146,7 @@ final class ClassFileAnalyser
     private function findIndexOfNamedMethodEnd(array $tokens, $methodName)
     {
         $index = $this->findIndexOfNamedMethod($tokens, $methodName);
-        return $this->findIndexOfMethodEnd($tokens, $index);
+        return $this->findIndexOfMethodOrClassEnd($tokens, $index);
     }
 
     /**
@@ -179,7 +191,7 @@ final class ClassFileAnalyser
      * @param int $index
      * @return int
      */
-    private function findIndexOfMethodEnd(array $tokens, $index)
+    private function findIndexOfMethodOrClassEnd(array $tokens, $index)
     {
         $braceCount = 0;
 
@@ -198,5 +210,42 @@ final class ClassFileAnalyser
                 }
             }
         }
+    }
+
+    /**
+     * @param mixed $token
+     * @return bool
+     */
+    private function tokenIsFunction($token)
+    {
+        return is_array($token) && $token[0] === T_FUNCTION;
+    }
+
+    /**
+     * @param array $tokens
+     * @return int
+     */
+    private function findIndexOfClassEnd(array $tokens)
+    {
+        $classTokens = array_filter($tokens, function ($token) {
+            return is_array($token) && $token[0] === T_CLASS;
+        });
+        $classTokenIndex = key($classTokens);
+        return $this->findIndexOfMethodOrClassEnd($tokens, $classTokenIndex) - 1;
+    }
+
+    /**
+     * @param array $tokens
+     * @param int $index
+     * @return int
+     */
+    public function findEndOfLastMethod(array $tokens, $index)
+    {
+        for ($i = $index - 1; $i > 0; $i--) {
+            if ($tokens[$i] == "}") {
+                return $i + 1;
+            }
+        }
+        throw new NoMethodFoundInClass();
     }
 }

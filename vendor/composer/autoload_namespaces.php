@@ -8,8 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'jpush' => array($vendorDir . '/jpush/jpush/src'),
-    'Turbo' => array($vendorDir . '/rcrowe/turbo/src'),
-    'Toplan\\FilterManager' => array($vendorDir . '/toplan/filter-manager/src'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Symfony\\Component\\Security\\Core\\' => array($vendorDir . '/symfony/security-core'),
@@ -30,9 +28,7 @@ return array(
     'Httpful' => array($vendorDir . '/nategood/httpful/src'),
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
-    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),
-    'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
 );

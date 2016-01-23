@@ -47,7 +47,7 @@ class ClassMapGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getTestCreateMapTests
      */
-    public function testDump($directory, $expected)
+    public function testDump($directory)
     {
         $this->prepare_workspace();
 
@@ -102,18 +102,18 @@ class ClassMapGeneratorTest extends \PHPUnit_Framework_TestCase
                 'ClassMap\\SomeParent' => realpath(__DIR__).'/Fixtures/classmap/SomeParent.php',
                 'ClassMap\\SomeClass' => realpath(__DIR__).'/Fixtures/classmap/SomeClass.php',
             )),
-        );
-
-        if (PHP_VERSION_ID >= 50400) {
-            $data[] = array(__DIR__.'/Fixtures/php5.4', array(
+            array(__DIR__.'/Fixtures/php5.4', array(
                 'TFoo' => __DIR__.'/Fixtures/php5.4/traits.php',
                 'CFoo' => __DIR__.'/Fixtures/php5.4/traits.php',
                 'Foo\\TBar' => __DIR__.'/Fixtures/php5.4/traits.php',
                 'Foo\\IBar' => __DIR__.'/Fixtures/php5.4/traits.php',
                 'Foo\\TFooBar' => __DIR__.'/Fixtures/php5.4/traits.php',
                 'Foo\\CBar' => __DIR__.'/Fixtures/php5.4/traits.php',
-            ));
-        }
+            )),
+            array(__DIR__.'/Fixtures/php5.5', array(
+                'ClassCons\\Foo' => __DIR__.'/Fixtures/php5.5/class_cons.php',
+            )),
+        );
 
         return $data;
     }
@@ -134,10 +134,10 @@ class ClassMapGeneratorTest extends \PHPUnit_Framework_TestCase
     protected function assertEqualsNormalized($expected, $actual, $message = null)
     {
         foreach ($expected as $ns => $path) {
-            $expected[$ns] = strtr($path, '\\', '/');
+            $expected[$ns] = str_replace('\\', '/', $path);
         }
         foreach ($actual as $ns => $path) {
-            $actual[$ns] = strtr($path, '\\', '/');
+            $actual[$ns] = str_replace('\\', '/', $path);
         }
         $this->assertEquals($expected, $actual, $message);
     }

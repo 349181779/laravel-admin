@@ -243,6 +243,28 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
      */
     private static function fillBuiltInFormatCodes()
     {
+        //  [MS-OI29500: Microsoft Office Implementation Information for ISO/IEC-29500 Standard Compliance]
+        //  18.8.30. numFmt (Number Format)
+        //
+        //  The ECMA standard defines built-in format IDs
+        //      14: "mm-dd-yy"
+        //      22: "m/d/yy h:mm"
+        //      37: "#,##0 ;(#,##0)"
+        //      38: "#,##0 ;[Red](#,##0)"
+        //      39: "#,##0.00;(#,##0.00)"
+        //      40: "#,##0.00;[Red](#,##0.00)"
+        //      47: "mmss.0"
+        //      KOR fmt 55: "yyyy-mm-dd"
+        //  Excel defines built-in format IDs
+        //      14: "m/d/yyyy"
+        //      22: "m/d/yyyy h:mm"
+        //      37: "#,##0_);(#,##0)"
+        //      38: "#,##0_);[Red](#,##0)"
+        //      39: "#,##0.00_);(#,##0.00)"
+        //      40: "#,##0.00_);[Red](#,##0.00)"
+        //      47: "mm:ss.0"
+        //      KOR fmt 55: "yyyy/mm/dd"
+ 
         // Built-in format codes
         if (is_null(self::$builtInFormats)) {
             self::$builtInFormats = array();
@@ -259,7 +281,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             self::$builtInFormats[11] = '0.00E+00';
             self::$builtInFormats[12] = '# ?/?';
             self::$builtInFormats[13] = '# ??/??';
-            self::$builtInFormats[14] = 'mm-dd-yy';
+            self::$builtInFormats[14] = 'm/d/yyyy';                     // Despite ECMA 'mm-dd-yy';
             self::$builtInFormats[15] = 'd-mmm-yy';
             self::$builtInFormats[16] = 'd-mmm';
             self::$builtInFormats[17] = 'mmm-yy';
@@ -267,17 +289,17 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             self::$builtInFormats[19] = 'h:mm:ss AM/PM';
             self::$builtInFormats[20] = 'h:mm';
             self::$builtInFormats[21] = 'h:mm:ss';
-            self::$builtInFormats[22] = 'm/d/yy h:mm';
+            self::$builtInFormats[22] = 'm/d/yyyy h:mm';                // Despite ECMA 'm/d/yy h:mm';
 
-            self::$builtInFormats[37] = '#,##0 ;(#,##0)';
-            self::$builtInFormats[38] = '#,##0 ;[Red](#,##0)';
-            self::$builtInFormats[39] = '#,##0.00;(#,##0.00)';
-            self::$builtInFormats[40] = '#,##0.00;[Red](#,##0.00)';
+            self::$builtInFormats[37] = '#,##0_);(#,##0)';              //  Despite ECMA '#,##0 ;(#,##0)';
+            self::$builtInFormats[38] = '#,##0_);[Red](#,##0)';         //  Despite ECMA '#,##0 ;[Red](#,##0)';
+            self::$builtInFormats[39] = '#,##0.00_);(#,##0.00)';        //  Despite ECMA '#,##0.00;(#,##0.00)';
+            self::$builtInFormats[40] = '#,##0.00_);[Red](#,##0.00)';   //  Despite ECMA '#,##0.00;[Red](#,##0.00)';
 
             self::$builtInFormats[44] = '_("$"* #,##0.00_);_("$"* \(#,##0.00\);_("$"* "-"??_);_(@_)';
             self::$builtInFormats[45] = 'mm:ss';
             self::$builtInFormats[46] = '[h]:mm:ss';
-            self::$builtInFormats[47] = 'mmss.0';
+            self::$builtInFormats[47] = 'mm:ss.0';                      //  Despite ECMA 'mmss.0';
             self::$builtInFormats[48] = '##0.0E+0';
             self::$builtInFormats[49] = '@';
 
@@ -316,7 +338,6 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 
         // Ensure built-in format codes are available
         self::fillBuiltInFormatCodes();
-
         // Lookup format code
         if (isset(self::$builtInFormats[$pIndex])) {
             return self::$builtInFormats[$pIndex];
@@ -423,26 +444,43 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             'h'  => 'g'
         );
 
+    private static function setLowercaseCallback($matches) {
+        return mb_strtolower($matches[0]);
+    }
+
+    private static function escapeQuotesCallback($matches) {
+        return '\\' . implode('\\', str_split($matches[1]));
+    }
+
     private static function formatAsDate(&$value, &$format)
     {
-        // dvc: convert Excel formats to PHP date formats
-
         // strip off first part containing e.g. [$-F800] or [$USD-409]
         // general syntax: [$<Currency string>-<language info>]
         // language info is in hexadecimal
         $format = preg_replace('/^(\[\$[A-Z]*-[0-9A-F]*\])/i', '', $format);
 
-        // OpenOffice.org uses upper-case number formats, e.g. 'YYYY', convert to lower-case
-        $format = strtolower($format);
+        // OpenOffice.org uses upper-case number formats, e.g. 'YYYY', convert to lower-case;
+        //    but we don't want to change any quoted strings
+        $format = preg_replace_callback('/(?:^|")([^"]*)(?:$|")/', array('self', 'setLowercaseCallback'), $format);
 
-        $format = strtr($format, self::$dateFormatReplacements);
-        if (!strpos($format, 'A')) {
-            // 24-hour time format
-            $format = strtr($format, self::$dateFormatReplacements24);
-        } else {
-            // 12-hour time format
-            $format = strtr($format, self::$dateFormatReplacements12);
+        // Only process the non-quoted blocks for date format characters
+        $blocks = explode('"', $format);
+        foreach($blocks as $key => &$block) {
+            if ($key % 2 == 0) {
+                $block = strtr($block, self::$dateFormatReplacements);
+                if (!strpos($block, 'A')) {
+                    // 24-hour time format
+                    $block = strtr($block, self::$dateFormatReplacements24);
+                } else {
+                    // 12-hour time format
+                    $block = strtr($block, self::$dateFormatReplacements12);
+                }
+            }
         }
+        $format = implode('"', $blocks);
+
+        // escape any quoted characters so that DateTime format() will render them correctly
+        $format = preg_replace_callback('/"(.*)"/U', array('self', 'escapeQuotesCallback'), $format);
 
         $dateObj = PHPExcel_Shared_Date::ExcelToPHPObject($value);
         $value = $dateObj->format($format);
@@ -551,10 +589,13 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             return $value;
         }
 
-        // Get the sections, there can be up to four sections
-        $sections = explode(';', $format);
+        // Convert any other escaped characters to quoted strings, e.g. (\T to "T")
+        $format = preg_replace('/(\\\(.))(?=(?:[^"]|"[^"]*")*$)/u', '"${2}"', $format);
 
-        // Fetch the relevant section depending on whether number is positive, negative, or zero?
+        // Get the sections, there can be up to four sections, separated with a semi-colon (but only if not a quoted literal)
+        $sections = preg_split('/(;)(?=(?:[^"]|"[^"]*")*$)/u', $format);
+
+        // Extract the relevant section depending on whether number is positive, negative, or zero?
         // Text not supported yet.
         // Here is how the sections apply to various values in Excel:
         //   1 section:   [POSITIVE/NEGATIVE/ZERO/TEXT]
@@ -587,6 +628,10 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                 break;
         }
 
+        // In Excel formats, "_" is used to add spacing,
+        //    The following character indicates the size of the spacing, which we can't do in HTML, so we just use a standard space
+        $format = preg_replace('/_./', ' ', $format);
+
         // Save format with color information for later use below
         $formatColor = $format;
 
@@ -595,23 +640,18 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
         $format = preg_replace($color_regex, '', $format);
 
         // Let's begin inspecting the format and converting the value to a formatted string
-        if (preg_match('/^(\[\$[A-Z]*-[0-9A-F]*\])*[hmsdy]/i', $format)) { // datetime format
+
+        //  Check for date/time characters (not inside quotes)
+        if (preg_match('/(\[\$[A-Z]*-[0-9A-F]*\])*[hmsdy](?=(?:[^"]|"[^"]*")*$)/miu', $format, $matches)) {
+            // datetime format
             self::formatAsDate($value, $format);
-        } elseif (preg_match('/%$/', $format)) { // % number format
+        } elseif (preg_match('/%$/', $format)) {
+            // % number format
             self::formatAsPercentage($value, $format);
         } else {
             if ($format === self::FORMAT_CURRENCY_EUR_SIMPLE) {
                 $value = 'EUR ' . sprintf('%1.2f', $value);
             } else {
-                // In Excel formats, "_" is used to add spacing, which we can't do in HTML
-                $format = preg_replace('/_./', '', $format);
-
-                // Some non-number characters are escaped with \, which we don't need
-                $format = preg_replace("/\\\\/", '', $format);
-//              Handle escaped characters, such as \" to display a literal " or \\ to display a literal \
-//              $format = preg_replace('/(?<!\\\\)\"/', '', $format);
-//                $format = str_replace(array('\\"', '*'), array('"', ''), $format);
-
                 // Some non-number strings are quoted, so we'll get rid of the quotes, likewise any positional * symbols
                 $format = str_replace(array('"', '*'), '', $format);
 
@@ -685,7 +725,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                     }
                 }
                 if (preg_match('/\[\$(.*)\]/u', $format, $m)) {
-                    //    Currency or Accounting
+                    //  Currency or Accounting
                     $currencyFormat = $m[0];
                     $currencyCode = $m[1];
                     list($currencyCode) = explode('-', $currencyCode);
@@ -696,6 +736,9 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                 }
             }
         }
+
+        // Escape any escaped slashes to a single slash
+        $format = preg_replace("/\\\\/u", '\\', $format);
 
         // Additional formatting provided by callback function
         if ($callBack !== null) {

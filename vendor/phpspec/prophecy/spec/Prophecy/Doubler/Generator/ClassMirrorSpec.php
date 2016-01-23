@@ -53,6 +53,12 @@ class ClassMirrorSpec extends ObjectBehavior
         $method2->getParameters()->willReturn(array());
         $method3->getParameters()->willReturn(array());
 
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method1->hasReturnType()->willReturn(false);
+            $method2->hasReturnType()->willReturn(false);
+            $method3->hasReturnType()->willReturn(false);
+        }
+
         $classNode   = $this->reflect($class, array());
         $classNode->shouldBeAnInstanceOf('Prophecy\Doubler\Generator\Node\ClassNode');
         $classNode->getParentClass()->shouldReturn('Custom\ClassName');
@@ -85,6 +91,10 @@ class ClassMirrorSpec extends ObjectBehavior
         $method->isProtected()->willReturn(false);
         $method->isStatic()->willReturn(false);
         $method->returnsReference()->willReturn(false);
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method->hasReturnType()->willReturn(false);
+        }
 
         $parameter->getName()->willReturn('...');
         $parameter->isDefaultValueAvailable()->willReturn(true);
@@ -120,6 +130,9 @@ class ClassMirrorSpec extends ObjectBehavior
         $method->getName()->willReturn('innerDetail');
         $method->returnsReference()->willReturn(false);
 
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method->hasReturnType()->willReturn(false);
+        }
 
         $classNode   = $this->reflect($class, array());
         $classNode->shouldBeAnInstanceOf('Prophecy\Doubler\Generator\Node\ClassNode');
@@ -149,6 +162,10 @@ class ClassMirrorSpec extends ObjectBehavior
         $method->getName()->willReturn('innerDetail');
         $method->returnsReference()->willReturn(false);
 
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method->hasReturnType()->willReturn(false);
+        }
+
         $classNode   = $this->reflect($class, array());
         $classNode->shouldBeAnInstanceOf('Prophecy\Doubler\Generator\Node\ClassNode');
         $classNode->getParentClass()->shouldReturn('Custom\ClassName');
@@ -158,6 +175,92 @@ class ClassMirrorSpec extends ObjectBehavior
 
         $methodNodes['innerDetail']->getVisibility()->shouldReturn('protected');
         $methodNodes['innerDetail']->isStatic()->shouldReturn(true);
+    }
+
+    /**
+     * @param ReflectionClass  $class
+     * @param ReflectionMethod $constructMethod
+     * @param ReflectionMethod $destructMethod
+     * @param ReflectionMethod $sleepMethod
+     * @param ReflectionMethod $wakeupMethod
+     * @param ReflectionMethod $toStringMethod
+     * @param ReflectionMethod $callMethod
+     * @param ReflectionMethod $invokeMethod
+     */
+    function it_reflects_allowed_magic_methods($class, $constructMethod, $destructMethod, $sleepMethod, $wakeupMethod, $toStringMethod, $callMethod, $invokeMethod)
+    {
+        $class->getName()->willReturn('Custom\ClassName');
+        $class->isInterface()->willReturn(false);
+        $class->isFinal()->willReturn(false);
+        $class->getMethods(ReflectionMethod::IS_ABSTRACT)->willReturn(array());
+        $class->getMethods(ReflectionMethod::IS_PUBLIC)->willReturn(array(
+            $constructMethod, $destructMethod, $sleepMethod, $wakeupMethod, $toStringMethod, $callMethod, $invokeMethod
+        ));
+
+        $constructMethod->getName()->willReturn('__construct');
+        $destructMethod->getName()->willReturn('__destruct');
+        $sleepMethod->getName()->willReturn('__sleep');
+        $wakeupMethod->getName()->willReturn('__wakeup');
+        $toStringMethod->getName()->willReturn('__toString');
+        $callMethod->getName()->willReturn('__call');
+        $invokeMethod->getName()->willReturn('__invoke');
+
+        $constructMethod->isFinal()->willReturn(false);
+        $destructMethod->isFinal()->willReturn(false);
+        $sleepMethod->isFinal()->willReturn(false);
+        $wakeupMethod->isFinal()->willReturn(false);
+        $toStringMethod->isFinal()->willReturn(false);
+        $callMethod->isFinal()->willReturn(false);
+        $invokeMethod->isFinal()->willReturn(false);
+
+        $constructMethod->isProtected()->willReturn(false);
+        $destructMethod->isProtected()->willReturn(false);
+        $sleepMethod->isProtected()->willReturn(false);
+        $wakeupMethod->isProtected()->willReturn(false);
+        $toStringMethod->isProtected()->willReturn(false);
+        $callMethod->isProtected()->willReturn(false);
+        $invokeMethod->isProtected()->willReturn(false);
+
+        $constructMethod->isStatic()->willReturn(false);
+        $destructMethod->isStatic()->willReturn(false);
+        $sleepMethod->isStatic()->willReturn(false);
+        $wakeupMethod->isStatic()->willReturn(false);
+        $toStringMethod->isStatic()->willReturn(false);
+        $callMethod->isStatic()->willReturn(false);
+        $invokeMethod->isStatic()->willReturn(false);
+
+        $constructMethod->returnsReference()->willReturn(false);
+        $destructMethod->returnsReference()->willReturn(false);
+        $sleepMethod->returnsReference()->willReturn(false);
+        $wakeupMethod->returnsReference()->willReturn(false);
+        $toStringMethod->returnsReference()->willReturn(false);
+        $callMethod->returnsReference()->willReturn(false);
+        $invokeMethod->returnsReference()->willReturn(false);
+
+        $constructMethod->getParameters()->willReturn(array());
+        $destructMethod->getParameters()->willReturn(array());
+        $sleepMethod->getParameters()->willReturn(array());
+        $wakeupMethod->getParameters()->willReturn(array());
+        $toStringMethod->getParameters()->willReturn(array());
+        $callMethod->getParameters()->willReturn(array());
+        $invokeMethod->getParameters()->willReturn(array());
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $constructMethod->hasReturnType()->willReturn(false);
+            $destructMethod->hasReturnType()->willReturn(false);
+            $sleepMethod->hasReturnType()->willReturn(false);
+            $wakeupMethod->hasReturnType()->willReturn(false);
+            $toStringMethod->hasReturnType()->willReturn(false);
+            $callMethod->hasReturnType()->willReturn(false);
+            $invokeMethod->hasReturnType()->willReturn(false);
+        }
+
+        $classNode   = $this->reflect($class, array());
+        $classNode->shouldBeAnInstanceOf('Prophecy\Doubler\Generator\Node\ClassNode');
+        $classNode->getParentClass()->shouldReturn('Custom\ClassName');
+
+        $methodNodes = $classNode->getMethods();
+        $methodNodes->shouldHaveCount(7);
     }
 
     /**
@@ -184,6 +287,10 @@ class ClassMirrorSpec extends ObjectBehavior
         $method->isStatic()->willReturn(false);
         $method->returnsReference()->willReturn(false);
         $method->getParameters()->willReturn(array($param1, $param2, $param3));
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method->hasReturnType()->willReturn(false);
+        }
 
         $param1->getName()->willReturn('arg_1');
         $param1->isArray()->willReturn(true);
@@ -258,12 +365,21 @@ class ClassMirrorSpec extends ObjectBehavior
         $method->returnsReference()->willReturn(false);
         $method->getParameters()->willReturn(array($param1));
 
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method->hasReturnType()->willReturn(false);
+        }
+
         $param1->getName()->willReturn('arg_1');
         $param1->isArray()->willReturn(false);
         if (version_compare(PHP_VERSION, '5.4', '>=')) {
             $param1->isCallable()->willReturn(false);
         }
         $param1->getClass()->willReturn(null);
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $param1->hasType()->willReturn(false);
+        }
+
         $param1->isDefaultValueAvailable()->willReturn(false);
         $param1->isOptional()->willReturn(false);
         $param1->isPassedByReference()->willReturn(false);
@@ -303,6 +419,10 @@ class ClassMirrorSpec extends ObjectBehavior
         $method->returnsReference()->willReturn(false);
         $method->getParameters()->willReturn(array($param1, $param2));
 
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method->hasReturnType()->willReturn(false);
+        }
+
         $param1->getName()->willReturn('arg_1');
         $param1->isArray()->willReturn(false);
         if (version_compare(PHP_VERSION, '5.4', '>=')) {
@@ -312,6 +432,11 @@ class ClassMirrorSpec extends ObjectBehavior
         $param1->isDefaultValueAvailable()->willReturn(false);
         $param1->isOptional()->willReturn(true);
         $param1->isPassedByReference()->willReturn(true);
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $param1->hasType()->willReturn(false);
+        }
+
         $param1->allowsNull()->willReturn(false);
         if (defined('HHVM_VERSION')) {
             $param1->getTypehintText()->willReturn(null);
@@ -323,6 +448,11 @@ class ClassMirrorSpec extends ObjectBehavior
         $param2->isDefaultValueAvailable()->willReturn(false);
         $param2->isOptional()->willReturn(false);
         $param2->isPassedByReference()->willReturn(false);
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $param2->hasType()->willReturn(false);
+        }
+
         $param2->allowsNull()->willReturn(false);
         $typeHint->getName()->willReturn('ArrayAccess');
 
@@ -418,6 +548,12 @@ class ClassMirrorSpec extends ObjectBehavior
         $method2->getParameters()->willReturn(array());
         $method3->getParameters()->willReturn(array());
 
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method1->hasReturnType()->willReturn(false);
+            $method2->hasReturnType()->willReturn(false);
+            $method3->hasReturnType()->willReturn(false);
+        }
+
         $classNode = $this->reflect(null, array($interface1, $interface2));
 
         $classNode->shouldBeAnInstanceOf('Prophecy\Doubler\Generator\Node\ClassNode');
@@ -471,6 +607,12 @@ class ClassMirrorSpec extends ObjectBehavior
         $method1->getParameters()->willReturn(array());
         $method2->getParameters()->willReturn(array());
         $method3->getParameters()->willReturn(array());
+
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            $method1->hasReturnType()->willReturn(false);
+            $method2->hasReturnType()->willReturn(false);
+            $method3->hasReturnType()->willReturn(false);
+        }
 
         $classNode = $this->reflect($class, array());
         $methodNodes = $classNode->getMethods();
