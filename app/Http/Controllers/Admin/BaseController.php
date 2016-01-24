@@ -11,6 +11,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\MenuModel;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Route;
 use View;
@@ -21,22 +22,38 @@ class BaseController extends \App\Http\Controllers\BaseController
     private $request;
 
     const CONNECTION = '@';//控制器名称和方法名称连接符号
+=======
+
+use Route;
+
+use View;
+
+class BaseController extends \App\Http\Controllers\BaseController {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     /**
      * 构造方法
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function __construct()
     {
         parent::__construct();
         $this->request = new Request();
+=======
+    public function __construct(){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //检测登录
         $this->checkIsLogin();
         //获得全部菜单
         $this->getAllMenu();
         //验证权限
+<<<<<<< HEAD
         //$this->checkAccess();
+=======
+        $this->checkAccess();
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -45,9 +62,16 @@ class BaseController extends \App\Http\Controllers\BaseController
      * @return bool|\Illuminate\Http\RedirectResponse
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     private function checkIsLogin()
     {
         return isAdminLogin() <= 0 && header('location:' . createUrl('Admin\LoginController@getIndex'));die;
+=======
+    private function checkIsLogin(){
+        load_func('common');
+        $uid = is_admin_login();
+        return $uid <= 0 && header('location:'.action('Admin\LoginController@getIndex'));die;
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -55,8 +79,12 @@ class BaseController extends \App\Http\Controllers\BaseController
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     private function getAllMenu()
     {
+=======
+    private function getAllMenu(){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         view()->share('menu_tree_data', MenuModel::getUserMenuSide());
     }
 
@@ -65,6 +93,7 @@ class BaseController extends \App\Http\Controllers\BaseController
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     private function checkAccess()
     {
         //获得当前路由
@@ -113,6 +142,32 @@ class BaseController extends \App\Http\Controllers\BaseController
         $action = \Route::current()->getActionName();
         list($class, $method) = explode('@', $action);
         return ['controller' => str_replace("App\\Http\\Controllers\\", "", $class), 'method' => $method];
+=======
+    private function checkAccess(){
+        $all_user_menu_url  = MenuModel::getUserMenu();//用户全部菜单
+        $all_menu_url       = MenuModel::getAllMenuUrl();//当前全部菜单
+
+        if(!empty($all_menu_url)){
+            foreach($all_menu_url as &$menu){
+                if(!empty($menu)){
+                    $menu = url($menu);
+                }
+            }
+        }
+
+        if(!empty($all_user_menu_url)){
+            foreach($all_user_menu_url as &$menu){
+                if(!empty($menu)){
+                    $menu = url($menu);
+                }
+            }
+        }
+        //如果当前菜单在全局菜单里面，并且不存在角色当前菜单，则没有权限
+        if(in_array($this->getCurrentUrl(), $all_menu_url) && !in_array($this->getCurrentUrl(), $all_user_menu_url)){
+            $this->error(trans('response.access_error'));
+        }
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -121,8 +176,12 @@ class BaseController extends \App\Http\Controllers\BaseController
      * @return string
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     private function getCurrentUrl()
     {
+=======
+    private function getCurrentUrl(){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         if(!empty($_SERVER['REQUEST_URI']) && strrpos($_SERVER['REQUEST_URI'], 'index')){
             return url($_SERVER['REQUEST_URI']);
         }
@@ -148,8 +207,12 @@ class BaseController extends \App\Http\Controllers\BaseController
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function error($info, $time = 3, $jump_url = '')
     {
+=======
+    public function error($info, $time = 3, $jump_url = ''){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //跳转地址
         $jump_url = $jump_url != '' ? $jump_url : action('Admin\HomeController@getIndex');
 

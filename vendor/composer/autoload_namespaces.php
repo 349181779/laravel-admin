@@ -7,7 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
+<<<<<<< HEAD
     'jpush' => array($vendorDir . '/jpush/jpush/src'),
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'Turbo' => array($vendorDir . '/rcrowe/turbo/src'),
     'Toplan\\FilterManager' => array($vendorDir . '/toplan/filter-manager/src'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
@@ -27,7 +30,10 @@ return array(
     'Maatwebsite\\Excel\\' => array($vendorDir . '/maatwebsite/excel/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
+<<<<<<< HEAD
     'Httpful' => array($vendorDir . '/nategood/httpful/src'),
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib'),

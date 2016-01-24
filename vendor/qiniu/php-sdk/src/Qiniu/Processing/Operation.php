@@ -38,7 +38,11 @@ final class Operation
         if (!$resp->ok()) {
             return array(null, new Error($url, $resp));
         }
+<<<<<<< HEAD
         if ($resp->json() !== null) {
+=======
+        if ($resp->json() != null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             return array($resp->json(), null);
         }
         return array($resp->body, null);

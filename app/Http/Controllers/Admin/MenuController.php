@@ -23,9 +23,13 @@ class MenuController extends BaseController {
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function __construct(HtmlBuilderController $html_builder)
     {
         parent::__construct();
+=======
+    public function __construct(HtmlBuilderController $html_builder){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $this->html_builder = $html_builder;
     }
 
@@ -46,7 +50,11 @@ class MenuController extends BaseController {
                 builderSchema('created_at', '创建时间')->
                 builderSchema('updated_at', '更新时间')->
                 builderSchema('handle', '操作')->
+<<<<<<< HEAD
                 builderBotton('增加菜单分类', url('admin/menu/add'))->
+=======
+                builderAddBotton('增加菜单分类', url('admin/menu/add'))->
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                 builderTreeData(MenuModel::getAll())->
                 builderTree();
 	}
@@ -81,7 +89,11 @@ class MenuController extends BaseController {
         $Model = MenuModel::findOrFail($request->get('id'));
         $Model->update($request->all());
         //更新成功
+<<<<<<< HEAD
         return $this->response(self::SUCCESS_STATE_CODE, trans('response.update_success'), [], true , url('admin/menu/index'));
+=======
+        return $this->response(200, trans('response.update_success'), [], true , url('admin/menu/index'));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -110,7 +122,11 @@ class MenuController extends BaseController {
      */
     public function postAdd(MenuRequest $request){
         $affected_number = MenuModel::create($request->all());
+<<<<<<< HEAD
         return $affected_number > 0 ? $this->response(self::SUCCESS_STATE_CODE, trans('response.add_success'), [], true, url('admin/menu/index')) : $this->response(self::ERROR_STATE_CODE, trans('response.add_error'), [], true, url('admin/menu/index'));
+=======
+        return $affected_number > 0 ? $this->response(200, trans('response.add_success'), [], true, url('admin/menu/index')) : $this->response(400, trans('response.add_error'), [], true, url('admin/menu/index'));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -121,7 +137,11 @@ class MenuController extends BaseController {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function getDelete($id){
+<<<<<<< HEAD
         MenuModel::del($id) > 0 ? $this->response(self::SUCCESS_STATE_CODE, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(self::ERROR_STATE_CODE, trans('response.delete_error'), [], false);
+=======
+        MenuModel::del($id) > 0 ? $this->response(200, trans('response.delete_success'), [], false, url('admin/news/index')) : $this->response(400, trans('response.delete_error'), [], false);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
 }

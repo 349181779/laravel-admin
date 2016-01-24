@@ -34,4 +34,8 @@ if (file_exists($compiledPath = __DIR__.'/../vendor/compiled.php'))
 elseif (file_exists($compiledPath = __DIR__.'/../storage/framework/compiled.php'))
 {
 	require $compiledPath;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1

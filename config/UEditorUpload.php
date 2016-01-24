@@ -21,7 +21,11 @@ return [
            // 'middleware' => 'auth',
         ],
 
+<<<<<<< HEAD
         'mode'=>'upyun',//上传方式,local 为本地   qiniu 为七牛
+=======
+        'mode'=>'qiniu',//上传方式,local 为本地   qiniu 为七牛
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
         //七牛配置,若mode='qiniu',以下为必填.
         'qiniu'=>[
@@ -109,7 +113,11 @@ return [
 
         /* 列出指定目录下的图片 */
         "imageManagerActionName" => "listimage", /* 执行图片管理的action名称 */
+<<<<<<< HEAD
         "imageManagerListPath" => "/", /* 指定要列出图片的目录 */
+=======
+        "imageManagerListPath" => "/uploads/ueditor/php/upload/image/", /* 指定要列出图片的目录 */
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         "imageManagerListSize" => 20, /* 每次列出文件数量 */
         "imageManagerUrlPrefix" => "", /* 图片访问路径前缀 */
         "imageManagerInsertAlign" => "none", /* 插入的图片浮动方式 */
@@ -120,15 +128,22 @@ return [
         "fileManagerListPath" => "/uploads/ueditor/php/upload/file/", /* 指定要列出文件的目录 */
         "fileManagerUrlPrefix" => "", /* 文件访问路径前缀 */
         "fileManagerListSize" => 20, /* 每次列出文件数量 */
+<<<<<<< HEAD
         'image_source' => 1,//图片资源
         'image_type'   => 6,//图片类型
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         "fileManagerAllowFiles" => [
             ".png", ".jpg", ".jpeg", ".gif", ".bmp",
             ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
             ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
             ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
             ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
+<<<<<<< HEAD
         ]], /* 列出的文件类型 */
 
+=======
+        ]] /* 列出的文件类型 */
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 ];

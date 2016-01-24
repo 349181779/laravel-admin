@@ -14,7 +14,10 @@ return [
     'email_require' => 'email不能为空',
     'email_error'   => '邮箱格式不正确',
     'email_unique'  => '邮箱不能重复',
+<<<<<<< HEAD
     'admin_name_require'    => '用户名不能重复',
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'password_require'  => '密码不能为空',
     'password_size_error'   => '密码格式不正确',
     'role_name_require' => '角色名称不能为空',
@@ -60,6 +63,7 @@ return [
     'site_name_unique'  => '网址名称不能重复',
     'url_unique'        => '网址不能重复',
 
+<<<<<<< HEAD
 
     //会员
     'user_name_require' => '用户名不能为空',
@@ -77,6 +81,34 @@ return [
     'birthday_error'    => '生日格式不正确',
     'balance_require'    => '余额不能为空',
     'balance_numeric'    => '余额必须为数字',
+=======
+    //会员
+    'user_name_require' => '用户名不能为空',
+    'user_name_unique'  => '用户名不能重复',
+    'sex_require'   => '性别不能为空',
+    'sex_error' => '性别格式不正确',
+    'user_name_reuqire' => '会员名称不能为空',
+    'password_confirmed_error'  => '两次密码不一致',
+    'old_password_reuqre'   => '旧密码不能为空',
+    'password_reuqre'   => '密码不能为空',
+    'verify_reuqire'    => '验证码不能为空',
+    'password_confirmed_require'    => '确认密码不能为空',
+    'birthday_require'  => '生日不能空',
+    'birthday_error'    => '生日格式不正确',
+    'agreement_require' => '必须同意并接收注册用户服务条款',
+    'year_require'  =>  '年份不能为空',
+    'year_error'  =>  '年份格式错误',
+    'month_require' => '月份不能为空',
+    'month_error' => '月份格式错误',
+    'day_require'   => '日期不能为空',
+    'day_error' => '日期格式错误',
+    'user_profile_truename_require' => '会员真实姓名不能为空',
+    'user_profile_qq_require' => '会员QQ不能为空',
+    'user_profile_wechat_require' => '会员微信不能为空',
+    'user_profile_weibo_require' => '会员微博不能为空',
+    'user_profile_id_card_require' => '会员身份证不能为空',
+    'user_profile_occupation_require' => '会员职业不能为空',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     //查询工具
 
@@ -96,6 +128,7 @@ return [
     'account_number_require'    => '会员账户不能为空',
     'account_number_error'  => '会员账户格式不正确',
 
+<<<<<<< HEAD
     //贺卡管理
     'card_name_require'    =>  '贺卡名不能为空',
     'card_money_require'   =>  '贺卡金额不能为空',
@@ -161,4 +194,8 @@ return [
     'end_from_error'       =>'自发送优惠券几天有效格式不正确',
     'full_money_require'   =>'满额使用不能为空',
     'full_money_error'     =>'满额使用格式不正确',
+=======
+
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 ];

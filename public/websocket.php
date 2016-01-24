@@ -63,8 +63,13 @@ class SwooleWebSocket{
      */
     public function onWorkerStart(){
         //引入函数库
+<<<<<<< HEAD
         require_once dirname(__DIR__) . '/app/libraries/common.func.php';
         require_once dirname(__DIR__) . '/app/libraries/instanceof.func.php';
+=======
+        require_once dirname(__DIR__) . '/app/Functions/common.func.php';
+        require_once dirname(__DIR__) . '/app/Functions/instanceof.func.php';
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
         //引入配置文件
         $this->config = include dirname(__DIR__) . '/config/config.php';

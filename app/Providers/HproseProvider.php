@@ -12,8 +12,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+<<<<<<< HEAD
 class HproseProvider extends ServiceProvider
 {
+=======
+class HproseProvider extends ServiceProvider {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     /**
      * 指定是否延迟加载

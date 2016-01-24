@@ -67,7 +67,11 @@ class BaseModel extends Model{
                         $query = $query->whereIn($key, $value[1]);
                         break;
                     case 'between':
+<<<<<<< HEAD
                         $query = $query->whereBetween($key, [$value[1][0], $value[1][1]]);
+=======
+                        $query = $query->whereBetween($key, $value[1][0], $value[1][1]);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                         break;
                     default:
                         $query = $query->where($key, $value[0], $value[1]);
@@ -136,6 +140,7 @@ class BaseModel extends Model{
                 return trans('response.not_is_default');
         }
     }
+<<<<<<< HEAD
 
     /**
      * 组合是否是下午茶或蛋糕
@@ -158,6 +163,8 @@ class BaseModel extends Model{
         }
     }
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     /**
      * 组合图片路径
      *
@@ -180,6 +187,7 @@ class BaseModel extends Model{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getAllForSchemaOption($name, $id = 0, $first = true){
+<<<<<<< HEAD
         $data = $id > 0 ? mergeTreeNode(objToArray(self::where('id', '<>' , $id)->get())) : mergeTreeNode(objToArray(self::all()));
         $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
         return $data;
@@ -215,6 +223,14 @@ class BaseModel extends Model{
         $first == true && array_unshift($data, ['id' => '0', $name => '顶级函数']);
         return $data;
     }
+=======
+        //加载函数库
+        load_func('common');
+        $data = $id > 0 ? merge_tree_node(obj_to_array(self::where('id', '<>' , $id)->where('deleted_at', '=', '0000-00-00 00:00:00')->get())) : merge_tree_node(obj_to_array(self::all()));
+        $first == true && array_unshift($data, ['id' => '0', $name => '顶级分类']);
+        return $data;
+    }
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     /**
      * 打印最后一条执行sql
@@ -223,9 +239,13 @@ class BaseModel extends Model{
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getLastSql(){
+<<<<<<< HEAD
 
         $sql = DB::getQueryLog();
         var_dump($sql);die;
+=======
+        $sql = DB::getQueryLog();
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $query = end($sql);
         return $query;
     }

@@ -14,7 +14,11 @@
   @show
 </head>
 
+<<<<<<< HEAD
 <body bg-action="app">
+=======
+<body>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 <div id="awwwards" class="right black"><a href="http://www.awwwards.com/best-websites/apricot-navigation-admin-dashboard-template" target="_blank">best websites of the world</a></div>
 <!-- Preloader -->
 <div id="preloader">
@@ -35,7 +39,10 @@
 
 <!--  PAPER WRAP -->
 <div class="wrap-fluid">
+<<<<<<< HEAD
   @include('admin.block.top_bar')
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
   <div class="container-fluid paper-wrap bevel tlbr">
     <!-- CONTENT -->
 

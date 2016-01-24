@@ -67,7 +67,11 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 	 *
 	 * @var bool
 	 */
+<<<<<<< HEAD
 	public $timestamps = false;
+=======
+	public $timestamps = true;
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 	/**
 	 * The model's attributes.

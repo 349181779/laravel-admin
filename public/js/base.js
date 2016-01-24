@@ -2,6 +2,7 @@
  * Created by anywhere1000 on 15/6/7.
  */
 
+<<<<<<< HEAD
 //网络请求状态码
 var HTTP_CODE = {
     'SUCCESS_CODE'  : 200,//请求成功
@@ -10,6 +11,8 @@ var HTTP_CODE = {
 
 
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 $(function(){
 
     $.ajaxSetup({
@@ -59,6 +62,7 @@ $(function(){
      * 示例：<form class="ajax-form" method="post" action="xxx">
      */
     $(document).on('submit', 'form.ajax-form', function (e) {
+<<<<<<< HEAD
 
         //获取提交地址，方式
         var action = $(this).attr('action');
@@ -68,22 +72,35 @@ $(function(){
             return;
         }
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //取消默认动作，防止表单两次提交
         e.preventDefault();
 
         //禁用提交按钮，防止重复提交
         var form = $(this);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //如果禁止base.js 解析 则跳过
         if(form.find('input[name=status]').val() == 'false'){
             return;
         }
 
+<<<<<<< HEAD
         //$('[type=submit]', form).addClass('disabled');
 
 
+=======
+        $('[type=submit]', form).addClass('disabled');
+
+        //获取提交地址，方式
+        var action = $(this).attr('action');
+        var method = $(this).attr('method');
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
         //检测提交地址
         if (!action) {
@@ -96,7 +113,11 @@ $(function(){
         }
 
         //获取表单内容
+<<<<<<< HEAD
         var formContent = filterFormContents($(this).serialize());
+=======
+        var formContent = $(this).serialize();
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
         //发送提交请求
         var callable;
@@ -106,6 +127,7 @@ $(function(){
             callable = $.get;
         }
 
+<<<<<<< HEAD
         $.ajax(action, {
             type : method,
             files: $(":file", this),
@@ -114,15 +136,21 @@ $(function(){
             dataType: "json",
             processData: true
         }).success(function (data) {
+=======
+        callable(action, formContent, function (data) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             parseResponseJson(data);
             $('[type=submit]', form).removeClass('disabled');
         });
 
+<<<<<<< HEAD
         //callable(action, formContent, function (data) {
         //    parseResponseJson(data);
         //    $('[type=submit]', form).removeClass('disabled');
         //});
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //返回
         return false;
     });
@@ -160,6 +188,7 @@ $(function(){
 
 })
 
+<<<<<<< HEAD
 
 /**
  * 过滤 表单提交内容
@@ -184,6 +213,8 @@ function filterFormContents(content)
     return params.join('&');
 }
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 /**
  * 设置双向选择器值
  *
@@ -223,6 +254,7 @@ function del(obj, url){
  * @param data
  */
 function parseResponseJson(data){
+<<<<<<< HEAD
     if(data.code == HTTP_CODE.SUCCESS_CODE){
         //弹出提示框
         toastr.success(data.msg);
@@ -233,6 +265,19 @@ function parseResponseJson(data){
 
     }else{
         toastr.warning(data.msg);
+=======
+    var _data = $.parseJSON(data);
+    if(_data.code == 200){
+        //弹出提示框
+        toastr.success(_data.msg);
+        //如果为true表示跳转到新连接
+        _data.target == true && setTimeout(function(){
+            location.href = _data.href;
+        },1000)
+
+    }else{
+        toastr.warning(_data.msg);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 }
 
@@ -241,7 +286,11 @@ function parseResponseJson(data){
  */
 function logout(){
     $.get(logout_url, {}, function(data){
+<<<<<<< HEAD
         parseResponseJson($.parseJSON(data));
+=======
+        parseResponseJson(data);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     })
 }
 
@@ -249,6 +298,7 @@ function logout(){
 /**
  * 弹出选择图片提示框
  */
+<<<<<<< HEAD
 function showChoseImageDialog(obj, source, image_type){
     var _this = $(obj);
     console.log(choseImageDialog+"?source="+source+"&image_type="+image_type)
@@ -256,23 +306,43 @@ function showChoseImageDialog(obj, source, image_type){
         title:'搜索图片',
         type: 2,
         content: [choseImageDialog+"?source="+source+"&image_type="+image_type, 'no'] ,//这里content是一个普通的String
+=======
+function showChoseImageDialog(obj){
+    var _this = $(obj);
+    layer.open({
+        type: 2,
+        content: [choseImageDialog, 'no'] ,//这里content是一个普通的String
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         zIndex: layer.zIndex,
         btn: ['确认', '取消'],
         yes: function(layero, index){
             var body = layer.getChildFrame('body', 0);
+<<<<<<< HEAD
             var size = body.find('.chose_icon').size();//选中数量
+=======
+
+            var size = body.find('.chose_img').size();//选中数量
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             if(size <= 0){
                 alert('请选择图片');
                 return;
             }
 
             //设置图片
+<<<<<<< HEAD
             var imagePath       = body.find('.chose_icon').parents('.imagebox').find('img').attr('data-src');
             var imageRealPath   = body.find('.chose_icon').parents('.imagebox').find('img').attr('src');
             //设置input值
             _this.parents('.form-group').find('input[type=hidden]').val(imagePath);
             //修改图片src属性
             _this.parents('.form-group').find('img').attr('src', imageRealPath);
+=======
+            var imagePath = body.find('.chose_img').find('img').attr('data-src');
+            //设置input值
+            _this.parents('.form-group').find('input[type=hidden]').val(imagePath);
+            //修改图片src属性
+            _this.parents('.form-group').find('img').attr('src', fileUrl+imagePath);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             layer.closeAll()
 
         },
@@ -337,7 +407,11 @@ function login(obj){
     $.post(login_url, {email: email, password:password}, function(data){
         var _data = $.parseJSON(data);
 
+<<<<<<< HEAD
         if(_data.code == HTTP_CODE.SUCCESS_CODE){
+=======
+        if(_data.code == 200){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             //弹出提示框
             toastr.success(_data.msg);
 
@@ -352,6 +426,7 @@ function login(obj){
     });
 
 
+<<<<<<< HEAD
 }
 
 /**
@@ -521,4 +596,6 @@ function showChoseMapDialog(obj, city){
             layer.closeAll()
         }
     });
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 }

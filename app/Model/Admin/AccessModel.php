@@ -39,8 +39,13 @@ class AccessModel extends BaseModel {
             }
         }
         //组合数据
+<<<<<<< HEAD
         $all_menu = merge_tree_child_node(objToArray($all_menu));
         return arrayToObj($all_menu);
+=======
+        $all_menu = merge_tree_child_node(obj_to_array($all_menu));
+        return array_to_obj($all_menu);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
     /**
      * 获得全部用户分类

@@ -230,7 +230,11 @@
         height: undefined,
         undefinedText: '-',
         sortName: undefined,
+<<<<<<< HEAD
         sortOrder: 'desc',
+=======
+        sortOrder: 'asc',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         striped: false,
         columns: [[]],
         data: [],

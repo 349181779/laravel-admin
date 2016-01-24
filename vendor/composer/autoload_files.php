@@ -21,6 +21,7 @@ return array(
     $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/mews/captcha/src/helpers.php',
     $vendorDir . '/hprose/hprose/src/Hprose.php',
+<<<<<<< HEAD
     $vendorDir . '/jpush/jpush/src/JPush/Model/Audience.php',
     $vendorDir . '/jpush/jpush/src/JPush/Model/Message.php',
     $vendorDir . '/jpush/jpush/src/JPush/Model/Notification.php',
@@ -40,6 +41,8 @@ return array(
     $vendorDir . '/jpush/jpush/src/JPush/JPushLog.php',
     $vendorDir . '/jpush/jpush/src/JPush/Exception/APIConnectionException.php',
     $vendorDir . '/jpush/jpush/src/JPush/Exception/APIRequestException.php',
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     $baseDir . '/app/Functions/common.func.php',
     $baseDir . '/app/Functions/base.func.php',
 );

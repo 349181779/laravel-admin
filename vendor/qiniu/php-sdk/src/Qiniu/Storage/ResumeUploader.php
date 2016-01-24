@@ -24,7 +24,10 @@ final class ResumeUploader
     private $contexts;
     private $host;
     private $currentUrl;
+<<<<<<< HEAD
     private $config;
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     /**
      * 上传二进制流到七牛
@@ -53,11 +56,19 @@ final class ResumeUploader
         $this->size = $size;
         $this->params = $params;
         $this->mime = $mime;
+<<<<<<< HEAD
         $this->contexts = array();
         $this->config = $config;
         $this->host = $config->getUpHost();
     }
 
+=======
+        $this->host = $config::$upHost;
+        $this->contexts = array();
+    }
+
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     /**
      * 上传操作
      */
@@ -78,7 +89,11 @@ final class ResumeUploader
                 $ret = $response->json();
             }
             if ($response->statusCode < 0) {
+<<<<<<< HEAD
                 $this->host = $this->config->getUpHostBackup();
+=======
+                $this->host = $config::$upHostBackup;
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             }
             if ($response->needRetry() || !isset($ret['crc32']) || $crc != $ret['crc32']) {
                 $response = $this->makeBlock($data, $blockSize);

@@ -154,14 +154,21 @@ return [
         'Overtrue\LaravelWechat\ServiceProvider',
         'Overtrue\LaravelPinyin\ServiceProvider',
         'zgldh\QiniuStorage\QiniuFilesystemServiceProvider',//七牛
+<<<<<<< HEAD
         'Yangyifan\UEditor\UEditorServiceProvider',//ueditor
+=======
+        'Stevenyangecho\UEditor\UEditorServiceProvider',//ueditor
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //'Dingo\Api\Provider\ApiServiceProvider'
 		'Mews\Captcha\CaptchaServiceProvider',//验证码
 
 		'App\Providers\HtmlDomProvider',//采集库
 		'App\Providers\HproseProvider',//远程对象
+<<<<<<< HEAD
 		//'App\Providers\ExcelServiceProvider',//excel
 		'Yangyifan\Upload\UploadServiceProvider',//上传
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 	],
 
@@ -221,6 +228,10 @@ return [
         'Wechat'        => 'Overtrue\LaravelWechat\Facade',//https://github.com/overtrue/laravel-wechat
         'Captcha'       => 'Mews\Captcha\Facades\Captcha',
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 	],
 
 ];

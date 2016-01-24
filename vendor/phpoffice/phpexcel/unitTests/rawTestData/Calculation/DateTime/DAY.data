@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Date Value	Result
 22269,		19
 30348,		1
@@ -6,3 +7,13 @@
 "28-Feb-1904",	28
 "Invalid",	"#VALUE!"
 -1,		"#NUM!"
+=======
+# Date Value	Result
+22269,		19
+30348,		1
+30843,		10
+"11-Nov-1918",	11
+"28-Feb-1904",	28
+"Invalid",	"#VALUE!"
+-1,		"#NUM!"
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1

@@ -100,7 +100,10 @@
         cookieIdTable: ''
     });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     $.fn.bootstrapTable.methods.push('deleteCookie');
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
@@ -139,7 +142,11 @@
             searchTextCookie = getCookie(this.options.cookieIdTable, cookieIds.searchText);
 
         //sortOrder
+<<<<<<< HEAD
         this.options.sortOrder = sortOrderCookie ? sortOrderCookie : 'desc';
+=======
+        this.options.sortOrder = sortOrderCookie ? sortOrderCookie : 'asc';
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //sortName
         this.options.sortName = sortOrderNameCookie ? sortOrderNameCookie : undefined;
         //pageNumber

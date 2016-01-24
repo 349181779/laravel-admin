@@ -8,8 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'zgldh\\QiniuStorage\\' => array($vendorDir . '/zgldh/qiniu-laravel-storage/src'),
     'YuanChao\\Editor\\' => array($vendorDir . '/yuanchao/laravel-5-markdown-editor/src'),
+<<<<<<< HEAD
     'Yangyifan\\Upload\\' => array($vendorDir . '/yangyifan/upload/src'),
     'Yangyifan\\UEditor\\' => array($vendorDir . '/yangyifan/laravel-editor/src'),
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
     'TijsVerkoyen\\CssToInlineStyles\\' => array($vendorDir . '/tijsverkoyen/css-to-inline-styles/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
@@ -19,6 +22,10 @@ return array(
     'Symfony\\Component\\ClassLoader\\' => array($vendorDir . '/symfony/class-loader'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
+<<<<<<< HEAD
+=======
+    'Stevenyangecho\\UEditor\\' => array($vendorDir . '/stevenyangecho/laravel-u-editor/src'),
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'Qiniu\\' => array($vendorDir . '/qiniu/php-sdk/src/Qiniu'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),

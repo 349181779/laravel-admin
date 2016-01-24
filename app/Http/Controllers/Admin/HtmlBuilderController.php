@@ -11,6 +11,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 use UEditor;
 
 class HtmlBuilderController extends BaseController {
@@ -27,7 +31,11 @@ class HtmlBuilderController extends BaseController {
     public $bottuns             = [];//按钮
     public $form_schema         = [];//form表单字段
     public $confirm_button      = '';//确认按钮
+<<<<<<< HEAD
     public $list_buttons        = [];//列表页按钮组
+=======
+    public $add_button          = '';//增加按钮
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     public $json_url            = '';//列表页获得json数据url
     public $edit_data           = [];//编辑页面数据
 
@@ -37,10 +45,13 @@ class HtmlBuilderController extends BaseController {
 
     public $tree_data           = [];//tree 数据
 
+<<<<<<< HEAD
     public $scription           = [];//脚本文件数组
 
     public $method              = 'post';//当前表单提交method
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 
     /**
@@ -48,8 +59,12 @@ class HtmlBuilderController extends BaseController {
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function __construct()
     {
+=======
+    public function __construct(){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         parent::__construct();
     }
 
@@ -59,8 +74,12 @@ class HtmlBuilderController extends BaseController {
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderTitle($title, $description = '', $keywords = '')
     {
+=======
+    public function builderTitle($title, $description = '', $keywords = ''){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $this->title        = $title;
         $this->description  = $description;
         $this->keywords     = $keywords;
@@ -79,8 +98,12 @@ class HtmlBuilderController extends BaseController {
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderSchema($schame, $comment, $type = self::SCHAME_STRING, $class = '', $url = '', $is_sort = 'false')
     {
+=======
+    public function builderSchema($schame, $comment, $type = self::SCHAME_STRING, $class = '', $url = '', $is_sort = 'false'){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $this->schemas[$schame]  = [
             'comment'   => $comment,
             'type'      => $type,
@@ -105,27 +128,42 @@ class HtmlBuilderController extends BaseController {
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderSearchSchema($name, $title, $type = 'text', $default = '', $class = '', $option = '', $option_value_schema = '', $option_value_name = '')
     {
+=======
+    public function builderSearchSchema($name, $title, $type = 'text', $class = '', $option = '', $option_value_schema = ''){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         array_push($this->search_schema, [
             'name'                  => $name,
             'title'                 => $title,
             'type'                  => $type,
+<<<<<<< HEAD
             'default'               => $default,
             'class'                 => $class,
             'option'                => $option,
             'option_value_schema'   => $option_value_schema,
             'option_value_name'     => $option_value_name
+=======
+            'class'                 => $class,
+            'option'                => $option,
+            'option_value_schema'   => $option_value_schema,
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         ]);
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * 构建列表页按钮组
+=======
+     * 构建列表页增加按钮
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
      *
      * @param  $name    按钮中文名字
      * @param  $class   按钮class
      * @param  $url     按钮跳转url
+<<<<<<< HEAD
      * @param  $events  js 事件
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
@@ -138,6 +176,18 @@ class HtmlBuilderController extends BaseController {
             'class'         => $class,
             'events'        => $events,
         ]);
+=======
+     * @param  $placeholder 站位
+     * @return Response
+     */
+    public function builderAddBotton($name, $url, $class = '', $placeholder = ''){
+        $this->add_button = [
+            'name'          => $name,
+            'url'           => $url,
+            'class'         => $class,
+            'placeholder'   => $placeholder,
+        ];
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return $this;
     }
 
@@ -149,10 +199,15 @@ class HtmlBuilderController extends BaseController {
      * @param  $url     按钮跳转url
      * @param  $placeholder 站位
      * @return Response
+<<<<<<< HEAD
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderJsonDataUrl($url)
     {
+=======
+     */
+    public function builderJsonDataUrl($url){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $this->json_url = $url;
         return $this;
     }
@@ -163,8 +218,12 @@ class HtmlBuilderController extends BaseController {
 	 * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
 	 */
+<<<<<<< HEAD
 	public function builderList($data = [], $urls = [])
     {
+=======
+	public function builderList($data = [], $urls = []){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return View('admin/html_builder/list',[
             'schemas'       => $this->schemas,//字段
             'search_schema' => $this->search_schema,//搜索字段
@@ -173,17 +232,23 @@ class HtmlBuilderController extends BaseController {
             'description'   => $this->description,//网站描述
             'keywords'      => $this->keywords,//网站关键字
             'bottons'       => $this->bottuns,//按钮
+<<<<<<< HEAD
             'list_buttons'  => $this->list_buttons,//列表页按钮组
             'get_json_url'  => $this->json_url,//获得json数据url
             'scription_arr' => $this->scription,//脚本文件
             'method'        => $this->method,//当前表单提交method
             'table_name'    => md5($this->title)
+=======
+            'add_button'    => $this->add_button,//增加按钮
+            'get_json_url'  => $this->json_url,//获得json数据url
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         ]);
 	}
 
     /**
      * 构建表单字段
      *
+<<<<<<< HEAD
      * @param $name                 表单name
      * @param $title                表单名称
      * @param $type                 表单类型
@@ -199,6 +264,21 @@ class HtmlBuilderController extends BaseController {
      */
     public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = '', $option_value_name = '')
     {
+=======
+     * @param $name     表单name
+     * @param $title    表单名称
+     * @param $type     表单类型
+     * @param $default  表单默认值
+     * @param $notice   表单提示
+     * @param $class    表单class
+     * @param $rule     表单验证规则
+     * @param $err_message  表单验证提示文字
+     * @param $message  表单验证提示文字
+     * @return $this
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = ''){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         array_push($this->form_schema, [
             'name'                  => $name,
             'title'                 => $title,
@@ -210,12 +290,16 @@ class HtmlBuilderController extends BaseController {
             'err_message'           => $err_message,
             'option'                => $option,
             'option_value_schema'   => $option_value_schema,
+<<<<<<< HEAD
             'option_value_name'     => $option_value_name
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         ]);
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * 选择当前表单提交方法
      *
      * @param string $method
@@ -234,6 +318,8 @@ class HtmlBuilderController extends BaseController {
     }
 
     /**
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
      * 构建确认按钮
      *
      * @param $title
@@ -242,8 +328,12 @@ class HtmlBuilderController extends BaseController {
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderConfirmBotton($title, $url, $class)
     {
+=======
+    public function builderConfirmBotton($title, $url, $class){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $this->confirm_button = [
             'title' => $title,
             'url'   => $url,
@@ -258,8 +348,12 @@ class HtmlBuilderController extends BaseController {
      * @param array $data
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderEditData($data = [])
     {
+=======
+    public function builderEditData($data = []){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $this->edit_data = $data;
         return $this;
     }
@@ -270,8 +364,12 @@ class HtmlBuilderController extends BaseController {
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderEdit($urls = [])
     {
+=======
+    public function builderEdit($urls = []){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return View('admin/html_builder/edit',[
             'schemas'           => $this->form_schema,//字段
             'data'              => $this->edit_data,
@@ -280,8 +378,11 @@ class HtmlBuilderController extends BaseController {
             'description'       => $this->description,//网站描述
             'keywords'          => $this->keywords,//网站关键字
             'confirm_button'    => $this->confirm_button,//确认按钮按钮
+<<<<<<< HEAD
             'scription_arr'     => $this->scription,//脚本文件
             'method'            => $this->method,//当前表单提交method
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         ]);
     }
 
@@ -291,8 +392,12 @@ class HtmlBuilderController extends BaseController {
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderAdd($data = [], $urls = [])
     {
+=======
+    public function builderAdd($data = [], $urls = []){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return View('admin/html_builder/add',[
             'schemas'           => $this->form_schema,//字段
             'data'              => $data,
@@ -301,8 +406,11 @@ class HtmlBuilderController extends BaseController {
             'description'       => $this->description,//网站描述
             'keywords'          => $this->keywords,//网站关键字
             'confirm_button'    => $this->confirm_button,//确认按钮按钮
+<<<<<<< HEAD
             'scription_arr'     => $this->scription,//脚本文件
             'method'            => $this->method,//当前表单提交method
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         ]);
     }
 
@@ -313,8 +421,12 @@ class HtmlBuilderController extends BaseController {
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderTabSchema($obj)
     {
+=======
+    public function builderTabSchema($obj){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         //写入数据
         array_push($this->tab_schema, serialize($obj));
         array_push($this->tab_data, $this->edit_data);
@@ -336,8 +448,12 @@ class HtmlBuilderController extends BaseController {
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderTabHtml($data = [], $urls = [])
     {
+=======
+    public function builderTabHtml($data = [], $urls = []){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return View('admin/html_builder/tab',[
             'tabs_schemas'      => $this->tab_schema,//tab 字段
             'tab_data'          => $this->tab_data,//tab 数据
@@ -356,9 +472,16 @@ class HtmlBuilderController extends BaseController {
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderTreeData($data)
     {
         $this->tree_data =  mergeTreeNode(objToArray($data));
+=======
+    public function builderTreeData($data){
+        //加载函数库
+        load_func('common');
+        $this->tree_data =  merge_tree_node(obj_to_array($data));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return $this;
     }
 
@@ -370,8 +493,12 @@ class HtmlBuilderController extends BaseController {
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public function builderTree($data = [], $urls = [])
     {
+=======
+    public function builderTree($data = [], $urls = []){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return View('admin/html_builder/tree',[
             'tree_schemas'      => $this->schemas,//tree 字段
             'tree_data'         => $this->tree_data,//tree 数据
@@ -379,6 +506,7 @@ class HtmlBuilderController extends BaseController {
             'title'             => $this->title,//网站标题
             'description'       => $this->description,//网站描述
             'keywords'          => $this->keywords,//网站关键字
+<<<<<<< HEAD
             'list_buttons'      => $this->list_buttons,//列表页按钮组
         ]);
     }
@@ -399,4 +527,10 @@ class HtmlBuilderController extends BaseController {
         return $this;
     }
 
+=======
+            'add_button'        => $this->add_button,//增加按钮
+        ]);
+    }
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 }

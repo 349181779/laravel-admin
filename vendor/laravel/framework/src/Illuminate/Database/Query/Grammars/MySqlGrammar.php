@@ -138,7 +138,11 @@ class MySqlGrammar extends Grammar {
 	{
 		if ($value === '*') return $value;
 
+<<<<<<< HEAD
 		return ''.str_replace('`', '``', $value).'';
+=======
+		return '`'.str_replace('`', '``', $value).'`';
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 	}
 
 }

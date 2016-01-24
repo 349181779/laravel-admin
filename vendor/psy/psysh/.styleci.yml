@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 preset: symfony
 
 enabled:
@@ -8,3 +9,15 @@ enabled:
 
 disabled:
   - concat_without_spaces
+=======
+preset: symfony
+
+enabled:
+  - align_double_arrow
+  - concat_with_spaces
+  - ordered_use
+  - strict
+
+disabled:
+  - concat_without_spaces
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1

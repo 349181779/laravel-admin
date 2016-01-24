@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+<<<<<<< HEAD
     'App\\Commands\\Command' => $baseDir . '/app/Commands/Command.php',
     'App\\Console\\Commands\\Inspire' => $baseDir . '/app/Console/Commands/Inspire.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -431,6 +432,9 @@ return array(
     'Eva\\EvaOAuth\\User\\UserProviderInterface' => $vendorDir . '/evaengine/eva-oauth/src/EvaOAuth/User/UserProviderInterface.php',
     'Eva\\EvaOAuth\\Utils\\ResponseParser' => $vendorDir . '/evaengine/eva-oauth/src/EvaOAuth/Utils/ResponseParser.php',
     'Eva\\EvaOAuth\\Utils\\Text' => $vendorDir . '/evaengine/eva-oauth/src/EvaOAuth/Utils/Text.php',
+=======
+    'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -491,6 +495,7 @@ return array(
     'Generic_Sniffs_WhiteSpace_DisallowSpaceIndentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs/WhiteSpace/DisallowSpaceIndentSniff.php',
     'Generic_Sniffs_WhiteSpace_DisallowTabIndentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs/WhiteSpace/DisallowTabIndentSniff.php',
     'Generic_Sniffs_WhiteSpace_ScopeIndentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs/WhiteSpace/ScopeIndentSniff.php',
+<<<<<<< HEAD
     'GuzzleHttp\\BatchResults' => $vendorDir . '/guzzlehttp/guzzle/src/BatchResults.php',
     'GuzzleHttp\\Client' => $vendorDir . '/guzzlehttp/guzzle/src/Client.php',
     'GuzzleHttp\\ClientInterface' => $vendorDir . '/guzzlehttp/guzzle/src/ClientInterface.php',
@@ -1284,6 +1289,9 @@ return array(
     'League\\Fractal\\Serializer\\JsonApiSerializer' => $vendorDir . '/league/fractal/src/Serializer/JsonApiSerializer.php',
     'League\\Fractal\\Serializer\\SerializerAbstract' => $vendorDir . '/league/fractal/src/Serializer/SerializerAbstract.php',
     'League\\Fractal\\TransformerAbstract' => $vendorDir . '/league/fractal/src/TransformerAbstract.php',
+=======
+    'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'Maatwebsite\\Excel\\Classes\\Cache' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/Cache.php',
     'Maatwebsite\\Excel\\Classes\\FormatIdentifier' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/FormatIdentifier.php',
     'Maatwebsite\\Excel\\Classes\\LaravelExcelWorksheet' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/LaravelExcelWorksheet.php',
@@ -1311,6 +1319,7 @@ return array(
     'Maatwebsite\\Excel\\Readers\\LaravelExcelReader' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Readers/LaravelExcelReader.php',
     'Maatwebsite\\Excel\\Writers\\CellWriter' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/CellWriter.php',
     'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
+<<<<<<< HEAD
     'Mews\\Captcha\\Captcha' => $vendorDir . '/mews/captcha/src/Captcha.php',
     'Mews\\Captcha\\CaptchaController' => $vendorDir . '/mews/captcha/src/CaptchaController.php',
     'Mews\\Captcha\\CaptchaServiceProvider' => $vendorDir . '/mews/captcha/src/CaptchaServiceProvider.php',
@@ -1396,6 +1405,9 @@ return array(
     'Monolog\\Processor\\UidProcessor' => $vendorDir . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
     'Monolog\\Processor\\WebProcessor' => $vendorDir . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
     'Monolog\\Registry' => $vendorDir . '/monolog/monolog/src/Monolog/Registry.php',
+=======
+    'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'MySource_Sniffs_CSS_BrowserSpecificStylesSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs/CSS/BrowserSpecificStylesSniff.php',
     'MySource_Sniffs_Channels_DisallowSelfActionsSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs/Channels/DisallowSelfActionsSniff.php',
     'MySource_Sniffs_Channels_IncludeOwnSystemSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs/Channels/IncludeOwnSystemSniff.php',
@@ -1412,6 +1424,7 @@ return array(
     'MySource_Sniffs_PHP_GetRequestDataSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs/PHP/GetRequestDataSniff.php',
     'MySource_Sniffs_PHP_ReturnFunctionValueSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs/PHP/ReturnFunctionValueSniff.php',
     'MySource_Sniffs_Strings_JoinStringsSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs/Strings/JoinStringsSniff.php',
+<<<<<<< HEAD
     'Overtrue\\LaravelPinyin\\ServiceProvider' => $vendorDir . '/overtrue/laravel-pinyin/src/ServiceProvider.php',
     'Overtrue\\LaravelWechat\\Facade' => $vendorDir . '/overtrue/laravel-wechat/src/Facade.php',
     'Overtrue\\LaravelWechat\\ServiceProvider' => $vendorDir . '/overtrue/laravel-wechat/src/ServiceProvider.php',
@@ -1461,6 +1474,8 @@ return array(
     'Overtrue\\Wechat\\Utils\\JSON' => $vendorDir . '/overtrue/wechat/src/Wechat/Utils/JSON.php',
     'Overtrue\\Wechat\\Utils\\MagicAttributes' => $vendorDir . '/overtrue/wechat/src/Wechat/Utils/MagicAttributes.php',
     'Overtrue\\Wechat\\Utils\\XML' => $vendorDir . '/overtrue/wechat/src/Wechat/Utils/XML.php',
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'PEAR_Sniffs_Classes_ClassDeclarationSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs/Classes/ClassDeclarationSniff.php',
     'PEAR_Sniffs_Commenting_ClassCommentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs/Commenting/ClassCommentSniff.php',
     'PEAR_Sniffs_Commenting_FileCommentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs/Commenting/FileCommentSniff.php',
@@ -1479,6 +1494,7 @@ return array(
     'PEAR_Sniffs_WhiteSpace_ObjectOperatorIndentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs/WhiteSpace/ObjectOperatorIndentSniff.php',
     'PEAR_Sniffs_WhiteSpace_ScopeClosingBraceSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs/WhiteSpace/ScopeClosingBraceSniff.php',
     'PEAR_Sniffs_WhiteSpace_ScopeIndentSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs/WhiteSpace/ScopeIndentSniff.php',
+<<<<<<< HEAD
     'PHPExcel' => $vendorDir . '/phpoffice/phpexcel/Classes/PHPExcel.php',
     'PHPExcel_Autoloader' => $vendorDir . '/phpoffice/phpexcel/Classes/PHPExcel/Autoloader.php',
     'PHPExcel_Best_Fit' => $vendorDir . '/phpoffice/phpexcel/Classes/PHPExcel/Shared/trend/bestFitClass.php',
@@ -1680,6 +1696,8 @@ return array(
     'PHPExcel_Writer_PDF_DomPDF' => $vendorDir . '/phpoffice/phpexcel/Classes/PHPExcel/Writer/PDF/DomPDF.php',
     'PHPExcel_Writer_PDF_mPDF' => $vendorDir . '/phpoffice/phpexcel/Classes/PHPExcel/Writer/PDF/mPDF.php',
     'PHPExcel_Writer_PDF_tcPDF' => $vendorDir . '/phpoffice/phpexcel/Classes/PHPExcel/Writer/PDF/tcPDF.php',
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -2121,6 +2139,7 @@ return array(
     'PSR2_Sniffs_Methods_MethodDeclarationSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR2/Sniffs/Methods/MethodDeclarationSniff.php',
     'PSR2_Sniffs_Namespaces_NamespaceDeclarationSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR2/Sniffs/Namespaces/NamespaceDeclarationSniff.php',
     'PSR2_Sniffs_Namespaces_UseDeclarationSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR2/Sniffs/Namespaces/UseDeclarationSniff.php',
+<<<<<<< HEAD
     'PhpSpec\\CodeAnalysis\\MagicAwareAccessInspector' => $vendorDir . '/phpspec/phpspec/src/PhpSpec/CodeAnalysis/MagicAwareAccessInspector.php',
     'PhpSpec\\CodeAnalysis\\VisibilityAccessInspector' => $vendorDir . '/phpspec/phpspec/src/PhpSpec/CodeAnalysis/VisibilityAccessInspector.php',
     'PhpSpec\\CodeGenerator\\GeneratorManager' => $vendorDir . '/phpspec/phpspec/src/PhpSpec/CodeGenerator/GeneratorManager.php',
@@ -2788,6 +2807,8 @@ return array(
     'React\\Promise\\PromisorInterface' => $vendorDir . '/react/promise/src/PromisorInterface.php',
     'React\\Promise\\RejectedPromise' => $vendorDir . '/react/promise/src/RejectedPromise.php',
     'React\\Promise\\UnhandledRejectionException' => $vendorDir . '/react/promise/src/UnhandledRejectionException.php',
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',
@@ -2925,6 +2946,7 @@ return array(
     'Squiz_Sniffs_WhiteSpace_ScopeKeywordSpacingSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs/WhiteSpace/ScopeKeywordSpacingSniff.php',
     'Squiz_Sniffs_WhiteSpace_SemicolonSpacingSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs/WhiteSpace/SemicolonSpacingSniff.php',
     'Squiz_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs/WhiteSpace/SuperfluousWhitespaceSniff.php',
+<<<<<<< HEAD
     'Stringy\\StaticStringy' => $vendorDir . '/danielstjules/stringy/src/StaticStringy.php',
     'Stringy\\Stringy' => $vendorDir . '/danielstjules/stringy/src/Stringy.php',
     'SuperClosure\\Analyzer\\AstAnalyzer' => $vendorDir . '/jeremeamia/SuperClosure/src/Analyzer/AstAnalyzer.php',
@@ -4053,4 +4075,14 @@ return array(
     'zgldh\\QiniuStorage\\QiniuAdapter' => $vendorDir . '/zgldh/qiniu-laravel-storage/src/QiniuAdapter.php',
     'zgldh\\QiniuStorage\\QiniuFilesystemServiceProvider' => $vendorDir . '/zgldh/qiniu-laravel-storage/src/QiniuFilesystemServiceProvider.php',
     'zgldh\\QiniuStorage\\QiniuStorage' => $vendorDir . '/zgldh/qiniu-laravel-storage/src/QiniuStorage.php',
+=======
+    'TestCase' => $baseDir . '/tests/TestCase.php',
+    'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'Toplan\\FilterManager\\Facades\\FilterManager' => $vendorDir . '/toplan/filter-manager/src/FilterManager/Facades/FilterManager.php',
+    'Toplan\\FilterManager\\FilterManager' => $vendorDir . '/toplan/filter-manager/src/FilterManager/FilterManager.php',
+    'Toplan\\FilterManager\\FilterManagerServiceProvider' => $vendorDir . '/toplan/filter-manager/src/FilterManager/FilterManagerServiceProvider.php',
+    'Zend_Sniffs_Debug_CodeAnalyzerSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Zend/Sniffs/Debug/CodeAnalyzerSniff.php',
+    'Zend_Sniffs_Files_ClosingTagSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Zend/Sniffs/Files/ClosingTagSniff.php',
+    'Zend_Sniffs_NamingConventions_ValidVariableNameSniff' => $vendorDir . '/squizlabs/php_codesniffer/CodeSniffer/Standards/Zend/Sniffs/NamingConventions/ValidVariableNameSniff.php',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 );

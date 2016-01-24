@@ -9,12 +9,20 @@
 // +----------------------------------------------------------------------
 
 
+<<<<<<< HEAD
 return[
     'success' => '操作成功',
     'unauthorized'=>'没有授权',
     'admin_not_exists' => '用户不存在或者密码错误！',
     'admin_disable'=>'当前用户已被禁用，请联系管理员yangyifan@louxia100.com！',
     'update_error'=>'更新失败',
+=======
+return [
+    'success' => '操作成功',
+    'unauthorized'=>'没有授权',
+    'admin_not_exists' => '用户不存在或者密码错误！',
+    'admin_disable'=>'当前用户已被禁用，请联系管理员yangyifan@fengqianqian.com！',
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     'update_success'=>'更新成功',
     'add_success'=> '增加成功',
     'add_error'=>'增加失败',
@@ -53,9 +61,12 @@ return[
     'send_add_user_message_success' => '发送添加好友请求成功',
     'can_not_add_their_own_friends' => '不能添加自己为好友',
     'confirm_add_friend_success'    => '确认添加好友成功',
+<<<<<<< HEAD
     'not_use'   => '未使用',
     'use'   => '已使用',
     'empty' => '无',
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     'update_user_news_category_success' => '更新新闻分类成功',
     'update_user_news_category_error' => '更新新闻分类失败',
@@ -72,6 +83,7 @@ return[
     'logout_success'    => '退出登陆成功',
     'logout_error'    => '退出登陆失败',
 
+<<<<<<< HEAD
     //优惠券类型
     'coupon_type_of_type1' => '全场优惠券',
     'coupon_type_of_type2' => '单品牌使用',
@@ -420,4 +432,6 @@ return[
     'add_goods_error7' => '商品蛋糕添加错误，商品sku_type信息添加失败',
     'add_goods_error8' => '商品蛋糕添加错误，商品品牌信息添加失败',
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 ];

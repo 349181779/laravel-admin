@@ -17,15 +17,23 @@
         "barryvdh/laravel-ide-helper" : "*",
         "dingo/api": "*",
         "zgldh/qiniu-laravel-storage": "dev-master",
+<<<<<<< HEAD
+=======
+        "stevenyangecho/laravel-u-editor": "~1.1",
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         "ender/laravel-ueditor":"0.8.*",
         "rcrowe/turbo": "0.2.*",
         "mews/captcha": "~2.0",
 	    "hprose/hprose": "dev-master",
+<<<<<<< HEAD
         "predis/predis": "~1.1@dev",
 	    "qiniu/php-sdk": "v7.0.4",
 	  	"yangyifan/upload":"dev-master",
 	  	"yangyifan/laravel-editor":"*",
         "jpush/jpush": "v3.2.0"
+=======
+        "predis/predis": "~1.1@dev"
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 	},
    "minimum-stability": "dev",

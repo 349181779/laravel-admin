@@ -28,7 +28,11 @@ class MenuModel extends BaseModel {
     public static function getAll(){
         //加载函数库
         load_func('common');
+<<<<<<< HEAD
         return merge_tree_node(objToArray(self::mergeData(self::where('deleted_at', '=', '0000-00-00 00:00:00')->get())));
+=======
+        return merge_tree_node(obj_to_array(self::mergeData(self::where('deleted_at', '=', '0000-00-00 00:00:00')->get())));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -60,12 +64,17 @@ class MenuModel extends BaseModel {
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getUserMenuSide(){
+<<<<<<< HEAD
 
         return mergeTreeNode(objToArray(DB::table('admin_menu')->get()), 0, 0, 'parent_id');
 
 
         //加载函数库
         return mergeTreeNode(objToArray(
+=======
+        //加载函数库
+        return merge_tree_child_node(obj_to_array(
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             DB::table('role_relation_menu AS rrm')->
             select('m.*')->
             join('menu AS m', 'rrm.menu_id', '=', 'm.id')->

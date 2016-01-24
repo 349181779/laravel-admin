@@ -11,10 +11,17 @@
 namespace App\Model\Admin;
 
 use Session;
+<<<<<<< HEAD
 use DB;
 
 class AdminInfoModel extends BaseModel
 {
+=======
+
+use DB;
+
+class AdminInfoModel extends BaseModel {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
     protected $table    = 'admin_info';//定义表名
     protected $guarded  = ['id'];//阻挡所有属性被批量赋值
@@ -25,9 +32,16 @@ class AdminInfoModel extends BaseModel
      * @return bool
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public static function hasLoginStatus()
     {
         if(isAdminLogin() > 0 ) return true;
+=======
+    public static function hasLoginStatus(){
+        //加载函数库
+        load_func('common');
+        if(is_admin_login() > 0 ) return true;
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return false;
     }
 
@@ -38,6 +52,7 @@ class AdminInfoModel extends BaseModel
      * @return int
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public static function login($params)
     {
         //查找用户
@@ -47,6 +62,11 @@ class AdminInfoModel extends BaseModel
                         leftJoin('sys_region AS r', 's.city_id', '=', 'r.id')->
                         leftJoin('admin_limit AS al', 'admin_info.limit_id', '=', 'al.id')->
                         first();
+=======
+    public static function login($params){;
+        //查找用户
+        $user_info = DB::table('admin_info')->where('email', '=', $params['email'])->first();
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
         //判断改用户是否存在
         if(empty($user_info)){
@@ -54,11 +74,16 @@ class AdminInfoModel extends BaseModel
         }
 
         //判断改用户是否被禁用
+<<<<<<< HEAD
         if($user_info->state != 1){
+=======
+        if($user_info->status != 1){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             return -2;
         }
 
         //判断密码是否正确
+<<<<<<< HEAD
         if (self::checkPassword($params['password'], $user_info) == false) {
             return -3;
         }
@@ -68,10 +93,18 @@ class AdminInfoModel extends BaseModel
 
         //保存用户session信息
         $user_info->ip = $params['ip'];
+=======
+        if(password_verify($params['password'], $user_info->password) == false){
+            return -3;
+        }
+
+        //保存用户session信息
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         self::saveUserSession($user_info);
         return 1;
     }
 
+<<<<<<< HEAD
     /**
      * 判断密码是否正确
      *
@@ -97,22 +130,36 @@ class AdminInfoModel extends BaseModel
         return password_verify($password, $user_info->password);
     }
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
    /**
      * 写入用户信息到SESSION
      *
      * @param $user_info
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     private static function saveUserSession($user_info)
     {
         $user_info = objToArray($user_info);
+=======
+    private static function saveUserSession($user_info){
+        //引入函数库
+        load_func('common');
+        $user_info = obj_to_array($user_info);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         $user_info['admin_user_data'] = [
             'id'            => $user_info['id'],
             'email'         => $user_info['email'],
             'updated_at'    => $user_info['updated_at'],
+<<<<<<< HEAD
             'ip'            => $user_info['ip'],
         ];
         $user_info['sign'] = hashUserSign($user_info['admin_user_data']);
+=======
+        ];
+        $user_info['sign'] = hash_user_sign($user_info['admin_user_data']);
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         Session::put('admin_info', $user_info);
         Session::save();
     }
@@ -122,8 +169,12 @@ class AdminInfoModel extends BaseModel
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
+<<<<<<< HEAD
     public static function logout()
     {
+=======
+    public static function logout(){
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         Session::forget('admin_info');
         Session::save();
     }
@@ -136,6 +187,7 @@ class AdminInfoModel extends BaseModel
      * @param $order
      * @param $offset
      * @return mixed
+<<<<<<< HEAD
      * @author zhuweijian <zhuweijain@louxia100.com>
      */
     protected static function search($map, $sort, $order, $limit, $offset)
@@ -147,20 +199,36 @@ class AdminInfoModel extends BaseModel
                 join('sys_station as s', 'admin_info.station_id', '=', 's.id')->
                 join('admin_limit as l', 'admin_info.limit_id', '=', 'l.id')->
                 orderBy($sort, $order)->
+=======
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected static function search($map, $sort, $order, $limit, $offset){
+        return [
+            'data' => self::mergeData(
+                self::multiwhere($map)->
+                select('r.role_name', 'admin_info.*')->
+                join('role as r', 'admin_info.role_id', '=', 'r.id')->
+                orderBy('admin_info.'.$sort, $order)->
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                 skip($offset)->
                 take($limit)->
                 get()
             ),
+<<<<<<< HEAD
             'count' => self::multiwhere($map)->
                        join('sys_station as s', 'admin_info.station_id', '=', 's.id')->
                        join('admin_limit as l', 'admin_info.limit_id', '=', 'l.id')->
                        count(),
+=======
+            'count' => self::multiwhere($map)->join('role as r', 'admin_info.role_id', '=', 'r.id')->count(),
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         ];
     }
 
     /**
      * 组合数据
      *
+<<<<<<< HEAD
      * @author zhuweijian <zhuweijain@louxia100.com>
      */
     public static function mergeData($data)
@@ -172,12 +240,30 @@ class AdminInfoModel extends BaseModel
 
                 //组合操作
                 $v->handle       = '<a href="'.createUrl('Admin\Admin\AdminInfoController@getEdit',['id' => $v->id]).'" target="_blank" >修改</a>';
+=======
+     * @param $roles
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function mergeData($data){
+        if(!empty($data)){
+            foreach($data as &$v){
+                //组合状态
+                $v->status = self::mergeStatus($v->status);
+                //组合角色
+                $v->role_name = DB::table('role')->where('id', '=', $v->role_id)->pluck('role_name');
+                //组合操作
+                $v->handle  = '<a href="'.url('admin/admininfo/edit', [$v->id]).'" target="_blank" >编辑</a>';
+                $v->handle  .= ' | ';
+                $v->handle  .= '<a onclick="del(this,\''.url('admin/admininfo/delete', [$v->id]).'\')" target="_blank" >删除</a>';
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
             }
         }
         return $data;
     }
 
+<<<<<<< HEAD
     /**
      * 配送站点列表
      *
@@ -288,5 +374,8 @@ class AdminInfoModel extends BaseModel
     {
         return hashUserSign(Session::get('admin_info.admin_user_data')) == Session::get('admin_info.sign') ? Session::get('admin_info.id') : false;
     }
+=======
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 }

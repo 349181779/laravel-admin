@@ -6,7 +6,11 @@ head.js("/assets/js/skin-select/skin-select.js");
 head.js("/assets/js/clock/date.js");
 
 //Bootstrap
+<<<<<<< HEAD
 head.js("/assets/js/bootstrap.js");
+=======
+//head.js("/assets/js/bootstrap.js");
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 //NEWS STICKER
 head.js("/assets/js/newsticker/jquery.newsTicker.js", function() {
@@ -56,8 +60,13 @@ head.js("/assets/js/slidebars/slidebars.min.js", function() {
 head.js("/assets/js/search/jquery.quicksearch.js", function() {
 
     $('input.id_search').quicksearch('#menu-showhide li, .menu-left-nest li');
+<<<<<<< HEAD
 
 
+=======
+   
+   
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 });
 //-------------------------------------------------------------
@@ -65,6 +74,7 @@ head.js("/assets/js/search/jquery.quicksearch.js", function() {
 
 
 //EASY PIE CHART
+<<<<<<< HEAD
 //head.js("/assets/js/gage/jquery.easypiechart.min.js", function() {
 //
 //    $(function() {
@@ -113,6 +123,56 @@ head.js("/assets/js/search/jquery.quicksearch.js", function() {
 //    });
 //
 //});
+=======
+head.js("/assets/js/gage/jquery.easypiechart.min.js", function() {
+
+    $(function() {
+
+
+        $('.chart').easyPieChart({
+            easing: 'easeOutBounce',
+            trackColor: '#ffffff',
+            scaleColor: '#ffffff',
+            barColor: '#FF0064',
+            onStep: function(from, to, percent) {
+                $(this.el).find('.percent').text(Math.round(percent));
+            }
+        });
+        var chart = window.chart = $('.chart').data('easyPieChart');
+        $('.js_update').on('click', function() {
+            chart.update(Math.random() * 100);
+        });
+
+        $('.speed-car').easyPieChart({
+            easing: 'easeOutBounce',
+            trackColor: 'rgba(0,0,0,0.3)',
+            scaleColor: 'transparent',
+            barColor: '#0085DF',
+
+            lineWidth: 8,
+            onStep: function(from, to, percent) {
+                $(this.el).find('.percent2').text(Math.round(percent));
+            }
+        });
+        var chart = window.chart = $('.chart2').data('easyPieChart');
+        $('.js_update').on('click', function() {
+            chart.update(Math.random() * 100);
+        });
+        $('.overall').easyPieChart({
+            easing: 'easeOutBounce',
+            trackColor: 'rgba(0,0,0,0.3)',
+            scaleColor: '#323A45',
+            lineWidth: 35,
+            lineCap: 'butt',
+            barColor: '#FFB900',
+            onStep: function(from, to, percent) {
+                $(this.el).find('.percent3').text(Math.round(percent));
+            }
+        });
+    });
+
+});
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 //-------------------------------------------------------------
 
 //TOOL TIP
@@ -175,7 +235,11 @@ head.js("/assets/js/tip/jquery.tooltipster.js", function() {
 head.js("/assets/js/nano/jquery.nanoscroller.js", function() {
 
     $(".nano").nanoScroller({
+<<<<<<< HEAD
         //stop: true
+=======
+        //stop: true 
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         scroll: 'top',
         scrollTop: 0,
         sliderMinHeight: 40,
@@ -194,6 +258,7 @@ head.js("/assets/js/nano/jquery.nanoscroller.js", function() {
 
 //------------------------------------------------------------- 
 //PAGE LOADER
+<<<<<<< HEAD
 //head.js("/assets/js/pace/pace.js", function() {
 //
 //    paceOptions = {
@@ -206,6 +271,20 @@ head.js("/assets/js/nano/jquery.nanoscroller.js", function() {
 //    };
 //
 //});
+=======
+head.js("/assets/js/pace/pace.js", function() {
+
+    paceOptions = {
+        ajax: false, // disabled
+        document: false, // disabled
+        eventLag: false, // disabled
+        elements: {
+            selectors: ['.my-page']
+        }
+    };
+
+});
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 
 //------------------------------------------------------------- 
 
@@ -288,6 +367,7 @@ head.js("/assets/js/clock/jquery.clock.js", function() {
 
 
 //------------------------------------------------------------- 
+<<<<<<< HEAD
 //
 //head.js("/assets/js/gage/raphael.2.1.0.min.js", "/assets/js/gage/justgage.js", function() {
 //
@@ -315,3 +395,32 @@ head.js("/assets/js/clock/jquery.clock.js", function() {
 //
 //
 //});
+=======
+
+head.js("/assets/js/gage/raphael.2.1.0.min.js", "/assets/js/gage/justgage.js", function() {
+
+
+
+    var g1;
+    window.onload = function() {
+        var g1 = new JustGage({
+            id: "g1",
+            value: getRandomInt(0, 1000),
+            min: 0,
+            max: 1000,
+            relativeGaugeSize: true,
+            gaugeColor: "rgba(0,0,0,0.4)",
+            levelColors: "#0DB8DF",
+            labelFontColor : "#ffffff",
+            titleFontColor: "#ffffff",
+            valueFontColor :"#ffffff",
+            label: "VISITORS",
+            gaugeWidthScale: 0.2,
+            donut: true
+        });
+    };
+
+
+
+});
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1

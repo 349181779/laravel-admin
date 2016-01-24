@@ -32,9 +32,15 @@ final class FormUploader
             }
         }
 
+<<<<<<< HEAD
         $response = Client::multipartPost($config->getUpHost(), $fields, 'file', $fname, $data, $mime);
         if (!$response->ok()) {
             return array(null, new Error($config->getUpHost(), $response));
+=======
+        $response = Client::multipartPost($config::$upHost, $fields, 'file', $fname, $data, $mime);
+        if (!$response->ok()) {
+            return array(null, new Error($config::$upHost, $response));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         }
         return array($response->json(), null);
     }
@@ -65,9 +71,15 @@ final class FormUploader
             }
         }
         $headers =array('Content-Type' => 'multipart/form-data');
+<<<<<<< HEAD
         $response = client::post($config->getUpHost(), $fields, $headers);
         if (!$response->ok()) {
             return array(null, new Error($config->getUpHost(), $response));
+=======
+        $response = client::post($config::$upHost, $fields, $headers);
+        if (!$response->ok()) {
+            return array(null, new Error($config::$upHost, $response));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         }
         return array($response->json(), null);
     }

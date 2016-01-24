@@ -34,7 +34,11 @@ final class PersistentFop
     private $notify_url;
 
     /**
+<<<<<<< HEAD
      * @var boolean 是否强制覆盖已有的重名文件
+=======
+     * @var 是否强制覆盖已有的重名文件
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
      */
     private $force;
 

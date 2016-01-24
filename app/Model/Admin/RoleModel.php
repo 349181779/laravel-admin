@@ -51,7 +51,11 @@ class RoleModel extends BaseModel {
     public static function getRoleList(){
         //加载函数库
         load_func('common');
+<<<<<<< HEAD
         return objToArray(DB::table('role')->where('status', '=', 1)->get());
+=======
+        return obj_to_array(DB::table('role')->where('status', '=', 1)->get());
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**

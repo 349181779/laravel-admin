@@ -30,16 +30,28 @@ final class Auth
     {
         $url = parse_url($urlString);
         $data = '';
+<<<<<<< HEAD
         if (array_key_exists('path', $url)) {
             $data = $url['path'];
         }
         if (array_key_exists('query', $url)) {
+=======
+        if (isset($url['path'])) {
+            $data = $url['path'];
+        }
+        if (isset($url['query'])) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             $data .= '?' . $url['query'];
         }
         $data .= "\n";
 
+<<<<<<< HEAD
         if ($body !== null &&
             in_array((string) $contentType, array('application/x-www-form-urlencoded', 'application/json'), true)) {
+=======
+        if ($body != null &&
+            ($contentType == 'application/x-www-form-urlencoded') ||  $contentType == 'application/json') {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             $data .= $body;
         }
         return $this->sign($data);
@@ -76,7 +88,11 @@ final class Auth
     ) {
         $deadline = time() + $expires;
         $scope = $bucket;
+<<<<<<< HEAD
         if ($key !== null) {
+=======
+        if ($key != null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             $scope .= ':' . $key;
         }
         $args = array();
@@ -120,6 +136,7 @@ final class Auth
 
     private static function copyPolicy(&$policy, $originPolicy, $strictPolicy)
     {
+<<<<<<< HEAD
         if ($originPolicy === null) {
             return array();
         }
@@ -128,6 +145,16 @@ final class Auth
                 throw new \InvalidArgumentException("{$key} has deprecated");
             }
             if (!$strictPolicy || in_array((string) $key, self::$policyFields, true)) {
+=======
+        if ($originPolicy == null) {
+            return;
+        }
+        foreach ($originPolicy as $key => $value) {
+            if (in_array($key, self::$deprecatedPolicyFields)) {
+                throw new \InvalidArgumentException("{$key} has deprecated");
+            }
+            if (!$strictPolicy || in_array($key, self::$policyFields)) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                 $policy[$key] = $value;
             }
         }

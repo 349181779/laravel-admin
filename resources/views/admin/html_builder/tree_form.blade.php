@@ -4,7 +4,12 @@
 
                         <div class="nest" id="tabletreeClose">
                             <div class="title-alt">
+<<<<<<< HEAD
                                 <h6><?php echo $title; ?></h6>
+=======
+                                <h6>
+                                    Complex Tree With Drag and Drop</h6>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                                 <div class="titleClose">
                                     <a class="gone" href="#tabletreeClose">
                                         <span class="entypo-cancel"></span>
@@ -22,6 +27,7 @@
 
                             <div class="row" style="margin: 10px 0;">
 
+<<<<<<< HEAD
                                 <?php if(!empty($list_buttons)):?>
                                     <?php foreach($list_buttons as $button):?>
                                         <div class="col-sm-1" style="margin-right: 10px;">
@@ -49,6 +55,16 @@
                                     <?php endforeach;?>
 
                                 <?php endif;?>
+=======
+                                  <?php if(!empty($add_button)):?>
+                                      <div class="col-sm-2">
+                                          <a href="<?php echo $add_button['url'];?>" class="btn btn-success">
+                                              <span class="entypo-plus-circled margin-iconic"></span>
+                                              <?php echo $add_button['name'];?>
+                                          </a>
+                                    </div>
+                                    <?php endif;?>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                             </div>
 
 

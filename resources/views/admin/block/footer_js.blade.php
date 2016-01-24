@@ -1,4 +1,5 @@
 @include('admin.block.base_js')
+<<<<<<< HEAD
 <script>
     var app = bingo.action(function ($view, $ajax) {
         $view.menu_id   = cookie("menu_id") > 0 ? cookie("menu_id") : 1;
@@ -46,3 +47,12 @@
     });
 
 </script>
+=======
+<script src="/layer-v1.9.3/layer/layer.js"></script>
+<script src="/js/jquery.pjax.js"></script>
+<script>
+$(function(){
+    //$(document).pjax('a', 'body');
+})
+</script>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1

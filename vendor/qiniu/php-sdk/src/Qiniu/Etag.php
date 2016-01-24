@@ -20,7 +20,11 @@ final class Etag
     {
         $sha1Str = sha1($data, true);
         $err = error_get_last();
+<<<<<<< HEAD
         if ($err !== null) {
+=======
+        if ($err != null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             return array(null, $err);
         }
         $byteArray = unpack('C*', $sha1Str);
@@ -32,7 +36,11 @@ final class Etag
     {
         $fhandler = fopen($filename, 'r');
         $err = error_get_last();
+<<<<<<< HEAD
         if ($err !== null) {
+=======
+        if ($err != null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             return array(null, $err);
         }
 
@@ -48,7 +56,11 @@ final class Etag
         if ($blockCnt <= 1) {
             array_push($sha1Buf, 0x16);
             $fdata = fread($fhandler, Config::BLOCK_SIZE);
+<<<<<<< HEAD
             if ($err !== null) {
+=======
+            if ($err != null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                 fclose($fhandler);
                 return array(null, $err);
             }
@@ -60,7 +72,11 @@ final class Etag
             for ($i=0; $i < $blockCnt; $i++) {
                 $fdata = fread($fhandler, Config::BLOCK_SIZE);
                 list($sha1Code, $err) = self::calcSha1($fdata);
+<<<<<<< HEAD
                 if ($err !== null) {
+=======
+                if ($err != null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                     fclose($fhandler);
                     return array(null, $err);
                 }

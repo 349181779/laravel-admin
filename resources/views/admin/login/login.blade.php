@@ -8,8 +8,35 @@
 <meta name="author" content="">
 @include('admin.block.base_header')
 <?php echo Html::style('/assets/css/signin.css');?>
+<<<<<<< HEAD
 <link rel="stylesheet" href="/toastr/toastr.css"/>
 
+=======
+<link rel="stylesheet" href="http://static.womenshuo.com/@/womenshuo/lib/notice/toastr/toastr.css"/>
+<script>
+    $(function(){
+        //验证表单
+//        $('form').Validform({
+//            label:".label",
+//            showAllError:true,
+//            tiptype:3
+//
+//        });
+        //验证表单
+
+        //提交表单
+        $('form').ajaxForm({
+            url : '<?php echo url("admin/login/login") ;?>',
+            type : 'post',
+            success : function(data){
+                parseResponseJson(data);
+            }
+        })
+        //提交表单
+
+    })
+    </script>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 </head>
 <body>
 <!-- Preloader -->
@@ -28,6 +55,7 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <div class="account-box">
+<<<<<<< HEAD
           <form action="<?php echo createUrl('Admin\LoginController@postLogin') ;?>" method="post" class="ajax-form">
             <div>
               <div class="form-group">
@@ -36,6 +64,18 @@
                 <p class="bg-warning Validform_checktip"></p>
               </div>
               <div class="form-group">
+=======
+          <form action="" >
+            <div>
+              <div class="form-group">
+                {{--<a href="#" class="pull-right label-forgot">Forgot email?</a>--}}
+                <label for="inputUsernameEmail">用户名</label>
+                <input type="text" name="email" id="inputUsernameEmail" class="form-control" datatype="e" placeholder="请输入用户名" >
+                <p class="bg-warning Validform_checktip"></p>
+              </div>
+              <div class="form-group">
+                {{--<a href="#" class="pull-right label-forgot">Forgot password?</a>--}}
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
                 <label for="inputPassword">密码</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" datatype="*6-16"  placeholder="请输入密码">
                 <p class="bg-warning Validform_checktip"></p>
@@ -63,12 +103,22 @@
     </div>
     <p>&nbsp;</p>
     <div style="text-align:center;margin:0 auto;">
+<<<<<<< HEAD
       <h6 style="color:#fff;">Copyright(C)2014 louxia100.com All Rights Reserved<br />
         louxia100.com</h6>
+=======
+      <h6 style="color:#fff;">Copyright(C)2014 womenshuo.com All Rights Reserved<br />
+        womenshuo</h6>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     </div>
   </div>
 </div>
 @include('admin.block.footer_js')
+<<<<<<< HEAD
 <script src="/Validform-v5.3.2/Validform_v5.3.2.js"></script>
+=======
+<script src="http://static.womenshuo.com/jquery.form-3.50.min.js"></script> 
+<script src="http://static.womenshuo.com/@/womenshuo/lib/validateValidform_v5.3.2_min.js"></script>
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 </body>
 </html>

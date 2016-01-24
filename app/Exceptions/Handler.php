@@ -5,8 +5,11 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler {
 
+<<<<<<< HEAD
 	const NOT_FOUND_CODE = 404;
 
+=======
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 	/**
 	 * A list of the exception types that should not be reported.
 	 *
@@ -26,6 +29,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
+<<<<<<< HEAD
 		//500错误
 //		if ($e->getCode() > 0 ) {
 //			return parent::report($e);
@@ -40,6 +44,12 @@ class Handler extends ExceptionHandler {
 //            'msg'	=>'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
 //        ]));
 
+=======
+//        die(json_encode([
+//            'code'=>$e->getCode(),
+//            'msg'=>'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
+//        ]));
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return parent::report($e);
 	}
 

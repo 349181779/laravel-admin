@@ -42,8 +42,13 @@ Call Stack:
    61.6921     772736   4. SwooleWebSocket->onMessage() /usr/local/nginx/html/laravel-5.0/public/websocket.php:32
    61.6923     774720   5. swoole_websocket_server->push() /usr/local/nginx/html/laravel-5.0/public/websocket.php:89
 
+<<<<<<< HEAD
 connection close: 1
 
+=======
+connection close: 1
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -92,8 +97,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 2
 
+=======
+connection close: 2
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -118,8 +128,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 3
 
+=======
+connection close: 3
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -144,8 +159,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 4
 
+=======
+connection close: 4
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -170,8 +190,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 5
 
+=======
+connection close: 5
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -196,8 +221,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 6
 
+=======
+connection close: 6
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -222,8 +252,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 7
 
+=======
+connection close: 7
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -248,8 +283,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1543)
 }
+<<<<<<< HEAD
 connection close: 1
 
+=======
+connection close: 1
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -274,8 +314,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1542)
 }
+<<<<<<< HEAD
 connection close: 9
 
+=======
+connection close: 9
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)
@@ -300,8 +345,13 @@ class swoole_websocket_server#2 (8) {
   public $worker_pid =>
   int(1542)
 }
+<<<<<<< HEAD
 connection close: 10
 
+=======
+connection close: 10
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 class swoole_websocket_server#2 (8) {
   private $global =>
   int(0)

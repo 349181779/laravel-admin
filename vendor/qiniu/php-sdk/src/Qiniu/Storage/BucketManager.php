@@ -13,6 +13,12 @@ use Qiniu\Http\Error;
  */
 final class BucketManager
 {
+<<<<<<< HEAD
+=======
+    /**
+     * @var Qiniu\Auth 账号管理密钥对
+     */
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     private $auth;
 
     public function __construct(Auth $auth)
@@ -27,7 +33,11 @@ final class BucketManager
      */
     public function buckets()
     {
+<<<<<<< HEAD
         return $this->rsGet('/buckets');
+=======
+        return $this->rsget('/buckets');
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
     }
 
     /**
@@ -67,10 +77,17 @@ final class BucketManager
         }
         $url = Config::RSF_HOST . '/list?' . http_build_query($query);
         list($ret, $error) = $this->get($url);
+<<<<<<< HEAD
         if ($ret === null) {
             return array(null, null, $error);
         }
         $marker = array_key_exists('marker', $ret) ? $ret['marker'] : null;
+=======
+        if ($ret == null) {
+            return array(null, null, $error);
+        }
+        $marker = isset($ret['marker']) ? $ret['marker'] : null;
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return array($ret['items'], $marker, null);
     }
 
@@ -291,7 +308,11 @@ final class BucketManager
         if (!$ret->ok()) {
             return array(null, new Error($url, $ret));
         }
+<<<<<<< HEAD
         $r = ($ret->body === null) ? array() : $ret->json();
+=======
+        $r = $ret->body == null ? array() : $ret->json();
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
         return array($r, null);
     }
 
@@ -335,7 +356,11 @@ final class BucketManager
 
     private static function twoKeyBatch($operation, $source_bucket, $key_pairs, $target_bucket)
     {
+<<<<<<< HEAD
         if ($target_bucket === null) {
+=======
+        if ($target_bucket == null) {
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
             $target_bucket = $source_bucket;
         }
         $data = array();

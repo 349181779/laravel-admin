@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 layerÀú¾­ÈýÄê¿¼Ñé£¬ÒÑ¾­Çå³þµØ¶®µÃÁËÈËÃÇ×îÐèÒªµÄÊÇÊ²Ã´£¬Òò´ËÕâÒ»°æµÄºËÐÄÊÇ×ö¼õ·¨£¬²»½öÌÞ³ýÁË²¿·ÖÈßÓàµÄAPI£¬¶Ô´úÂëÒ²½øÐÐÁË´óÁ¿ÊÝÉí£¨ËùÒÔÈç¹ûÄãÊ¹ÓÃµÄÊÇ1.85£¬Çë²»Òª¸²¸ÇÉý¼¶£©£¬±È1.85¼õÉÙÁË½«½ü300ÐÐ´úÂë£¬µ«ÊÇÕâ²¢²»ÒâÎ¶×Å¹¦ÄÜµÄÏ÷¼õ£¬ÊÂÊµÉÏ£¬layerÒÑ¾­±äµÃ¸üÇ¿´ó£¡1.9xµÄÊ¹ÃüÊÇ¸æËß´ó¼Ò£¬Ñ¡ÔñlayerÊÇÍêÈ«ÕýÈ·µÄ£¬Ã»ÓÐÄÄ¸öÀàËÆ×é¼þ»áÈç´ËÍæÃüµØÎ¬»¤ºÍ¸Ä½ø¡£Ó¦µ±ÓÐÀíÓÉÏàÐÅ£¬layer1.9xÊÇÒ»¸öÀï³Ì±®Ê½µÄ¿ç½ø£¡
 
@@ -70,4 +71,78 @@ layerÀú¾­ÈýÄê¿¼Ñé£¬ÒÑ¾­Çå³þµØ¶®µÃÁËÈËÃÇ×îÐèÒªµÄÊÇÊ²Ã´£¬Òò´ËÕâÒ»°æµÄºËÐÄÊÇ×ö¼õ·¨£
 ×ÜÖ®£¡×ÜÖ®¡­layer1.9ÓÐ×ÅÌ«¶àµÄµ÷Õû£¬°®Ëý£¬¾ÍÈÏÕæÈ¥¸ÐÊÜËý£¡Ã´Ã´ßÕ
 
 
+=======
+
+layerÀú¾­ÈýÄê¿¼Ñé£¬ÒÑ¾­Çå³þµØ¶®µÃÁËÈËÃÇ×îÐèÒªµÄÊÇÊ²Ã´£¬Òò´ËÕâÒ»°æµÄºËÐÄÊÇ×ö¼õ·¨£¬²»½öÌÞ³ýÁË²¿·ÖÈßÓàµÄAPI£¬¶Ô´úÂëÒ²½øÐÐÁË´óÁ¿ÊÝÉí£¨ËùÒÔÈç¹ûÄãÊ¹ÓÃµÄÊÇ1.85£¬Çë²»Òª¸²¸ÇÉý¼¶£©£¬±È1.85¼õÉÙÁË½«½ü300ÐÐ´úÂë£¬µ«ÊÇÕâ²¢²»ÒâÎ¶×Å¹¦ÄÜµÄÏ÷¼õ£¬ÊÂÊµÉÏ£¬layerÒÑ¾­±äµÃ¸üÇ¿´ó£¡1.9xµÄÊ¹ÃüÊÇ¸æËß´ó¼Ò£¬Ñ¡ÔñlayerÊÇÍêÈ«ÕýÈ·µÄ£¬Ã»ÓÐÄÄ¸öÀàËÆ×é¼þ»áÈç´ËÍæÃüµØÎ¬»¤ºÍ¸Ä½ø¡£Ó¦µ±ÓÐÀíÓÉÏàÐÅ£¬layer1.9xÊÇÒ»¸öÀï³Ì±®Ê½µÄ¿ç½ø£¡
+
+¡¾1.9.3¡¿2015.05.23
+> ÐÂÔöskinÖµ£ºlayui-layer-rim£¬ÓÃÓÚ¸ø²ã¼Ó±ß¿ò£¨ÀàËÆ1.85µÄ·ç¸ñ£©
+> ÐÞ¸´È«¾ÖÉèÖÃÆ¤·ôÊ±£¬²¿·ÖÀàÐÍ²ãÎ´Æð×÷ÓÃµÄbug¡£
+> ÑùÊ½Î¢µ÷
+
+== ÍØÕ¹Ä£¿é ==
+> ÐÞ¸´Ïà²á²ãÉè¶¨»ù´¡²ÎÊýÊ±£¬Ö»ÓÐÊ×´ÎÓÐÐ§µÄbug¡£
+
+
+¡¾1.9.2¡¿2015.05.08
+> Ôö¼Ó¹Ø±Õ¶¯»­ÑùÊ½£ºlayui-layer-close
+> ÓÅ»¯Ä¬ÈÏµ¯³ö¶¯»­
+> ÓÅ»¯Ä¬ÈÏÍ¼±ê£¬Ä¬ÈÏµÄiconÖ§³ÖËõ¼õµ½0-6£¨ÍØÕ¹Æ¤·ô¿É×Ô¼ºÈÎÒâÉè¶¨Ö§³ÖµÄÊýÄ¿£©
+> ÓÅ»¯²¿·ÖÑùÊ½
+> »úÖÇµØÐÞ¸´ÁËÒ»¸öÒþ²ØµÃ·Ç³£ÉîµÄµ«ÊÇ²»ÊÇÌ«ÖØÒªµÄbug¡£
+> ÌÞ³ýÁËÒ»Ð©Í¼Æ¬¡£
+
+¡¾1.9.1¡¿2015.04.29
+> btnÉè¶¨¶à¸ö°´Å¥Ê±£¬ÐÂÔö¶ÔÓ¦µÄ»Øµ÷£¨Ö§³ÖÖ»ÓÐyesºÍcancel»Øµ÷£©,Èçbtn: ['°´Å¥Ò»','°´Å¥¶þ','°´Å¥Èý']£¬°´Å¥Ò»ºÍ°´Å¥¶þ»¹ÊÇÖ®Ç°µÄyesºÍcancel£¬°´Å¥Èý£¬Ôò»Øµ÷Îª btn3: function(){}£¬ÒÔ´ËÀàÍÆ¡£
+> ¶Ôcancel»Øµ÷½øÐÐÁËÎ¢ÍêÉÆ£¬Èç¹û²»Ïë¹Ø±Õ£¬return false¼´¿É£¬Èçcancel: function(){return false}£¬È¡ÏûÔò²»»á¹Ø±Õ¡£
+> ÐÞ¸´µ±ÉèÖÃÁËfix:falseÊ±,offsetµÄÉèÖÃÎÞÐ§µÄbug
+> ÎªµÍ°æ±¾IE»ØÊÕiframeÕ¼ÓÃµÄÄÚ´æ£¬´Ó¶øÐÞ¸´Å¼¶ûÎÞ·¨»ñ½¹µÄbug
+> ÐÞ¸´µ±ÉèÖÃÁËbtnÊ±£¬×îÐ¡»¯²»ÄÜÓä¿ìµØ³ÊÏÖµÄbug¡£
+> ÐÞ¸´È«¾ÖÉèÖÃskinÊ±£¬Ä³Ð©²ãÀàÐÍ³öÏÖÑùÊ½Òì³£µÄbug¡£
+> ÐÞ¸´areaÉèÖÃÁË°Ù·Ö±ÈÊ±£¬maxmin²ÎÊýÎÞÐ§µÄbug¡£
+> ÍêÉÆµ±²ÉÓÃ<script>ºÏ²¢Â·¾¶µÄ·½Ê½ÒýÈëlayer£¬¼ÓÔØÁË´íÎóµÄcssÂ·¾¶µÄÎÊÌâ¡£ÕâÖÖÇé¿öÐèÔÚscript±êÇ©ÉÏ¼ÓÒ»¸ö×Ô¶¨ÒåÊôÐÔmerge="true",È»ºóÍ¨¹ýlayer.config({path: 'layerËùÔÚÄ¿Â¼'})À´Íê³É³õÊ¼»¯µÄÅäÖÃ
+> ÑùÊ½Î¢µ÷
+
+¡¾1.9.0¡¿2015.04.19
+> ÐÂÔölaye.open(options)£¬Å×ÆúÁËÖ®Ç°µÄ$.layer(options)µ÷ÓÃ·½·¨£¬Ä¿µÄÊÇÓëlayer mobile±£³ÖÍ³Ò»¡£
+> ÐÂÔölayer.config(options)·½·¨£¬ÓÃÓÚ½øÐÐÈ«¾Ö»¯ÅäÖÃ¡£³ýÁËÓÃÓÚÕ¹ÏÖµ¯²ãµÄ»ù´¡²ÎÊýÍâ£¬»¹Ö§³Öpath£¬ÓÃÓÚÄ£¿é»¯¼ÓÔØlayerÊ±Éè¶¨Ä¿Â¼ÒÔ±ã¼ÓÔØËùÐèÅä¼þ£¬Èçlayer.config({path: 'ËùÔÚÂ·¾¶', extend: ''});
+> ÐÂÔöcontent²ÎÊý£¬ÓÃÓÚÍ³Ò»´«ÈëÄÚÈÝ¡£Ö§³ÖstringÀàÐÍºÍjquery dom¶ÔÏó¡£Èç¹ûÊÇtype:2£¬¼´iframeµÄurl¡£
+> ÐÂÔöicon²ÎÊý£¬ÓÃÓÚÍ³Ò»ÅäÖÃ¶Ô»°¿òºÍloadingµÄiconÀàÐÍ¡£
+> ÐÂÔöcancel²ÎÊý£¬ÓÃÓÚÍ³Ò»È¡Ïû»Øµ÷¡£
+> ÐÂÔöskin²ÎÊý£¬ÓÃÓÚ¿ØÖÆ²ãµÄ²»Í¬Íâ¹Û¡£
+> ÐÂÔölayer.ready(path, callback)£¬ÓÃÓÚÒ³Ãæ¼ÓÔØÊ±¼´µ÷ÓÃµ¯²ã¡£Èç¹ûÍ¨¹ýlayer.configÅäÖÃÁËpath£¬´Ë·½·¨µÄpath¿ÉÒÔ²»Ìî£¬¼´Ö±½Ólayer.ready(callback);
+> ÐÂÔötipsMore£¬ÓÃÓÚ¿ªÆô¶à¸ötips
+> ÐÂÔöscrollbar£¬ÓÃÓÚÉè¶¨ÊÇ·ñÆÁ±Îä¯ÀÀÆ÷¹ö¶¯Ìõ
+
+> ÍêÉÆoffset²ÎÊý£¬³ýÁË¸úÖ®Ç°Ò»Ñù£¬[Y×ø±ê, X×ø±ê]£¬»¹Ö§³Ö´«Èë'rd'£¬±íÊ¾ÓÒÏÂ½Ç¡£ÁíÍâ»¹Ö§³ÖÖ»´«ÈëY×ø±ê£¬Èçoffset: '120px'¡£Ä¬ÈÏ'auto',¼´´¹Ö±Ë®Æ½¾ÓÖÐ¡£
+> ÍêÉÆ×ÔÊÊÓ¦£¬Ö»ÒªÉè¶¨ÁË¹Ì¶¨¸ß¶È£¬ÈÎºÎ²ã¶¼»á×ÔÊÊÓ¦³öÏÖ¹ö¶¯Ìõ
+> ÍêÉÆshift£¬È«ÐÂµÄCSS3¶¯»­Ä£Ê½£¬Ö§³Ö´«Èë0-6¡£
+> ÍêÉÆarea£¬Ö§³Ö´«Èë¿í¶È¡¢[¿í£¬¸ß],Ä¬ÈÏ'auto'£¬±íÊ¾×ÔÊÊÓ¦
+> ÍêÉÆtime£¬´«ÈëÖµ¸ÄÎªºÁÃë£¬±ÈÈç2Ãë¹Ø±Õ£¬time: 2000
+> ÍêÉÆuse·½·¨£¬ÐÞ¸´Ö®Ç°³õÊ¼µ÷ÓÃÊ±²¿·Öä¯ÀÀÆ÷Ò»Ð©²»ÎÈ¶¨ÒòËØ
+> ÍêÉÆlayer.full/layer.min·½·¨£¬Ö»Òª´«Èëindex¼´¿É£¬²»ÓÃ¸úÖ®Ç°Ò»Ñù»¹Òª´«ÈëareaºÍoffset¡£¡£¡£
+> layer.alert/confirm/msg/load/tipsÎåÖÖ¿ì½ÝÒýÓÃÖØÐ´£¬¸üÁé»î£¬¸üÒ×Ê¹ÓÃ¡£
+
+> ÌÞ³ýborder²ÎÊý£¬ÒòÎªËüÃ»ÓÐ±¾ÖÊµÄ×÷ÓÃ£¬×Ô¶¨Òå²ãÑùÊ½¿ÉÒÔÍ¨¹ýÐÂÔöµÄskin²ÎÊý
+> ÌÞ³ýdialogµÄmsg£¬pageµÄhtml/url/dom£¬Í³Ò»²ÉÓÃcontent
+> ÌÞ³ýdialogºÍloadingµÄtype£¬Í³Ò»²ÉÓÃicon
+> ÌÞ³ýdialogÖÐÓÃÓÚÅäÖÃ°´Å¥ÊýµÄbtns£¬ÒòÎª¿ÉÖ±½ÓÍ¨¹ýbtn±¾ÉíÀ´»ñÈ¡¡£
+> ÌÞ³ýnoºÍclose»Øµ÷£¬Í³Ò»²ÉÓÃcancelÈ¡´ú£¬²»¹ýÈÔÈ»¶ÔÇ°Á½Õß¼æÈÝ¡£
+> ÌÞ³ýlayer.closeLoad()¡¢layer.closeTips()·½·¨£¬Í³Ò»ÓÃlayer.closeAll('loading/tips')À´¶ÔÖ¸¶¨ÀàÐÍ²ã½øÐÐ¹Ø±Õ
+> ÌÞ³ýbgcolor²ÎÊý£¬ÒòÎª×Ô¶¨ÒåµÄÑùÊ½Ò»ÂÉ²ÉÓÃskin²ÎÊý¿ØÖÆ
+> ÌÞ³ýtipsÒ»Ð©ÁÐ×ÓÔªËØ£¬Ö»±£Áô×ÔÉí£¬²¢ÇÒÖ§³ÖnumberºÍobjectÐÎ£¬ÓÃÓÚÉè¶¨·½ÏòºÍÏÔÊ¾¼ýÍ·¡£
+> ÌÞ³ýlayer.getIndex·½·¨£¬»ñÈ¡Ë÷ÒýÍ³Ò»ÓÃ·µ»ØÖµ
+> ÌÞ³ýlayer.autoArea·½·¨£¬ÒòÎªÒÑ¾­²ÉÈ¡¸üºÃµÄ×ÔÊÊÓ¦·½°¸¡£
+
+> Ä¬ÈÏ²»ÏÔÊ¾dialogÍ¼±ê£¬ÐèÒªÏÔÊ¾ÅäÖÃdialogÖ¸¶¨µÄtype¼´¿É
+> ºÜ¶à²»¿É¼ûÖ»¿É¸ÐÊÜµÄÏ¸½Ú¸Ä¶¯
+
+<< ÍØÕ¹Ä£¿é >>
+> layer.prompt/layer.tab/layer.photosÖØÐ´£¬´úÂë¸üÇ¿½¡£¬¹¦ÄÜ¸üÇ¿´ó£¬Ïê¼ûApi¡£
+
+
+×ÜÖ®£¡×ÜÖ®¡­layer1.9ÓÐ×ÅÌ«¶àµÄµ÷Õû£¬°®Ëý£¬¾ÍÈÏÕæÈ¥¸ÐÊÜËý£¡Ã´Ã´ßÕ
+
+
+>>>>>>> 705d3246d2b96a483f40bf87e0cc15b93106fad1
 ¡ª¡ªÏÍÐÄ 
