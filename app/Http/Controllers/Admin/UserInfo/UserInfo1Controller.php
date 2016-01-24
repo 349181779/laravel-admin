@@ -19,6 +19,15 @@ use App\Http\Controllers\Admin\BaseController;
 class UserInfo1Controller extends BaseController {
 
 	/**
+	 *
+	 * 注意:请把url修改好,比如表单的url
+	 *
+	 *
+	 *
+	 *
+	 */
+
+	/**
 	 * @var string
 	 */
 	protected $html_builder = '';
