@@ -27,7 +27,6 @@ class ConfigRequestModel extends BaseModel
 
         if (!empty($data)) {
             foreach ($data as $key => $value) {
-
                 $rule_config[$key] = [
                     'name' => $value['title'],
                 ];
@@ -36,7 +35,7 @@ class ConfigRequestModel extends BaseModel
                         if (isset($value['rule']['params'][$rule]) && is_array($value['rule']['params'][$rule])) {
                             $rule_config[$key]['rule'][] = array_merge([$rule], $value['rule']['params'][$rule]);
                         } else {
-                            $rule_config[$key]['rule'][] = [$rule];
+                            $rule_config[$key]['rule'][] = $rule;
                         }
 
                     }

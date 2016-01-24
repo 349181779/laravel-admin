@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+	<title>构建代码</title>
 
 	<link rel="stylesheet" href="<?php echo elixir('dist/base.css');?>">
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -21,7 +21,7 @@
 <!-- 顶部导航条 -->
 <nav class="navbar navbar-inverse">
 	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
-		<span class="sr-only">数据库列表</span>
+		<span class="sr-only">数据库表列表</span>
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
@@ -45,8 +45,8 @@
                     <td><?php echo $table['table_name']?></td>
                     <td>Route</td>
                     <td>
-                        <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-default create-config">生成配置</button>
-                        <button type="button" class="btn btn-info">修改配置</button>
+                        <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-default create-request-config">生成Request配置</button>
+                        <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-info create-controller-config">生成Controller配置</button>
                         <button type="button" class="btn btn-success">生成CURD</button>
                     </td>
                 </tr>
@@ -81,19 +81,36 @@
     }
 
     /**
-     * 创建配置
+     * 创建Request配置
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    AutoBuild.prototype.createConfig = function ($table_name)
+    AutoBuild.prototype.createRequestConfig = function ($table_name)
     {
         //iframe层
         layer.open({
             type: 2,
-            title: '创建配置',
+            title: '创建Request配置',
             shadeClose: true,
             shade: 0.8,
-            content: '<?php echo createUrl("\Yangyifan\AutoBuild\Http\Controllers\Config\RequestController@getCreateConfig") ;?>?table_name=' + $table_name //iframe的url
+            content: '<?php echo createUrl("\Yangyifan\AutoBuild\Http\Controllers\Config\RequestController@getIndex") ;?>?table_name=' + $table_name //iframe的url
+        });
+    }
+
+    /**
+     * 创建Controller配置
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    AutoBuild.prototype.createControllerConfig = function ($table_name)
+    {
+        //iframe层
+        layer.open({
+            type: 2,
+            title: '创建Controller配置',
+            shadeClose: true,
+            shade: 0.8,
+            content: '<?php echo createUrl("\Yangyifan\AutoBuild\Http\Controllers\Config\ControllerController@getIndex") ;?>?table_name=' + $table_name //iframe的url
         });
     }
 
@@ -103,13 +120,19 @@
     $(function ()
     {
         /**
-         * 创建配置
+         * 创建Request配置
          *
          */
-        $('.create-config').on('click', function()
+        $('.create-request-config').on('click', function()
         {
             var $table_name = $(this).attr('data-table-name');
-            $autoBuild.createConfig($table_name);
+            $autoBuild.createRequestConfig($table_name);
+        })
+
+        $('.create-controller-config').on('click', function()
+        {
+            var $table_name = $(this).attr('data-table-name');
+            $autoBuild.createControllerConfig($table_name);
         })
     })
 

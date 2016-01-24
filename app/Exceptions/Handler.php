@@ -25,12 +25,12 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
-		if (config('config.APP_DEBUG') == false) {
-			die(json_encode([
-                'code' 	=> BaseController::SERVER_ERROR,
-                'msg'	=> 'error', ///'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
-			]));
-		}
+//		if (config('config.APP_DEBUG') == false) {
+//			die(json_encode([
+//                'code' 	=> BaseController::SERVER_ERROR,
+//                'msg'	=> 'error', ///'Message:'.$e->getMessage() . ';Line:'.$e->getLine(),
+//			]));
+//		}
 		return parent::report($e);
 	}
 

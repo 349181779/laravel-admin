@@ -11,10 +11,9 @@
 namespace Yangyifan\AutoBuild\Http\Controllers\Config;
 
 use Illuminate\Http\Request;
-use gossi\codegen\model\PhpMethod;
-use gossi\codegen\model\PhpParameter;
-use Yangyifan\AutoBuild\Http\Requests\BuildControllerRequest;
 use Yangyifan\AutoBuild\Model\Build\BuildControllerModel;
+use Yangyifan\AutoBuild\Model\Config\ConfigControllerModel;
+use Yangyifan\AutoBuild\Model\HomeModel;
 
 class ControllerController extends BaseController
 {
@@ -26,5 +25,41 @@ class ControllerController extends BaseController
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * 创建配置页面
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getIndex(Request $request)
+    {
+        $table_name = $request->get('table_name');
+
+        return view('vendor.auto_build.create_controller_config', [
+            'table_name'    => $table_name,//表名称
+            'schema_list'   => HomeModel::getSchemaList($table_name),//获得字段列表
+            'form_type'     => BuildControllerModel::$form_type,//表单类型
+        ]);
+    }
+
+    /**
+     * 处理生成config
+     *
+     * @param Request $request
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function postCreateConfig(Request $request)
+    {
+        $data = $request->all();
+        $table_name = $data['table_name'];
+        unset($data['table_name']);
+
+        //写入文件
+        $status = $this->writeRequesConfig($table_name, ConfigControllerModel::FILE_TYPE, ConfigControllerModel::getControllerConfig($data) );
+        return $status == true ? $this->response(self::SUCCESS_STATE_CODE, '创建Controller配置信息成功') : $this->response(self::ERROR_STATE_CODE, '创建Controller配置信息失败');
+
     }
 }

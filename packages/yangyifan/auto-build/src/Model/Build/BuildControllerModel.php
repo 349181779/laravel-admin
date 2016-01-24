@@ -14,6 +14,23 @@ class BuildControllerModel extends BaseModel
 {
     const LIST_PAGE_ALLOW_SCHEMA_TYPE = ['text', 'hidden', 'date', 'select' ];//首页允许显示的字段类型
 
+    //表单类型,请参看这里 http://laravel-admin.mydoc.io/?t=33379
+    public static $form_type = [
+        'label'         => 'label',
+        'text'          => '文本框',
+        'hidden'        => '隐藏域',
+        'textarea'      => '多行文本框',
+        'password'      => '密码框',
+        'date'          => '时间选择器',
+        'image'         => '图片选择器',
+        'ueditor'       => '百度富文本编辑器',
+        'radio'         => '单选框',
+        'checkbox'      => '多选框',
+        'select'        => '下拉列表框',
+        'multiSelect'   => '双向选择器',
+        'search'        => '搜索框',
+    ];
+
     /**
      * 构建构造方法
      *
