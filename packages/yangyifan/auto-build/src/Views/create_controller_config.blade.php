@@ -23,6 +23,8 @@
     <form class="form-horizontal ajax-form" method="post" action="<?php echo createUrl('\Yangyifan\AutoBuild\Http\Controllers\Config\ControllerController@postCreateConfig') ;?>">
         <?php if(!empty($schema_list)):?>
             <?php foreach ($schema_list as $schema) :?>
+
+                <?php if($schema['col_name'] == 'id'){continue;}//如果是id,则跳过?>
                 <div class="form-group">
                     <input type="hidden" name="<?php echo $schema['col_name'];?>[name]" value="<?php echo $schema['col_name'];?>">
                     <input type="hidden" name="<?php echo $schema['col_name'];?>[schema_type]" value="<?php echo $schema['type'];?>">
@@ -77,7 +79,10 @@
                                         <option value="">请选择</option>
                                         <?php if(!empty($form_type)):?>
                                             <?php foreach ($form_type as $type => $title) : ?>
-                                                <option value="<?php echo $type;?>"><?php echo $title;?></option>
+                                                <?php if($type == 'text'):?>
+                                                    <option selected="selected" value="<?php echo $type;?>"><?php echo $title;?></option>
+                                                <?php endif;?>
+                                                    <option value="<?php echo $type;?>"><?php echo $title;?></option>
                                             <?php endforeach;?>
                                         <?php endif;?>
                                     </select>

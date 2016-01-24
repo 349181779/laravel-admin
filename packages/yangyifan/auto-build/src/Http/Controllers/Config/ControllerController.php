@@ -38,7 +38,7 @@ class ControllerController extends BaseController
     {
         $table_name = $request->get('table_name');
 
-        return view('vendor.auto_build.create_controller_config', [
+        return view('auto_build::create_controller_config', [
             'table_name'    => $table_name,//表名称
             'schema_list'   => HomeModel::getSchemaList($table_name),//获得字段列表
             'form_type'     => BuildControllerModel::$form_type,//表单类型
@@ -58,8 +58,7 @@ class ControllerController extends BaseController
         unset($data['table_name']);
 
         //写入文件
-        $status = $this->writeRequesConfig($table_name, ConfigControllerModel::FILE_TYPE, ConfigControllerModel::getControllerConfig($data) );
+        $status = $this->writeRequesConfig($table_name, ConfigControllerModel::FILE_TYPE, ConfigControllerModel::mergeControllerConfig($data) );
         return $status == true ? $this->response(self::SUCCESS_STATE_CODE, '创建Controller配置信息成功') : $this->response(self::ERROR_STATE_CODE, '创建Controller配置信息失败');
-
     }
 }

@@ -13,6 +13,7 @@ namespace Yangyifan\AutoBuild\Http\Controllers\Build;
 use gossi\codegen\generator\CodeFileGenerator;
 use gossi\codegen\model\PhpClass;
 use gossi\codegen\model\PhpProperty;
+use Yangyifan\AutoBuild\Http\Controllers\Config\BaseController AS CongfigBaseController;
 
 class BaseController extends \Yangyifan\AutoBuild\Http\Controllers\BaseController
 {
@@ -53,14 +54,14 @@ class BaseController extends \Yangyifan\AutoBuild\Http\Controllers\BaseControlle
         //设置需要继承的类
         $this->setParentClass();
 
-        $file_name  = $this->getFileName();
-        $dir_name   = dirname($file_name);
 
-        if (is_dir($dir_name) == false) {
-            mkdir($dir_name, 0777, true);
+        $dir_name   = storage_path() . CongfigBaseController::CONFIG_PATH . self::OUT_PUT_DIR;
+        $file_name  = $dir_name . $this->request['file_name'] . self::EXT;
+
+        if (is_dir(dirname($file_name)) == false) {
+            mkdir(dirname($file_name), 0777, true);
         }
-
-        file_put_contents( dirname(dirname(dirname(__DIR__ ))) . self::OUT_PUT_DIR . $this->request['file_name'] . self::EXT, $this->code_generator->generate($this->php_class));
+        $status = file_put_contents( $file_name, $this->code_generator->generate($this->php_class));
     }
 
     /**
@@ -100,7 +101,7 @@ class BaseController extends \Yangyifan\AutoBuild\Http\Controllers\BaseControlle
     protected function setUse($use_array = [])
     {
         //组合
-        $use_array = static::USE_ARRAY ?  : array_merge( $use_array, static::USE_ARRAY );
+        $use_array = !empty($use_array) ?  array_merge( $use_array, static::USE_ARRAY ) : static::USE_ARRAY;
 
         if (!empty(($use_array))) {
             foreach ($use_array as $use) {
@@ -118,7 +119,7 @@ class BaseController extends \Yangyifan\AutoBuild\Http\Controllers\BaseControlle
      */
     private function setParentClass()
     {
-        $parent_class = $this->request['parent_class'] ? : static::DEFAULT_PARENT_CLASS;
+        $parent_class = !empty($this->request['parent_class']) ? $this->request['parent_class'] : static::DEFAULT_PARENT_CLASS;
         $this->php_class->setParentClassName($parent_class);
         return $this;
     }

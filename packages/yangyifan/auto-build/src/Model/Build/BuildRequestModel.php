@@ -27,13 +27,13 @@ class BuildRequestModel extends BaseModel
             $body .= "if(\$this->get('id') > 0){ \r\n";
             $body .=    "\t return [ \r\n";
             foreach ($rules_arr as $key => $rule) {
-                $body .= self::mergeRule($key, $rule['rule']);
+                if (isset($rule['rule'])) $body .= self::mergeRule($key, $rule['rule']);
             }
             $body .=    "\t]; \r\n";
             $body .= "}else{ \r\n";
             $body .=    "\treturn [ \r\n";
             foreach ($rules_arr as $key => $rule) {
-                $body .= self::mergeRule($key, $rule['rule']);
+                if (isset($rule['rule'])) $body .= self::mergeRule($key, $rule['rule']);
             }
             $body .=    "\t]; \r\n";
             $body .= "} \r\n";

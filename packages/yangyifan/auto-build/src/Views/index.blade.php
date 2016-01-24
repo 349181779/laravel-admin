@@ -47,7 +47,7 @@
                     <td>
                         <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-default create-request-config">生成Request配置</button>
                         <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-info create-controller-config">生成Controller配置</button>
-                        <button type="button" class="btn btn-success">生成CURD</button>
+                        <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-success curd">生成CURD</button>
                     </td>
                 </tr>
             <?php endforeach;?>
@@ -114,6 +114,23 @@
         });
     }
 
+    /**
+     * 生成curd页面
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    AutoBuild.prototype.curd = function ($table_name)
+    {
+        //iframe层
+        layer.open({
+            type: 2,
+            title: '生成curd页面',
+            shadeClose: true,
+            shade: 0.8,
+            content: '<?php echo createUrl("\Yangyifan\AutoBuild\Http\Controllers\HomeController@getCurd") ;?>?table_name=' + $table_name //iframe的url
+        });
+    }
+
     //实例化对象
     var $autoBuild = new AutoBuild();
 
@@ -129,10 +146,24 @@
             $autoBuild.createRequestConfig($table_name);
         })
 
+        /**
+         * 创建Controller配置
+         *
+         */
         $('.create-controller-config').on('click', function()
         {
             var $table_name = $(this).attr('data-table-name');
             $autoBuild.createControllerConfig($table_name);
+        })
+
+        /**
+         * 生成curl页面
+         *
+         */
+        $('.curd').on('click', function ()
+        {
+            var $table_name = $(this).attr('data-table-name');
+            $autoBuild.curd($table_name);
         })
     })
 

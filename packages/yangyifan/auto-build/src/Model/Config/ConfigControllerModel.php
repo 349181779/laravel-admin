@@ -22,7 +22,7 @@ class ConfigControllerModel extends BaseModel
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function getControllerConfig($data)
+    public static function mergeControllerConfig($data)
     {
         if (!empty($data)) {
             foreach ($data as &$v) {
@@ -31,6 +31,18 @@ class ConfigControllerModel extends BaseModel
             }
         }
         return $data;
+    }
+
+    /**
+     * 获得配置json信息
+     *
+     * @param $table_name
+     * @param $type
+     * @return bool|mixed
+     */
+    public static function getControllerConfig($table_name)
+    {
+        return self::getConfig($table_name, self::FILE_TYPE);
     }
 }
 

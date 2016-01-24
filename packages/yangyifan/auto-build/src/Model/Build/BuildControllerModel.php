@@ -51,7 +51,7 @@ class BuildControllerModel extends BaseModel
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public static function buildGetIndexBody($title, $schema_arr = [], $btn_title_arr = [] )
+    public static function buildGetIndexBody($title, $route_url, $schema_arr = [], $btn_title_arr = [] )
     {
         $body = "";
         $body .= "return\t \$this->html_builder->\r\n";
@@ -59,7 +59,7 @@ class BuildControllerModel extends BaseModel
         $body .= self::mergeIndexBody($schema_arr);//组合列表页要显示的字段
         $body .= self::mergeIndexSearchBody($schema_arr);//组合列表页允许搜索的字段
         $body .= "\t\t builderBotton('确认', '')->\r\n";
-        $body .= "\t\t builderJsonDataUrl('')->\r\n";
+        $body .= "\t\t builderJsonDataUrl(createUrl('{$route_url}@getSearch'))->\r\n";
         $body .= "\t\t builderList();";
 
         return $body;
@@ -78,10 +78,11 @@ class BuildControllerModel extends BaseModel
         if (!empty($schema_arr)) {
             foreach ($schema_arr as $schema) {
                 if ($schema['is_list'] == true) {
-                    $body .= "\t\t builderFormSchema('{$schema['name']}', '{$schema['title']}', \$type = '{$schema['type']}')->\r\n";
+                    $body .= "\t\t builderSchema('{$schema['name']}', '{$schema['title']}', \$type = '{$schema['type']}')->\r\n";
                 }
             }
         }
+        $body .= "\t\t builderSchema('handle', '操作')->\r\n";
         return $body;
     }
 
@@ -243,7 +244,7 @@ class BuildControllerModel extends BaseModel
         $body .= "\$data    = \$request->all();\r\n";
         $body .= "\$Model   = {$model_name}::findOrFail(\$data['id']);\r\n";
         $body .= "\$Model->update(\$data);\r\n";
-        $body .= "\$this->response(self::SUCCESS_STATE_CODE, trans('response.update_success'), [], true, createUrl(''));";
+        $body .= "\$this->response(self::SUCCESS_STATE_CODE, trans('response.update_success'));";
         return $body;
     }
 
@@ -294,7 +295,7 @@ class BuildControllerModel extends BaseModel
         $body = "";
         $body .= "\$data                = \$request->all();\r\n";
         $body .= "\$affected_number     = {$model_name}::create(\$data);\r\n";
-        $body .= "return  \$affected_number->id > 0  ? \$this->response(self::SUCCESS_STATE_CODE, trans('response.add_success'), [], false, '') : \$this->response(self::ERROR_STATE_CODE, trans('response.add_error'), [], false);";
+        $body .= "return  \$affected_number->id > 0  ? \$this->response(self::SUCCESS_STATE_CODE, trans('response.add_success')) : \$this->response(self::ERROR_STATE_CODE, trans('response.add_error'));";
         return $body;
     }
 

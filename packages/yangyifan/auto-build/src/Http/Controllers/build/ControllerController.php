@@ -15,6 +15,7 @@ use gossi\codegen\model\PhpMethod;
 use gossi\codegen\model\PhpParameter;
 use Yangyifan\AutoBuild\Http\Requests\BuildControllerRequest;
 use Yangyifan\AutoBuild\Model\Build\BuildControllerModel;
+use Yangyifan\AutoBuild\Model\Config\ConfigControllerModel;
 
 class ControllerController extends BaseController
 {
@@ -40,6 +41,10 @@ class ControllerController extends BaseController
     const POST_ADD_FUNCTION_NAME    = 'postAdd';//处理添加方法名称
     const POST_ADD_FUNCTION_TITLE   = '处理添加';//处理添加方法描述
 
+    private $use_request    = null;//自定义的request
+    private $use_model      = null;//自定义的request
+
+    //仅供参考
     private $schema_arr = [
         'admin_name' => [
             'name'                  => 'admin_name',//表字段名称
@@ -89,12 +94,23 @@ class ControllerController extends BaseController
     /**
      * 设置
      *
-     * @param Request $request
+     * @param Request $data
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getIndex(BuildControllerRequest $request)
+    public function getIndex($data)
     {
-        $this->request = $request->all();
+        //验证请求
+        $build_controller_request   = new BuildControllerRequest();
+        $build_controller_request->merge($data);
+        $v                          = \Validator::make($build_controller_request->rules(), $build_controller_request->messages());
+        if ($v->fails()) {
+            return $build_controller_request->response($v->errors());
+        }
+        $this->request = $build_controller_request->all();
+        //正则匹配要导入的文件
+        $this->matchUseArray();
+        //setUrl
+        $this->setControllerRouteUrl();
 
         $this->setQualifiedName()
             ->setProperty("html_builder", "", "", "protected")//设置构建html对象表名称
@@ -107,6 +123,35 @@ class ControllerController extends BaseController
             ->buildPostAdd()//设置 处理添加 方法
             ->setUse( $this->request['use_array'] )//设置 use文件
         ;
+    }
+
+    /**
+     * 正则匹配要导入的文件
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function matchUseArray()
+    {
+        if (!empty($this->request['use_array'])) {
+            foreach ($this->request['use_array'] as $use_file) {
+                //匹配Request
+                if (preg_match('/([a-zA-Z0-9]+Request)$/', $use_file, $request)) {
+                    $this->use_request = end($request);
+                } elseif ( preg_match('/([a-zA-Z0-9]+Model)/', $use_file, $model) ) {//匹配Model
+                    $this->use_model = end($model);
+                }
+            }
+        }
+    }
+
+    /**
+     * 设置Route Url
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function setControllerRouteUrl()
+    {
+        $this->route_url = str_replace(['App/Http/Controllers/', '/'], ['', '\\'], $this->request['file_name']);
     }
 
     /**
@@ -139,7 +184,7 @@ class ControllerController extends BaseController
     private function buildIndex()
     {
         $request_name   = "request";
-        $title_name     = "会员列表页";
+        $title_name     = "列表页";
 
         $this->php_class->setMethod(
             PhpMethod::create(self::GET_INDEX_FUNCTION_NAME)
@@ -149,7 +194,7 @@ class ControllerController extends BaseController
                         ->setType("Request")
                 )
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
-                ->setBody(BuildControllerModel::buildGetIndexBody($title_name, $this->schema_arr))
+                ->setBody(BuildControllerModel::buildGetIndexBody($title_name, $this->route_url, ConfigControllerModel::getControllerConfig($this->request['table_name']) ))
         );
         return $this;
     }
@@ -163,7 +208,6 @@ class ControllerController extends BaseController
     private function buildGetSearch()
     {
         $request_name   = "request";
-        $model_name     = "UserInfoModel";
 
         $this->php_class->setMethod(
             PhpMethod::create(self::GET_SEARCH_FUNCTION_NAME)
@@ -173,7 +217,7 @@ class ControllerController extends BaseController
                         ->setType("Request")
                 )
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
-                ->setBody(BuildControllerModel::buildGetSearchBody($model_name, $this->schema_arr))
+                ->setBody(BuildControllerModel::buildGetSearchBody($this->use_model, ConfigControllerModel::getControllerConfig($this->request['table_name']) ))
         );
         return $this;
     }
@@ -186,9 +230,8 @@ class ControllerController extends BaseController
      */
     private function buildGetEdit()
     {
-        $request_name   = "UserInfoRequest";
-        $model_name     = "UserInfoModel";
-        $title          = "编辑会员列表";
+        $title          = "编辑页面";
+        $request_name   = "Request";
 
         $this->php_class->setMethod(
             PhpMethod::create(self::GET_EDIT_FUNCTION_NAME)
@@ -198,7 +241,7 @@ class ControllerController extends BaseController
                         ->setType($request_name)
                 )
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
-                ->setBody(BuildControllerModel::buildGetEditBody($model_name, $title, $this->schema_arr))
+                ->setBody(BuildControllerModel::buildGetEditBody($this->use_model, $title, ConfigControllerModel::getControllerConfig($this->request['table_name']) ))
         );
         return $this;
     }
@@ -211,18 +254,15 @@ class ControllerController extends BaseController
      */
     private function buildPostEdit()
     {
-        $request_name   = "UserInfoRequest";
-        $model_name     = "UserInfoModel";
-
         $this->php_class->setMethod(
             PhpMethod::create(self::POST_EDIT_FUNCTION_NAME)
                 ->setDescription(self::POST_EDIT_FUNCTION_TITLE)
                 ->addParameter(
                     PhpParameter::create("request")
-                        ->setType($request_name)
+                        ->setType($this->use_request)
                 )
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
-                ->setBody(BuildControllerModel::buildPostEditBody($model_name))
+                ->setBody(BuildControllerModel::buildPostEditBody($this->use_model))
         );
         return $this;
     }
@@ -236,7 +276,7 @@ class ControllerController extends BaseController
     private function buildGetAdd()
     {
         $request_name   = "Request";
-        $title          = "添加会员列表";
+        $title          = "添加页面";
 
         $this->php_class->setMethod(
             PhpMethod::create(self::GET_ADD_FUNCTION_NAME)
@@ -246,7 +286,7 @@ class ControllerController extends BaseController
                         ->setType($request_name)
                 )
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
-                ->setBody(BuildControllerModel::buildGetAddBody($title, $this->schema_arr))
+                ->setBody(BuildControllerModel::buildGetAddBody($title, ConfigControllerModel::getControllerConfig($this->request['table_name']) ))
         );
         return $this;
     }
@@ -259,18 +299,15 @@ class ControllerController extends BaseController
      */
     private function buildPostAdd()
     {
-        $request_name   = "Request";
-        $model_name     = "UserInfoModel";
-
         $this->php_class->setMethod(
             PhpMethod::create(self::POST_ADD_FUNCTION_NAME)
                 ->setDescription(self::POST_ADD_FUNCTION_TITLE)
                 ->addParameter(
                     PhpParameter::create("request")
-                        ->setType($request_name)
+                        ->setType($this->use_request)
                 )
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
-                ->setBody(BuildControllerModel::buildPostAddBody($model_name))
+                ->setBody(BuildControllerModel::buildPostAddBody($this->use_model))
         );
         return $this;
     }

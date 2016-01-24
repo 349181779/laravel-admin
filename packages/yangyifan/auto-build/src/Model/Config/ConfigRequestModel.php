@@ -52,13 +52,9 @@ class ConfigRequestModel extends BaseModel
      * @param $type
      * @return bool|mixed
      */
-    public static function getConfig($table_name)
+    public static function getRequestConfig($table_name)
     {
-        $json = self::getFileContent($table_name, self::FILE_TYPE);
-        if (!empty($json)) {
-            return json_decode($json, true);
-        }
-        return false;
+        return self::getConfig($table_name, self::FILE_TYPE);
     }
 }
 

@@ -19,6 +19,9 @@ class BaseController extends \App\Http\Controllers\BaseController
      */
     public function __construct()
     {
+        //设置错误运行规则
+        error_reporting(E_ALL ^ E_NOTICE);
+
         parent::__construct();
     }
 }

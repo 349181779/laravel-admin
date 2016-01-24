@@ -41,6 +41,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin.base',  'namespace' => '
         //后台日志
         Route::controller('log', 'AdminLogController');
     });
+    //会员(当前会员全部是自动构建创建的代码)
+    Route::controller('user', 'UserInfo\UserInfo1Controller');
 });
 //工具
 Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){

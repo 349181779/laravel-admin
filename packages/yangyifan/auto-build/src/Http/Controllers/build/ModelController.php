@@ -43,15 +43,22 @@ class ModelController extends BaseController
     /**
      * 设置
      *
-     * @param Request $request
+     * @param Request $data
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getIndex(BuildControllerRequest $request)
+    public function getIndex($data)
     {
-        $this->request = $request->all();
+        //验证请求
+        $build_controller_request   = new BuildControllerRequest();
+        $build_controller_request->merge($data);
+        $v                          = \Validator::make($build_controller_request->rules(), $build_controller_request->messages());
+        if ($v->fails()) {
+            return $build_controller_request->response($v->errors());
+        }
+        $this->request = $build_controller_request->all();
 
         $this->setQualifiedName()
-            ->setProperty("table", "user_info", "设置模型表名称", "protected")//设置模型表名称
+            ->setProperty("table", $data['table_name'], "设置模型表名称", "protected")//设置模型表名称
             ->buildSearch()//设置 search 方法
             ->buildMerge()//设置 merge 方法
             ->setUse( $this->request['use_array'] )//设置 use文件
@@ -83,17 +90,17 @@ class ModelController extends BaseController
                     PhpParameter::create("order")
                         ->setType("string")
                         ->setDescription("排序规则")
+                )->addParameter(
+                    PhpParameter::create("limit")
+                        ->setType("string")
+                        ->setDescription("显示条数")
                 )
                 ->addParameter(
                     PhpParameter::create("offset")
                         ->setType("string")
                         ->setDescription("偏移量")
                 )
-                ->addParameter(
-                    PhpParameter::create("limit")
-                        ->setType("string")
-                        ->setDescription("显示条数")
-                )
+
                 ->setStatic(true)
                 ->setLongDescription("@author ".self::AUTHOR_NAME." <".self::AUTHOR_EMILA.">")
                 ->setBody(BuildModelModel::buildSearchBody())

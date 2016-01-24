@@ -44,7 +44,7 @@ class BuildModelModel extends BaseModel
         $body .= "\t\t orderBy(\$sort, \$order)-> \r\n";
         $body .= "\t\t skip(\$offset)-> \r\n";
         $body .= "\t\t take(\$limit)-> \r\n";
-        $body .= "\t\t tget() \r\n";
+        $body .= "\t\t get() \r\n";
         $body .= "\t ), \r\n";
         $body .= "'count' =>  self::multiwhere(\$map)->count(), \r\n";
         $body .= "];";

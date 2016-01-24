@@ -34,6 +34,8 @@ class AutoBuildServiceProvider extends ServiceProvider
 	{
 		//设置路由
 		$this->setupRoutes();
+		//发布视图
+		$this->loadViewsFrom(__DIR__ .'/Views', 'auto_build');
 	}
 
 	/**
@@ -44,9 +46,7 @@ class AutoBuildServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		//$this->app->bind('contact',function($app){
 
-		//});
 	}
 
 	/**

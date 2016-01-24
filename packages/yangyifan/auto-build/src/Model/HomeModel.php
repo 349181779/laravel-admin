@@ -11,6 +11,9 @@
 namespace Yangyifan\AutoBuild\Model;
 
 use \DB;
+use Yangyifan\AutoBuild\Http\Controllers\Build\RequestController;
+use Yangyifan\AutoBuild\Http\Controllers\Build\ModelController;
+use Yangyifan\AutoBuild\Http\Controllers\Build\ControllerController;
 
 class HomeModel extends BaseModel
 {
@@ -84,6 +87,64 @@ class HomeModel extends BaseModel
             }
         }
         return $data;
+    }
+
+    /**
+     * 创建curd
+     *
+     * @param $table_name
+     * @param $data
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function checkCurd($table_name, $data)
+    {
+        //创建Request
+        self::createRequest(array_merge($data['request'], ['table_name' => $table_name]));
+        //创建Model
+        self::createModel(array_merge($data['model'], ['table_name' => $table_name]));
+        //创建控制器
+        self::createController(
+            array_merge($data['controller'],
+                ['table_name' => $table_name], ['use_array' => [str_replace('/', '\\', $data['request']['file_name']), str_replace('/', '\\', $data['model']['file_name'])] ]));
+        return true;
+
+    }
+
+    /**
+     * 创建Request
+     *
+     * @param $data
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function createRequest($data)
+    {
+        return (new RequestController())->getIndex($data);
+    }
+
+    /**
+     * 创建Model
+     *
+     * @param $data
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function createModel($data)
+    {
+        return (new ModelController())->getIndex($data);
+    }
+
+    /**
+     * 创建Controller
+     *
+     * @param $data
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function createController($data)
+    {
+        return (new ControllerController())->getIndex($data);
     }
 }
 

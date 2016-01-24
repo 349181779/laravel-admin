@@ -18,7 +18,7 @@ class BaseModel extends \Yangyifan\AutoBuild\Model\BaseModel
     /**
      * 获得配置文件目录
      *
-     *  @author yangyifan <yangyifanphp@gmail.com>
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getConfigDir($file_name, $type)
     {
@@ -40,6 +40,7 @@ class BaseModel extends \Yangyifan\AutoBuild\Model\BaseModel
      * @param $type
      * @return string
      * @throws \Exception
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getFileContent($file_name, $type)
     {
@@ -50,5 +51,23 @@ class BaseModel extends \Yangyifan\AutoBuild\Model\BaseModel
         }
         return file_get_contents($path);
     }
+
+    /**
+     * 获得配置json信息
+     *
+     * @param $table_name
+     * @param $type
+     * @return bool|mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected static function getConfig($table_name, $file_type)
+    {
+        $json = self::getFileContent($table_name, $file_type);
+        if (!empty($json)) {
+            return json_decode($json, true);
+        }
+        return false;
+    }
+
 }
 
