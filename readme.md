@@ -19,6 +19,18 @@
 - [ ] 写单元测试
 - [ ] 计划在2月份发布第一个版本，如果单元测试没有写完或者单元测试没有测试完毕，则会跳票，希望理解。
 
+## 自动布局简要介绍
+
+###### 自动布局之前
+
+![](http://7xojjf.com1.z0.glb.clouddn.com/autolayout%E5%89%8D_meitu_1.jpg)
+
+###### 自动布局之后
+
+![](http://7xojjf.com1.z0.glb.clouddn.com/autolayout%E4%B9%8B%E5%90%8E_meitu_2.jpg)
+
+> 还有一些细节没有完善好，所以没有放出来。
+
 ## 注意
 
 * [wiki](http://laravel-admin.mydoc.io/?t=32996)
