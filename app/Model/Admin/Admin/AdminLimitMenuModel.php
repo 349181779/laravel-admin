@@ -10,6 +10,8 @@
 
 namespace App\Model\Admin\Admin;
 
+use App\Library\Cache;
+
 class AdminLimitMenuModel extends BaseModel
 {
 
