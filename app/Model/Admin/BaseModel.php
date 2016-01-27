@@ -69,7 +69,11 @@ class BaseModel extends Model
         foreach ($arr as $key => $value) {
             //判断$arr
             if(is_array($value)){
-                $value[0] = strtolower($value[0]);
+                $value[0] = trim(strtolower($value[0]));
+
+                //如果参数不正确，则跳过
+                if (self::matchMapValue($value[0], $value) == false ) continue;
+
                 switch($value[0]){
                     case 'like';
                         $query = $query->where($key, $value[0] ,$value[1]);
@@ -77,16 +81,98 @@ class BaseModel extends Model
                     case 'in':
                         $query = $query->whereIn($key, $value[1]);
                         break;
+                    case 'not in':
+                        $query = $query->whereNotIn($key, $value[1]);
+                        break;
                     case 'between':
                         $query = $query->whereBetween($key, [$value[1][0], $value[1][1]]);
                         break;
+                    case 'not between':
+                        $query = $query->whereNotBetween($key, [$value[1][0], $value[1][1]]);
+                        break;
+                    case 'null':
+                        $query = $query->whereNull($key);
+                        break;
+                    case 'or':
+                        $query = $query->orWhere(function($query) use ($value) {
+                            self::mergeWhereOrMap($value, $query);
+                        });
+                        break;
                     default:
-                        $query = $query->where($key, $value[0], $value[1]);
+                        if (is_array($value) && !empty($value) ) {
+                            $query = $query->where($key, $value[0], $value[1]);
+                        } else {
+                            $query = $query->where($key, '=', $value);
+                        }
+
                         break;
                 }
             }else{
                 $query = $query->where($key, $value);
             }
+        }
+        return $query;
+    }
+
+    /**
+     * 匹配map条件是否正确
+     *
+     * @param $type
+     * @param $value
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function matchMapValue($type, $value)
+    {
+        if (in_array($type, ['in', 'not in'] )) {
+            //如果不是数组，则跳过档次循环
+            if (empty($value[1]) || !is_array($value[1])) {
+                return false;
+            }
+        } elseif (in_array($type, ['between', 'not between'] )) {
+            //如果不是数组，则跳过档次循环
+            if (empty($value[1]) || !is_array($value[1])) {
+                return false;
+            }
+        } elseif (in_array($type, ['or']) ) {
+            //如果不是数组，则跳过档次循环
+            if (empty($value) || !is_array($value)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 组合 whereOr map 条件
+     *
+     * @param $value
+     * @param $query
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function mergeWhereOrMap($value, $query)
+    {
+        if (is_array($value)) {
+            foreach ($value as $map) {
+                $query = self::mergeWhereOrMapForOnes($map, $query);
+            }
+        }
+        return $query;
+    }
+
+    /**
+     * 组合单条 whereOr map条件
+     *
+     * @param $map
+     * @param $query
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function mergeWhereOrMapForOnes($map, $query)
+    {
+        if (is_array($map)) {
+            return $query->orWhere($map[0], $map[1], $map[2]);
         }
         return $query;
     }

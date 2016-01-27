@@ -10,6 +10,8 @@
 
 namespace App\Model\Admin\Admin;
 
+use App\Library\Cache;
+
 class AdminLimitMenuModel extends BaseModel
 {
 
@@ -50,6 +52,8 @@ class AdminLimitMenuModel extends BaseModel
             }
             self::insert($data);
         }
+        //删除缓存
+        Cache::clearAll();
         return true;
     }
 

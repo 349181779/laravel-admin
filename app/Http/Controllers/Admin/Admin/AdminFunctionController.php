@@ -162,7 +162,7 @@ class AdminFunctionController extends BaseController
      */
     public function postUpdateLimitFunction(Request $request){
         $status = AdminLimitFunctionModel::updateUserLimitMenu($request->get('function_id'), $request->get('limit_id', null));
-        return $status == true ? $this->response($code = 200, $msg = trans('response.update_user_access_success')) : $this->response(self::ERROR_STATE_CODE, trans('response.update_user_access_error'));
+        return $status == true ? $this->response($code = self::SUCCESS_STATE_CODE, $msg = trans('response.update_user_access_success')) : $this->response(self::ERROR_STATE_CODE, trans('response.update_user_access_error'));
 
     }
 
