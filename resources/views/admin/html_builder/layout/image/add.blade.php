@@ -1,7 +1,8 @@
 <div class="form-group">
-    <label
-            class="col-sm-3 control-label"><strong><?php echo $schema['title']; ?>
-            ：</strong></label>
+
+    <!-- 左侧 -->
+    <label class="col-sm-2 control-label"><?php echo $schema['title'] ? $schema['title'] . ':' : ''; ?></label>
+    <!-- 左侧 -->
 
     <div class="col-sm-3">
         <div class="col-xs-6 col-md-6">

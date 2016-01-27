@@ -1,24 +1,35 @@
+<div class="form-group" id="<?php echo $schema['name']; ?>_parent" >
 
-<div class="form-group">
-    <label class="col-sm-3 control-label"><?php echo $schema['title']; ?>
-        ：</label>
+    <!-- 左侧 -->
+    <label class="col-sm-2 control-label"><?php echo $schema['title'] ? $schema['title'] . ':' : ''; ?></label>
+    <!-- 左侧 -->
 
-    <div class="col-sm-9">
+    <!-- 右侧 -->
+    <div class="col-sm-5 last_child_div">
         <div class="skin skin-flat">
+
             <?php if ($schema['option']): ?>
-            <?php foreach ($schema['option'] as $key => $option): ?>
-            <label for="<?php echo $schema['name']; ?>_<?php echo $key; ?>" class="radio-inline">
-                <input type="radio"
-                       id="<?php echo $schema['name']; ?>_<?php echo $key; ?>"
-                       name="<?php echo $schema['name']; ?>"
-                       value="<?php echo $key; ?>" <?php if ($schema['option_value_schema'] == $key) {
-                    echo 'checked="checked"';
-                } ?> aria-describedby="help-block" tabindex="11"/>
-                <?php echo $option; ?>
-            </label>
-            <?php endforeach; ?>
+                <?php foreach ($schema['option'] as $key => $option): ?>
+                    <label for="<?php echo $schema['name']; ?>_<?php echo $key; ?>" class="radio-inline">
+                        <input type="radio"
+                               id="<?php echo $schema['name']; ?>_<?php echo $key; ?>"
+                               name="<?php echo $schema['name']; ?>"
+                               value="<?php echo $key; ?>"
+                               <?php if ($schema['option_value_schema'] == $key) {
+                                echo 'checked="checked"';
+                                } ?>
+                               aria-describedby="help-block"
+                               tabindex="11"/>
+                        <?php echo $option; ?>
+                    </label>
+                <?php endforeach; ?>
             <?php endif; ?>
-            <span class="help-block"><?php echo $schema['notice']; ?></span>
+
+            <!-- 表单提示 -->
+                <span class="help-block"><?php echo $schema['notice']; ?></span>
+            <!-- 表单提示 -->
         </div>
     </div>
+    <!-- 右侧 -->
+
 </div>

@@ -1,10 +1,18 @@
 <div class="form-group">
-    <label
-            class="col-sm-3 control-label"><strong><?php echo $schema['title']; ?>
-            ：</strong></label>
 
-    <div class="col-sm-3">
-        <span><?php echo $schema['default']; ?><?php echo $schema['default']; ?></span>
+    <!-- 左侧 -->
+    <label class="col-sm-2 control-label"><?php echo $schema['title'] ? $schema['title'] . ':' : ''; ?></label>
+    <!-- 左侧 -->
+
+    <!-- 右侧 -->
+    <div class="col-sm-4 last_child_div">
+        <span><?php echo $data->$schema['name'] === '' ? $schema['default'] : $data->$schema['name']; ?></span>
+
+        <!-- 表单提示 -->
         <span class="help-block"><?php echo $schema['notice']; ?></span>
+        <!-- 表单提示 -->
+
     </div>
+    <!-- 右侧 -->
+
 </div>
