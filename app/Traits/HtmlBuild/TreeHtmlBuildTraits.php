@@ -48,6 +48,16 @@ trait TreeHtmlBuildTraits
     }
 
     /**
+     * 分享数据到视图
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function shareTreeData()
+    {
+        view()->share($this->getBuildTreeData());
+    }
+
+    /**
      * 构建 tree 页面
      *
      * @param array $data
@@ -57,6 +67,8 @@ trait TreeHtmlBuildTraits
      */
     public function builderTree()
     {
-        return View('admin/html_builder/tree/tree', $this->getBuildTreeData() );
+        //分享数据到视图
+        $this->shareTreeData();
+        return View('admin/html_builder/tree/tree');
     }
 }

@@ -50,6 +50,16 @@ trait EditHtmlBuildTraits
     }
 
     /**
+     * 分享数据到视图
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function shareEditData()
+    {
+        view()->share($this->getBuildEditData());
+    }
+
+    /**
      * 构建HTML编辑页
      *
      * @return Response
@@ -57,7 +67,9 @@ trait EditHtmlBuildTraits
      */
     public function builderEditForm()
     {
-        return View('admin/html_builder/edit/edit_form', $this->getBuildEditData() );
+        //分享数据到视图
+        $this->shareEditData();
+        return View('admin/html_builder/edit/edit_form')->render();
     }
 
     /**
@@ -68,7 +80,9 @@ trait EditHtmlBuildTraits
      */
     public function builderEdit()
     {
-        return View('admin/html_builder/edit/edit', $this->getBuildEditData() );
+        //分享数据到视图
+        $this->shareEditData();
+        return View('admin/html_builder/edit/edit');
     }
 
 }

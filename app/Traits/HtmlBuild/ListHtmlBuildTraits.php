@@ -26,7 +26,7 @@ trait ListHtmlBuildTraits
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderSchema($schame, $comment, $type = self::SCHAME_STRING, $class = '', $url = '', $is_sort = 'false')
+    public function builderSchema($schame, $comment, $type = self::SCHAME_STRING , $class = '', $url = '', $is_sort = 'false')
     {
         $this->schemas[$schame]  = [
             'comment'   => $comment,
@@ -108,6 +108,16 @@ trait ListHtmlBuildTraits
     }
 
     /**
+     * 分享数据到视图
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function shareListData()
+    {
+        view()->share($this->getBuilderListData());
+    }
+
+    /**
      * 构建HTML列表页
      *
      * @return Response
@@ -115,7 +125,9 @@ trait ListHtmlBuildTraits
      */
     public function builderList()
     {
-        return View('admin/html_builder/list/list', $this->getBuilderListData());
+        //分享数据到视图
+        $this->shareListData();
+        return View('admin/html_builder/list/list');
     }
 
 }

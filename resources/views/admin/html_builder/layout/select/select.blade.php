@@ -5,7 +5,7 @@
     <!-- 左侧 -->
 
     <!-- 右侧 -->
-    <div class="col-sm-3 last_child_div">
+    <div class="col-sm-4 last_child_div">
         <div class="skin skin-flat">
             <div class="row">
 

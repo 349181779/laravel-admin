@@ -34,13 +34,25 @@ trait AddHtmlBuildTraits
     }
 
     /**
+     * 分享数据到视图
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function shareAddData()
+    {
+        view()->share($this->getBuildAddData());
+    }
+
+    /**
      * 构建HTML新增页页面表单
      *
      * @return \Illuminate\View\View
      */
     public function builderAddForm()
     {
-        return View('admin/html_builder/add/add_form', $this->getBuildAddData() );
+        //分享数据到视图
+        $this->shareAddData();
+        return View('admin/html_builder/add/add_form')->render();
     }
 
     /**
@@ -51,6 +63,8 @@ trait AddHtmlBuildTraits
      */
     public function builderAdd()
     {
-        return View('admin/html_builder/add/add', $this->getBuildAddData() );
+        //分享数据到视图
+        $this->shareAddData();
+        return View('admin/html_builder/add/add');
     }
 }

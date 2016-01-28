@@ -18,6 +18,7 @@ trait AttributeHtmlBuildTraits
     public $keywords            = '';//网站关键字
     public $search_schema       = [];//列表页搜索字段
     public $list_buttons        = [];//按钮组
+    public $data                = [];//数据
 
     public $bottuns             = [];//按钮
     public $form_schema         = [];//form表单字段
@@ -25,4 +26,35 @@ trait AttributeHtmlBuildTraits
 
     public $build_html_type     = ['list', 'add', 'edit', 'tree', 'tab'];//构建页面的类型
 
+    /**
+     * 初始化 表单 schema
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function resetFormSchema()
+    {
+        $this->form_schema = [];
+    }
+
+    /**
+     * 初始化数据
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function resetData()
+    {
+        $this->data = [];
+    }
+
+    /**
+     * 初始化
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function reset()
+    {
+        $this->resetFormSchema();
+        $this->resetData();
+        return $this;
+    }
 }

@@ -15,7 +15,7 @@
                 }; ?>
                 errormsg="<?php echo $schema['err_message']; ?>"
                 class=" form-control <?php echo $schema['class']; ?>"
-                 ><?php echo $data->$schema['name'] == '' ? $schema['default'] : $data->$schema['name'];; ?></textarea>
+                 ><?php echo !isset($data->$schema['name']) ? $schema['default'] : $data->$schema['name'];; ?></textarea>
 
         <!-- 表单提示 -->
         <span class="help-block"><?php echo $schema['notice']; ?></span>

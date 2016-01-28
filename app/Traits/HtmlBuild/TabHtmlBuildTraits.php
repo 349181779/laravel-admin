@@ -83,6 +83,16 @@ trait TabHtmlBuildTraits
     }
 
     /**
+     * 分享数据到视图
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function shareTabData()
+    {
+        view()->share($this->getBuildTabData());
+    }
+
+    /**
      * 构建Tab HTML页面
      *
      * @param array $urls
@@ -91,7 +101,9 @@ trait TabHtmlBuildTraits
      */
     public function builderTabHtml($method = 'post', $post_url = '')
     {
-        return View('admin/html_builder/tab/tab', $this->getBuildTabData($method, $post_url) );
+        //分享数据到视图
+        $this->shareTabData();
+        return View('admin/html_builder/tab/tab');
     }
 
 }
