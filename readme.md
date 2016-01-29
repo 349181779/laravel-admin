@@ -1,5 +1,6 @@
 ## 开始
 
+* [wiki](https://tyua07.gitbooks.io/laravel-admin-wiki/content/)
 * [安装教程](http://blog.womenshuo.com/?p=162)
 * [视频地址（字幕版）](http://pan.baidu.com/s/1i41oUTR)，视频是在docker环境下面操作的，如果不会docker，可以自己用自己的本地环境即可。
 * [LNMP Dockerfile地址](https://github.com/tyua07/centsos_7_lnmp)
@@ -278,7 +279,6 @@
 
 ## 注意
 
-* [wiki](http://laravel-admin.mydoc.io/?t=32996)
 * 代码在继续完善中，已经用于生产环境使用，很多细节待完善，文档也会慢慢更新的！
 * 需要下载一份sql执行到你的本地，然后使用这份sql的数据,sql地址保存在"资料文件"--> laravel.sql
 * email:yangyifanphp@gmail.com
