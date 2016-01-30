@@ -1,6 +1,6 @@
 ## 开始
 
-* [wiki](https://tyua07.gitbooks.io/laravel-admin-wiki/content/)
+* [wiki](http://wiki.laravel-administrotar.com/)
 * [安装教程](http://blog.womenshuo.com/?p=162)
 * [视频地址（字幕版）](http://pan.baidu.com/s/1i41oUTR)，视频是在docker环境下面操作的，如果不会docker，可以自己用自己的本地环境即可。
 * [LNMP Dockerfile地址](https://github.com/tyua07/centsos_7_lnmp)
