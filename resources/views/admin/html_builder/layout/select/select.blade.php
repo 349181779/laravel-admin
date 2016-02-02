@@ -13,7 +13,7 @@
                 <div class="col-sm-10">
                     <select class="form-control"
                             <?php if($schema['read_only'] == true):?>
-                            readonly="readonly"
+                                readonly="readonly"
                             <?php endif;?>
                             <?php if($schema['disabled'] == true):?>
                             disabled="disabled"

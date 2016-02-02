@@ -91,6 +91,7 @@ trait FormHtmlBuildTraits
 
     //设置表单为只读
     use ReadOnlyFormHtmlBuildTraits;
+    //设置表单禁用
     use DisabledFormHtmlBuildTraits;
 
 }
