@@ -40,6 +40,23 @@ class BaseController extends Controller
         $this->enableQueryLog();
         //设置语言
         $this->setLocale();
+        //设置错误级别
+        $this->setErrorLevel();
+    }
+
+    /**
+     * 设置错误级别
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function setErrorLevel()
+    {
+        //如果不是debug模式，则关闭waring
+        if (env('APP_DEBUG', false) == true) {
+            error_reporting(E_ALL ^ E_NOTICE);
+        } else {
+            error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+        }
     }
 
     /**

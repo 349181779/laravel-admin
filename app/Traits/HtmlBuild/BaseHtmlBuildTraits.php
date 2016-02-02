@@ -10,6 +10,8 @@
 
 namespace App\Traits\HtmlBuild;
 
+use App\Traits\HtmlBuild\Form\FormHtmlBuildTraits;
+
 trait BaseHtmlBuildTraits
 {
     public $method              = 'post';//当前表单提交method
@@ -67,15 +69,16 @@ trait BaseHtmlBuildTraits
     }
 
     /**
-     * 加载js脚本文件（采用 elixir 加载，这样会有版本号）
+     * 加载js脚本文件（默认采用 elixir 加载，这样会有版本号，如果$type = false 则直接从网站根目录去链接）
      *
      * @param string $scription
+     * @param boolean $type 是否采用 elixir
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function loadScription($scription = '')
+    public function loadScription($scription = '', $type = true)
     {
-        $this->scription[] = elixir($scription);
+        $this->scription[] = $type === true ? elixir($scription) : substr($scription, 0, 1) != '/' ? '/' . $scription : $scription;
         return $this;
     }
 
@@ -100,39 +103,7 @@ trait BaseHtmlBuildTraits
         return $this;
     }
 
-    /**
-     * 构建表单字段
-     *
-     * @param $name                 表单name
-     * @param $title                表单名称
-     * @param $type                 表单类型
-     * @param $default              表单默认值
-     * @param $notice               表单提示
-     * @param $class                表单class
-     * @param $rule                 表单验证规则
-     * @param $err_message          表单验证提示文字
-     * @param $option               选项
-     * @param $option_value_schema  选项默认值
-     * @param $attr                 属性 数组格式
-     * @return $option_value_name   下拉列表框选项名称
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function builderFormSchema($name, $title, $type = 'text', $default = '',  $notice = '', $class = '', $rule = '*', $err_message = '', $option = '', $option_value_schema = '', $option_value_name = '', $attr = [])
-    {
-        array_push($this->form_schema, [
-            'name'                  => $name,
-            'title'                 => $title,
-            'type'                  => $type,
-            'default'               => $default,
-            'notice'                => $notice,
-            'class'                 => $class,
-            'rule'                  => $rule,
-            'err_message'           => $err_message,
-            'option'                => $option,
-            'option_value_schema'   => $option_value_schema,
-            'option_value_name'     => $option_value_name,
-            'attr'                  => $attr,
-        ]);
-        return $this;
-    }
+    //加载表单对象
+    use FormHtmlBuildTraits;
+
 }

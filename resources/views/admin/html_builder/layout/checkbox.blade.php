@@ -16,7 +16,13 @@
                                 value="<?php echo $key; ?>" <?php if (in_array($key, $schema['option_value_schema'])) {
                                     echo 'checked="checked"';
                                 } ?> aria-describedby="help-block" tabindex="11"
-                               id="flat-checkbox-1"
+                                id="flat-checkbox-1"
+                                <?php if($schema['read_only'] == true):?>
+                                    readonly="readonly"
+                                <?php endif;?>
+                                <?php if($schema['disabled'] == true):?>
+                                    disabled="disabled"
+                                <?php endif;?>
                         />
                         <?php echo $value; ?>
                     </label>

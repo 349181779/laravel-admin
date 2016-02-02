@@ -16,6 +16,12 @@
                }; ?>
                errormsg="<?php echo $schema['err_message']; ?>"
                class="form-control <?php echo $schema['class']; ?>"
+               <?php if($schema['read_only'] == true):?>
+               readonly="readonly"
+               <?php endif;?>
+               <?php if($schema['disabled'] == true):?>
+               disabled="disabled"
+               <?php endif;?>
                autocomplete="false"
         >
 

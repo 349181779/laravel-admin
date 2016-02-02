@@ -19,6 +19,12 @@
                                 echo 'checked="checked"';
                                 } ?>
                                aria-describedby="help-block"
+                               <?php if($schema['read_only'] == true):?>
+                               readonly="readonly"
+                               <?php endif;?>
+                               <?php if($schema['disabled'] == true):?>
+                               disabled="disabled"
+                               <?php endif;?>
                                tabindex="11"/>
                         <?php echo $option; ?>
                     </label>

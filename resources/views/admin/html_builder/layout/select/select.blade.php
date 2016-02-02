@@ -12,6 +12,9 @@
                 <!-- 下拉列表框 -->
                 <div class="col-sm-10">
                     <select class="form-control"
+                            <?php if($schema['read_only'] == true):?>
+                            readonly="readonly"
+                            <?php endif;?>
                             name="<?php echo $schema['name']; ?>">
                             <?php if ($schema['option']): ?>
                                 <?php foreach ($schema['option'] as $k => $option): ?>

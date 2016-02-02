@@ -16,6 +16,12 @@
                     echo 'datatype=' . $schema['rule'];
                 }; ?>
                errormsg="<?php echo $schema['err_message']; ?>"
+               <?php if($schema['read_only'] == true):?>
+               readonly="readonly"
+               <?php endif;?>
+               <?php if($schema['disabled'] == true):?>
+               disabled="disabled"
+               <?php endif;?>
                class="form-control <?php echo $schema['class']; ?>"
         >
 

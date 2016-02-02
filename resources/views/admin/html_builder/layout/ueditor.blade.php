@@ -10,6 +10,12 @@
                   id="<?php echo $schema['name']; ?>"
                   datatype="<?php echo $schema['rule']; ?>"
                   errormsg="<?php echo $schema['err_message']; ?>"
+                  <?php if($schema['read_only'] == true):?>
+                  readonly="readonly"
+                  <?php endif;?>
+                  <?php if($schema['disabled'] == true):?>
+                  disabled="disabled"
+                  <?php endif;?>
                   class=" <?php echo $schema['class']; ?>"><?php echo $data->$schema['name'] == '' ? $schema['default'] : $data->$schema['name'];; ?> </textarea>
 
         <!-- 实例化编辑器 -->

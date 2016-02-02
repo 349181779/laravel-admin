@@ -9,6 +9,12 @@
         <input type="text"
                name="search_name_xxxxx"
                value="<?php echo $schema['default']; ?>"
+               <?php if($schema['read_only'] == true):?>
+               readonly="readonly"
+               <?php endif;?>
+               <?php if($schema['disabled'] == true):?>
+               disabled="disabled"
+               <?php endif;?>
                class="form-control <?php echo $schema['class']; ?>"
         >
     </div>
