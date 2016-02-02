@@ -15,6 +15,9 @@
                             <?php if($schema['read_only'] == true):?>
                             readonly="readonly"
                             <?php endif;?>
+                            <?php if($schema['disabled'] == true):?>
+                            disabled="disabled"
+                            <?php endif;?>
                             name="<?php echo $schema['name']; ?>">
                             <?php if ($schema['option']): ?>
                                 <?php foreach ($schema['option'] as $k => $option): ?>
