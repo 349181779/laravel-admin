@@ -32,10 +32,14 @@ class AutoBuildServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		//设置路由
-		$this->setupRoutes();
-		//发布视图
-		$this->loadViewsFrom(__DIR__ .'/Views', 'auto_build');
+		//如果是非debug模式,则不开启
+		if (config('app.debug') == true) {
+			//设置路由
+			$this->setupRoutes();
+			//发布视图
+			$this->loadViewsFrom(__DIR__ .'/Views', 'auto_build');
+		}
+
 	}
 
 	/**

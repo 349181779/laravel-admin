@@ -175,7 +175,7 @@ class BuildRequestModel extends BaseModel
                 "between"           => ["between:%d,%d", "必须在%d-%d之间"],
                 "confirmed"         => ["confirmed_%s", "重复的%s不正确"],
                 "date"              => "时间格式不正确",
-                "date_format"       => "时间格式不正确",
+                "date_format"       => ["date_format:%s" , "时间格式不正确"],
                 "different"         => ["different:%s", "不能和%s相同"],
                 "digits"            => ["digits:%d", "字段必须是数字,并且长度为%d"],
                 "digits_between"    => ["digits_between:%d,%d", "字段必须是数并，且长度在%d-%d之间"],
@@ -192,7 +192,7 @@ class BuildRequestModel extends BaseModel
                 "not_in"            => ["not_in:%s", "不能在%s其中"],
                 "numeric"           => "必须是数字",
                 "regex"             => ["regex:%s", "格式不正确"],
-                "required"          => ["required", "%s不能为空"],
+                "required"          => ["required:%s", "%s不能为空"],
                 //required_if:field,value
                 //required_with:foo,bar,...
                 //required_with_all:foo,bar,...

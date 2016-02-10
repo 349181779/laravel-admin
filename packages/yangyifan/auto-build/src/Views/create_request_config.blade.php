@@ -15,6 +15,7 @@
 	<style>
 		body{background: #fff;  }
         form{margin: 20px 0;}
+        .rule_list{margin-bottom: 10px;}
 	</style>
 </head>
 <body>
@@ -40,10 +41,10 @@
                             <div class="col-sm-9 rule_parent_div">
                                 <div class="row">
                                     <div class="col-sm-12 rule_list">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6 col-xs-10 form-inline">
                                             <a href="javascript:void(0)" class="btn btn-default copyRuleBtn" onclick="copyRuleDom(this)">+</a>
                                             <span>表单验证规则:</span>
-                                            <select onchange="createRuleParam(this)" class="form-control" name="<?php echo $schema['col_name'];?>[rule][rule][]" data-name="<?php echo $schema['col_name'];?>[rule][params]">
+                                            <select onchange="createRuleParam(this)" style="width: 150px;" class="form-control" name="<?php echo $schema['col_name'];?>[rule][rule][]" data-name="<?php echo $schema['col_name'];?>[rule][params]">
                                                 <option value="">请选择</option>
                                                 <?php if(!empty($all_rule)):?>
                                                 <?php foreach ($all_rule as $type => $rule) :?>
@@ -130,7 +131,6 @@
     CreateRuleParam.prototype.mathRule = function ()
     {
         var rule_arr = this.params_string.match(/\%[a-z]/g);
-
         if (rule_arr.length > 0 ) {
             //移除全部子元素
             this.removeRuleChild();
@@ -157,7 +157,7 @@
         index++;
 
         $div = $('<div class="col-sm-3"></div>');
-        $div.append('<span>参数'+index+'<span>');
+        //$div.append('<span>参数'+index+'<span>');
         $div.append($dom);
         return $div;
     }
@@ -178,9 +178,9 @@
 
         switch ($match_rule) {
             case "%s":
-                return $input = $('<input type="text" name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
+                return $input = $('<input type="text" placeholder="参数'+index+'"  name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
             case "%d":
-                return $input = $('<input type="number" name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
+                return $input = $('<input type="number" placeholder="参数'+index+'" name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
         }
     }
 
