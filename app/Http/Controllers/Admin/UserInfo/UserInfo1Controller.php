@@ -81,7 +81,9 @@ class UserInfo1Controller extends BaseController {
 				 buildFormDefaultValue("dateFmt:'yyyy-MM-dd'")->
 				 buildFormRule('e')->
 				buildFormErrorMessage("自定义错误条件")->
-				 builderFormSchema('status1', '是否显示【1:未确认；2：已确认】', $type = 'radio', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				builderFormSchema('access', '权限设置', 'multiSelect')->
+				buildFormMultiSelectDataSource(UserInfo1Model::select('id', 'created_at')->multiwhere(['status' => 2, 'id' => ['!=', $data->id] ])->get(), UserInfo1Model::multiwhere(['id' => $data->id])->get(), 'created_at')->
+		builderFormSchema('status1', '是否显示【1:未确认；2：已确认】', $type = 'radio', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildDataSource([1=>'开启', '2'=>'关闭'], 1)->
 				builderFormSchema('status2', '是否显示【1:未确认；2：已确认】', $type = 'checkbox', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildDataSource([1=>'开启', '2'=>'关闭'], [1, 2])->

@@ -219,6 +219,7 @@ elixir(function(mix) {
         mix.copy('resources/assets/layer-v1.9.3/layer/skin', 'public/build/dist/skin/');
         mix.copy('resources/assets/my97-date', 'public/my97-date');
         mix.copy('resources/assets/assets/js/dropZone/downloads/images', 'public/build/images');
+        mix.copy('resources/assets/multiSelect', 'public/multiSelect');
 
 
 

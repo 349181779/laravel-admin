@@ -18,6 +18,7 @@ use App\Traits\HtmlBuild\Form\AttrFunction\SetDateFormatFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetClassFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetRuleFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetErrorMessageFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetMultiSelectDataSourceFormHtmlBuildTraits;
 
 trait FormHtmlBuildTraits
 {
@@ -111,5 +112,7 @@ trait FormHtmlBuildTraits
     use SetRuleFormHtmlBuildTraits;
     //表单js验证规则错误时提示文字
     use SetErrorMessageFormHtmlBuildTraits;
+    //设置双向选择器数据源
+    use SetMultiSelectDataSourceFormHtmlBuildTraits;
 
 }
