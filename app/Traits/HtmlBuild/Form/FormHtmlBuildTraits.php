@@ -13,7 +13,11 @@ namespace App\Traits\HtmlBuild\Form;
 use App\Traits\HtmlBuild\Form\AttrFunction\ReadOnlyFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\DisabledFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetDataSourceHtmlBuildTraits;
-use App\Traits\HtmlBuild\Form\AttrFunction\DefaultValueFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetDefaultValueFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetDateFormatFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetClassFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetRuleFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetErrorMessageFormHtmlBuildTraits;
 
 trait FormHtmlBuildTraits
 {
@@ -98,5 +102,14 @@ trait FormHtmlBuildTraits
     //设置表单数据源
     use SetDataSourceHtmlBuildTraits;
     //设置表单默认值
-    use DefaultValueFormHtmlBuildTraits;
+    use SetDefaultValueFormHtmlBuildTraits;
+    //设置时间表单的时间格式
+    use SetDateFormatFormHtmlBuildTraits;
+    //设置表单class
+    use SetClassFormHtmlBuildTraits;
+    //验证表单规则
+    use SetRuleFormHtmlBuildTraits;
+    //表单js验证规则错误时提示文字
+    use SetErrorMessageFormHtmlBuildTraits;
+
 }

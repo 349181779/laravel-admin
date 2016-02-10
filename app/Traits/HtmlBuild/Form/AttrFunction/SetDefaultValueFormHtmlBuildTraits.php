@@ -3,14 +3,14 @@
 // +----------------------------------------------------------------------
 // | date: 2016-02-10
 // +----------------------------------------------------------------------
-// | DefaultValueFormHtmlBuildTraits.php: 设置表单默认值
+// | SetDefaultValueFormHtmlBuildTraits.php: 设置表单默认值
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Traits\HtmlBuild\Form\AttrFunction;
 
-trait DefaultValueFormHtmlBuildTraits
+trait SetDefaultValueFormHtmlBuildTraits
 {
     /**
      * 设置表单默认值

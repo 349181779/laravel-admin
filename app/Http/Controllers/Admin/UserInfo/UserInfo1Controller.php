@@ -78,7 +78,9 @@ class UserInfo1Controller extends BaseController {
 				 builderFormSchema('user_info_id', '邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('invitee', '被邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('created_at', '创建时间', $type = 'date', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
-				buildFormDefaultValue("dateFmt:'yyyy-MM-dd'")->
+				 buildFormDefaultValue("dateFmt:'yyyy-MM-dd'")->
+				 buildFormRule('e')->
+				buildFormErrorMessage("自定义错误条件")->
 				 builderFormSchema('status1', '是否显示【1:未确认；2：已确认】', $type = 'radio', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildDataSource([1=>'开启', '2'=>'关闭'], 1)->
 				builderFormSchema('status2', '是否显示【1:未确认；2：已确认】', $type = 'checkbox', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
