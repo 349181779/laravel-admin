@@ -6,7 +6,7 @@
 
     <!-- 右侧 -->
     <div class="col-sm-4 last_child_div">
-        <span><?php echo !isset($data->$schema['name']) ? $schema['default'] : $data->$schema['name']; ?></span>
+        <span><?php echo !empty($schema['default']) ? $schema['default'] : $data->$schema['name']; ?></span>
 
         <!-- 表单提示 -->
         <span class="help-block"><?php echo $schema['notice']; ?></span>

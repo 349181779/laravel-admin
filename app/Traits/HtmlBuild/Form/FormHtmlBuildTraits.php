@@ -12,6 +12,8 @@ namespace App\Traits\HtmlBuild\Form;
 
 use App\Traits\HtmlBuild\Form\AttrFunction\ReadOnlyFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\DisabledFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetDataSourceHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\DefaultValueFormHtmlBuildTraits;
 
 trait FormHtmlBuildTraits
 {
@@ -93,5 +95,8 @@ trait FormHtmlBuildTraits
     use ReadOnlyFormHtmlBuildTraits;
     //设置表单禁用
     use DisabledFormHtmlBuildTraits;
-
+    //设置表单数据源
+    use SetDataSourceHtmlBuildTraits;
+    //设置表单默认值
+    use DefaultValueFormHtmlBuildTraits;
 }

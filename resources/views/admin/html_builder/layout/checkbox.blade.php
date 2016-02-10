@@ -13,7 +13,7 @@
                         <input  type="checkbox"
                                 id="<?php echo $schema['name']; ?>_<?php echo $key; ?>"
                                 name="<?php echo $schema['name']; ?>"
-                                value="<?php echo $key; ?>" <?php if (in_array($key, $schema['option_value_schema'])) {
+                                value="<?php echo $key; ?>" <?php if (!empty($schema['option_value_schema']) && in_array($key, $schema['option_value_schema'])) {
                                     echo 'checked="checked"';
                                 } ?> aria-describedby="help-block" tabindex="11"
                                 id="flat-checkbox-1"

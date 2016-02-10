@@ -71,13 +71,23 @@ class UserInfo1Controller extends BaseController {
 	 */
 	public function getEdit(Request $request) {
 		$data = UserInfo1Model::find($request->get('id'));
-		
+
 		return	 $this->html_builder->
 				 builderTitle('编辑页面')->
+				 builderFormSchema('id', 'id', 'checkbox')->
 				 builderFormSchema('user_info_id', '邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('invitee', '被邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
-				 builderFormSchema('created_at', '创建时间', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
-				 builderFormSchema('status', '是否显示【1:未确认；2：已确认】', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 builderFormSchema('created_at', '创建时间', $type = 'date', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				buildFormDefaultValue("dateFmt:'yyyy-MM-dd'")->
+				 builderFormSchema('status1', '是否显示【1:未确认；2：已确认】', $type = 'radio', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 buildDataSource([1=>'开启', '2'=>'关闭'], 1)->
+				builderFormSchema('status2', '是否显示【1:未确认；2：已确认】', $type = 'checkbox', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 buildDataSource([1=>'开启', '2'=>'关闭'], [1, 2])->
+				builderFormSchema('status3', '是否显示【1:未确认；2：已确认】', $type = 'select', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 buildDataSource([ [ 'id' => 1, 'name' => '开启'], ['id' => 2, 'name' => '关闭']], 1, 'name')->
+				 builderFormSchema('sasa', '是否显示【1:未确认；2：已确认】', $type = 'ckeditor', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 buildFormDefaultValue('sasa')->
+
 				 builderEditData($data)->
 				 builderConfirmBotton('确认', '', 'btn btn-success')->
 				 builderEdit();
@@ -102,7 +112,7 @@ class UserInfo1Controller extends BaseController {
 				 builderSearchSchema('invitee', '被邀请者', $type = 'text')->
 				 builderSearchSchema('created_at', '创建时间', $type = 'text')->
 				 builderSearchSchema('status', '是否显示【1:未确认；2：已确认】', $type = 'text')->
-				 builderBotton('确认', '')->
+				 builderBotton('确认', createUrl('Admin\UserInfo\UserInfo1Controller@getAdd'))->
 				 builderJsonDataUrl(createUrl('Admin\UserInfo\UserInfo1Controller@getSearch'))->
 				 builderList();
 	}

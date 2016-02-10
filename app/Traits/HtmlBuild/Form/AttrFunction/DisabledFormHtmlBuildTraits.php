@@ -19,17 +19,17 @@ trait DisabledFormHtmlBuildTraits
      * @param true $type 是否是只读
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    function buildFormDisabled($form_schema_name = null, $type = true)
+    public function buildFormDisabled($form_schema_name = null, $type = true)
     {
         if ( is_null($form_schema_name)) {
             //设置最后一个表单字段为只读
             $this->setFormDisabled(last($this->form_schema), $type);
-        } elseif (!array_key_exists($form_schema_name, $this->form_schema)) {
-            //初始化
-            $this->initializeFormSchema($form_schema_name);
-            //设置指定的表单为只读
-            $this->setFormDisabled($this->form_schema[$form_schema_name], $type);
-        }else {
+        } else {
+            //如果当前表单不存在,则初始化表单
+            if ( !array_key_exists($form_schema_name, $this->form_schema) ) {
+                //初始化
+                $this->initializeFormSchema($form_schema_name);
+            }
             //设置指定的表单为只读
             $this->setFormDisabled($this->form_schema[$form_schema_name], $type);
         }
@@ -44,7 +44,7 @@ trait DisabledFormHtmlBuildTraits
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private function setFormDisabled($form_chema_info, $type = true)
+    private function setFormDisabled($form_chema_info, $type)
     {
         //获得当前表单字段的name名称
         $name = $form_chema_info['name'];

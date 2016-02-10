@@ -1,55 +1,55 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2016-02-02
+// | date: 2016-02-10
 // +----------------------------------------------------------------------
-// | ReadOnlyFormHtmlBuildTraits.php: 设置表单为只读
+// | DefaultValueFormHtmlBuildTraits.php: 设置表单默认值
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace App\Traits\HtmlBuild\Form\AttrFunction;
 
-trait ReadOnlyFormHtmlBuildTraits
+trait DefaultValueFormHtmlBuildTraits
 {
     /**
-     * 设置表单为只读
+     * 设置表单默认值
      *
      * @param null $form_schema_name
-     * @param boolean $type
+     * @param String $default 表单默认值
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function buildFormReadOnly($form_schema_name = null, $type = true)
+    public function buildFormDefaultValue($default = '', $form_schema_name = null)
     {
         if ( is_null($form_schema_name)) {
-            //设置最后一个表单字段为只读
-            $this->setFormReadOnly(last($this->form_schema), $type);
+            //设置最后一个表单字段默认值
+            $this->setFormDefaultValue(last($this->form_schema), $default);
         } else {
             //如果当前表单不存在,则初始化表单
             if ( !array_key_exists($form_schema_name, $this->form_schema) ) {
                 //初始化
                 $this->initializeFormSchema($form_schema_name);
             }
-            //设置指定的表单为只读
-            $this->setFormReadOnly($this->form_schema[$form_schema_name], $type);
+            //设置指定的表单默认值
+            $this->setFormDefaultValue($this->form_schema[$form_schema_name], $default);
         }
         return $this;
     }
 
     /**
-     * 设置当前表单字段为只读属性
+     * 设置当前表单字段默认值
      *
      * @param $form_chema_info
-     * @param true $type 是否是只读
+     * @param String $default_value 表单默认值
      * @return mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private function setFormReadOnly($form_chema_info, $type)
+    private function setFormDefaultValue($form_chema_info, $default_value)
     {
         //获得当前表单字段的name名称
         $name = $form_chema_info['name'];
-        //设置当前表支付字段true
-        $this->form_schema[$name]['read_only'] = $type;
+        //设置当前表单默认值
+        $this->form_schema[$name]['default'] = $default_value;
         return $form_chema_info;
     }
 
