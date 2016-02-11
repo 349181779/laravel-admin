@@ -25,7 +25,7 @@ class BuildRequestModel extends BaseModel
 
         if (!empty($rules_arr)) {
             $body .= "if(\$this->get('id') > 0){ \r\n";
-            $body .=    "\t return [ \r\n";
+            $body .=    "\treturn [ \r\n";
             foreach ($rules_arr as $key => $rule) {
                 if (isset($rule['rule'])) $body .= self::mergeRule($key, $rule['rule']);
             }

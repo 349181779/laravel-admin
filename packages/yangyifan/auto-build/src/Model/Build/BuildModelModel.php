@@ -20,11 +20,11 @@ class BuildModelModel extends BaseModel
     public static function buildMergeBody()
     {
         $body = "";
-        $body .= "\t if (!empty(\$data)) { \r\n";
-        $body .= "\t\t foreach (\$data as &\$v) { \r\n";
-        $body .= "\t\t\t \$v->handle = '<a href=\"\"  >修改</a>';\r\n";
-        $body .= "\t\t } \r\n";
-        $body .= "\t } \r\n";
+        $body .= "\tif (!empty(\$data)) { \r\n";
+        $body .= "\t\tforeach (\$data as &\$v) { \r\n";
+        $body .= "\t\t\t\$v->handle = '<a href=\"\"  >修改</a>';\r\n";
+        $body .= "\t\t} \r\n";
+        $body .= "\t} \r\n";
         $body .= "return \$data;";
 
         return $body;
@@ -39,13 +39,13 @@ class BuildModelModel extends BaseModel
     {
         $body = "";
         $body .= "return [ \r\n";
-        $body .= "\t 'data' =>   self::mergeData( \r\n";
-        $body .= "\t\t self::multiwhere(\$map)-> \r\n";
-        $body .= "\t\t orderBy(\$sort, \$order)-> \r\n";
-        $body .= "\t\t skip(\$offset)-> \r\n";
-        $body .= "\t\t take(\$limit)-> \r\n";
-        $body .= "\t\t get() \r\n";
-        $body .= "\t ), \r\n";
+        $body .= "\t'data' =>   self::mergeData( \r\n";
+        $body .= "\t\tself::multiwhere(\$map)-> \r\n";
+        $body .= "\t\torderBy(\$sort, \$order)-> \r\n";
+        $body .= "\t\tskip(\$offset)-> \r\n";
+        $body .= "\t\ttake(\$limit)-> \r\n";
+        $body .= "\t\tget() \r\n";
+        $body .= "\t), \r\n";
         $body .= "'count' =>  self::multiwhere(\$map)->count(), \r\n";
         $body .= "];";
         return $body;

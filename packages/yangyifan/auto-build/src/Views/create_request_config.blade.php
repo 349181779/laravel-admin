@@ -81,7 +81,18 @@
     function copyRuleDom(obj)
     {
         var _this = $(obj);
-        _this.parents('.rule_list').clone(true).appendTo(_this.parents('.rule_parent_div .row'));
+        var tmp_dom  = _this.parents('.rule_list').clone(true);
+        tmp_dom.find('.copyRuleBtn').replaceWith('<a href="javascript:void(0)" class="btn btn-default copyRuleBtn" onclick="removeRuleDom(this)">-</a>')
+        tmp_dom.appendTo(_this.parents('.rule_parent_div .row'));
+    }
+
+    /**
+     * 删除dom
+     */
+    function removeRuleDom(obj)
+    {
+        var _this = $(obj);
+        _this.parents('.rule_list').remove();
     }
 
     /**
