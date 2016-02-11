@@ -55,6 +55,19 @@ class ConfigRequestModel extends BaseModel
      */
     public static function getRequestConfig($table_name)
     {
+        return self::getConfig($table_name, self::FILE_TYPE);
+    }
+
+    /**
+     * 获得配置json信息(组合后)
+     *
+     * @param $table_name
+     * @param $type
+     * @return bool|mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getMergeReuqestConfig($table_name)
+    {
         return self::mergeSelectRule(self::getConfig($table_name, self::FILE_TYPE));
     }
 

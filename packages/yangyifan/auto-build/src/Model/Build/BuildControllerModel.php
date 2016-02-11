@@ -204,12 +204,12 @@ class BuildControllerModel extends BaseModel
         $body .= "\$data = {$model_name}::find(\$request->get('id'));\r\n";
 
         $body .= "\r\n";
-        $body .= "return\t \$this->html_builder->\r\n";
-        $body .= "\t\t builderTitle('{$title}')->\r\n";
+        $body .= "return\t\$this->html_builder->\r\n";
+        $body .= "\t\tbuilderTitle('{$title}')->\r\n";
         $body .= self::mergeEditPageSchema($schema_arr);
-        $body .= "\t\t builderEditData(\$data)->\r\n";
-        $body .= "\t\t builderConfirmBotton('确认', '', 'btn btn-success')->\r\n";
-        $body .= "\t\t builderEdit();";
+        $body .= "\t\tbuilderEditData(\$data)->\r\n";
+        $body .= "\t\tbuilderConfirmBotton('确认', '', 'btn btn-success')->\r\n";
+        $body .= "\t\tbuilderEdit();";
 
         return $body;
     }
@@ -226,7 +226,7 @@ class BuildControllerModel extends BaseModel
         $body = '';
         if (!empty($schema_arr)) {
             foreach ($schema_arr as $schema) {
-                $body .= "\t\t builderFormSchema('{$schema['name']}', '{$schema['title']}', \$type = '{$schema['type']}', \$default = '{$schema['default']}', \$notice = '{$schema['notice']}', \$class = '{$schema['class']}', \$rule = '{$schema['rule']}', \$err_message = '{$schema['err_message']}')->\r\n";
+                $body .= "\t\tbuilderFormSchema('{$schema['name']}', '{$schema['title']}', \$type = '{$schema['type']}', \$default = '{$schema['default']}', \$notice = '{$schema['notice']}', \$class = '{$schema['class']}', \$rule = '{$schema['rule']}', \$err_message = '{$schema['err_message']}')->\r\n";
             }
         }
         return $body;
@@ -257,11 +257,11 @@ class BuildControllerModel extends BaseModel
     public static function buildGetAddBody($title, $schema_arr = [])
     {
         $body = "";
-        $body .= "return\t \$this->html_builder->\r\n";
-        $body .= "\t\t builderTitle('{$title}')->\r\n";
+        $body .= "return\t\$this->html_builder->\r\n";
+        $body .= "\t\tbuilderTitle('{$title}')->\r\n";
         $body .= self::mergeAddPageSchema($schema_arr);
-        $body .= "\t\t builderConfirmBotton('确认', '', 'btn btn-success')->\r\n";
-        $body .= "\t\t builderAdd();";
+        $body .= "\t\tbuilderConfirmBotton('确认', '', 'btn btn-success')->\r\n";
+        $body .= "\t\tbuilderAdd();";
 
         return $body;
     }
@@ -278,7 +278,7 @@ class BuildControllerModel extends BaseModel
         $body = '';
         if (!empty($schema_arr)) {
             foreach ($schema_arr as $schema) {
-                $body .= "\t\t builderFormSchema('{$schema['name']}', '{$schema['title']}', \$type = '{$schema['type']}', \$default = '{$schema['default']}', \$notice = '{$schema['notice']}', \$class = '{$schema['class']}', \$rule = '{$schema['rule']}', \$err_message = '{$schema['err_message']}')->\r\n";
+                $body .= "\t\tbuilderFormSchema('{$schema['name']}', '{$schema['title']}', \$type = '{$schema['type']}', \$default = '{$schema['default']}', \$notice = '{$schema['notice']}', \$class = '{$schema['class']}', \$rule = '{$schema['rule']}', \$err_message = '{$schema['err_message']}')->\r\n";
             }
         }
         return $body;

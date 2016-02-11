@@ -41,7 +41,7 @@ class RequestController extends BaseController
             'table_name'    => $table_name,//表名称
             'schema_list'   => HomeModel::getSchemaList($table_name),//获得字段列表
             'all_rule'      => BuildRequestModel::getAllRule(),//全部表单验证规则
-            'content'       => ConfigRequestModel::getRequestConfig($table_name),//获得配置内容
+            'content'       => ConfigRequestModel::getMergeReuqestConfig($table_name),//获得配置内容
         ]);
     }
 
