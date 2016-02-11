@@ -37,7 +37,6 @@ class RequestController extends BaseController
     public function getIndex(Request $request)
     {
         $table_name = $request->get('table_name');
-        //dd(ConfigRequestModel::getRequestConfig($table_name));
         return view('auto_build::create_request_config', [
             'table_name'    => $table_name,//表名称
             'schema_list'   => HomeModel::getSchemaList($table_name),//获得字段列表

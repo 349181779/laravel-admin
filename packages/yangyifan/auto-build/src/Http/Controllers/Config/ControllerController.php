@@ -37,11 +37,12 @@ class ControllerController extends BaseController
     public function getIndex(Request $request)
     {
         $table_name = $request->get('table_name');
-
+        //dd(ConfigControllerModel::getControllerConfig($table_name));
         return view('auto_build::create_controller_config', [
             'table_name'    => $table_name,//表名称
             'schema_list'   => HomeModel::getSchemaList($table_name),//获得字段列表
             'form_type'     => BuildControllerModel::$form_type,//表单类型
+            'content'       => ConfigControllerModel::getControllerConfig($table_name),//获得配置信息内容
         ]);
     }
 
