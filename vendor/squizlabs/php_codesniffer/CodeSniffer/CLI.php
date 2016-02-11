@@ -285,6 +285,7 @@ class PHP_CodeSniffer_CLI
         $defaults['bootstrap']       = array();
         $defaults['errorSeverity']   = null;
         $defaults['warningSeverity'] = null;
+        $defaults['stdin']           = null;
 
         $reportFormat = PHP_CodeSniffer::getConfigData('report_format');
         if ($reportFormat !== null) {
@@ -384,6 +385,21 @@ class PHP_CodeSniffer_CLI
         array_shift($args);
 
         $this->setCommandLineValues($args);
+
+        // Check for content on STDIN.
+        $handle = fopen('php://stdin', 'r');
+        if (stream_set_blocking($handle, false) === true) {
+            $fileContents = '';
+            while (($line = fgets(STDIN)) !== false) {
+                $fileContents .= $line;
+            }
+
+            fclose($handle);
+            if (trim($fileContents) !== '') {
+                $this->values['stdin'] = $fileContents;
+            }
+        }
+
         return $this->values;
 
     }//end getCommandLineValues()
@@ -399,7 +415,7 @@ class PHP_CodeSniffer_CLI
     public function setCommandLineValues($args)
     {
         if (defined('PHP_CODESNIFFER_IN_TESTS') === true) {
-            $this->values = array();
+            $this->values = array('stdin' => null);
         } else if (empty($this->values) === true) {
             $this->values = $this->getDefaults();
         }
@@ -758,16 +774,6 @@ class PHP_CodeSniffer_CLI
      */
     public function processUnknownArgument($arg, $pos)
     {
-        // Check if anything was passed via STDIN. If so,
-        // ignore all passed files.
-        $read   = array(STDIN);
-        $write  = array();
-        $except = array();
-        $result = stream_select($read, $write, $except, 0);
-        if ($result === 1) {
-            return;
-        }
-
         // We don't know about any additional switches; just files.
         if ($arg{0} === '-') {
             if ($this->dieOnUnknownArg === false) {
@@ -895,11 +901,15 @@ class PHP_CodeSniffer_CLI
 
         $phpcs->processFiles($values['files'], $values['local']);
 
-        if (empty($values['files']) === true) {
-            // Check if they are passing in the file contents.
-            $handle       = fopen('php://stdin', 'r');
-            $fileContents = stream_get_contents($handle);
-            fclose($handle);
+        if (empty($values['files']) === true || $values['stdin'] !== null) {
+            $fileContents = $values['stdin'];
+            if ($fileContents === null) {
+                // Check if they are passing in the file contents.
+                $handle = fopen('php://stdin', 'r');
+                stream_set_blocking($handle, true);
+                $fileContents = stream_get_contents($handle);
+                fclose($handle);
+            }
 
             if ($fileContents === '') {
                 // No files and no content passed in.
@@ -907,9 +917,7 @@ class PHP_CodeSniffer_CLI
                 $this->printUsage();
                 exit(2);
             } else {
-                if ($fileContents !== '') {
-                    $phpcs->processFile('STDIN', $fileContents);
-                }
+                $phpcs->processFile('STDIN', $fileContents);
             }
         }
 
@@ -1224,7 +1232,7 @@ class PHP_CodeSniffer_CLI
         echo '                      (extension filtering only valid when checking a directory)'.PHP_EOL;
         echo '                      The type of the file can be specified using: ext/type'.PHP_EOL;
         echo '                      e.g., module/php,es/js'.PHP_EOL;
-        echo '        <generator>   Uses either the "HMTL", "Markdown" or "Text" generator'.PHP_EOL;
+        echo '        <generator>   Uses either the "HTML", "Markdown" or "Text" generator'.PHP_EOL;
         echo '                      (forces documentation generation instead of checking)'.PHP_EOL;
         echo '        <patterns>    A comma separated list of patterns to ignore files and directories'.PHP_EOL;
         echo '        <report>      Print either the "full", "xml", "checkstyle", "csv"'.PHP_EOL;

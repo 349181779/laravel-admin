@@ -19,6 +19,7 @@ class BaseModel
         'request',
         'controller',
         'model',
+        'curd',
     ];
 }
 

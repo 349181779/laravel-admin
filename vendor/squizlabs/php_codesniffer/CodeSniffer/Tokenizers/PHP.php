@@ -27,6 +27,13 @@ class PHP_CodeSniffer_Tokenizers_PHP
 {
 
     /**
+     * If TRUE, files that appear to be minified will not be processed.
+     *
+     * @var boolean
+     */
+    public $skipMinified = false;
+
+    /**
      * A list of tokens that are allowed to open a scope.
      *
      * This array also contains information about what kind of token the scope
@@ -324,6 +331,7 @@ class PHP_CodeSniffer_Tokenizers_PHP
         $lastNotEmptyToken = 0;
 
         $insideInlineIf = array();
+        $insideUseGroup = false;
 
         $commentTokenizer = new PHP_CodeSniffer_Tokenizers_Comment();
 
@@ -665,6 +673,7 @@ class PHP_CodeSniffer_Tokenizers_PHP
 
             if ($tokenIsArray === true
                 && $token[0] === T_STRING
+                && isset($tokens[($stackPtr + 1)]) === true
                 && $tokens[($stackPtr + 1)] === ':'
                 && $tokens[($stackPtr - 1)][0] !== T_PAAMAYIM_NEKUDOTAYIM
             ) {
@@ -895,6 +904,23 @@ class PHP_CodeSniffer_Tokenizers_PHP
                     $newToken['type'] = 'T_STRING';
                 }
 
+                // This is a special case for use groups in PHP 7+ where leaving
+                // the curly braces as their normal tokens would confuse
+                // the scope map and sniffs.
+                if ($newToken['code'] === T_OPEN_CURLY_BRACKET
+                    && $finalTokens[$lastNotEmptyToken]['code'] === T_NS_SEPARATOR
+                ) {
+                    $newToken['code'] = T_OPEN_USE_GROUP;
+                    $newToken['type'] = 'T_OPEN_USE_GROUP';
+                    $insideUseGroup   = true;
+                }
+
+                if ($insideUseGroup === true && $newToken['code'] === T_CLOSE_CURLY_BRACKET) {
+                    $newToken['code'] = T_CLOSE_USE_GROUP;
+                    $newToken['type'] = 'T_CLOSE_USE_GROUP';
+                    $insideUseGroup   = false;
+                }
+
                 $finalTokens[$newStackPtr] = $newToken;
                 $newStackPtr++;
             }//end if
@@ -996,7 +1022,7 @@ class PHP_CodeSniffer_Tokenizers_PHP
 
                     $tokenAfterReturnTypeHint = $tokens[$i]['scope_opener'];
                 } else if (isset($tokens[$i]['parenthesis_closer']) === true) {
-                    for ($x = ($tokens[$i]['parenthesis_closer'] + 1); $i < $numTokens; $x++) {
+                    for ($x = ($tokens[$i]['parenthesis_closer'] + 1); $x < $numTokens; $x++) {
                         if ($tokens[$x]['code'] === T_SEMICOLON) {
                             $tokenAfterReturnTypeHint = $x;
                             break;
@@ -1215,11 +1241,11 @@ class PHP_CodeSniffer_Tokenizers_PHP
                 }
             }
 
-            if ($tokens[$x]['code'] === T_CASE) {
+            if ($tokens[$x]['code'] === T_CASE || $tokens[$x]['code'] === T_DEFAULT) {
                 // Special case for multiple CASE statements that share the same
                 // closer. Because we are going backwards through the file, this next
-                // CASE statement is already fixed, so just use its closer and don't
-                // worry about fixing anything.
+                // CASE/DEFAULT statement is already fixed, so just use its closer
+                // and don't worry about fixing anything.
                 $newCloser = $tokens[$x]['scope_closer'];
                 $tokens[$i]['scope_closer'] = $newCloser;
                 if (PHP_CODESNIFFER_VERBOSITY > 1) {
@@ -1235,7 +1261,7 @@ class PHP_CodeSniffer_Tokenizers_PHP
             if ($tokens[$x]['code'] !== T_OPEN_CURLY_BRACKET
                 || isset($tokens[$x]['scope_condition']) === true
             ) {
-                // Not a CASE with a curly brace opener.
+                // Not a CASE/DEFAULT with a curly brace opener.
                 continue;
             }
 

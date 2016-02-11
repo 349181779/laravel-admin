@@ -12,6 +12,7 @@ namespace Yangyifan\AutoBuild\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yangyifan\AutoBuild\Model\HomeModel;
+use Yangyifan\AutoBuild\Http\Controllers\Config\BaseController as ConfigBaseController;
 
 class HomeController extends BaseController
 {
@@ -45,8 +46,10 @@ class HomeController extends BaseController
      */
     public function getCurd(Request $request)
     {
+        $table_name = $request->get('table_name');
         return View('auto_build::curd', [
-            'table_name' => $request->get('table_name'),
+            'table_name'    => $table_name,
+            'content'       => HomeModel::getCURDConfig($table_name),
         ]);
     }
 
@@ -62,6 +65,16 @@ class HomeController extends BaseController
         $data = $request->all();
         $table_name = $data['table_name'];
         unset($data['table_name']);
+
+        //写入配置文件
+        (new ConfigBaseController())->writeRequesConfig($table_name, HomeModel::FILE_TYPE, [
+            'request[file_name]'        => $data['request']['file_name'],
+            'request[file_title]'       => $data['request']['file_title'],
+            'model[file_name]'          => $data['model']['file_name'],
+            'model[file_title]'         => $data['model']['file_title'],
+            'controller[file_name]'     => $data['controller']['file_name'],
+            'controller[file_title]'    => $data['controller']['file_title'],
+        ]);
 
         //创建curd
         $status = HomeModel::checkCurd($table_name, $data);

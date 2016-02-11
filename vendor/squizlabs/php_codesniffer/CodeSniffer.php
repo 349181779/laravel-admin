@@ -73,7 +73,7 @@ class PHP_CodeSniffer
      *
      * @var string
      */
-    const VERSION = '2.5.1';
+    const VERSION = '2.6.0';
 
     /**
      * Package stability; either stable, beta or alpha.
@@ -818,7 +818,7 @@ class PHP_CodeSniffer
             }
         }//end foreach
 
-        if (empty($cliValues['files']) === true) {
+        if (empty($cliValues['files']) === true && $cliValues['stdin'] === null) {
             // Process hard-coded file paths.
             foreach ($ruleset->{'file'} as $file) {
                 $file      = (string) $file;

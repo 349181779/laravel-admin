@@ -1417,7 +1417,9 @@ class PHP_CodeSniffer_File
     {
         // Minified files often have a very large number of characters per line
         // and cause issues when tokenizing.
-        if (get_class($tokenizer) !== 'PHP_CodeSniffer_Tokenizers_PHP') {
+        if (property_exists($tokenizer, 'skipMinified') === true
+            && $tokenizer->skipMinified === true
+        ) {
             $numChars = strlen($string);
             $numLines = (substr_count($string, $eolChar) + 1);
             $average  = ($numChars / $numLines);
@@ -1948,6 +1950,20 @@ class PHP_CodeSniffer_File
                 return $i;
             }
 
+            if ($opener === null
+                && $ignore === 0
+                && $tokenType === T_CLOSE_CURLY_BRACKET
+                && isset($tokenizer->scopeOpeners[$currType]['end'][$tokenType]) === true
+            ) {
+                if (PHP_CODESNIFFER_VERBOSITY > 1) {
+                    $type = $tokens[$stackPtr]['type'];
+                    echo str_repeat("\t", $depth);
+                    echo "=> Found curly brace closer before scope opener for $stackPtr:$type, bailing".PHP_EOL;
+                }
+
+                return ($i - 1);
+            }
+
             if ($opener !== null
                 && (isset($tokens[$i]['scope_opener']) === false
                 || $tokenizer->scopeOpeners[$tokens[$stackPtr]['code']]['shared'] === true)
@@ -2116,7 +2132,7 @@ class PHP_CodeSniffer_File
                         echo "=> Found new opening condition before scope opener for $stackPtr:$type, bailing".PHP_EOL;
                     }
 
-                    return $stackPtr;
+                    return ($i - 1);
                 }//end if
 
                 if (PHP_CODESNIFFER_VERBOSITY > 1) {

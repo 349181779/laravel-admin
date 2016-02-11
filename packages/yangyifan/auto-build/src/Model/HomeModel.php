@@ -14,9 +14,12 @@ use \DB;
 use Yangyifan\AutoBuild\Http\Controllers\Build\RequestController;
 use Yangyifan\AutoBuild\Http\Controllers\Build\ModelController;
 use Yangyifan\AutoBuild\Http\Controllers\Build\ControllerController;
+use Yangyifan\AutoBuild\Model\Config\BaseModel as ConfigBaseModel;
 
 class HomeModel extends BaseModel
 {
+    const FILE_TYPE = 'curd';//对应 $type_arr 的类型
+
     /**
      * 获得全部表
      *
@@ -107,6 +110,7 @@ class HomeModel extends BaseModel
         self::createController(
             array_merge($data['controller'],
                 ['table_name' => $table_name], ['use_array' => [str_replace('/', '\\', $data['request']['file_name']), str_replace('/', '\\', $data['model']['file_name'])] ]));
+
         return true;
 
     }
@@ -145,6 +149,18 @@ class HomeModel extends BaseModel
     private static function createController($data)
     {
         return (new ControllerController())->getIndex($data);
+    }
+
+    /**
+     * 获得配置json信息
+     *
+     * @param $table_name
+     * @param $type
+     * @return bool|mixed
+     */
+    public static function getCURDConfig($table_name)
+    {
+        return ConfigBaseModel::getConfig($table_name, self::FILE_TYPE);
     }
 }
 

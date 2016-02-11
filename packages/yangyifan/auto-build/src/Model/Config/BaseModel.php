@@ -60,7 +60,7 @@ class BaseModel extends \Yangyifan\AutoBuild\Model\BaseModel
      * @return bool|mixed
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    protected static function getConfig($table_name, $file_type)
+    public static function getConfig($table_name, $file_type)
     {
         $json = self::getFileContent($table_name, $file_type);
         if (!empty($json)) {

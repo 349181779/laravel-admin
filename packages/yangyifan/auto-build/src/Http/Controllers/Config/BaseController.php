@@ -35,7 +35,7 @@ class BaseController extends \Yangyifan\AutoBuild\Http\Controllers\BaseControlle
      * @param $file_data
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    protected function writeRequesConfig($file_name, $file_type, $file_data)
+    public function writeRequesConfig($file_name, $file_type, $file_data)
     {
         if (!empty($file_data)) {
             return file_put_contents( BaseModel::getConfigDir($file_name, $file_type), json_encode($file_data)) == false ? false : true;

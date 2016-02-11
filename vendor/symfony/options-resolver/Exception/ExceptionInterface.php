@@ -9,10 +9,13 @@
  * file that was distributed with this source code.
  */
 
-class APCUIterator extends APCIterator
+namespace Symfony\Component\OptionsResolver\Exception;
+
+/**
+ * Marker interface for all exceptions thrown by the OptionsResolver component.
+ *
+ * @author Bernhard Schussek <bschussek@gmail.com>
+ */
+interface ExceptionInterface
 {
-    public function __construct($search = null, $format = APC_ITER_ALL, $chunk_size = 100, $list = APC_LIST_ACTIVE)
-    {
-        parent::__construct('user', $search, $format, $chunk_size, $list);
-    }
 }

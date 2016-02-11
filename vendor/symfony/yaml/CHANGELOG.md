@@ -1,6 +1,21 @@
 CHANGELOG
 =========
 
+3.1.0
+-----
+
+ * Added support for customizing the YAML parser behavior through an optional bit field:
+
+   ```php
+   Yaml::parse('{ "foo": "bar", "fiz": "cat" }', Yaml::PARSE_EXCEPTION_ON_INVALID_TYPE | Yaml::PARSE_OBJECT | Yaml::PARSE_OBJECT_FOR_MAP);
+   ```
+
+ * Added support for customizing the dumped YAML string through an optional bit field:
+
+   ```php
+   Yaml::dump(array('foo' => new A(), 'bar' => 1), 0, 0, false, Yaml::DUMP_OBJECT);
+   ```
+
 3.0.0
 -----
 

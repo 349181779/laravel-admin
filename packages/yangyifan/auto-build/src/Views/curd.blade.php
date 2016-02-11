@@ -29,13 +29,13 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Request 文件名</label>
                     <div class="col-sm-10">
-                        <input type="text" name="request[file_name]" class="form-control" id="inputEmail3" placeholder="例如:'App/Request/Admin/UserInfo/UserInfoRequest'的格式 ">
+                        <input type="text" name="request[file_name]" class="form-control" id="inputEmail3" value="<?php echo $content['request[file_name]'] ;?>" placeholder="例如:'App/Request/Admin/UserInfo/UserInfoRequest'的格式 ">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Request 文件标题</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="request[file_title]" id="inputPassword3" placeholder="例如:'会员Request'">
+                        <input type="text" class="form-control" name="request[file_title]" value="<?php echo $content['request[file_title]'] ;?>" id="inputPassword3" placeholder="例如:'会员Request'">
                     </div>
                 </div>
             </div>
@@ -49,13 +49,13 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Model 文件名</label>
                     <div class="col-sm-10">
-                        <input type="text" name="model[file_name]" class="form-control" id="inputEmail3" placeholder="例如:'App/Request/Admin/UserInfo/UserInfoModel'的格式 ">
+                        <input type="text" name="model[file_name]" class="form-control" value="<?php echo $content['model[file_name]'] ;?>" id="inputEmail3" placeholder="例如:'App/Request/Admin/UserInfo/UserInfoModel'的格式 ">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Model 文件标题</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="model[file_title]" id="inputPassword3" placeholder="例如:'会员模型'">
+                        <input type="text" class="form-control" name="model[file_title]" value="<?php echo $content['model[file_title]'] ;?>" id="inputPassword3" placeholder="例如:'会员模型'">
                     </div>
                 </div>
             </div>
@@ -69,13 +69,13 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Controller 文件名</label>
                     <div class="col-sm-10">
-                        <input type="text" name="controller[file_name]" class="form-control" id="inputEmail3" placeholder="例如:'App/Request/Admin/UserInfo/UserInfoController'的格式 ">
+                        <input type="text" name="controller[file_name]" class="form-control" value="<?php echo $content['controller[file_name]'] ;?>" id="inputEmail3" placeholder="例如:'App/Request/Admin/UserInfo/UserInfoController'的格式 ">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Controller 文件标题</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="controller[file_title]" id="inputPassword3" placeholder="例如:'会员控制器'">
+                        <input type="text" class="form-control" name="controller[file_title]" value="<?php echo $content['controller[file_title]'] ;?>" id="inputPassword3" placeholder="例如:'会员控制器'">
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button type="submit" class="btn btn-default">确认生成</button>
             </div>
         </div>
         <input type="hidden" name="table_name"  value="<?php echo $table_name;?>">
