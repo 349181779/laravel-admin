@@ -25,55 +25,137 @@
         <?php if(!empty($schema_list)):?>
             <?php foreach ($schema_list as $schema) :?>
                 <div class="form-group">
-                    <label class="col-sm-1" for="exampleInputEmail1"><?php echo $schema['col_name'];?></label>
+                    <!-- 标题 -->
+                    <div class="col-sm-1" style="line-height:2.3em;">
+                        <?php echo $schema['col_name'];?>
+                    </div>
+                    <!-- 标题 -->
 
-                    <div class="col-sm-11">
-                        <div class="row">
+                    <!-- 主体内容 -->
+                    <?php if(!empty($content) && !empty($content[$schema['col_name']])):?>
+                        <!-- 赋值 -->
+                        <?php $data = $content[$schema['col_name']];?>
 
-                            <!-- 标题 -->
-                            <div class="col-sm-3">
-                                <span>标题:</span>
-                                <input type="text" class="form-control" name="<?php echo $schema['col_name'];?>[title]" value="<?php echo $schema['comment'] ? : $schema['col_name'];?>">
+                        <div class="col-sm-11">
+                            <div class="row form-inline">
+
+                                <!-- 标题 -->
+                                <div class="col-sm-3">
+                                    <span>标题:</span>
+                                    <input type="text" style="width:100px;" class="form-control" name="<?php echo $schema['col_name'];?>[title]" value="<?php if(!empty($data['name'])):?><?php echo $data['name'];?><?php else:?><?php echo $schema['comment'] ? : $schema['col_name'];?><?php endif;?>">
+                                </div>
+                                <!-- 标题 -->
+
+                                <!-- 表单验证规则 -->
+                                <div class="col-sm-9 rule_parent_div">
+                                    <div class="row">
+                                        <?php if(!empty($data['rule'])):?>
+                                            <?php foreach($data['rule'] as $key => $rule_data):?>
+                                                <div class="col-sm-12 rule_list">
+                                                    <div class="col-sm-6 col-xs-10">
+                                                        <?php if($key == 0 ) :?>
+                                                            <a href="javascript:void(0)" class="btn btn-default copyRuleBtn" onclick="copyRuleDom(this)">+</a>
+                                                        <?php else:?>
+                                                            <a href="javascript:void(0)" class="btn btn-default copyRuleBtn" onclick="removeRuleDom(this)">-</a>
+                                                        <?php endif;?>
+                                                        <span>表单验证规则:</span>
+                                                        <select onchange="createRuleParam(this)" style="width: 150px;" class="form-control rule_select" name="<?php echo $schema['col_name'];?>[rule][rule][]" data-name="<?php echo $schema['col_name'];?>[rule][params]">
+                                                            <option value="">请选择</option>
+                                                            <?php if(!empty($all_rule)):?>
+                                                                <?php $is_selected = false; //是否已经选择,如果当前已经选择,则不标记selected状态?>
+                                                                <?php foreach ($all_rule as $type => $rule) :?>
+                                                                    <?php if(is_array($rule)):?>
+                                                                        <option
+                                                                                data-type="array"
+                                                                                <?php if($is_selected === false && array_key_exists($type, $data['rule'])){echo "selected='selected'";$is_selected = true; $value_arr = $data['rule'][$type];  unset($data['rule'][$type]); }?>
+                                                                                data-params-string="<?php echo implode(',', $rule);?>"
+                                                                                data-value-array="<?php if(is_array($value_arr)) echo implode('@@', $value_arr);?>"
+                                                                                value="<?php echo $type;?>"
+                                                                        ><?php echo last($rule);?></option>
+                                                                    <?php else:?>
+                                                                        <option
+                                                                                data-type="string"
+                                                                                <?php if($is_selected === false && array_key_exists($type, $data['rule'])){echo "selected='selected'";$is_selected = true; $value_arr = $data['rule'][$type]; unset($data['rule'][$type]); }?>
+                                                                                data-value-array="<?php if(is_array($value_arr)) echo implode('@@', $value_arr);?>"
+                                                                                value="<?php echo $type;?>"
+                                                                        ><?php echo $rule;?></option>
+                                                                    <?php endif;?>
+
+                                                                <?php endforeach;?>
+                                                            <?php endif;?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach;?>
+                                        <?php endif;?>
+                                    </div>
+                                </div>
+                                <!-- 表单验证规则 -->
+
                             </div>
-                            <!-- 标题 -->
+                        </div>
 
-                            <!-- 表单验证规则 -->
-                            <div class="col-sm-9 rule_parent_div">
-                                <div class="row">
-                                    <div class="col-sm-12 rule_list">
-                                        <div class="col-sm-6 col-xs-10 form-inline">
-                                            <a href="javascript:void(0)" class="btn btn-default copyRuleBtn" onclick="copyRuleDom(this)">+</a>
-                                            <span>表单验证规则:</span>
-                                            <select onchange="createRuleParam(this)" style="width: 150px;" class="form-control" name="<?php echo $schema['col_name'];?>[rule][rule][]" data-name="<?php echo $schema['col_name'];?>[rule][params]">
-                                                <option value="">请选择</option>
-                                                <?php if(!empty($all_rule)):?>
-                                                <?php foreach ($all_rule as $type => $rule) :?>
-                                                <?php if(is_array($rule)):?>
-                                                <option data-type="array" data-params-string="<?php echo implode(',', $rule);?>"  value="<?php echo $type;?>"><?php echo last($rule);?></option>
-                                                <?php else:?>
-                                                <option data-type="string" value="<?php echo $type;?>"><?php echo $rule;?></option>
-                                                <?php endif;?>
-                                                <?php endforeach;?>
-                                                <?php endif;?>
-                                            </select>
+                    <?php else:?>
+
+                        <div class="col-sm-11">
+                            <div class="row form-inline">
+
+                                <!-- 标题 -->
+                                <div class="col-sm-3">
+                                    <span>标题:</span>
+                                    <input type="text" style="width:100px;" class="form-control" name="<?php echo $schema['col_name'];?>[title]" value="<?php echo $schema['comment'] ? : $schema['col_name'];?>">
+                                </div>
+                                <!-- 标题 -->
+
+                                <!-- 表单验证规则 -->
+                                <div class="col-sm-9 rule_parent_div">
+                                    <div class="row">
+                                        <div class="col-sm-12 rule_list">
+                                            <div class="col-sm-6 col-xs-10">
+                                                <a href="javascript:void(0)" class="btn btn-default copyRuleBtn" onclick="copyRuleDom(this)">+</a>
+                                                <span>表单验证规则:</span>
+                                                <select onchange="createRuleParam(this)" style="width: 150px;" class="form-control" name="<?php echo $schema['col_name'];?>[rule][rule][]" data-name="<?php echo $schema['col_name'];?>[rule][params]">
+                                                    <option value="">请选择</option>
+                                                    <?php if(!empty($all_rule)):?>
+                                                    <?php foreach ($all_rule as $type => $rule) :?>
+                                                    <?php if(is_array($rule)):?>
+                                                    <option data-type="array" data-params-string="<?php echo implode(',', $rule);?>"  value="<?php echo $type;?>"><?php echo last($rule);?></option>
+                                                    <?php else:?>
+                                                    <option data-type="string" value="<?php echo $type;?>"><?php echo $rule;?></option>
+                                                    <?php endif;?>
+                                                    <?php endforeach;?>
+                                                    <?php endif;?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- 表单验证规则 -->
+                                <!-- 表单验证规则 -->
 
+                            </div>
                         </div>
-                    </div>
+
+                    <?php endif;?>
+                    <!-- 主体内容 -->
 
                 </div>
             <?php endforeach;?>
         <?php endif;?>
             <input type="hidden" name="table_name"  value="<?php echo $table_name;?>">
-        <button type="submit" class="btn btn-default">确认生成</button>
+        <div>
+            <button type="submit" class="btn btn-success col-sm-offset-4">确认生成</button>
+        </div>
     </form>
 </div>
 <script src="<?php echo elixir('dist/main.js');?>"></script>
 <script>
+
+    //让每个 rule_select 都触发 onchange事件
+    $(function(){
+        $('.rule_select').each(function(){
+            $(this).trigger('change')
+        })
+    })
 
     /**
      * 复制表单验证规则dom
@@ -100,10 +182,11 @@
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    function CreateRuleParam($obj, $params_string)
+    function CreateRuleParam($obj, $params_string, $value_arr)
     {
         this.params_string  = $params_string;
         this.obj            = $obj;
+        this.value_arr      = $value_arr;//参数的值
 
         //配置信息
         this.config = {
@@ -186,12 +269,11 @@
     {
         //为服务器端组合数据准备.
         index ++ ;
-
         switch ($match_rule) {
             case "%s":
-                return $input = $('<input type="text" placeholder="参数'+index+'"  name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
+                return $input = $('<input type="text" placeholder="参数'+index+'" value="'+this.value_arr[index - 1]+'"  name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
             case "%d":
-                return $input = $('<input type="number" placeholder="参数'+index+'" name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
+                return $input = $('<input type="number" placeholder="参数'+index+'" value="'+this.value_arr[index - 1]+'" name="'+this.obj.attr('data-name') + "[" + this.obj.find('option:selected').val() + "]" + "[" + index + "]"+'" class="form-control '+this.config.child_div_class_name+'">');
         }
     }
 
@@ -209,10 +291,22 @@
      * 匹配规则,创建表单dom
      *
      * @param obj
+     * @param value_arr 参数值数组
      */
     function createRuleParam(obj)
     {
-        new CreateRuleParam($(obj), $(obj).find('option:selected').attr('data-params-string'))
+        var $value_arr_str  = $(obj).find('option:selected').attr('data-value-array');
+        var value_arr       = [];
+
+        if ($value_arr_str) {
+            if ($value_arr_str.indexOf('@@') > 0 ) {
+                value_arr = $value_arr_str.split('@@')
+            } else {
+                value_arr = [$value_arr_str]
+            }
+
+        }
+        new CreateRuleParam($(obj), $(obj).find('option:selected').attr('data-params-string'), value_arr)
     }
 </script>
 </body>

@@ -34,17 +34,15 @@
 
     <table class="table table-bordered table-hover table-condensed table-responsive" style="margin: 20px 0;">
         <tr>
-            <td>Tabel Name</td>
-            <td>Route</td>
-            <td>操作</td>
+            <td align="center">Tabel Name</td>
+            <td align="center">操作</td>
         </tr>
 
         <?php if(!empty($all_table)):?>
             <?php foreach ($all_table as $table) :?>
                 <tr>
-                    <td><?php echo $table['table_name']?></td>
-                    <td>Route</td>
-                    <td>
+                    <td align="center"> <?php echo $table['table_name']?></td>
+                    <td align="center">
                         <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-default create-request-config">生成Request配置</button>
                         <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-info create-controller-config">生成Controller配置</button>
                         <button type="button" data-table-name="<?php echo $table['table_name']?>" class="btn btn-success curd">生成CURD</button>

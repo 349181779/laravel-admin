@@ -51,10 +51,53 @@ class ConfigRequestModel extends BaseModel
      * @param $table_name
      * @param $type
      * @return bool|mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
     public static function getRequestConfig($table_name)
     {
-        return self::getConfig($table_name, self::FILE_TYPE);
+        return self::mergeSelectRule(self::getConfig($table_name, self::FILE_TYPE));
+    }
+
+    /**
+     * 组合已经选中的验证规则
+     *
+     * @param $select_rule_arr
+     * @return mixed
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private static function mergeSelectRule($select_rule_arr)
+    {
+        $data = [];
+        if (!empty($select_rule_arr)) {
+            foreach ($select_rule_arr as $schema => $rule_arr) {
+                if (!empty($rule_arr['rule'])) {
+                    $tmp = [];
+                    foreach ($rule_arr['rule'] as $v) {
+                        //设置当前元素的key
+                        $key = !is_array($v) ? $v : $v[0];
+                        //设置当前元素的value
+                        if (is_array($v) && count($v) == 3) {
+                            $value = [
+                                $v[1],
+                                $v[2],
+                            ];
+                        } elseif (is_array($v) && count($v) == 2) {
+                            $value = [
+                                $v[1],
+                            ];
+                        }
+                        //赋值到$data
+                        $tmp[$key] = $value;
+                    }
+                    $data[$schema] = [
+                        'name'  => $rule_arr['name'],
+                        'rule'  => $tmp,
+                    ];
+                }
+            }
+        }
+        return $data;
     }
 }
+
 
