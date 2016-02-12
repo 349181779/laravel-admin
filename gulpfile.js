@@ -112,7 +112,10 @@ elixir(function(mix) {
         //main js
         mix.scripts([
             "toastr/toastr.js",
-            "js/customJs/base.js",
+            "js/customJs/base/tools.js",
+            "js/customJs/base/common_function.js",
+            "js/customJs/base/base.js",
+            //"js/customJs/base.js",
             "layer-v1.9.3/layer/layer.js",
             "assets/js/bootstrap.min.js",
             "assets/js/app.js",
@@ -129,7 +132,7 @@ elixir(function(mix) {
         //builder add & edit 页面 js
         mix.scripts([
             "Validform-v5.3.2/Validform_v5.3.2.js",
-            "js/customJs/search.js",
+            "js/customJs/html_builder/search.js",
             "js/customJs/html_builder/select.js",
             "js/customJs/html_builder/initUpdatePage.js",
         ], "public/dist/builder_update.js");
@@ -145,7 +148,7 @@ elixir(function(mix) {
         //builder tab 页面 js
         mix.scripts([
             "Validform-v5.3.2/Validform_v5.3.2.js",
-            "js/customJs/search.js",
+            "js/customJs/html_builder/search.js",
             "js/customJs/html_builder/select.js",
             "js/customJs/html_builder/initTabPage.js",
             "ladda/dist/spin.min.js",
@@ -162,21 +165,11 @@ elixir(function(mix) {
             "js/customJs/html_builder/initTreePage.js"
         ], "public/dist/builder_tree.js");
 
-        //order 页面 js
-        mix.scripts([
-            "ystep/ystep.js",
-            "js/customJs/order.js"
-        ], "public/dist/goods_order.js");
 
         // multi upload image 页面
         mix.scripts([
             "js/customJs/multiUploadImage.js"
         ], "public/dist/multi_upload_image.js");
-
-        // multi upload image 页面
-        mix.scripts([
-            "js/customJs/email.js"
-        ], "public/dist/email.js");
 
         // 弹出页面上传框 页面 js
         mix.scripts([
@@ -198,10 +191,8 @@ elixir(function(mix) {
             "public/dist/builder_tree.css",
             "public/dist/builder_tree.js",
             "public/dist/goods_order.css",
-            "public/dist/goods_order.js",
             "public/dist/multi_upload_image.js",
             "public/dist/email.css",
-            "public/dist/email.js",
             "public/dist/upload_image_dialog.css",
             "public/dist/upload_image_dialog.js",
             "public/dist/login.css",

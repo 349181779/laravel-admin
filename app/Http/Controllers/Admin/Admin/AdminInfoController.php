@@ -116,7 +116,6 @@ class AdminInfoController extends BaseController
                 builderFormSchema('limit_id', '角色', $type = 'select', $default = '', $notice = '', $class = '', $rule = '*', $err_message = '', AdminInfoModel::adminInfoLimitName(), '', 'name')->
                 builderFormSchema('mobile', '手机', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
                 builderFormSchema('state', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'] ,$infos->state)->
-                builderFormSchema('platform[]', '设备', 'checkbox', '', '', '', '', '', ['ios' => 'ios', 'android' => 'android'], ['ios', 'android'])->
                 builderConfirmBotton('确认', createUrl('Admin\Admin\AdminInfoController@postEdit'), 'btn btn-success')->
                 builderEditData($infos)->
                 builderEdit();

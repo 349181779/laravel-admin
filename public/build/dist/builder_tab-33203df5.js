@@ -1409,12 +1409,11 @@ function selectSearch(obj){
  */
 function addSelect(obj)
 {
-    var _this = $(obj);
-    var html = _this.parents('.form-group').clone(true)
+    var _this   = $(obj);
+    var html    = _this.parents('.form-group').clone(true)
 
     //替换add 按钮 dom ,改成移除 按钮
     html.find('.addSelect').replaceWith(createRemoveBtnDom())
-
     _this.parents('.form-group').after(html);
 }
 
