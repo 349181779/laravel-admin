@@ -654,9 +654,6 @@ var HTTP_CODE = {
     'REDIRECT_CODE' : 302, //跳转
 }
 
-var  is_check_form = true;//设置当前表单为验证通过
-
-
 $(function(){
 
     $('.ajax-form').on('submit', function (e) {
@@ -698,8 +695,6 @@ function Base()
 {
     //初始化
     this._construct();
-
-
     this.tools = new Tools();
 
 }
@@ -713,7 +708,21 @@ function Base()
  */
 Base.prototype._construct = function ()
 {
+    //设置对象属性
+    this.setAttribute()
+}
 
+/**
+ * 设置对象属性
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+Base.prototype.setAttribute = function ()
+{
+
+    this.attribute = {
+        is_check_form : true,//设置当前表单为验证通过
+    }
 }
 
 /**
@@ -725,8 +734,8 @@ Base.prototype.setAjaxCsrf = function ()
 {
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            'X-Requested-With' : 'XMLHttpRequest'
+            'X-CSRF-TOKEN'      : $('meta[name="csrf-token"]').attr('content'),
+            'X-Requested-With'  : 'XMLHttpRequest'
         }
     });
 }
@@ -739,15 +748,15 @@ Base.prototype.setAjaxCsrf = function ()
 Base.prototype.setLayerConfig = function ()
 {
     layer.config({
-        skin:'layer-ext-moon',
-        extend:'./skin/mono/style.css',
-        closeBtn:1,//关闭按钮
-        shift:1,//动画
-        shade:[0.9, '#ccc'],//遮罩
-        shadeClose:true,//是否点击遮罩关闭
-        maxmin:true,//最大最小化。
-        area:['1024px', '700px'],
-        scrollbar:true//是否禁用浏览器滚动条
+        skin        : 'layer-ext-moon',
+        extend      : './skin/mono/style.css',
+        closeBtn    : 1,//关闭按钮
+        shift       : 1,//动画
+        shade       : [0.9, '#ccc'],//遮罩
+        shadeClose  : true,//是否点击遮罩关闭
+        maxmin      : true,//最大最小化。
+        area        : ['1024px', '700px'],
+        scrollbar   : true//是否禁用浏览器滚动条
     });
 }
 
@@ -759,18 +768,18 @@ Base.prototype.setLayerConfig = function ()
 Base.prototype.setToastrConfig = function ()
 {
     toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "positionClass": "toast-top-right",
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "1500",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
+        "closeButton"       : true,
+        "debug"             : false,
+        "positionClass"     : "toast-top-right",
+        "onclick"           : null,
+        "showDuration"      : "300",
+        "hideDuration"      : "1000",
+        "timeOut"           : "1500",
+        "extendedTimeOut"   : "1000",
+        "showEasing"        : "swing",
+        "hideEasing"        : "linear",
+        "showMethod"        : "fadeIn",
+        "hideMethod"        : "fadeOut"
     }
 }
 
@@ -795,7 +804,7 @@ Base.prototype.ajaxForm = function (obj)
     }
 
     //如果表单验证不通过,则返回
-    if (is_check_form == false) {
+    if (this.attribute.is_check_form == false) {
         return false;
     }
 
@@ -899,19 +908,18 @@ Base.prototype.del = function (obj, url)
  */
 Base.prototype.checkForm = function (obj)
 {
-    obj.Validform({
-        beforeSubmit : function (){
+    var _instanceof = this;
 
-        },
+    obj.Validform({
         tiptype:function(msg, o, cssctl){
             switch(o.type){
                 case 3:
                     o.obj.parents('.form-group').find('.alert').removeClass('hide').find('.err_message').text(msg);
-                    is_check_form = false;//设置表单为验证不通过
+                    _instanceof.attribute.is_check_form = false;//设置表单为验证不通过
                     break;
                 case 2:
                     o.obj.parents('.form-group').find('.alert').addClass('hide').find('.err_message').text('');
-                    is_check_form = true;//设置表单为验证通过
+                    _instanceof.attribute.is_check_form = true;//设置表单为验证通过
                     break;
             }
         }

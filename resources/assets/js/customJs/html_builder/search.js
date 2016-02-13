@@ -7,6 +7,7 @@
  * 构建builder Html 页面 搜索模块【展现模板】
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function searchForSelect(obj, params){
     //获得数据
@@ -27,6 +28,7 @@ function searchForSelect(obj, params){
  * @param obj
  * @param url
  * @returns {{}}
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function getSearchData(obj, url){
     var _this       = $(obj);
@@ -58,6 +60,7 @@ function getSearchData(obj, url){
  * 选择下拉列表框
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function selectSearch(obj){
     var _this        = $(obj)

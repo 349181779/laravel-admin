@@ -6,6 +6,7 @@
  * 复制一个select
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function addSelect(obj)
 {
@@ -31,6 +32,7 @@ function createRemoveBtnDom()
  * 移除一个（复制的） select
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function removeSelect(obj)
 {

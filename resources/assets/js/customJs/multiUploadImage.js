@@ -20,6 +20,8 @@ $(function(){
 
 /**
  * 弹出批量上传图片弹出框
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function batchUploadImages(obj, shop_id){
     var _this = $(obj);
@@ -43,6 +45,7 @@ function batchUploadImages(obj, shop_id){
  * @param obj
  * @param id
  * @param shop_id
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function setCurImageToTop(obj, id, product_id)
 {
@@ -72,6 +75,7 @@ function setCurImageToTop(obj, id, product_id)
  * @param obj
  * @param id
  * @param product_id
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function delImageToTop(obj, id, product_id)
 {

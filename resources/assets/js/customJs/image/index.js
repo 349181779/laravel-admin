@@ -5,6 +5,8 @@
 
 /**
  * 弹出上传提示框
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function showUploadDialog(params){
     layer.open({

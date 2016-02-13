@@ -6,16 +6,19 @@ $(function(){
 /**
  * 初始化web socket
  *
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function initWebSocket() {
-    WEB_SOCKET_SWF_LOCATION = "//cdn.bootcss.com/web-socket-js/1.0.0/WebSocketMain.swf";
-    ws = new WebSocket("ws://localhost:"+socket_prot+"/");
+
+    this.WEB_SOCKET_SWF_LOCATION = "//cdn.bootcss.com/web-socket-js/1.0.0/WebSocketMain.swf";
+    this.ws                      = new WebSocket("ws://localhost:"+socket_prot+"/");
 
     /**
      * 连接
      *
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    ws.onopen = function() {
+    this.ws.onopen = function() {
 
     };
 
@@ -23,8 +26,9 @@ function initWebSocket() {
      * 接受消息
      *
      * @param e
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    ws.onmessage = function(e) {
+    this.ws.onmessage = function(e) {
         var _data = $.parseJSON(e.data);
 
         if(_data.cmd == 'login'){
@@ -39,22 +43,30 @@ function initWebSocket() {
     /**
      * 关闭
      *
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    ws.onclose = function() {
+    this.ws.onclose = function() {
 
     };
 
     /**
      * 发生错误
      *
+     * @author yangyifan <yangyifanphp@gmail.com>
      */
-    ws.onerror = function() {
+    this.ws.onerror = function() {
         layer.alert("<?php echo trans('response.connet_web_socket_error');?>", {
             area:[],
         });
     };
 }
 
+/**
+ * 显示消息
+ *
+ * @param data
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
 function showMessage(data){
     //聊天模版
     var keys = $('.xxim_chatlist li:first-child').attr('type') + $('.layim_move').attr('data-id');
@@ -79,6 +91,7 @@ function showMessage(data){
  * @param param
  * @param type
  * @returns {string}
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function logHtml(param, type){
     return '<li class="'+ (type === 'me' ? 'layim_chateme' : '') +'">'

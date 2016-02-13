@@ -14,6 +14,7 @@ $(function(){
  *
  * @param params
  * @returns {*}
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function queryParams(params){
     params.search = $('.search_form').serialize()

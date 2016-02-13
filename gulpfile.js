@@ -135,6 +135,8 @@ elixir(function(mix) {
             "js/customJs/html_builder/search.js",
             "js/customJs/html_builder/select.js",
             "js/customJs/html_builder/initUpdatePage.js",
+            "autolayout/autolayout.js",
+            "js/customJs/autolayout/main.js",
         ], "public/dist/builder_update.js");
 
         //builder list 页面 js
@@ -153,8 +155,10 @@ elixir(function(mix) {
             "js/customJs/html_builder/initTabPage.js",
             "ladda/dist/spin.min.js",
             "ladda/dist/ladda.min.js",
-            "ladda/dist/ladda.jquery.min.js"
+            "ladda/dist/ladda.jquery.min.js",
             //"assets/js/iCheck/jquery.icheck.js",
+            "autolayout/autolayout.js",
+            "js/customJs/autolayout/main.js",
         ], "public/dist/builder_tab.js");
 
         //builder tree 页面 js

@@ -1,10 +1,21 @@
 $(document).ready(function () {
     //验证表单
     base.checkForm($("form"));
+    //设置双向选择器
+    setMultiSelect();
+});
 
-    //双向选择器
-    var leftSel = $("#selectL");
-    var rightSel = $("#selectR");
+/**
+ *
+ * 设置双向选择器
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+function setMultiSelect()
+{
+    var leftSel     = $("#selectL");
+    var rightSel    = $("#selectR");
+
     $("#toright").bind("click",function(){
         leftSel.find("option:selected").each(function(){
             $(this).remove().appendTo(rightSel);
@@ -29,15 +40,15 @@ $(document).ready(function () {
     $("#sub").click(function(){
         setMultiSelectVal(rightSel, $(this))
     });
-    //双向选择器
-});
 
+}
 
 /**
  * 设置双向选择器值
  *
  * @param rightSel
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function setMultiSelectVal(rightSel, obj){
     var selVal = [];
