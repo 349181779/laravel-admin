@@ -19,21 +19,17 @@ trait ListHtmlBuildTraits
      *
      * @param $schame   字段名称
      * @param $comment  备注
-     * @param $type     字段类型
-     * @param $class    class名称
-     * @param $url      url
      * @param $is_sort  是否允许排序
+     * @param $class    class名称
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderSchema($schame, $comment, $type = self::SCHAME_STRING , $class = '', $url = '', $is_sort = 'false')
+    public function builderSchema($schame, $comment, $is_sort = true, $class = '')
     {
         $this->schemas[$schame]  = [
             'comment'   => $comment,
-            'type'      => $type,
+            'is_sort'   => $is_sort === true  ? "true" : "false" ,
             'class'     => $class,
-            'url'       => $url,
-            'is_sort'   => $is_sort
         ];
         return $this;
     }

@@ -92,7 +92,7 @@
                           <?php if($schema['type'] != 3):?>
                           <th
                             data-field="<?php echo $k;?>"
-                            data-sortable=true
+                            data-sortable=<?php echo $schema["is_sort"];?>
                             data-class="<?php echo $schema['class'];?>"
                             ><?php echo $schema['comment'];?></th>
                           <?php endif;?>
