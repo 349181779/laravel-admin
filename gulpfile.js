@@ -152,6 +152,7 @@ elixir(function(mix) {
             "Validform-v5.3.2/Validform_v5.3.2.js",
             "js/customJs/html_builder/search.js",
             "js/customJs/html_builder/select.js",
+            "js/customJs/html_builder/initUpdatePage.js",
             "js/customJs/html_builder/initTabPage.js",
             "ladda/dist/spin.min.js",
             "ladda/dist/ladda.min.js",

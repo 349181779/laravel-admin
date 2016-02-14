@@ -589,6 +589,8 @@ Tools.prototype.parseResponseJson = function (data, callback)
 
 /**
  * 弹出选择图片提示框
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function showChoseImageDialog(obj, source, image_type){
     var _this = $(obj);
@@ -627,6 +629,7 @@ function showChoseImageDialog(obj, source, image_type){
  * 加载验证码
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function loadCaptchaImg(obj){
     var _this = $(obj);
@@ -635,7 +638,9 @@ function loadCaptchaImg(obj){
 }
 
 /**
+ *
  * 退出登录
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function logout(){
     $.get(logout_url, {}, function(data){

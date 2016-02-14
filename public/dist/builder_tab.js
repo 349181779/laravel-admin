@@ -1338,6 +1338,7 @@
  * 构建builder Html 页面 搜索模块【展现模板】
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function searchForSelect(obj, params){
     //获得数据
@@ -1358,6 +1359,7 @@ function searchForSelect(obj, params){
  * @param obj
  * @param url
  * @returns {{}}
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function getSearchData(obj, url){
     var _this       = $(obj);
@@ -1389,6 +1391,7 @@ function getSearchData(obj, url){
  * 选择下拉列表框
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function selectSearch(obj){
     var _this        = $(obj)
@@ -1406,6 +1409,7 @@ function selectSearch(obj){
  * 复制一个select
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function addSelect(obj)
 {
@@ -1431,10 +1435,71 @@ function createRemoveBtnDom()
  * 移除一个（复制的） select
  *
  * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 function removeSelect(obj)
 {
     $(obj).parents('.form-group').remove()
+}
+$(document).ready(function () {
+    //验证表单
+    base.checkForm($("form"));
+    //设置双向选择器
+    setMultiSelect();
+});
+
+/**
+ *
+ * 设置双向选择器
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+function setMultiSelect()
+{
+    var leftSel     = $("#selectL");
+    var rightSel    = $("#selectR");
+
+    $("#toright").bind("click",function(){
+        leftSel.find("option:selected").each(function(){
+            $(this).remove().appendTo(rightSel);
+            setMultiSelectVal(rightSel, $(this))
+        });
+    });
+    $("#toleft").bind("click",function(){
+        rightSel.find("option:selected").each(function(){
+            $(this).remove().appendTo(leftSel);
+        });
+    });
+    leftSel.dblclick(function(){
+        $(this).find("option:selected").each(function(){
+            $(this).remove().appendTo(rightSel);
+        });
+    });
+    rightSel.dblclick(function(){
+        $(this).find("option:selected").each(function(){
+            $(this).remove().appendTo(leftSel);
+        });
+    });
+    $("#sub").click(function(){
+        setMultiSelectVal(rightSel, $(this))
+    });
+
+}
+
+/**
+ * 设置双向选择器值
+ *
+ * @param rightSel
+ * @param obj
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+function setMultiSelectVal(rightSel, obj){
+    var selVal = [];
+    rightSel.find("option").each(function(){
+        selVal.push(this.value);
+    });
+    selVals = selVal.join(",");
+    obj.parents('.form-group').find('input[type=hidden]').val(selVals);
 }
 $(function() {
 
@@ -6689,6 +6754,7 @@ AutoLayoutObject.prototype.updateLayout = function ()
  * 更新视图
  *
  * @param $id
+ * @author yangyifan <yangyifanphp@gmail.com>
  */
 AutoLayoutObject.prototype.updateClass = function ($id)
 {

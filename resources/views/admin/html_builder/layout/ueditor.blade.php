@@ -16,7 +16,7 @@
                   <?php if($schema['disabled'] == true):?>
                   disabled="disabled"
                   <?php endif;?>
-                  class=" <?php echo $schema['class']; ?>"><?php echo !empty($schema['default']) ? $schema['default'] : $data->$schema['name']; ?></textarea>
+                  class=" <?php echo $schema['class']; ?>"><?php echo $data->$schema['name'] == '' ? $schema['default'] : $data->$schema['name']; ?></textarea>
 
         <!-- 实例化编辑器 -->
         <script type="text/javascript">

@@ -266,8 +266,7 @@ return isNaN(t)?c:t},m=p(d[0]),f=Math.max(m,p(d[1]||"")),m=s?Math.max(m,s.getFul
     // See https://github.com/cmlenz/jquery-iframe-transport/issues/6
 
     //反序列化
-    options.data = parseQueryString(origOptions.data);
-    console.log(options.data);
+    options.data = base.tools.parseQueryString(origOptions.data);
 
     if (files.length) {
       form = $("<form enctype='multipart/form-data' method='post'></form>").
