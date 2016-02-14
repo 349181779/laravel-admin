@@ -10,9 +10,17 @@
 
 namespace App\Traits\HtmlBuild;
 
+use App\Traits\HtmlBuild\ListSchema\Attribute\SetIsSortTraits;
+use App\Traits\HtmlBuild\ListSchema\Attribute\SetIsLimitTraits;
+
 trait ListHtmlBuildTraits
 {
-    public $json_url            = '';//列表页获得json数据url
+    public $json_url    = '';//列表页获得json数据url
+
+    //设置字段是否允许排序
+    use SetIsSortTraits;
+    //设置列表页显示的条数
+    use SetIsLimitTraits;
 
     /**
      * 构建HTML列表页字段
@@ -28,7 +36,7 @@ trait ListHtmlBuildTraits
     {
         $this->schemas[$schame]  = [
             'comment'   => $comment,
-            'is_sort'   => $is_sort === true  ? "true" : "false" ,
+            'is_sort'   => $this->setSchemIsSort($schame, $is_sort) ,
             'class'     => $class,
         ];
         return $this;
@@ -100,6 +108,8 @@ trait ListHtmlBuildTraits
             'method'            => $this->method,//当前表单提交method
             'table_name'        => md5($this->title),//表单名称
             'build_html_type'   => $this->build_html_type[0],//构建页面类型 为 list
+            'limit_number'      => implode(',', $this->limit_number_arr),//显示的结果条数数组 例如：[10, 25, 50, 100, ALL]
+            'page_size'         => $this->page_size,//默认显示的条数
         ];
     }
 
