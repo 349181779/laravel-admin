@@ -1,4 +1,5 @@
 /**
+ /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
  * version: 1.8.1
  * https://github.com/wenzhixin/bootstrap-table/
@@ -13,16 +14,16 @@
     var cellHeight = 37, // update css if changed
         cachedWidth = null,
         arrowAsc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZ' +
-        '0lEQVQ4y2NgGLKgquEuFxBPAGI2ahhWCsS/gDibUoO0gPgxEP8H4ttArEyuQYxAPBd' +
-        'qEAxPBImTY5gjEL9DM+wTENuQahAvEO9DMwiGdwAxOymGJQLxTyD+jgWDxCMZRsEoGAVo' +
-        'AADeemwtPcZI2wAAAABJRU5ErkJggg==',
+            '0lEQVQ4y2NgGLKgquEuFxBPAGI2ahhWCsS/gDibUoO0gPgxEP8H4ttArEyuQYxAPBd' +
+            'qEAxPBImTY5gjEL9DM+wTENuQahAvEO9DMwiGdwAxOymGJQLxTyD+jgWDxCMZRsEoGAVo' +
+            'AADeemwtPcZI2wAAAABJRU5ErkJggg==',
         arrowBoth = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAAkElEQVQoz7X' +
-        'QMQ5AQBCF4dWQSJxC5wwax1Cq1e7BAdxD5SL+Tq/QCM1oNiJidwox0355mXnG/DrEtIQ6azio' +
-        'NZQxI0ykPhTQIwhCR+BmBYtlK7kLJYwWCcJA9M4qdrZrd8pPjZWPtOqdRQy320YSV17OatFC4eut' +
-        's6z39GYMKRPCTKY9UnPQ6P+GtMRfGtPnBCiqhAeJPmkqAAAAAElFTkSuQmCC',
+            'QMQ5AQBCF4dWQSJxC5wwax1Cq1e7BAdxD5SL+Tq/QCM1oNiJidwox0355mXnG/DrEtIQ6azio' +
+            'NZQxI0ykPhTQIwhCR+BmBYtlK7kLJYwWCcJA9M4qdrZrd8pPjZWPtOqdRQy320YSV17OatFC4eut' +
+            's6z39GYMKRPCTKY9UnPQ6P+GtMRfGtPnBCiqhAeJPmkqAAAAAElFTkSuQmCC',
         arrowDesc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZUlEQVQ4y2NgGAWj' +
-        'YBSggaqGu5FA/BOIv2PBIPFEUgxjB+IdQPwfC94HxLykus4GiD+hGfQOiB3J8SojEE9EM2wuSJ' +
-        'zcsFMG4ttQgx4DsRalkZENxL+AuJQaMcsGxBOAmGvopk8AVz1sLZgg0bsAAAAASUVORK5CYII= ';
+            'YBSggaqGu5FA/BOIv2PBIPFEUgxjB+IdQPwfC94HxLykus4GiD+hGfQOiB3J8SojEE9EM2wuSJ' +
+            'zcsFMG4ttQgx4DsRalkZENxL+AuJQaMcsGxBOAmGvopk8AVz1sLZgg0bsAAAAASUVORK5CYII= ';
 
     // it only does '%s', and return '' when arguments are undefined
     var sprintf = function (str) {
@@ -799,28 +800,28 @@
 
         if (this.options.showPaginationSwitch) {
             html.push(sprintf('<button class="btn btn-default" type="button" name="paginationSwitch" title="%s">',
-                this.options.formatPaginationSwitch()),
+                    this.options.formatPaginationSwitch()),
                 sprintf('<i class="%s %s"></i>', this.options.iconsPrefix, this.options.icons.paginationSwitchDown),
                 '</button>');
         }
 
         if (this.options.showRefresh) {
             html.push(sprintf('<button class="btn btn-default' + (this.options.iconSize === undefined ? '' : ' btn-' + this.options.iconSize) + '" type="button" name="refresh" title="%s">',
-                this.options.formatRefresh()),
+                    this.options.formatRefresh()),
                 sprintf('<i class="%s %s"></i>', this.options.iconsPrefix, this.options.icons.refresh),
                 '</button>');
         }
 
         if (this.options.showToggle) {
             html.push(sprintf('<button class="btn btn-default' + (this.options.iconSize === undefined ? '' : ' btn-' + this.options.iconSize) + '" type="button" name="toggle" title="%s">',
-                this.options.formatToggle()),
+                    this.options.formatToggle()),
                 sprintf('<i class="%s %s"></i>', this.options.iconsPrefix, this.options.icons.toggle),
                 '</button>');
         }
 
         if (this.options.showColumns) {
             html.push(sprintf('<div class="keep-open btn-group" title="%s">',
-                this.options.formatColumns()),
+                    this.options.formatColumns()),
                 '<button type="button" class="btn btn-default' + (this.options.iconSize == undefined ? '' : ' btn-' + this.options.iconSize) + ' dropdown-toggle" data-toggle="dropdown">',
                 sprintf('<i class="%s %s"></i>', this.options.iconsPrefix, this.options.icons.columns),
                 ' <span class="caret"></span>',
@@ -893,16 +894,15 @@
 
         if (this.options.search) {
             html = [];
-            //html.push(
-            //    '<div class="pull-' + this.options.searchAlign + ' search">',
-            //    sprintf('<input class="form-control' + (this.options.iconSize === undefined ? '' : ' input-' + this.options.iconSize) + '" type="text" placeholder="%s">',
-            //        this.options.formatSearch()),
-            //    '</div>');
+            html.push(
+                '<div class="pull-' + this.options.searchAlign + ' search">',
+                sprintf('<input class="form-control' + (this.options.iconSize === undefined ? '' : ' input-' + this.options.iconSize) + '" type="text" placeholder="%s">',
+                    this.options.formatSearch()),
+                '</div>');
 
-            //this.$toolbar.append(html.join(''));
-            //$search = this.$toolbar.find('.search input');
-            $search = this.$toolbar..find('.search input[type=submit]');
-            $search.on('click', function (event) {
+            this.$toolbar.append(html.join(''));
+            $search = this.$toolbar.find('.search input');
+            $search.off('keyup drop').on('keyup drop', function (event) {
                 clearTimeout(timeoutId); // doesn't matter if it's 0
                 timeoutId = setTimeout(function () {
                     that.onSearch(event);
@@ -913,7 +913,7 @@
                 $search.val(this.options.searchText);
                 clearTimeout(timeoutId); // doesn't matter if it's 0
                 timeoutId = setTimeout(function () {
-                    $search.trigger('click');
+                    $search.trigger('keyup');
                 }, that.options.searchTimeOut);
             }
         }
@@ -970,7 +970,7 @@
                     var index = $.inArray(key, that.header.fields);
                     if (index !== -1 && that.header.searchables[index] &&
                         (typeof value === 'string' ||
-                            typeof value === 'number') &&
+                        typeof value === 'number') &&
                         (value + '').toLowerCase().indexOf(s) !== -1) {
                         return true;
                     }
@@ -1341,15 +1341,15 @@
                     text = [that.options.cardView ?
                         '<div class="card-view">' : '<td class="bs-checkbox">',
                         '<input' +
-                            sprintf(' data-index="%s"', i) +
-                            sprintf(' name="%s"', that.options.selectItemName) +
-                            sprintf(' type="%s"', type) +
-                            sprintf(' value="%s"', item[that.options.idField]) +
-                            sprintf(' checked="%s"', value === true ||
-                                (value && value.checked) ? 'checked' : undefined) +
-                            sprintf(' disabled="%s"', !column.checkboxEnabled ||
-                                (value && value.disabled) ? 'disabled' : undefined) +
-                            ' />',
+                        sprintf(' data-index="%s"', i) +
+                        sprintf(' name="%s"', that.options.selectItemName) +
+                        sprintf(' type="%s"', type) +
+                        sprintf(' value="%s"', item[that.options.idField]) +
+                        sprintf(' checked="%s"', value === true ||
+                        (value && value.checked) ? 'checked' : undefined) +
+                        sprintf(' disabled="%s"', !column.checkboxEnabled ||
+                        (value && value.disabled) ? 'disabled' : undefined) +
+                        ' />',
                         that.options.cardView ? '</div>' : '</td>'].join('');
 
                     item[that.header.stateField] = value === true || (value && value.checked);
@@ -1655,7 +1655,7 @@
         fixedBody = this.$tableBody.get(0);
 
         scrollWidth = fixedBody.scrollWidth > fixedBody.clientWidth &&
-            fixedBody.scrollHeight > fixedBody.clientHeight + this.$header.height() ?
+        fixedBody.scrollHeight > fixedBody.clientHeight + this.$header.height() ?
             getScrollBarWidth() : 0;
 
         this.$el.css('margin-top', -this.$header.height());
@@ -1834,8 +1834,8 @@
 
     BootstrapTable.prototype.getData = function (useCurrentPage) {
         return (this.searchText
-            || !$.isEmptyObject(this.filterColumns)
-            || !$.isEmptyObject(this.filterColumnsPartial)) ?
+        || !$.isEmptyObject(this.filterColumns)
+        || !$.isEmptyObject(this.filterColumnsPartial)) ?
             (useCurrentPage ? this.data.slice(this.pageFrom -1, this.pageTo)
                 : this.data) :
             (useCurrentPage ? this.options.data.slice(this.pageFrom - 1, this.pageTo)

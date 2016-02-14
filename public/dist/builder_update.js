@@ -1443,7 +1443,7 @@ function removeSelect(obj)
 }
 $(document).ready(function () {
     //验证表单
-    base.checkForm($("form"));
+    base.checkForm($(".ajax-form"));
     //设置双向选择器
     setMultiSelect();
 });

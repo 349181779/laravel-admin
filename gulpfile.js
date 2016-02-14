@@ -141,10 +141,11 @@ elixir(function(mix) {
 
         //builder list 页面 js
         mix.scripts([
-            "bootstrap-table/src/bootstrap-table.js",
+            "bootstrap-table/dist/bootstrap-table.js",
             "bootstrap-table/src/locale/bootstrap-table-zh-CN.js",
             "bootstrap-table/src/extensions/cookie/bootstrap-table-cookie.js",
-            "js/customJs/html_builder/initListPage.js"
+            "js/customJs/bootstrap-table/extensions/bootstrap-search.js",
+            "js/customJs/html_builder/initListPage.js",
         ], "public/dist/builder_list.js");
 
         //builder tab 页面 js

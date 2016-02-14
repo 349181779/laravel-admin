@@ -4,19 +4,15 @@
  */
 $(function(){
     $('#' + tableName).bootstrapTable({
-        cookie:true,
-        cookieIdTable:tableName
+        cookie          : true,
+        cookieIdTable   : tableName,
+        sortOrder       : "desc",
+        strictSearch    : false,
+        queryParams     : function (params) {
+            params.search = $('.search_form').serialize()
+            return params;
+        }
     })
-})
 
-/**
- * 组合query params
- *
- * @param params
- * @returns {*}
- * @author yangyifan <yangyifanphp@gmail.com>
- */
-function queryParams(params){
-    params.search = $('.search_form').serialize()
-    return params;
-}
+
+})
