@@ -238,4 +238,13 @@ $(function() {
         this.trigger('search', text);
     }
 
+    //回车键按下，执行搜索事件
+    $(document).keydown(function(event){
+        switch(event.keyCode) {
+            case 13:
+                $('.search_btn').trigger('click');
+        }
+    })
+
+
 })
