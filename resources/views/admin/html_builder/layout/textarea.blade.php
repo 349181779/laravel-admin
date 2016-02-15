@@ -21,7 +21,7 @@
                 <?php if($schema['disabled'] == true):?>
                 disabled="disabled"
                 <?php endif;?>
-                 ><?php echo !empty($schema['default']) ? $schema['default'] : $data->$schema['name']; ?></textarea>
+                 ><?php echo empty($schema['default']) ? $schema['default'] : array_get($data, $schema['name']); ?></textarea>
 
         <!-- 表单提示 -->
         <span class="help-block"><?php echo $schema['notice']; ?></span>
