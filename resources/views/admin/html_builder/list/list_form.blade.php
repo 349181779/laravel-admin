@@ -78,7 +78,7 @@
                          data-search="true"
                          data-pagination="true"
                          data-page-list="[<?php echo $limit_number;?>]"
-                         data-show-footer="true"
+                         data-show-footer="false"
                          data-side-pagination="server"
                          data-url="<?php echo $get_json_url ;?>"
                          data-query-params="queryParams">

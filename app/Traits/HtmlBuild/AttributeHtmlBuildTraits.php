@@ -47,6 +47,18 @@ trait AttributeHtmlBuildTraits
     }
 
     /**
+     * 初始化列表数据
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function resetSchemas()
+    {
+        $this->schemas          = [];
+        $this->search_schema    = [];
+        $this->json_url         = '';
+    }
+
+    /**
      * 初始化
      *
      * @author yangyifan <yangyifanphp@gmail.com>
@@ -55,6 +67,7 @@ trait AttributeHtmlBuildTraits
     {
         $this->resetFormSchema();
         $this->resetData();
+        $this->resetSchemas();
         return $this;
     }
 }

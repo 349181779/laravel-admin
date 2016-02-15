@@ -24,6 +24,14 @@ class BaseModel extends Model
 
     public static $locale   = null;//语言
 
+    //列表页 css 样式
+    const COL_DEFAULT       = "";//默认样式
+    const COL_PRIMARY       = "bg-primary";//primary样式
+    const COL_SUCCESS       = "bg-success";//成功样式
+    const COL_INFO          = "bg-info";//info样式
+    const COL_WARNING       = "bg-warning";//警告样式
+    const COL_DANGER        = "bg-danger";//危险样式
+
     public $timestamps = false;//关闭时间戳
 
     /**
@@ -302,6 +310,19 @@ class BaseModel extends Model
         return static::$image_type;
     }
 
+    /**
+     * 组合 col class 名称
+     *
+     * @param $state
+     * @return string
+     */
+    protected static function mergeClassName($state)
+    {
+        if ($state == 2) {
+            return self::COL_DANGER;
+        }
+        return self::COL_DEFAULT;
+    }
 
 }
 

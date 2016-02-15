@@ -145,6 +145,7 @@ elixir(function(mix) {
             "bootstrap-table/src/locale/bootstrap-table-zh-CN.js",
             "bootstrap-table/src/extensions/cookie/bootstrap-table-cookie.js",
             "js/customJs/bootstrap-table/extensions/bootstrap-search.js",
+            "js/customJs/bootstrap-table/extensions/bootstrap-body.js",
             "js/customJs/html_builder/initListPage.js",
         ], "public/dist/builder_list.js");
 
