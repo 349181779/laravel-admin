@@ -106,6 +106,12 @@ class BaseModel extends Model
                             self::mergeWhereOrMap($value, $query);
                         });
                         break;
+                    case 'raw':
+                        //默认为 "and"
+                        $value[1][2] = empty($value[1][2]) ? "and" : $value[1][2];
+                        //sql         //绑定参数
+                        $query = $query->whereRaw($value[1][0], $value[1][1], $value[1][2]);
+                        break;
                     default:
                         if (is_array($value) && !empty($value) ) {
                             $query = $query->where($key, $value[0], $value[1]);
@@ -143,6 +149,11 @@ class BaseModel extends Model
                 return false;
             }
         } elseif (in_array($type, ['or']) ) {
+            //如果不是数组，则跳过档次循环
+            if (empty($value) || !is_array($value)) {
+                return false;
+            }
+        } elseif (in_array($type, ['raw']) ) {
             //如果不是数组，则跳过档次循环
             if (empty($value) || !is_array($value)) {
                 return false;
