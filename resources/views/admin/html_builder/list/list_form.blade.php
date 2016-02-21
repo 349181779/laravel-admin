@@ -7,11 +7,8 @@
         </div>
         <div class="body-nest" id="Footable">
 
-
           <div class="row" style="margin: 10px 0;">
-
               @include('admin.html_builder.layout.buttons')
-
           </div>
 
           <div class="container-fluid">

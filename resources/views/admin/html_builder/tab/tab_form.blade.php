@@ -62,7 +62,7 @@
                                     <?php $tabs_schema = unserialize($tabs_schema); ?>
                                     <?php if($k == 0) :?>
                                     <div role="tabpanel" class="tab-pane active" id="<?php echo $k;?>">
-                                        <?php $schemas  = $tabs_schema->form_schema; ?>
+                                        <?php $schemas  = $tabs_schema->form_schema;?>
                                         <?php $title    = $tabs_schema->title; ?>
                                         <?php $method   = $tabs_schema->method; ?>
                                         @include('admin.html_builder.edit.edit_form_main')
@@ -76,8 +76,6 @@
                                     </div>
                                     <?php endif;?>
                                     <?php endforeach; ?>
-
-                                    <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>"/>
                                 </div>
                             </form>
 

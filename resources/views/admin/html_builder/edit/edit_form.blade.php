@@ -76,6 +76,9 @@
                 <!-- 文件上传框 -->
         @include('admin.html_builder.layout.file')
 
+        <?php elseif ($schema['type'] == 'rating'): ?>
+                <!-- 评分 -->
+        @include('admin.html_builder.layout.rating')
 
         <?php endif; ?>
 

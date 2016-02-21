@@ -137,6 +137,7 @@ elixir(function(mix) {
             "js/customJs/html_builder/initUpdatePage.js",
             "autolayout/autolayout.js",
             "js/customJs/autolayout/main.js",
+            "raty/lib/jquery.raty.js",
         ], "public/dist/builder_update.js");
 
         //builder list 页面 js
@@ -218,6 +219,7 @@ elixir(function(mix) {
         mix.copy('resources/assets/my97-date', 'public/my97-date');
         mix.copy('resources/assets/assets/js/dropZone/downloads/images', 'public/build/images');
         mix.copy('resources/assets/multiSelect', 'public/multiSelect');
+        mix.copy('resources/assets/raty/lib/img', 'public/raty/img');
 
 
 

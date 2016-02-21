@@ -2,7 +2,7 @@
 @include('admin.block.header')
 @include('UEditor::head');
 <script src="/ckeditor/ckeditor.js"></script>
-
+<link rel="stylesheet" href="<?php echo elixir('dist/builder_update.js');?>">
 @show
 
 @include('admin.block.body')

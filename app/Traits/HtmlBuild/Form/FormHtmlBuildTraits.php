@@ -19,6 +19,8 @@ use App\Traits\HtmlBuild\Form\AttrFunction\SetClassFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetRuleFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetErrorMessageFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetMultiSelectDataSourceFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetNoticeFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\SetAttrFormHtmlBuildTraits;
 
 trait FormHtmlBuildTraits
 {
@@ -114,5 +116,9 @@ trait FormHtmlBuildTraits
     use SetErrorMessageFormHtmlBuildTraits;
     //设置双向选择器数据源
     use SetMultiSelectDataSourceFormHtmlBuildTraits;
+    //设置表单提示
+    use SetNoticeFormHtmlBuildTraits;
+    //设置扩展属性
+    use SetAttrFormHtmlBuildTraits;
 
 }
