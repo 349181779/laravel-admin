@@ -252,6 +252,27 @@ class InlineTest extends \PHPUnit_Framework_TestCase
         return array(array('|'), array('>'));
     }
 
+    /**
+     * @group legacy
+     * throws \Symfony\Component\Yaml\Exception\ParseException in 4.0
+     */
+    public function testParseUnquotedScalarStartingWithPercentCharacter()
+    {
+        $deprecations = array();
+        set_error_handler(function ($type, $msg) use (&$deprecations) {
+            if (E_USER_DEPRECATED === $type) {
+                $deprecations[] = $msg;
+            }
+        });
+
+        Inline::parse('{ foo: %foo }');
+
+        restore_error_handler();
+
+        $this->assertCount(1, $deprecations);
+        $this->assertContains('Not quoting a scalar starting with the "%" indicator character is deprecated since Symfony 3.1 and will throw a ParseException in 4.0.', $deprecations[0]);
+    }
+
     public function getTestsForParse()
     {
         return array(
@@ -285,7 +306,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
             array("'on'", 'on'),
             array("'off'", 'off'),
 
-            array('2007-10-30', mktime(0, 0, 0, 10, 30, 2007)),
+            array('2007-10-30', gmmktime(0, 0, 0, 10, 30, 2007)),
             array('2007-10-30T02:59:43Z', gmmktime(2, 59, 43, 10, 30, 2007)),
             array('2007-10-30 02:59:43 Z', gmmktime(2, 59, 43, 10, 30, 2007)),
             array('1960-10-30 02:59:43 Z', gmmktime(2, 59, 43, 10, 30, 1960)),
@@ -352,7 +373,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
             array("'#cfcfcf'", '#cfcfcf'),
             array('::form_base.html.twig', '::form_base.html.twig'),
 
-            array('2007-10-30', mktime(0, 0, 0, 10, 30, 2007)),
+            array('2007-10-30', gmmktime(0, 0, 0, 10, 30, 2007)),
             array('2007-10-30T02:59:43Z', gmmktime(2, 59, 43, 10, 30, 2007)),
             array('2007-10-30 02:59:43 Z', gmmktime(2, 59, 43, 10, 30, 2007)),
             array('1960-10-30 02:59:43 Z', gmmktime(2, 59, 43, 10, 30, 1960)),
@@ -459,5 +480,56 @@ class InlineTest extends \PHPUnit_Framework_TestCase
 
             array('[foo, \'@foo.baz\', { \'%foo%\': \'foo is %foo%\', bar: \'%foo%\' }, true, \'@service_container\']', array('foo', '@foo.baz', array('%foo%' => 'foo is %foo%', 'bar' => '%foo%'), true, '@service_container')),
         );
+    }
+
+    /**
+     * @dataProvider getTimestampTests
+     */
+    public function testParseTimestampAsUnixTimestampByDefault($yaml, $year, $month, $day, $hour, $minute, $second)
+    {
+        $this->assertSame(gmmktime($hour, $minute, $second, $month, $day, $year), Inline::parse($yaml));
+    }
+
+    /**
+     * @dataProvider getTimestampTests
+     */
+    public function testParseTimestampAsDateTimeObject($yaml, $year, $month, $day, $hour, $minute, $second)
+    {
+        $expected = new \DateTime('now', new \DateTimeZone('UTC'));
+        $expected->setDate($year, $month, $day);
+        $expected->setTime($hour, $minute, $second);
+
+        $this->assertEquals($expected, Inline::parse($yaml, Yaml::PARSE_DATETIME));
+    }
+
+    public function getTimestampTests()
+    {
+        return array(
+            'canonical' => array('2001-12-15T02:59:43.1Z', 2001, 12, 15, 2, 59, 43),
+            'ISO-8601' => array('2001-12-15t21:59:43.10-05:00', 2001, 12, 16, 2, 59, 43),
+            'spaced' => array('2001-12-15 21:59:43.10 -5', 2001, 12, 16, 2, 59, 43),
+            'date' => array('2001-12-15', 2001, 12, 15, 0, 0, 0),
+        );
+    }
+
+    /**
+     * @dataProvider getDateTimeDumpTests
+     */
+    public function testDumpDateTime($dateTime, $expected)
+    {
+        $this->assertSame($expected, Inline::dump($dateTime));
+    }
+
+    public function getDateTimeDumpTests()
+    {
+        $tests = array();
+
+        $dateTime = new \DateTime('2001-12-15 21:59:43', new \DateTimeZone('UTC'));
+        $tests['date-time-utc'] = array($dateTime, '2001-12-15T21:59:43+00:00');
+
+        $dateTime = new \DateTimeImmutable('2001-07-15 21:59:43', new \DateTimeZone('Europe/Berlin'));
+        $tests['immutable-date-time-europe-berlin'] = array($dateTime, '2001-07-15T21:59:43+02:00');
+
+        return $tests;
     }
 }

@@ -3,7 +3,7 @@
 /*
  * This file is part of the League\Fractal package.
  *
- * (c) Phil Sturgeon <email@philsturgeon.co.uk>
+ * (c) Phil Sturgeon <me@philsturgeon.uk>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,68 +11,81 @@
 
 namespace League\Fractal;
 
-use League\Fractal\Resource\ResourceAbstract;
+use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\Serializer\DataArraySerializer;
 use League\Fractal\Serializer\SerializerAbstract;
 
+/**
+ * Manager
+ *
+ * Not a wildly creative name, but the manager is what a Fractal user will interact
+ * with the most. The manager has various configurable options, and allows users
+ * to create the "root scope" easily.
+ */
 class Manager
 {
     /**
-     * Array of scope identifiers for resources to include
+     * Array of scope identifiers for resources to include.
      *
      * @var array
-     **/
-    protected $requestedIncludes = array();
+     */
+    protected $requestedIncludes = [];
 
     /**
-     * Array containing modifiers as keys and an array value of params
+     * Array of scope identifiers for resources to exclude.
      *
      * @var array
-     **/
-    protected $includeParams = array();
+     */
+    protected $requestedExcludes = [];
 
     /**
-     * The character used to separate modifier parameters
+     * Array containing modifiers as keys and an array value of params.
+     *
+     * @var array
+     */
+    protected $includeParams = [];
+
+    /**
+     * The character used to separate modifier parameters.
      *
      * @var string
-     **/
+     */
     protected $paramDelimiter = '|';
 
     /**
-     * Upper limit to how many levels of included data are allowed
+     * Upper limit to how many levels of included data are allowed.
      *
-     * @var integer
-     **/
+     * @var int
+     */
     protected $recursionLimit = 10;
 
     /**
-     * Serializer
-     * 
-     * @var \League\Fractal\Serializer\SerializerInterface
-     **/
+     * Serializer.
+     *
+     * @var SerializerAbstract
+     */
     protected $serializer;
-    
+
     /**
-     * Create Data
+     * Create Data.
      *
      * Main method to kick this all off. Make a resource then pass it over, and use toArray()
      *
-     * @api
-     * @param \League\Fractal\Resource\ResourceAbstract $resource
-     * @param string $scopeIdentifier
-     * @param string $parentScopeInstance
-     * @return \League\Fractal\Scope
-     **/
-    public function createData(ResourceAbstract $resource, $scopeIdentifier = null, $parentScopeInstance = null)
+     * @param ResourceInterface $resource
+     * @param string            $scopeIdentifier
+     * @param Scope             $parentScopeInstance
+     *
+     * @return Scope
+     */
+    public function createData(ResourceInterface $resource, $scopeIdentifier = null, Scope $parentScopeInstance = null)
     {
         $scopeInstance = new Scope($this, $resource, $scopeIdentifier);
 
         // Update scope history
         if ($parentScopeInstance !== null) {
-
             // This will be the new children list of parents (parents parents, plus the parent)
             $scopeArray = $parentScopeInstance->getParentScopes();
-            $scopeArray[] = $parentScopeInstance->getCurrentScope();
+            $scopeArray[] = $parentScopeInstance->getScopeIdentifier();
 
             $scopeInstance->setParentScopes($scopeArray);
         }
@@ -81,54 +94,68 @@ class Manager
     }
 
     /**
-     * Get Include Params
+     * Get Include Params.
      *
-     * @api
      * @param string $include
-     * @return array|null
-     **/
+     *
+     * @return \League\Fractal\ParamBag|null
+     */
     public function getIncludeParams($include)
     {
-        return isset($this->includeParams[$include]) ? $this->includeParams[$include] : null;
+        if (! isset($this->includeParams[$include])) {
+            return;
+        }
+
+        $params = $this->includeParams[$include];
+
+        return new ParamBag($params);
     }
-    
+
     /**
-     * Get Requested Includes
+     * Get Requested Includes.
      *
-     * @api
      * @return array
-     **/
+     */
     public function getRequestedIncludes()
     {
         return $this->requestedIncludes;
     }
-    
+
     /**
-     * Get Serializer
+     * Get Requested Excludes.
      *
-     * @api
-     * @return $this
-     **/
+     * @return array
+     */
+    public function getRequestedExcludes()
+    {
+        return $this->requestedExcludes;
+    }
+
+    /**
+     * Get Serializer.
+     *
+     * @return SerializerAbstract
+     */
     public function getSerializer()
     {
         if (! $this->serializer) {
-            $this->setSerializer(new DataArraySerializer);
+            $this->setSerializer(new DataArraySerializer());
         }
 
         return $this->serializer;
     }
 
     /**
-     * Parse Include String
+     * Parse Include String.
      *
-     * @api
      * @param array|string $includes Array or csv string of resources to include
+     *
      * @return $this
-     **/
+     */
     public function parseIncludes($includes)
     {
         // Wipe these before we go again
-        $this->requestedIncludes = $this->includeParams = array();
+        $this->requestedIncludes = $this->includeParams = [];
 
         if (is_string($includes)) {
             $includes = explode(',', $includes);
@@ -141,7 +168,6 @@ class Manager
         }
 
         foreach ($includes as $include) {
-            
             list($includeName, $allModifiersStr) = array_pad(explode(':', $include, 2), 2, null);
 
             // Trim it down to a cool level of recursion
@@ -157,23 +183,22 @@ class Manager
                 continue;
             }
 
-            // Matches multiple instances of 'something(foo,bar,baz)' in the string
-            // I guess it ignores : so you could use anything, but probably dont do that
-            preg_match_all('/([\w]+)\(([^\)]+)\)/', $allModifiersStr, $allModifiersArr);
+            // Matches multiple instances of 'something(foo|bar|baz)' in the string
+            // I guess it ignores : so you could use anything, but probably don't do that
+            preg_match_all('/([\w]+)(\(([^\)]+)\))?/', $allModifiersStr, $allModifiersArr);
 
             // [0] is full matched strings...
             $modifierCount = count($allModifiersArr[0]);
 
-            $modifierArr = array();
+            $modifierArr = [];
 
             for ($modifierIt = 0; $modifierIt < $modifierCount; $modifierIt++) {
-                
                 // [1] is the modifier
                 $modifierName = $allModifiersArr[1][$modifierIt];
 
-                // and [2] is delimited params
-                $modifierParamStr = $allModifiersArr[2][$modifierIt];
-                
+                // and [3] is delimited params
+                $modifierParamStr = $allModifiersArr[3][$modifierIt];
+
                 // Make modifier array key with an array of params as the value
                 $modifierArr[$modifierName] = explode($this->paramDelimiter, $modifierParamStr);
             }
@@ -188,28 +213,64 @@ class Manager
     }
 
     /**
-     * Set Recursion Limit
+     * Parse Exclude String.
      *
-     * @api
-     * @param \League\Fractal\Serializer\SerializerInterface
+     * @param array|string $excludes Array or csv string of resources to exclude
+     *
      * @return $this
-     **/
+     */
+    public function parseExcludes($excludes)
+    {
+        $this->requestedExcludes = [];
+
+        if (is_string($excludes)) {
+            $excludes = explode(',', $excludes);
+        }
+
+        if (! is_array($excludes)) {
+            throw new \InvalidArgumentException(
+                'The parseExcludes() method expects a string or an array. '.gettype($excludes).' given'
+            );
+        }
+
+        foreach ($excludes as $excludeName) {
+            $excludeName = $this->trimToAcceptableRecursionLevel($excludeName);
+
+            if (in_array($excludeName, $this->requestedExcludes)) {
+                continue;
+            }
+
+            $this->requestedExcludes[] = $excludeName;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set Recursion Limit.
+     *
+     * @param int $recursionLimit
+     *
+     * @return $this
+     */
     public function setRecursionLimit($recursionLimit)
     {
         $this->recursionLimit = $recursionLimit;
+
         return $this;
     }
 
     /**
      * Set Serializer
      *
-     * @api
-     * @param \League\Fractal\Serializer\SerializerAbstract $serializer
+     * @param SerializerAbstract $serializer
+     *
      * @return $this
-     **/
+     */
     public function setSerializer(SerializerAbstract $serializer)
     {
         $this->serializer = $serializer;
+
         return $this;
     }
 
@@ -220,10 +281,12 @@ class Manager
      * are not explicitly requested. E.g: [foo, bar.baz] becomes [foo, bar, bar.baz]
      *
      * @internal
-     **/
+     *
+     * @return void
+     */
     protected function autoIncludeParents()
     {
-        $parsed = array();
+        $parsed = [];
 
         foreach ($this->requestedIncludes as $include) {
             $nested = explode('.', $include);
@@ -247,7 +310,11 @@ class Manager
      * by trains or whatever the hell that movie was about.
      *
      * @internal
-     **/
+     *
+     * @param string $includeName
+     *
+     * @return string
+     */
     protected function trimToAcceptableRecursionLevel($includeName)
     {
         return implode('.', array_slice(explode('.', $includeName), 0, $this->recursionLimit));

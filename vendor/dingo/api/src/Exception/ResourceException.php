@@ -4,9 +4,10 @@ namespace Dingo\Api\Exception;
 
 use Exception;
 use Illuminate\Support\MessageBag;
+use Dingo\Api\Contract\Debug\MessageBagErrors;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ResourceException extends HttpException
+class ResourceException extends HttpException implements MessageBagErrors
 {
     /**
      * MessageBag errors.
@@ -18,12 +19,12 @@ class ResourceException extends HttpException
     /**
      * Create a new resource exception instance.
      *
-     * @param  int  $statusCode
-     * @param  string  $message
-     * @param  \Illuminate\Support\MessageBag|array  $errors
-     * @param  \Exception  $previous
-     * @param  array  $headers
-     * @param  int  $code
+     * @param string                               $message
+     * @param \Illuminate\Support\MessageBag|array $errors
+     * @param \Exception                           $previous
+     * @param array                                $headers
+     * @param int                                  $code
+     *
      * @return void
      */
     public function __construct($message = null, $errors = null, Exception $previous = null, $headers = [], $code = 0)
@@ -41,17 +42,7 @@ class ResourceException extends HttpException
      * Get the errors message bag.
      *
      * @return \Illuminate\Support\MessageBag
-     **/
-    public function errors()
-    {
-        return $this->getErrors();
-    }
-
-    /**
-     * Get the errors message bag.
-     *
-     * @return \Illuminate\Support\MessageBag
-     **/
+     */
     public function getErrors()
     {
         return $this->errors;

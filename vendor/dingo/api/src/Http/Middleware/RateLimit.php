@@ -2,205 +2,102 @@
 
 namespace Dingo\Api\Http\Middleware;
 
+use Closure;
 use Dingo\Api\Http\Response;
-use Illuminate\Container\Container;
-use Dingo\Api\Http\InternalRequest;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Dingo\Api\Routing\Router;
+use Dingo\Api\Http\RateLimit\Handler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class RateLimit implements HttpKernelInterface
+class RateLimit
 {
     /**
-     * The wrapped kernel implementation.
+     * Router instance.
      *
-     * @var \Symfony\Component\HttpKernel\HttpKernelInterface
+     * @var \Dingo\Api\Routing\Router
      */
-    protected $app;
+    protected $router;
 
     /**
-     * Laravel application container.
+     * Rate limit handler instance.
      *
-     * @var \Illuminate\Container\Container
+     * @var \Dingo\Api\Http\RateLimit\Handler
      */
-    protected $container;
-
-    /**
-     * Rate limiting config.
-     *
-     * @var array
-     */
-    protected $config = [
-        'authenticated' => [
-            'limit' => 6000,
-            'reset' => 3600
-        ],
-        'unauthenticated' => [
-            'limit' => 60,
-            'reset' => 3600
-        ],
-        'exceeded' => 'API rate limit has been exceeded.'
-    ];
-
-    /**
-     * Array of resolved container bindings.
-     *
-     * @var array
-     */
-    protected $bindings = [];
-
-    /**
-     * Array of binding mappings.
-     *
-     * @var array
-     */
-    protected $mappings = ['auth' => 'dingo.api.auth'];
-
-    /**
-     * Indicates if the request is authenticated.
-     *
-     * @var bool
-     */
-    protected $authenticatedRequest;
+    protected $handler;
 
     /**
      * Create a new rate limit middleware instance.
      *
-     * @param  \Symfony\Component\HttpKernel\HttpKernelInterface  $app
-     * @param  \Illuminate\Container\Container  $container
+     * @param \Dingo\Api\Routing\Router         $router
+     * @param \Dingo\Api\Http\RateLimit\Handler $handler
+     *
      * @return void
      */
-    public function __construct(HttpKernelInterface $app, Container $container)
+    public function __construct(Router $router, Handler $handler)
     {
-        $this->app = $app;
-        $this->container = $container;
+        $this->router = $router;
+        $this->handler = $handler;
     }
 
     /**
-     * Handle a given request and return the response.
+     * Perform rate limiting before a request is executed.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request  $request
-     * @param  int  $type
-     * @param  bool  $catch
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
-     */
-    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
-    {
-        $this->container->boot();
-
-        $this->prepareConfig($request);
-
-        // Internal requests as well as requests that are not targetting the
-        // API will not be rate limited. We'll also be sure not to perform
-        // any rate limiting if it has been disabled.
-        if ($request instanceof InternalRequest or ! $this->router->requestTargettingApi($request) or $this->rateLimitingDisabled()) {
-            return $this->app->handle($request, $type, $catch);
-        }
-
-        $this->cache->add($this->config['keys']['requests'], 0, $this->config['reset']);
-        $this->cache->add($this->config['keys']['reset'], time() + ($this->config['reset'] * 60), $this->config['reset']);
-        $this->cache->increment($this->config['keys']['requests']);
-
-        if ($this->exceededRateLimit()) {
-            list ($version, $format) = $this->router->parseAcceptHeader($request);
-
-            $response = (new Response(['message' => $this->config['exceeded']], 403))->morph($format);
-        } else {
-            $response = $this->app->handle($request, $type, $catch);
-        }
-
-        return $this->adjustResponseHeaders($response);
-    }
-
-    /**
-     * Adjust the response headers and return the response.
+     * @param \Dingo\Api\Http\Request $request
+     * @param \Closure                $next
      *
-     * @param  \Dingo\Api\Http\Response  $response
-     * @return \Dingo\Api\Http\Response
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *
+     * @return mixed
      */
-    protected function adjustResponseHeaders($response)
+    public function handle($request, Closure $next)
     {
-        $requestsRemaining = $this->config['limit'] - $this->cache->get($this->config['keys']['requests']);
+        $route = $this->router->getCurrentRoute();
 
-        if ($requestsRemaining < 0) {
-            $requestsRemaining = 0;
+        if ($route->hasThrottle()) {
+            $this->handler->setThrottle($route->getThrottle());
         }
 
-        $response->headers->set('X-RateLimit-Limit', $this->config['limit']);
-        $response->headers->set('X-RateLimit-Remaining', $requestsRemaining);
-        $response->headers->set('X-RateLimit-Reset', $this->cache->get($this->config['keys']['reset']));
+        $this->handler->rateLimitRequest($request, $route->getRateLimit(), $route->getRateExpiration());
+
+        if ($this->handler->exceededRateLimit()) {
+            throw new HttpException(403, 'You have exceeded your rate limit.', null, $this->getHeaders());
+        }
+
+        $response = $next($request);
+
+        if ($this->handler->requestWasRateLimited()) {
+            return $this->responseWithHeaders($response);
+        }
 
         return $response;
     }
 
     /**
-     * Determine if the client has exceeded their rate limit.
+     * Send the response with the rate limit headers.
      *
-     * @return bool
-     */
-    protected function exceededRateLimit()
-    {
-        return $this->cache->get($this->config['keys']['requests']) > $this->config['limit'];
-    }
-
-    /**
-     * Deteremine if the request is authenticated.
+     * @param \Dingo\Api\Http\Response $response
      *
-     * @return bool
+     * @return \Dingo\Api\Http\Response
      */
-    protected function isAuthenticatedRequest()
+    protected function responseWithHeaders($response)
     {
-        if (! is_null($this->authenticatedRequest)) {
-            return $this->authenticatedRequest;
+        foreach ($this->getHeaders() as $key => $value) {
+            $response->headers->set($key, $value);
         }
 
-        return $this->authenticatedRequest = $this->auth->check();
+        return $response;
     }
 
     /**
-     * Prepare the configuration for the request.
+     * Get the headers for the response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
+     * @return array
      */
-    protected function prepareConfig($request)
+    protected function getHeaders()
     {
-        $this->config = array_merge($this->config, $this->container->make('config')->get('api::rate_limiting'));
-
-        if ($this->isAuthenticatedRequest()) {
-            $this->config = array_merge(['exceeded' => $this->config['exceeded']], $this->config['authenticated']);
-        } else {
-            $this->config = array_merge(['exceeded' => $this->config['exceeded']], $this->config['unauthenticated']);
-        }
-
-        $this->config['keys']['requests'] = sprintf('dingo:api:requests:%s', $request->getClientIp());
-        $this->config['keys']['reset'] = sprintf('dingo:api:reset:%s', $request->getClientIp());
-    }
-
-    /**
-     * Determine if rate limiting is disabled.
-     *
-     * @return bool
-     */
-    protected function rateLimitingDisabled()
-    {
-        return $this->config['limit'] == 0;
-    }
-
-    /**
-     * Dynamically handle binding calls on the container.
-     *
-     * @param  string  $binding
-     * @return mixed
-     */
-    public function __get($binding)
-    {
-        $binding = isset($this->mappings[$binding]) ? $this->mappings[$binding] : $binding;
-
-        if (isset($this->bindings[$binding])) {
-            return $this->bindings[$binding];
-        }
-
-        return $this->bindings[$binding] = $this->container->make($binding);
+        return [
+            'X-RateLimit-Limit' => $this->handler->getThrottleLimit(),
+            'X-RateLimit-Remaining' => $this->handler->getRemainingLimit(),
+            'X-RateLimit-Reset' => $this->handler->getRateLimitReset(),
+        ];
     }
 }
