@@ -58,8 +58,8 @@ trait TabHtmlBuildTraits
     /**
      * 获取构建 Tab 页面 share 到 模板的数据
      *
-     * @param string $method
-     * @param string $post_url
+     * @param string $method    请求meoth
+     * @param string $post_url 请求url
      * @return array
      */
     private function getBuildTabData($method = 'post', $post_url = '')
@@ -85,24 +85,27 @@ trait TabHtmlBuildTraits
     /**
      * 分享数据到视图
      *
+     * @param string $method    请求meoth
+     * @param string $post_url 请求url
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    private function shareTabData()
+    private function shareTabData($method, $post_url)
     {
-        view()->share($this->getBuildTabData());
+        view()->share($this->getBuildTabData($method, $post_url));
     }
 
     /**
      * 构建Tab HTML页面
      *
-     * @param array $urls
+     * @param string $method    请求meoth
+     * @param string $post_url 请求url
      * @return \Illuminate\View\View
      * @author yangyifan <yangyifanphp@gmail.com>
      */
     public function builderTabHtml($method = 'post', $post_url = '')
     {
         //分享数据到视图
-        $this->shareTabData();
+        $this->shareTabData($method, $post_url);
         return View('admin/html_builder/tab/tab');
     }
 

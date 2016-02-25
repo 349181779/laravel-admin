@@ -8,7 +8,7 @@
     <div class="col-sm-4 last_child_div">
         <input type="<?php echo $schema['type']; ?>"
                name="<?php echo $schema['name']; ?>"
-               value="<?php echo !empty($schema['default']) ? $schema['default'] : $data->$schema['name']; ?>"
+               value="<?php echo empty(array_get($data, $schema['name'])) ? $schema['default'] : array_get($data, $schema['name']); ?>"
                <?php if (empty($schema['rule'])) {
                     echo 'ignore="ignore"';
                } else {

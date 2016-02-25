@@ -30,9 +30,6 @@ class HtmlBuilderController extends BaseController
     use TabHtmlBuildTraits;         //构建tab traits
     use TreeHtmlBuildTraits;        //构建tree traits
 
-    const SCHAME_STRING = 1;//字符串(for list page)
-    const SCHAME_IMAGE  = 2;//图片(for list page)
-
     /**
      * 构造方法
      *

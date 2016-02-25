@@ -9,7 +9,7 @@
 
         <input type="text"
                name="<?php echo $schema['name']; ?>"
-               value="<?php echo $data->$schema['name'] == '' ? '' : $data->$schema['name'];; ?>"
+               value="<?php echo array_get($data, $schema['name']) == '' ? '' : array_get($data, $schema['name']); ?>"
                onclick="WdatePicker({<?php if (!empty($schema['default'])) {
                    echo "{$schema['default']}";
                } else {

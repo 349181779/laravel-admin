@@ -58,7 +58,7 @@ class UserInfo1Controller extends BaseController {
 				 builderFormSchema('invitee', '被邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('created_at', '创建时间', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('status', '是否显示【1:未确认；2：已确认】', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
-				 builderConfirmBotton('确认', '', 'btn btn-success')->
+				 builderConfirmBotton('添加', '', 'btn btn-success')->
 				 builderAdd();
 	}
 
@@ -80,18 +80,18 @@ class UserInfo1Controller extends BaseController {
 				 builderFormSchema('created_at', '创建时间', $type = 'date', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildFormDefaultValue("dateFmt:'yyyy-MM-dd'")->
 				 buildFormRule('e')->
-				buildFormErrorMessage("自定义错误条件")->
-				builderFormSchema('access', '权限设置', 'multiSelect')->
-				buildFormMultiSelectDataSource(UserInfo1Model::select('id', 'created_at')->multiwhere(['status' => 2, 'id' => ['!=', $data->id] ])->get(), UserInfo1Model::multiwhere(['id' => $data->id])->get(), 'created_at')->
-		builderFormSchema('status1', '是否显示【1:未确认；2：已确认】', $type = 'radio', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 buildFormErrorMessage("自定义错误条件")->
+				 builderFormSchema('access', '权限设置', 'multiSelect')->
+				 buildFormMultiSelectDataSource(UserInfo1Model::select('id', 'created_at')->multiwhere(['status' => 2, 'id' => ['!=', $data->id] ])->get(), UserInfo1Model::multiwhere(['id' => $data->id])->get(), 'created_at')->
+				 builderFormSchema('status1', '是否显示【1:未确认；2：已确认】', $type = 'radio', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildDataSource([1=>'开启', '2'=>'关闭'], 1)->
-				builderFormSchema('status2', '是否显示【1:未确认；2：已确认】', $type = 'checkbox', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 builderFormSchema('status2', '是否显示【1:未确认；2：已确认】', $type = 'checkbox', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildDataSource([1=>'开启', '2'=>'关闭'], [1, 2])->
-				builderFormSchema('status3', '是否显示【1:未确认；2：已确认】', $type = 'select', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
+				 builderFormSchema('status3', '是否显示【1:未确认；2：已确认】', $type = 'select', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 buildDataSource([ [ 'id' => 1, 'name' => '开启'], ['id' => 2, 'name' => '关闭']], 1, 'name')->
 				 builderFormSchema('sasa', '是否显示【1:未确认；2：已确认】', $type = 'ckeditor', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
-				 buildFormDefaultValue('sasa')->
-
+				 builderFormSchema('rating1221', '测试评分控件', $type = 'rating', $default = '4')->
+				 buildFormAttr(['numberMax' => 5])->
 				 builderEditData($data)->
 				 builderConfirmBotton('确认', '', 'btn btn-success')->
 				 builderEdit();

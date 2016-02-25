@@ -29,7 +29,7 @@
                                 <?php foreach ($schema['option'] as $k => $option): ?>
 
                                     <option
-                                        <?php if ( ($option['id'] == $option_val) || ($data->$schema['name'] === $option['id'])) :?>
+                                        <?php if ( ($option['id'] == $option_val) || (array_get($data, $schema['name']) === $option['id'])) :?>
                                             <?php echo "selected='selected' ";?>
                                         <?php endif; ?>
                                         value="<?php echo $option['id']; ?>" >

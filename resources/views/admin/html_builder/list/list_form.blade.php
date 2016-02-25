@@ -4,16 +4,11 @@
       <div class="nest" id="FootableClose">
         <div class="title-alt">
           <h6> <?php echo $title; ?></h6>
-          <div class="titleClose"> <a class="gone" href="#FootableClose"> <span class="entypo-cancel"></span> </a> </div>
-          <div class="titleToggle"> <a class="nav-toggle-alt" href="#Footable"> <span class="entypo-up-open"></span> </a> </div>
         </div>
         <div class="body-nest" id="Footable">
 
-
           <div class="row" style="margin: 10px 0;">
-
               @include('admin.html_builder.layout.buttons')
-
           </div>
 
           <div class="container-fluid">
@@ -23,7 +18,7 @@
 
                     <!-- 搜索表单 -->
                     <form method="<?php echo $method; ?>" class="form-inline search_form" onsubmit="return false;">
-                        <?php if(!empty($search_schema)):?>
+                        <?php if(count($search_schema) > 0 ):?>
                             <?php foreach($search_schema as $schema):?>
 
                                 <?php if($schema['type'] == 'text'):?>
@@ -65,8 +60,9 @@
                                 <?php endif;?>
 
                             <?php endforeach;?>
+                        <button type="submit" class="btn btn-default search_btn">搜索</button>
                         <?php endif;?>
-                      <button type="submit" class="btn btn-default search_btn">搜索</button>
+
                     </form>
                     <!-- 搜索表单 -->
 
@@ -78,8 +74,8 @@
                          data-toolbar-align="left"
                          data-search="true"
                          data-pagination="true"
-                         data-page-list="[10, 25, 50, 100, ALL]"
-                         data-show-footer="true"
+                         data-page-list="[<?php echo $limit_number;?>]"
+                         data-show-footer="false"
                          data-side-pagination="server"
                          data-url="<?php echo $get_json_url ;?>"
                          data-query-params="queryParams">
@@ -89,13 +85,13 @@
                       <tr>
                           <?php if(!empty($schemas) && is_array($schemas)):?>
                           <?php foreach($schemas as $k=>$schema):?>
-                          <?php if($schema['type'] != 3):?>
-                          <th
-                            data-field="<?php echo $k;?>"
-                            data-sortable=true
-                            data-class="<?php echo $schema['class'];?>"
-                            ><?php echo $schema['comment'];?></th>
-                          <?php endif;?>
+                              <th
+                                      data-field="<?php echo $k;?>"
+                                      data-sortable=<?php echo $schema["is_sort"];?>
+                                      data-class="<?php echo $schema['class'];?>"
+                                      >
+                                  <?php echo $schema['comment'];?>
+                              </th>
                           <?php endforeach;?>
                           <?php endif;?>
                        </tr>

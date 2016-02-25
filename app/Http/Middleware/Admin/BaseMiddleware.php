@@ -54,6 +54,11 @@ class BaseMiddleware
 			return redirect()->action('BaseController@getError', ['message' => trans('response.unauthorized')]);
 
 		}
+		//如果在后台登陆超时了，是ajax请求，则提示需要登陆！
+		elseif (isAjax() == true || $request->method() == 'POST') {
+			return $this->conrtoller->response(BaseController::ERROR_STATE_CODE, '', [], true, createUrl("\App\Http\Controllers\Admin\LoginController@getIndex"));
+		}
+
 		return redirect()->action('\App\Http\Controllers\Admin\LoginController@getIndex');
 
 	}

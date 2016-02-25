@@ -1,7 +1,7 @@
 
 <?php if($build_html_type != 'tab'):?>
         <!-- 如果tab类型，则不需要显示form标签 -->
-<form id="form" method="<?php echo $method; ?>" action="<?php echo $confirm_button["url"]; ?>" class="form-horizontal bucket-form ajax-form" enctype="multipart/form-data" >
+<form id="form" method="<?php echo $method; ?>" action="<?php echo !empty($confirm_button) ? $confirm_button["url"] : ''; ?>" class="form-horizontal bucket-form ajax-form" enctype="multipart/form-data" >
 <?php endif;?>
 
         <?php if (!empty($schemas)): ?>
@@ -76,6 +76,9 @@
                 <!-- 文件上传框 -->
         @include('admin.html_builder.layout.file')
 
+        <?php elseif ($schema['type'] == 'rating'): ?>
+                <!-- 评分 -->
+        @include('admin.html_builder.layout.rating')
 
         <?php endif; ?>
 
@@ -83,18 +86,20 @@
         <?php endif; ?>
 
 
-        <div class="form-group">
-                <div class="col-lg-offset-3 col-lg-10 row-block">
-                        <section class="button-submit">
-                                <button data-style="slide-up"
-                                        class="ladda-button <?php echo $confirm_button['class']; ?>  pull-cnter col-md-1"
-                                        data-size="l"
-                                        >
-                                        <span class="ladda-label"><?php echo $confirm_button['title']; ?></span>
-                                </button>
-                        </section>
+        <?php if(!empty($confirm_button)):?>
+                <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-10 row-block">
+                                <section class="button-submit">
+                                        <button data-style="slide-up"
+                                                class="ladda-button <?php echo $confirm_button['class']; ?>  pull-cnter col-md-2"
+                                                data-size="l"
+                                                >
+                                                <span class="ladda-label"><?php echo $confirm_button['title']; ?></span>
+                                        </button>
+                                </section>
+                        </div>
                 </div>
-        </div>
+        <?php endif;?>
 
 <?php if($build_html_type == 'edit'):?>
         <!-- 如果是编辑页面则显示id 隐藏域 -->

@@ -137,14 +137,17 @@ elixir(function(mix) {
             "js/customJs/html_builder/initUpdatePage.js",
             "autolayout/autolayout.js",
             "js/customJs/autolayout/main.js",
+            "raty/lib/jquery.raty.js",
         ], "public/dist/builder_update.js");
 
         //builder list 页面 js
         mix.scripts([
-            "bootstrap-table/src/bootstrap-table.js",
+            "bootstrap-table/dist/bootstrap-table.js",
             "bootstrap-table/src/locale/bootstrap-table-zh-CN.js",
             "bootstrap-table/src/extensions/cookie/bootstrap-table-cookie.js",
-            "js/customJs/html_builder/initListPage.js"
+            "js/customJs/bootstrap-table/extensions/bootstrap-search.js",
+            "js/customJs/bootstrap-table/extensions/bootstrap-body.js",
+            "js/customJs/html_builder/initListPage.js",
         ], "public/dist/builder_list.js");
 
         //builder tab 页面 js
@@ -152,6 +155,7 @@ elixir(function(mix) {
             "Validform-v5.3.2/Validform_v5.3.2.js",
             "js/customJs/html_builder/search.js",
             "js/customJs/html_builder/select.js",
+            "js/customJs/html_builder/initUpdatePage.js",
             "js/customJs/html_builder/initTabPage.js",
             "ladda/dist/spin.min.js",
             "ladda/dist/ladda.min.js",
@@ -215,6 +219,7 @@ elixir(function(mix) {
         mix.copy('resources/assets/my97-date', 'public/my97-date');
         mix.copy('resources/assets/assets/js/dropZone/downloads/images', 'public/build/images');
         mix.copy('resources/assets/multiSelect', 'public/multiSelect');
+        mix.copy('resources/assets/raty/lib/img', 'public/raty/img');
 
 
 

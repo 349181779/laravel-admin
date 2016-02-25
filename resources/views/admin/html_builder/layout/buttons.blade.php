@@ -1,6 +1,5 @@
-<div class="row" style="margin: 10px 0;">
-    <?php if(!empty($list_buttons)):?>
-
+<?php if(count($list_buttons) > 0 ):?>
+    <div class="row" style="margin: 10px 0;">
         <div class="btn-group" role="group" aria-label="...">
             <?php foreach($list_buttons as $button):?>
                 <button
@@ -25,6 +24,6 @@
                     <?php echo $button['name'];?>
                 </button>
             <?php endforeach;?>
-        <?php endif;?>
         </div>
-</div>
+    </div>
+<?php endif;?>

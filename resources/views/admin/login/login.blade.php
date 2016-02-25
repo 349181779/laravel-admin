@@ -8,7 +8,6 @@
   <meta name="author" content="">
   @include('admin.block.base_header')
   <link rel="stylesheet" href="<?php echo elixir('dist/login.css');?>">
-  <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <!-- Preloader -->
@@ -51,6 +50,7 @@
                       <button data-style="slide-up"
                               class="ladda-button btn btn-primary btn-block pull-cnter"
                               data-size="l"
+                              style="background-color:#286090"
                               >
                         <span class="ladda-label">登 录 </span>
                       </button>
@@ -75,6 +75,5 @@
   </div>
 </div>
 @include('admin.block.footer_js')
-<script src="<?php echo elixir('dist/login.js');?>"></script>
 </body>
 </html>

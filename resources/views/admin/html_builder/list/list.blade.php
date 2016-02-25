@@ -8,7 +8,8 @@
 @include('admin.block.body')
 @include('admin.html_builder.list.list_form')
 <script>
-    var tableName = '<?php echo $table_name ;?>';
+    var tableName   = '<?php echo $table_name ;?>';
+    var pageSize    = <?php echo $page_size;?>;
 </script>  
 <script src="<?php echo elixir('dist/builder_list.js');?>"></script> 
 @include('admin.block.footer')

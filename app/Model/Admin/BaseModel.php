@@ -24,6 +24,14 @@ class BaseModel extends Model
 
     public static $locale   = null;//语言
 
+    //列表页 css 样式
+    const COL_DEFAULT       = "";//默认样式
+    const COL_PRIMARY       = "bg-primary";//primary样式
+    const COL_SUCCESS       = "bg-success";//成功样式
+    const COL_INFO          = "bg-info";//info样式
+    const COL_WARNING       = "bg-warning";//警告样式
+    const COL_DANGER        = "bg-danger";//危险样式
+
     public $timestamps = false;//关闭时间戳
 
     /**
@@ -98,6 +106,12 @@ class BaseModel extends Model
                             self::mergeWhereOrMap($value, $query);
                         });
                         break;
+                    case 'raw':
+                        //默认为 "and"
+                        $value[1][2] = empty($value[1][2]) ? "and" : $value[1][2];
+                        //sql         //绑定参数
+                        $query = $query->whereRaw($value[1][0], $value[1][1], $value[1][2]);
+                        break;
                     default:
                         if (is_array($value) && !empty($value) ) {
                             $query = $query->where($key, $value[0], $value[1]);
@@ -135,6 +149,11 @@ class BaseModel extends Model
                 return false;
             }
         } elseif (in_array($type, ['or']) ) {
+            //如果不是数组，则跳过档次循环
+            if (empty($value) || !is_array($value)) {
+                return false;
+            }
+        } elseif (in_array($type, ['raw']) ) {
             //如果不是数组，则跳过档次循环
             if (empty($value) || !is_array($value)) {
                 return false;
@@ -302,6 +321,19 @@ class BaseModel extends Model
         return static::$image_type;
     }
 
+    /**
+     * 组合 col class 名称
+     *
+     * @param $state
+     * @return string
+     */
+    protected static function mergeClassName($state)
+    {
+        if ($state == 2) {
+            return self::COL_DANGER;
+        }
+        return self::COL_DEFAULT;
+    }
 
 }
 

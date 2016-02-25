@@ -54,6 +54,7 @@ class AdminInfoController extends BaseController
                 builderSearchSchema('admin_name', '管理员名称')->
                 builderBotton('增加后台用户', createUrl('Admin\Admin\AdminInfoController@getAdd'))->
                 builderJsonDataUrl(createUrl('Admin\Admin\AdminInfoController@getSearch',[ 'limit_id' => $request->id ]))->
+                buildLimitNumber([20, 30, 40, 50])->
                 builderList();
     }
 

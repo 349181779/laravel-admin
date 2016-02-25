@@ -78,7 +78,7 @@ trait BaseHtmlBuildTraits
      */
     public function loadScription($scription = '', $type = true)
     {
-        $this->scription[] = $type === true ? elixir($scription) : substr($scription, 0, 1) != '/' ? '/' . $scription : $scription;
+        $this->scription[] = $type === true ? elixir($scription) : (substr($scription, 0, 1) != '/' ? '/' . $scription : $scription);
         return $this;
     }
 

@@ -195,6 +195,8 @@ class AdminInfoModel extends BaseModel
     {
         if (!empty($data)) {
             foreach($data as &$v){
+                //组合 col class名称
+                $v->class_name   = self::mergeClassName($v->state);
                 //组合状态
                 $v->state_name   = MergeModel::mergeStatus($v->state);
 
