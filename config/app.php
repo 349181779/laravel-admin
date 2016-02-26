@@ -149,10 +149,12 @@ return [
         Yangyifan\AutoBuild\AutoBuildServiceProvider::class, //自动构建
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yangyifan\UEditor\UEditorServiceProvider::class,//ueditor
-        //'Dingo\Api\Provider\ApiServiceProvider'
         Mews\Captcha\CaptchaServiceProvider::class,//验证码
 		//'App\Providers\HtmlDomProvider',//采集库
         Yangyifan\Upload\UploadServiceProvider::class,//上传
+		Dingo\Api\Provider\LaravelServiceProvider::class,//api
+		LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,//OAuth
+		LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,//OAuth
 
 
 
@@ -207,6 +209,7 @@ return [
         //自定义
         'Excel'         => Maatwebsite\Excel\Facades\Excel::class, //https://github.com/Maatwebsite/Laravel-Excel
         //'Captcha'       => Mews\Captcha\Facades\Captcha::class,
+		'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 
 	],
 

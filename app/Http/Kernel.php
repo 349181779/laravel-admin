@@ -18,6 +18,7 @@ class Kernel extends HttpKernel {
 			\App\Http\Middleware\VerifyCsrfToken::class,
 			//\App\Http\Middleware\VerifyCsrfToken::class,,
 			\App\Http\Middleware\Admin\TrimMiddleware::class,//http trim中间件
+			\LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,//OAuth
 	];
 
 	/**
@@ -26,10 +27,14 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' 			=> \App\Http\Middleware\Authenticate::class,
-		'auth.basic' 	=> \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-		'guest' 		=> \App\Http\Middleware\RedirectIfAuthenticated::class,
-		'admin.base'	=> \App\Http\Middleware\Admin\BaseMiddleware::class,
+		'auth' 							=> \App\Http\Middleware\Authenticate::class,
+		'auth.basic' 					=> \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+		'guest' 						=> \App\Http\Middleware\RedirectIfAuthenticated::class,
+		'admin.base'					=> \App\Http\Middleware\Admin\BaseMiddleware::class,
+		'oauth' 						=> \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,//OAuth
+		'oauth-user'					=> \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,//OAuth
+		'oauth-client' 					=> \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,//OAuth
+		'check-authorization-params' 	=> \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,//OAuth
 	];
 
 }
