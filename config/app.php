@@ -146,18 +146,17 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //自定义
+
         Yangyifan\AutoBuild\AutoBuildServiceProvider::class, //自动构建
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        Yangyifan\UEditor\UEditorServiceProvider::class,//ueditor
-        Mews\Captcha\CaptchaServiceProvider::class,//验证码
-		//'App\Providers\HtmlDomProvider',//采集库
         Yangyifan\Upload\UploadServiceProvider::class,//上传
+        //Yangyifan\UEditor\UEditorServiceProvider::class,//ueditor
+        Yangyifan\Pay\PayServiceProvider::class,//pay
+
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,//api
 		LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,//OAuth
 		LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,//OAuth
-
-
-
 	],
 
 	/*
@@ -206,10 +205,13 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View'      => Illuminate\Support\Facades\View::class,
 
+        //支付
+        'Pay'       => Yangyifan\Pay\Facades\Pay::class,
         //自定义
-        'Excel'         => Maatwebsite\Excel\Facades\Excel::class, //https://github.com/Maatwebsite/Laravel-Excel
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class, //https://github.com/Maatwebsite/Laravel-Excel
         //'Captcha'       => Mews\Captcha\Facades\Captcha::class,
-		'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
+		'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
+
 
 	],
 

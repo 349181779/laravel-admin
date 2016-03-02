@@ -39,6 +39,8 @@ return array(
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     'f4e9c7747917193061b46ee142399603' => $vendorDir . '/dingo/api/src/helpers.php',
+    '1e44dc14afdcc2ad22b21849ab0deab8' => $vendorDir . '/yangyifan/laravel-pay/alipay/lib/alipay_core.function.php',
+    'f708f626a6f777ea6836fa3e7aa50845' => $vendorDir . '/yangyifan/laravel-pay/alipay/lib/alipay_md5.function.php',
     '5966f62222fcccf0b1a1ca1445d0f06a' => $baseDir . '/app/Functions/common.func.php',
     'c91b03a42e06f3a949bc3f1fd49e89aa' => $baseDir . '/app/Functions/base.func.php',
 );

@@ -52,7 +52,7 @@ class Jpush
      */
     public static function setAppKey($app_key = '')
     {
-        self::$app_key = !empty($app_key) ?  $app_key : config('config.louxia100_jpush.app_key');
+        self::$app_key = !empty($app_key) ?  $app_key : config('config.jpush.app_key');
     }
 
     /**
@@ -63,7 +63,7 @@ class Jpush
      */
     public static function getAppKey()
     {
-        return !empty(self::$app_key) ? self::$app_key : config('config.louxia100_jpush.app_key');
+        return !empty(self::$app_key) ? self::$app_key : config('config.jpush.app_key');
     }
 
     /**
@@ -74,7 +74,7 @@ class Jpush
      */
     public static function setMasterSecret($master_secret = '')
     {
-        self::$master_secret = !empty($master_secret) ?  $master_secret : config('config.louxia100_jpush.master_secret');
+        self::$master_secret = !empty($master_secret) ?  $master_secret : config('config.jpush.master_secret');
     }
 
     /**
@@ -85,7 +85,7 @@ class Jpush
      */
     public static function getMasterSecret()
     {
-        return !empty(self::$master_secret) ? self::$master_secret : config('config.louxia100_jpush.master_secret');
+        return !empty(self::$master_secret) ? self::$master_secret : config('config.jpush.master_secret');
     }
 
     /**
@@ -139,7 +139,7 @@ class Jpush
      */
     public static function getOption()
     {
-        return empty(self::$option) ? ["apns_production" => config('config.louxia100_jpush.apns_production')] : self::$option;
+        return empty(self::$option) ? ["apns_production" => config('config.jpush.apns_production')] : self::$option;
     }
 
     /**
@@ -153,12 +153,7 @@ class Jpush
         set_time_limit(0);
         @ini_set('memory_limit', '264M');
 
-        $user_list =    DB::table('message_push AS m')->
-                        select('m.id', 'm.registration_id', 'm.user_id', 'u.city_id')->
-                        join('user_info AS u', 'm.user_id', '=', 'u.id')->
-                        where('m.registration_id', '!=', ' "" ')->
-                        where('m.alias', '!=', ' "" ')->
-                        get();
+        $user_list =    [];
 
         if (!empty($user_list)) {
             foreach ($user_list as $user) {
@@ -182,11 +177,7 @@ class Jpush
      */
     public static function getUserAlias()
     {
-        $user_list =    DB::table('message_push AS m')->
-                        select('m.id', 'm.registration_id', 'm.user_id', 'u.city_id')->
-                        join('user_info AS u', 'm.user_id', '=', 'u.id')->
-                        where('m.registration_id', '!=', ' "" ')->
-                        get();
+        $user_list =    [];
 
         if (!empty($user_list)) {
             foreach ($user_list as $user) {
@@ -221,7 +212,7 @@ class Jpush
      * 推送信息
      *
      * @param $alert    推送内容
-     * @param $type     推送类型【1：下午茶；2：蛋糕】
+     * @param $type     推送类型
      * @param $platform 推送平台
      * @param $audience 推送设备
      * @return bool

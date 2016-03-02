@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:viod(0)" onclick="logout()"><span
+                    <a href="javascript:void(0)" onclick="logout()"><span
                                 class="glyphicon glyphicon-remove-sign"></span>&#160;&#160; 退出</a>
                 </li>
                 <li class="hidden-xs">

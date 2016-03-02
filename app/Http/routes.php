@@ -48,6 +48,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin.base',  'namespace' => '
 Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     //上传
     Route::controller('upload', 'UploadController');
+    //支付
+    Route::controller('pay', 'PayController');
 });
 
 /**

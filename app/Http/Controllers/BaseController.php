@@ -28,8 +28,6 @@ class BaseController extends Controller
 
     const CONNECTION = '@';//控制器名称和方法名称连接符号
 
-    private static $route_arr = null;//当前路由数组
-
     /**
      * 构造方法
      *
@@ -120,22 +118,6 @@ class BaseController extends Controller
         \App::setLocale($locale);
         //设置模型语言
         is_null(BaseModel::$locale) && BaseModel::$locale = $locale;
-    }
-
-    /**
-     * 获取当前控制器与方法
-     *
-     * @return array
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public static function getCurrentAction()
-    {
-        if (is_null(self::$route_arr)) {
-            $action 				= \Route::current()->getActionName();
-            list($class, $method) 	= explode(self::CONNECTION, $action);
-            self::$route_arr =  ['controller' => str_replace("App\\Http\\Controllers\\", "", $class), 'method' => $method];
-        }
-        return self::$route_arr;
     }
 
     /**

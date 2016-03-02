@@ -54,7 +54,7 @@ class BaseController extends \App\Http\Controllers\BaseController
      */
     private function getLocation()
     {
-        view()->share('location_arr', AdminMenuModel::mergeLocation( AdminMenuModel::getMenuId(implode(self::CONNECTION, $this->getCurrentAction())) ));
+        //view()->share('location_arr', AdminMenuModel::mergeLocation( AdminMenuModel::getMenuId(implode(self::CONNECTION, $this->getCurrentAction())) ));
     }
 
     /**

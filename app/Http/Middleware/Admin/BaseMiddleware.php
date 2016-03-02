@@ -19,6 +19,7 @@ class BaseMiddleware
 {
 
 	private $conrtoller;//基础控制器
+    private $route_arr = null;//当前路由数组
 
 	/**
 	 * 构造方法
@@ -71,7 +72,7 @@ class BaseMiddleware
 	private function checkAccess()
 	{
 		//获得当前路由
-		$action = $this->conrtoller->getCurrentAction();
+		$action = $this->getCurrentAction();
 
 		$all_user_function  = AdminLimitFunctionModel::getUserFunction();
 		$all_function       = \DB::table(tableName('admin_function'))->lists('function_name');
@@ -91,6 +92,22 @@ class BaseMiddleware
 		}
 		return true;
 	}
+
+    /**
+     * 获取当前控制器与方法
+     *
+     * @return array
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getCurrentAction()
+    {
+        if (is_null($this->route_arr)) {
+            $action 				= \Route::current()->getActionName();
+            list($class, $method) 	= explode(BaseController::CONNECTION, $action);
+            $this->route_arr        =  ['controller' => str_replace("App\\Http\\Controllers\\", "", $class), 'method' => $method];
+        }
+        return $this->route_arr;
+    }
 
 
 }
