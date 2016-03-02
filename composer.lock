@@ -947,7 +947,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/agent/zipball/965ee4143c5faf1c305b4150ee66375ef0955d17",
+                "url": "https://api.github.com/repos/jenssegers/agent/zipball/5713303d76c4707333ace41bb343261693de1cb9",
                 "reference": "965ee4143c5faf1c305b4150ee66375ef0955d17",
                 "shasum": ""
             },
@@ -2677,7 +2677,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/fd4cddc0663f216c4b9d9f3cd5d52bc08ab3e951",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4f31ed6fad8867ec1e00f8b51d07b0f3dcd45713",
                 "reference": "825c050244393fc4231e5bf97f7569c2831795aa",
                 "shasum": ""
             },
@@ -3032,7 +3032,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/c7a6dfd2720581a61d06c04489e9b3df1e4f7eaf",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/9a7f6b41947f5f8c74cb21e1cb2b1255912fa6e7",
                 "reference": "d42a1b873d3fcc1119700dc0793c2fc83f3ea138",
                 "shasum": ""
             },
@@ -3196,7 +3196,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/895f842288dfc39b26200cbb4385d554619730a9",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/f91ed58ed77c28d8ef9c035c07e8c2ea3df55c6c",
                 "reference": "2042233507b0f89fb2072c0f1482591179099ba1",
                 "shasum": ""
             },
@@ -3869,12 +3869,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tyua07/laravel-pay.git",
-                "reference": "d2bcdd125ccdb1a7ed970a18eb533fbc6cee33cd"
+                "reference": "f25240b24fe6e08e14e4e8a066ebbdfff552e1f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tyua07/laravel-pay/zipball/d2bcdd125ccdb1a7ed970a18eb533fbc6cee33cd",
-                "reference": "d2bcdd125ccdb1a7ed970a18eb533fbc6cee33cd",
+                "url": "https://api.github.com/repos/tyua07/laravel-pay/zipball/f25240b24fe6e08e14e4e8a066ebbdfff552e1f0",
+                "reference": "f25240b24fe6e08e14e4e8a066ebbdfff552e1f0",
                 "shasum": ""
             },
             "type": "library",
@@ -3907,7 +3907,7 @@
                 "tyua07",
                 "yangyifan"
             ],
-            "time": "2016-03-02 09:47:21"
+            "time": "2016-03-02 14:21:45"
         },
         {
             "name": "yangyifan/upload",
