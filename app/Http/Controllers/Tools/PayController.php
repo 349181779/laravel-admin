@@ -12,7 +12,6 @@ namespace App\Http\Controllers\Tools;
 
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
-//use Yangyifan\Pay\Pay;
 use Yangyifan\Pay\Http\Requests\AliPayRequest;
 use Yangyifan\Pay\Http\Requests\EximbayPayRequest;
 use Pay;
@@ -35,12 +34,11 @@ class PayController extends BaseController
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function getIndex(AliPayRequest $request)
+    public function postIndex(AliPayRequest $request)
     {
         $data = $request->all();
         //发起支付
-        //( new Pay('AliPay') )->createPay($data['order_sn'], $data['price'], $data);
-        Pay::setPayMethod('alipay')->createPay($data['order_sn'], $data['price'], $data);
+        Pay::createPay($data['order_sn'], $data['price'], $data);
     }
 
     /**
@@ -52,6 +50,6 @@ class PayController extends BaseController
     {
         $data = $request->all();
         //发起支付
-        ( new Pay('EximbayPay') )->createPay($data['order_sn'], $data['price'], $data);
+        Pay::drive('EximbayPay')->createPay($data['order_sn'], $data['price'], $data);
     }
 }

@@ -17,7 +17,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/7762e07f0aa182fc829eb12dc8cf42aea7d5e19f",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/19553f63e4635480363ff2254350075f285fbbc5",
                 "reference": "4b8ba85b346fc9962521661aa639911535b2bb3f",
                 "shasum": ""
             },
@@ -3196,7 +3196,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6aeb70d26da8f30753111b3f9cf47eb0421c0735",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/895f842288dfc39b26200cbb4385d554619730a9",
                 "reference": "2042233507b0f89fb2072c0f1482591179099ba1",
                 "shasum": ""
             },
@@ -4931,7 +4931,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c9821ffc2965d57b0404e40ef08dc8da642238f2",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ab0314f7544d600ea7917f02cdad774358b81113",
                 "reference": "13797a2598154e4663f31360733434e56924e20a",
                 "shasum": ""
             },
