@@ -147,11 +147,9 @@ return [
 
         //自定义
 
-        Yangyifan\AutoBuild\AutoBuildServiceProvider::class, //自动构建
         Yangyifan\Upload\UploadServiceProvider::class,//上传
-        //Yangyifan\UEditor\UEditorServiceProvider::class,//ueditor
+        Yangyifan\AutoBuild\AutoBuildServiceProvider::class, //自动构建
         Yangyifan\Pay\PayServiceProvider::class,//pay
-
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,//api

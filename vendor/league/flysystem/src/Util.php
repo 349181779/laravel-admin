@@ -89,7 +89,7 @@ class Util
                 'Path is outside of the defined root, path: [' . $path . '], resolved: [' . $normalized . ']'
             );
         }
-
+        ;
         $normalized = preg_replace('#\\\{2,}#', '\\', trim($normalized, '\\'));
         $normalized = preg_replace('#/{2,}#', '/', trim($normalized, '/'));
 

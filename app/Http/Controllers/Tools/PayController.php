@@ -34,7 +34,7 @@ class PayController extends BaseController
      *
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function postIndex(AliPayRequest $request)
+    public function getIndex(AliPayRequest $request)
     {
         $data = $request->all();
         //发起支付

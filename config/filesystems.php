@@ -68,12 +68,23 @@ return [
 
         'qiniu' => [
             'driver'        => 'qiniu',
-            'domain'        => '7xkzhy.com1.z0.glb.clouddn.com',//你的七牛域名
-            'access_key'    => 'hhekZLF98l0gLe49lVVD3DZZsiwO6v6k8fg8JmPw',//AccessKey
-            'secret_key'    => 'MQZ1679oF9c1430E2p85gUpUhWCur4W5ItM4vCMf',//SecretKey
-            'bucket'        => 'webpc',//Bucket名字
+            'domain'        => '7xk0dl.com1.z0.glb.clouddn.com',//你的七牛域名
+            'access_key'    => 'n1gwaFUyiRvkGUWq6H8bZUBTtPdQNuLn8O6KlfMF',//AccessKey
+            'secret_key'    => 'eO6hP_gSyjwmv_2VIaXiX_noj2atoC3XiHl-PH5w',//SecretKey
+            'bucket'        => 'test',//Bucket名字
+            'transport'     => 'http',//如果支持https，请填写https，如果不支持请填写http
         ],
 
+        'upyun' => [
+            'driver'        => 'upyun',
+            'domain'        => 'yangyifanblog.b0.upaiyun.com',//你的upyun域名
+            'username'      => 'test',//UserName
+            'password'      => 'testtest',//Password
+            'bucket'        => 'yangyifanblog',//Bucket名字
+            'timeout'       => 130,//超时时间
+            'endpoint'      => null,//线路
+            'transport'     => 'http',//如果支持https，请填写https，如果不支持请填写http
+        ],
 	],
 
 ];
