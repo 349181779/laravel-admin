@@ -107,7 +107,14 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function readStream($path)
     {
-        return ['stream' => fopen($this->applyPathPrefix($path), 'r')];
+        $tmpfname       = tempnam("/tmp", "dir");
+        chmod($tmpfname, 0777);
+        file_put_contents($tmpfname, file_get_contents($this->applyPathPrefix($path)) );
+
+        $handle = fopen($tmpfname, 'r');
+
+        unlink($tmpfname);
+        return ['stream' => $handle];
     }
 
     /**
@@ -119,9 +126,7 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function write($path, $contents, Config $config)
     {
-        $file_info = $this->getUpyun()->writeFile($path, $contents, $auto_mkdir = true);;
-
-        return empty($file_info) ? true : false;
+        return $this->getUpyun()->writeFile($path, $contents, $auto_mkdir = true);
     }
 
     /**
@@ -133,10 +138,10 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function writeStream($path, $resource, Config $config)
     {
-        $file_info = $this->getUpyun()->writeFile($path, $resource, true);
+        $status = $this->getUpyun()->writeFile($path, $resource, true);
         fclose($resource);
 
-        return $file_info ? false : true;
+        return $status;
     }
 
     /**
@@ -177,15 +182,13 @@ class UpyunAdapter extends  AbstractAdapter
             $file_list = $this->getUpyun()->getList($directory);
 
             if (is_array($file_list) && count($file_list) > 0 ) {
-
                 foreach ($file_list as &$file) {
-                    $file['path']   = $file['name'];
+                    $file['path']   = $directory . DIRECTORY_SEPARATOR . $file['name'];
                 }
-                return $file_list;
             }
-
+            return $file_list;
         }catch (Exception $e){
-            //echo $e->getMessage();
+
         }
         return [];
     }
@@ -233,7 +236,7 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function getMimetype($path)
     {
-        return FileFunction::getFileMimeType($this->applyPathPrefix($path));
+        return ['mimetype' => FileFunction::getFileMimeType($this->applyPathPrefix($path))];
     }
 
     /**
@@ -270,7 +273,7 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function rename($path, $newpath)
     {
-        $this->writeStream($newpath, fopen($this->applyPathPrefix($path), 'r'), new Config() );
+        $this->writeStream($newpath, $this->readStream($path)['stream'], new Config() );
 
         $this->delete($path);
 
@@ -287,7 +290,7 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function copy($path, $newpath)
     {
-        $this->writeStream($newpath, fopen($this->applyPathPrefix($path), 'r'), new Config() );
+        $this->writeStream($newpath, $this->readStream($path)['stream'], new Config() );
 
         return true;
     }

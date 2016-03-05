@@ -25,7 +25,9 @@ class FileFunction
     {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         if ($finfo) {
-            return finfo_file($finfo, $file);
+            $mime_type = finfo_file($finfo, $file);
+            finfo_close($finfo);
+            return $mime_type;
         }
         return false;
     }

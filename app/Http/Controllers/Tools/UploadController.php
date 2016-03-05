@@ -51,18 +51,28 @@ class UploadController extends BaseController
         $image  = "11/22/33/7125_yangxiansen.jpg";
         $image2 = "/email.png";
 
-        $drive = \Storage::drive('upyun');                                  //选择upyun上传引擎
+        $drive = \Storage::drive('upyun');                                      //选择upyun上传引擎
 
-        //dump($drive->has($image2));                                         //判断文件是否存在
-        //dump($drive->listContents('/'));                                    //列出文件列表
-        //dump($drive->getSize($image2));                                     //获得图片大小
-        //dump($drive->getMimetype($image2));                                 //获得图片mime类型
-        //dump($drive->getTimestamp($image2));                                //获得图片上传时间戳
-        //dump($drive->rename($image2, 'git.jpg'));                         //重命名文件
-        //dump($drive->copy($image2, 'git.bak.jpg'));                       //复制文件
-        dump($drive->delete('/sequelpro.dmg'));                              //删除文件
-        //dump($drive->deleteDir('/test'));                             //删除文件夹
-        //dump($drive->write($image, $drive->read('7125_yangxiansen.jpg')));//上传文件,直接读取七牛远程文件方式
+        //dump($drive->has($image2));                                           //判断文件是否存在
+        //dump($drive->listContents('/'));                                      //列出文件列表
+        //dump($drive->getSize($image2));                                       //获得图片大小
+        //dump($drive->getMimetype($image2));                                   //获得图片mime类型(未实现)
+        //dump($drive->getTimestamp($image2));                                  //获得图片上传时间戳
+        //dump($drive->rename('/test/test5.png', '/1.jpg'));                             //重命名文件
+        //dump($drive->copy('/1.jpg', '/git123.png'));                           //复制文件
+        //dump($drive->delete('/sequelpro.dmg'));                               //删除文件
+        //dump($drive->deleteDir('/test'));                                     //删除文件夹
+        //dump($drive->write("/test.txt", "111222"));                           //上传文件
+        //dump ($drive->write("/test1.txt", $drive->read("/test.txt")) );       //上传文件
+
+
+        //$handle = fopen('/tmp/aaaa.png', 'r');
+        //dump ($drive->writeStream("/test/test2.png", $handle ) );       //上传文件(文件流方式)
+
+        //dump ($drive->writeStream("/test/test5.png", $drive->readStream($image2) ) );       //上传文件(文件流方式)
+        //dump ($drive->writeStream("/test/test2.png", $drive->readStream($image2) ) );       //上传文件(文件流方式)
+        //dump ($drive->writeStream("/test/test3.png", $drive->readStream($image2) ) );       //上传文件(文件流方式)
+        //dump ($drive->writeStream("/test/test4.png", $drive->readStream($image2) ) );       //上传文件(文件流方式)
     }
 
     /**

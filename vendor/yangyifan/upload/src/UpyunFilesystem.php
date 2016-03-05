@@ -213,7 +213,6 @@ class UpyunFilesystem implements FilesystemInterface
      */
     public function copy($path, $newpath)
     {
-        $newpath = Util::normalizePath($newpath);
         $this->assertPresent($path);
         $this->assertAbsent($newpath);
 
@@ -258,9 +257,7 @@ class UpyunFilesystem implements FilesystemInterface
      */
     public function listContents($directory = '', $recursive = false)
     {
-
         $contents = $this->getAdapter()->listContents($directory, $recursive);
-
         return (new ContentListingFormatter($directory, $recursive))->formatListing($contents);
     }
 
