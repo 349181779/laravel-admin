@@ -4,9 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9c841b3668b196598c7f4bcdc587fb8a",
-    "content-hash": "20197579a0794fb6c5c3c8fbc4b27516",
+    "hash": "39b7af37cf4e8bebb92b817761daf01d",
+    "content-hash": "22a3e7a65f793d53702a5340fccd7f03",
     "packages": [
+        {
+            "name": "aliyuncs/oss-sdk-php",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+                "reference": "57b3b1c3d1ea50a6b18f14aebeb432438e5158f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/57b3b1c3d1ea50a6b18f14aebeb432438e5158f1",
+                "reference": "57b3b1c3d1ea50a6b18f14aebeb432438e5158f1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OSS\\": "src/OSS"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aliyuncs",
+                    "homepage": "http://www.aliyun.com"
+                }
+            ],
+            "description": "Aliyun OSS SDK for PHP",
+            "homepage": "http://www.aliyun.com/product/oss/",
+            "time": "2016-01-26 02:32:59"
+        },
         {
             "name": "barryvdh/laravel-ide-helper",
             "version": "dev-master",
@@ -4931,7 +4973,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/ab0314f7544d600ea7917f02cdad774358b81113",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/801d412451594f7c9e7950a016a377798cf9dfa0",
                 "reference": "13797a2598154e4663f31360733434e56924e20a",
                 "shasum": ""
             },

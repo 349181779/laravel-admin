@@ -31,4 +31,29 @@ class FileFunction
         }
         return false;
     }
+
+    /**
+     * 获得一个临时文件
+     *
+     * @return string
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function getTmpFile()
+    {
+        $tmpfname       = tempnam("/tmp", "dir");
+        chmod($tmpfname, 0777);
+        return $tmpfname;
+    }
+
+    /**
+     * 删除一个临时文件
+     *
+     * @param $file_name
+     * @return bool
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public static function deleteTmpFile($file_name)
+    {
+        return unlink($file_name);
+    }
 }

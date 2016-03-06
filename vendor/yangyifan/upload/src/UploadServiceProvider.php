@@ -4,9 +4,10 @@ namespace Yangyifan\Upload;
 
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
-use League\Flysystem\AdapterInterface;
 use Yangyifan\Upload\Qiniu\QiniuAdapter;
+use Yangyifan\Upload\Oss\OssAdapter;
 use Yangyifan\Upload\Upyun\UpyunAdapter;
+
 
 class UploadServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,9 @@ class UploadServiceProvider extends ServiceProvider
 
         //实现upyun文件系统
         $this->extendUpyunStorage();
+
+		//实现oss文件系统
+		$this->extendOssStorage();
 	}
 
 	/**
@@ -46,7 +50,7 @@ class UploadServiceProvider extends ServiceProvider
     protected function extendQiniuStorage()
     {
         \Storage::extend('qiniu', function($app, $config){
-            return new Filesystem(new QiniuAdapter($config, $config));
+            return new Filesystem(new QiniuAdapter($config), $config);
         });
     }
 
@@ -58,10 +62,20 @@ class UploadServiceProvider extends ServiceProvider
     protected function extendUpyunStorage()
     {
         \Storage::extend('upyun', function($app, $config){
-            return new UpyunFilesystem(new UpyunAdapter($config, $config));
+            return new UpyunFilesystem(new UpyunAdapter($config), $config);
         });
     }
 
-
+	/**
+	 * 实现oss文件系统
+	 *
+	 * @author yangyifan <yangyifanphp@gmail.com>
+	 */
+	protected function extendOssStorage()
+	{
+		\Storage::extend('oss', function($app, $config){
+			return new Filesystem(new OssAdapter($config), $config);
+		});
+	}
 
 }

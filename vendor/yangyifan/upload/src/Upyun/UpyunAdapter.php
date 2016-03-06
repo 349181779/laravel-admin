@@ -3,11 +3,10 @@
 // +----------------------------------------------------------------------
 // | date: 2015-09-09
 // +----------------------------------------------------------------------
-// | Upload.php: 又拍云上传实现
+// | UpyunAdapter.php: 又拍云上传实现
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
-
 
 namespace Yangyifan\Upload\Upyun;
 
@@ -15,7 +14,6 @@ use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\Config;
 use Yangyifan\Upload\Functions\FileFunction;
 use Exception;
-use League\Flysystem\FileNotFoundException;
 
 class UpyunAdapter extends  AbstractAdapter
 {
@@ -107,13 +105,16 @@ class UpyunAdapter extends  AbstractAdapter
      */
     public function readStream($path)
     {
-        $tmpfname       = tempnam("/tmp", "dir");
-        chmod($tmpfname, 0777);
+        //获得一个临时文件
+        $tmpfname       = FileFunction::getTmpFile();
+
         file_put_contents($tmpfname, file_get_contents($this->applyPathPrefix($path)) );
 
         $handle = fopen($tmpfname, 'r');
 
-        unlink($tmpfname);
+        //删除临时文件
+        FileFunction::deleteTmpFile($tmpfname);
+
         return ['stream' => $handle];
     }
 

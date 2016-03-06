@@ -26,7 +26,8 @@
 	  	"yangyifan/laravel-pay":"*",
         "jpush/jpush": "v3.2.0",
 		"gossi/php-code-generator": "^0.2.0",
-		"lucadegasperi/oauth2-server-laravel": "5.0.*"
+		"lucadegasperi/oauth2-server-laravel": "5.0.*",
+		"aliyuncs/oss-sdk-php": "^2.0"
 	},
    "minimum-stability": "dev",
 	"require-dev": {

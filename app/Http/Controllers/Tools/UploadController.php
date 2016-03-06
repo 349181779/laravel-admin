@@ -38,7 +38,47 @@ class UploadController extends BaseController
         //$this->qiniuUpload();
 
         //测试Upyun上传
-        $this->upyunUpload();
+        //$this->upyunUpload();
+
+        //测试oss上传
+        $this->ossUpload();
+    }
+
+    /**
+     * 测试oss上传
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected function ossUpload()
+    {
+        header("Content-type", "text/html");
+        $image  = "11/22/33/7125_yangxiansen.jpg";
+        $image2 = "111.png";
+        $image3 = "2.txt";
+
+        $drive = \Storage::drive('oss');                                        //选择oss上传引擎
+
+        //dump($drive->getMetadata($image2));                                     //判断文件是否存在
+        //dump($drive->has($image2));                                             //判断文件是否存在
+        //dump($drive->listContents('/'));                                        //列出文件列表(需要核对)
+        //dump($drive->getSize($image2));                                         //获得图片大小
+        //dump($drive->getMimetype($image2));                                     //获得图片mime类型
+        //dump($drive->getTimestamp($image2));                                    //获得图片上传时间戳
+        //dump($drive->read($image3));                                            //获得文件信息
+        //dump($drive->readStream($image3));                                      //获得文件信息
+        //dump($drive->rename($image3, '/2.txt'));                              //重命名文件
+        //dump($drive->copy($image2, '/test/git123.png'));                      //复制文件
+        //dump($drive->delete('/后台登陆.gif'));                                 //删除文件
+        //dump ($drive->write("/test1.txt", $drive->read("/test.txt")) );       //上传文件
+        //dump($drive->write("/test.txt", "111222"));                           //上传文件
+
+
+        dump($drive->deleteDir('/aaa/'));                                     //删除文件夹(未实现)
+        //dump($drive->deleteDir('/test3/'));                                     //删除文件夹(未实现)
+        //dump($drive->createDir('test2/'));                                     //创建文件夹
+        //$handle = fopen('/tmp/aaaa.png', 'r');
+        //dump ($drive->writeStream("/test3.png", $handle ) );       //上传文件(文件流方式)
+        //dump ($drive->writeStream("/test5.png", $drive->readStream($image2) ) );       //上传文件(文件流方式)
     }
 
     /**
