@@ -18,6 +18,8 @@ Blade::setEscapedContentTags('<%%', '%%>');     // for escaped data
 Route::get('/', function() {
     return redirect()->action('Admin\Admin\AdminInfoController@getIndex');
 });
+//base
+Route::controller('base', 'BaseController');
 //登录
 Route::controller('login', 'Admin\LoginController');
 //后台
