@@ -150,6 +150,7 @@ return [
         Yangyifan\Upload\UploadServiceProvider::class,//上传
         Yangyifan\AutoBuild\AutoBuildServiceProvider::class, //自动构建
         Yangyifan\Pay\PayServiceProvider::class,//pay
+        Yangyifan\OAuth\OAuthServiceProvider::class,//OAuth
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,//api
@@ -205,6 +206,8 @@ return [
 
         //支付
         'Pay'       => Yangyifan\Pay\Facades\Pay::class,
+		//OAth
+        'OAuth'     => Yangyifan\OAuth\Facades\OAuth::class,
         //自定义
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class, //https://github.com/Maatwebsite/Laravel-Excel
         //'Captcha'       => Mews\Captcha\Facades\Captcha::class,

@@ -52,6 +52,8 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('upload', 'UploadController');
     //支付
     Route::controller('pay', 'PayController');
+    //登录
+    Route::controller('oauth', 'OAuthController');
 });
 
 /**

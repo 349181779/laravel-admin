@@ -15,6 +15,7 @@ return array(
     'Yangyifan\\Upload\\' => array($vendorDir . '/yangyifan/upload/src'),
     'Yangyifan\\UEditor\\' => array($vendorDir . '/yangyifan/laravel-editor/src'),
     'Yangyifan\\Pay\\' => array($vendorDir . '/yangyifan/laravel-pay/src'),
+    'Yangyifan\\OAuth\\' => array($baseDir . '/packages/yangyifan/oauth/src'),
     'Yangyifan\\AutoBuild\\' => array($baseDir . '/packages/yangyifan/auto-build/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
     'TijsVerkoyen\\CssToInlineStyles\\' => array($vendorDir . '/tijsverkoyen/css-to-inline-styles/src'),
