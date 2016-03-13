@@ -11,14 +11,12 @@
 
 namespace Yangyifan\OAuth\Oauth;
 
-use Yangyifan\OAuth\OAuthInterface;
-
-class WeiboAdapter implements OAuthInterface
+class WeiboAdapter extends  AbstractAdapter
 {
     const VERSION               = "2.0";
-    const GET_AUTH_CODE_URL     = "https://graph.qq.com/oauth2.0/authorize";
-    const GET_ACCESS_TOKEN_URL  = "https://graph.qq.com/oauth2.0/token";
-    const GET_OPENID_URL        = "https://graph.qq.com/oauth2.0/me";
+    const GET_AUTH_CODE_URL     = "https://api.weibo.com/oauth2/authorize";
+    const GET_ACCESS_TOKEN_URL  = "https://api.weibo.com/oauth2/access_token";
+    const GET_USER_INFO_URL     = "https://api.weibo.com/2/users/show.json";
 
     /**
      * 配置信息
@@ -28,7 +26,7 @@ class WeiboAdapter implements OAuthInterface
     protected $config;
 
     /**
-     * qq OAUTH 对象
+     * OAUTH 对象
      *
      * @var
      */
@@ -52,25 +50,46 @@ class WeiboAdapter implements OAuthInterface
      */
     public function login()
     {
-        $appid      = $this->config['app_id'];
-        $callback   = $this->config['callback'];
-        $scope      = $this->config['scope'];
+        $url = $this->combineURL(self::GET_AUTH_CODE_URL, [
+            'client_id'     => $this->config['app_key'],
+            'redirect_uri'  => $this->config['callback'],
+        ]);
+        header("location: {$url}");
+    }
 
-        //-------生成唯一随机串防CSRF攻击
-        $state = md5(uniqid(rand(), TRUE));
+    /**
+     * 获得 access_token
+     *
+     * @param $code
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getAccessToken($code)
+    {
+        $url = $this->combineURL(self::GET_ACCESS_TOKEN_URL, [
+            'client_id'     => $this->config['app_key'],
+            'client_secret' => $this->config['app_secret'],
+            'grant_type'    => $this->config['grant_type'],
+            'code'          => $code,
+            'redirect_uri'  => $this->config['callback'],
+        ]);
 
-        //-------构造请求参数列表
-        $keysArr = array(
-            "response_type"     => "code",
-            "client_id"         => $appid,
-            "redirect_uri"      => $callback,
-            "state"             => $state,
-            "scope"             => $scope
-        );
+        return json_decode($this->curlPost($url), true);
+    }
 
-        $login_url =  $this->combineURL(self::GET_AUTH_CODE_URL, $keysArr);
-
-        header("Location:$login_url");
+    /**
+     * 获得用户信息
+     *
+     * @param $access_token
+     * @param $uid
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function getUserInfo($access_token, $uid)
+    {
+        $url = $this->combineURL(self::GET_USER_INFO_URL, [
+            'access_token'  => $access_token,
+            'uid'           => $uid,
+        ]);
+        return json_decode($this->curlGet($url), true);
     }
 
 }

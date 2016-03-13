@@ -248,6 +248,11 @@ if(!function_exists('curlPost')){
         curl_setopt($ch, CURLOPT_POST, TRUE);                                   // 设置post方式提交
         curl_setopt($ch, CURLOPT_POSTFIELDS, $str_params);                      // POST提交数据
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);                                   // 响应时间 5s
+        $http_head = mb_substr($url,0,5);
+        if($http_head == 'https'){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);                    // https请求 不验证证书和hosts
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        }
         $result = curl_exec($ch);
         curl_close($ch);
 

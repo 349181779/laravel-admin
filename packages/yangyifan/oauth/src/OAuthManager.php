@@ -13,6 +13,7 @@ namespace Yangyifan\OAuth;
 use Yangyifan\OAuth\OAuth\QQAdapter;
 use InvalidArgumentException;
 use Closure;
+use Yangyifan\OAuth\Oauth\WeiboAdapter;
 
 class OAuthManager
 {
@@ -149,6 +150,19 @@ class OAuthManager
     {
         return $this->adapt(
             new QQAdapter($config)
+        );
+    }
+
+    /**
+     * 创建Weibo OAuth
+     *
+     * @param array $config oauth配置信息
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    protected function createWeiboDriver($config)
+    {
+        return $this->adapt(
+            new WeiboAdapter($config)
         );
     }
 

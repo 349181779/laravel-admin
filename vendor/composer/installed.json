@@ -474,7 +474,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8333ebc5e76c334ee0e202f2f91e1948e566a655",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/635ee279a522233a567984756bf9da1db243d9bf",
             "reference": "8333ebc5e76c334ee0e202f2f91e1948e566a655",
             "shasum": ""
         },
@@ -1504,7 +1504,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/yaml/zipball/801d412451594f7c9e7950a016a377798cf9dfa0",
+            "url": "https://api.github.com/repos/symfony/yaml/zipball/38aebd1045f91caaf25db0164e2703b21fb5359d",
             "reference": "13797a2598154e4663f31360733434e56924e20a",
             "shasum": ""
         },
@@ -1824,7 +1824,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/63fafe07d6cb8588b787475a3cc041f52b05a4ac",
+            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/8c5d176ed92e07a7b26ba427ace49c274e236267",
             "reference": "825c050244393fc4231e5bf97f7569c2831795aa",
             "shasum": ""
         },
@@ -1959,7 +1959,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/class-loader/zipball/dd93569b7689d32ce35e12cea6fd397554a0003c",
+            "url": "https://api.github.com/repos/symfony/class-loader/zipball/cb5b8c4d092483100cdf514988d20f5de75612c5",
             "reference": "dd93569b7689d32ce35e12cea6fd397554a0003c",
             "shasum": ""
         },
@@ -2172,7 +2172,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jenssegers/agent/zipball/5713303d76c4707333ace41bb343261693de1cb9",
+            "url": "https://api.github.com/repos/jenssegers/agent/zipball/3068d6372a4677af84014a53d5a212cfa74492c1",
             "reference": "965ee4143c5faf1c305b4150ee66375ef0955d17",
             "shasum": ""
         },
@@ -2358,7 +2358,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/tyua07/laravel-upload/zipball/7e504e543150712d5d45b7ac4dc827ce335ec8d3",
+            "url": "https://api.github.com/repos/tyua07/laravel-upload/zipball/6f34c4e7df9f3da3a46eb9610f1141cce0d55078",
             "reference": "7e504e543150712d5d45b7ac4dc827ce335ec8d3",
             "shasum": ""
         },
@@ -2897,7 +2897,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/78c468665c9568c3faaa9c416a7134308f2d85c3",
+            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
             "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3",
             "shasum": ""
         },
@@ -2959,7 +2959,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/39d8b8f57ad369f48c2471ba43f967a6a86816fd",
+            "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/bf2b74b57eb0fc72423ed7edfd8bd14743100f1a",
             "reference": "36d2ba12e38b6be60429e31f217c09afe781d620",
             "shasum": ""
         },
@@ -3201,7 +3201,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e4fdc92abb3dae0d840f4276af701d58ddc9b733",
+            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/c88d135c41c10d178e9724c69cbf699c5112883d",
             "reference": "e4fdc92abb3dae0d840f4276af701d58ddc9b733",
             "shasum": ""
         },
@@ -3262,7 +3262,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/console/zipball/2abc9e20d0f46f717704bfe0a11d36272e7e6a50",
+            "url": "https://api.github.com/repos/symfony/console/zipball/6100a40569b2be1b6aba1cc6a92fe6cb71024fc8",
             "reference": "e1d91ae8b2c7b80a06e3fcee06deb69b3fa958fb",
             "shasum": ""
         },
@@ -3397,7 +3397,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/fractal/zipball/57f6ab43770bf0cbcd26778a20b16926f446d10b",
+            "url": "https://api.github.com/repos/thephpleague/fractal/zipball/1a78f76c004009761e9a686f53239ac942bd1ca2",
             "reference": "7c3e00f714419544faf39716b883081f785da4bc",
             "shasum": ""
         },
@@ -3603,7 +3603,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/process/zipball/6119beeb0cf4256e0b0de219d8dba7de369c7311",
+            "url": "https://api.github.com/repos/symfony/process/zipball/cba2f70dc10aef30e1517008c1a63d25aec912e1",
             "reference": "faa89438017392585abdf7f5a47f3f5f282d93c1",
             "shasum": ""
         },
@@ -3654,7 +3654,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/debug/zipball/26527ccf6f387636f1799eac5a104db20a925e5c",
+            "url": "https://api.github.com/repos/symfony/debug/zipball/8dc12181610d9f59ef6aae55ddc13a73578608f4",
             "reference": "e96f1ff28e2b8b2f3b906245b18d5e6a52e73648",
             "shasum": ""
         },
@@ -3713,7 +3713,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/319c3bd882b99587c9919108b04340f2e2c60d3d",
+            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/81eb7567f484b7c3f9aaa7e033dcef6476b9d5ed",
             "reference": "2042233507b0f89fb2072c0f1482591179099ba1",
             "shasum": ""
         },
@@ -3770,7 +3770,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-kernel/zipball/552408c58082665bf39a9eb8f87370761f4c1281",
+            "url": "https://api.github.com/repos/symfony/http-kernel/zipball/8d2d50d2a4bb91205acc6b2bd87593d08ab667a7",
             "reference": "9d8cb1ce18cdd7e8cef6a6d9b95db54fae8fd7bf",
             "shasum": ""
         },
@@ -3854,7 +3854,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/finder/zipball/addcb70b33affbca4f3979b0d000259b63dd6711",
+            "url": "https://api.github.com/repos/symfony/finder/zipball/0bacc7c9fc1905cfce20212633013a5b300dce52",
             "reference": "addcb70b33affbca4f3979b0d000259b63dd6711",
             "shasum": ""
         },
@@ -4073,7 +4073,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/699d2730bac07ce8113119454a7579b88c961bf8",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/cc00dedec9f36a2647a4cc1cde1014ed67e65d82",
             "reference": "a9ae7fe3feb4f425180d3ca2f8547ea0456812c9",
             "shasum": ""
         },
@@ -4386,7 +4386,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dingo/api/zipball/3062aac74327d589e0fed92d276225ee7aaab377",
+            "url": "https://api.github.com/repos/dingo/api/zipball/b9ff594eedea42d5cd78f09b20cbb66dd46b1204",
             "reference": "9bf29beb501613d0eee342ac3e962113debddbce",
             "shasum": ""
         },
@@ -4588,7 +4588,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d68b63a0d0737e1eceddb156b18d3f005faab20c",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/81045d59740a686121d85281e7de245d49b1236a",
             "reference": "fb314292abcbfb61782e065fb9b13d5302ecc9e3",
             "shasum": ""
         },
@@ -4668,7 +4668,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/264188ddf4d3586c80ea615f8ec8eaea34e652a1",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7718ed2bbb019dc17a802ef035a461eaac9858fa",
             "reference": "264188ddf4d3586c80ea615f8ec8eaea34e652a1",
             "shasum": ""
         },
@@ -4929,7 +4929,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/6da7882cf63b1c6f2d2b5e28e2f838ef02ecb249",
+            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/588da2fff1b9da3acb9b6e1d7395e820102bde01",
             "reference": "66ea6b0334813292af03ffbb8c0ee6beee65fd89",
             "shasum": ""
         },
@@ -5181,5 +5181,122 @@
         ],
         "description": "Aliyun OSS SDK for PHP",
         "homepage": "http://www.aliyun.com/product/oss/"
+    },
+    {
+        "name": "guzzlehttp/promises",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/promises.git",
+            "reference": "bb9024c526b22f3fe6ae55a561fd70653d470aa8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/promises/zipball/bb9024c526b22f3fe6ae55a561fd70653d470aa8",
+            "reference": "bb9024c526b22f3fe6ae55a561fd70653d470aa8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-03-08 01:15:46",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Promise\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle promises library",
+        "keywords": [
+            "promise"
+        ]
+    },
+    {
+        "name": "guzzlehttp/guzzle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/guzzle.git",
+            "reference": "6a173ddae1a8e58be871f6d010e88c029eaf5cae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/6a173ddae1a8e58be871f6d010e88c029eaf5cae",
+            "reference": "6a173ddae1a8e58be871f6d010e88c029eaf5cae",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/promises": "~1.0",
+            "guzzlehttp/psr7": "~1.1",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "~4.0",
+            "psr/log": "~1.0"
+        },
+        "time": "2016-03-11 16:36:56",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "6.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/functions_include.php"
+            ],
+            "psr-4": {
+                "GuzzleHttp\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
+        ]
     }
 ]
