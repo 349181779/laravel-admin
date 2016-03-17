@@ -152,6 +152,7 @@ return [
         Yangyifan\Pay\PayServiceProvider::class,//pay
         Yangyifan\OAuth\OAuthServiceProvider::class,//OAuth
         App\Providers\SearchServiceProvider::class,//搜索服务
+        Yangyifan\UEditor\UEditorServiceProvider::class,//ueditor
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,//api
@@ -213,7 +214,8 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class, //https://github.com/Maatwebsite/Laravel-Excel
         //'Captcha'       => Mews\Captcha\Facades\Captcha::class,
 		'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
-
+        //百度编辑器
+        'UEditor'   => Yangyifan\UEditor\UEditorServiceProvider::class,
 
 	],
 

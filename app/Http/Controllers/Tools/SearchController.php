@@ -37,5 +37,11 @@ class SearchController extends BaseController
             'config_name' => 'search/demo.ini'
         ]);
         $index = $xs->index;
+        $search = $xs->search;
+
+        $search->setQuery("首尔");
+        $docs = $search->search();
+        $count = $search->count();
+        dd($docs, $count);
     }
 }

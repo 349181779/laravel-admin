@@ -75,6 +75,7 @@ class UserInfo1Controller extends BaseController {
 		return	 $this->html_builder->
 				 builderTitle('编辑页面')->
 				 builderFormSchema('id', 'id', 'checkbox')->
+				 builderFormSchema('content', '内容', 'ueditor')->
 				 builderFormSchema('user_info_id', '邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('invitee', '被邀请者', $type = 'text', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
 				 builderFormSchema('created_at', '创建时间', $type = 'date', $default = '', $notice = '', $class = '', $rule = '', $err_message = '')->
