@@ -151,6 +151,7 @@ return [
         Yangyifan\AutoBuild\AutoBuildServiceProvider::class, //自动构建
         Yangyifan\Pay\PayServiceProvider::class,//pay
         Yangyifan\OAuth\OAuthServiceProvider::class,//OAuth
+        App\Providers\SearchServiceProvider::class,//搜索服务
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 		Dingo\Api\Provider\LaravelServiceProvider::class,//api

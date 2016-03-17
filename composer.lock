@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "162219c45d2a84c68d71c2928af51c67",
-    "content-hash": "a231f7a818c1e81e12e2e471b4ac0663",
+    "hash": "1ba13c7c1983a71166773ef0aae6e1c8",
+    "content-hash": "eb47b8697d94913923d823b0ca868d72",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -232,7 +232,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dingo/api/zipball/b9ff594eedea42d5cd78f09b20cbb66dd46b1204",
+                "url": "https://api.github.com/repos/dingo/api/zipball/90d4e4e60e5d460c8135fca611f0ac44a037df89",
                 "reference": "9bf29beb501613d0eee342ac3e962113debddbce",
                 "shasum": ""
             },
@@ -944,6 +944,64 @@
             "time": "2016-01-19 12:08:55"
         },
         {
+            "name": "hightman/xunsearch",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hightman/xs-sdk-php.git",
+                "reference": "35b5b2005a9ed3a91d8e15bfad1ac142e6e72968"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hightman/xs-sdk-php/zipball/35b5b2005a9ed3a91d8e15bfad1ac142e6e72968",
+                "reference": "35b5b2005a9ed3a91d8e15bfad1ac142e6e72968",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "lib-pcre": "*",
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "util/xs"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "lib/",
+                    "wrapper/yii-ext/"
+                ],
+                "psr-4": {
+                    "hightman\\xunsearch\\": "wrapper/yii2-ext/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hightman",
+                    "email": "hightman@twomice.net",
+                    "role": "Founder and project leader"
+                }
+            ],
+            "description": "xunsearch php sdk, include yii, yii2 supports",
+            "homepage": "http://www.xunsearch.com/",
+            "keywords": [
+                "search engine",
+                "xunsearch",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-01-19 10:20:17"
+        },
+        {
             "name": "intervention/image",
             "version": "dev-master",
             "source": {
@@ -1459,7 +1517,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/635ee279a522233a567984756bf9da1db243d9bf",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
                 "reference": "8333ebc5e76c334ee0e202f2f91e1948e566a655",
                 "shasum": ""
             },
@@ -1979,7 +2037,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/81045d59740a686121d85281e7de245d49b1236a",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a9ccae25cbb5c0af6f2a549e4cc3ee6628c253ab",
                 "reference": "fb314292abcbfb61782e065fb9b13d5302ecc9e3",
                 "shasum": ""
             },
@@ -2497,7 +2555,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/bf2b74b57eb0fc72423ed7edfd8bd14743100f1a",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/7d1c140974a4988f8a9739d167335d24fb59955e",
                 "reference": "36d2ba12e38b6be60429e31f217c09afe781d620",
                 "shasum": ""
             },
@@ -2832,7 +2890,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/8c5d176ed92e07a7b26ba427ace49c274e236267",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4e15784a05c1e8fe46afd43fdaf55b616e234691",
                 "reference": "825c050244393fc4231e5bf97f7569c2831795aa",
                 "shasum": ""
             },
@@ -3130,7 +3188,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/8dc12181610d9f59ef6aae55ddc13a73578608f4",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/ef78aaaa3e54d2e4b873cc4c7d591969f9bf0b5f",
                 "reference": "e96f1ff28e2b8b2f3b906245b18d5e6a52e73648",
                 "shasum": ""
             },
@@ -3242,7 +3300,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/47d2d8cade9b1c3987573d2943bb9352536cdb87",
                 "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3",
                 "shasum": ""
             },
@@ -3351,7 +3409,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/81eb7567f484b7c3f9aaa7e033dcef6476b9d5ed",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/fe4be6b5785dbc6fbcaafa10ef6311d6f735f28d",
                 "reference": "2042233507b0f89fb2072c0f1482591179099ba1",
                 "shasum": ""
             },
@@ -3406,7 +3464,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/8d2d50d2a4bb91205acc6b2bd87593d08ab667a7",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/c2fbe46c883d9becb52d89fa0dae5edd70b73556",
                 "reference": "9d8cb1ce18cdd7e8cef6a6d9b95db54fae8fd7bf",
                 "shasum": ""
             },
@@ -3488,7 +3546,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/0d15b40701e1778bdbc206c8545ad423402021c4",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/5c775652b6fb1bf8f8f5d5779c5153bea89d2589",
                 "reference": "0d15b40701e1778bdbc206c8545ad423402021c4",
                 "shasum": ""
             },
@@ -3650,7 +3708,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/cba2f70dc10aef30e1517008c1a63d25aec912e1",
+                "url": "https://api.github.com/repos/symfony/process/zipball/9956fa4751c11b37e1d8a5e882b3bb8cb7c65d8f",
                 "reference": "faa89438017392585abdf7f5a47f3f5f282d93c1",
                 "shasum": ""
             },
@@ -4586,7 +4644,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7718ed2bbb019dc17a802ef035a461eaac9858fa",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1a1b63266c046e1856fd03812a4e0ac2b51aa2d5",
                 "reference": "264188ddf4d3586c80ea615f8ec8eaea34e652a1",
                 "shasum": ""
             },

@@ -10,6 +10,7 @@ return array(
     'phootwork\\lang\\' => array($vendorDir . '/phootwork/lang/src'),
     'phootwork\\file\\' => array($vendorDir . '/phootwork/file/src'),
     'phootwork\\collection\\' => array($vendorDir . '/phootwork/collection/src'),
+    'hightman\\xunsearch\\' => array($vendorDir . '/hightman/xunsearch/wrapper/yii2-ext'),
     'gossi\\docblock\\' => array($vendorDir . '/gossi/docblock/src'),
     'gossi\\codegen\\' => array($vendorDir . '/gossi/php-code-generator/src'),
     'Yangyifan\\Upload\\' => array($vendorDir . '/yangyifan/upload/src'),

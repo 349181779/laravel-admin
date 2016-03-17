@@ -54,6 +54,8 @@ Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){
     Route::controller('pay', 'PayController');
     //登录
     Route::controller('oauth', 'OAuthController');
+    //搜索
+    Route::controller('search', 'SearchController');
 });
 
 /**
