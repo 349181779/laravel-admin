@@ -22,7 +22,7 @@
                             <?php if ($schema['option']): ?>
                                 <?php foreach ($schema['option'] as $k => $option): ?>
                                     <option
-                                        <?php if ( ($option['id'] == $schema['option_value_schema']) || ( array_get($data, $schema['name']) === $option['id'])) :?>
+                                        <?php if ( ($option['id'] == $schema['option_value_schema']) || ( arrayGet($data, $schema['name']) === $option['id'])) :?>
                                             <?php echo "selected='selected' ";?>
                                         <?php endif; ?>
                                         value="<?php echo $option['id']; ?>" >

@@ -21,10 +21,11 @@ elixir(function(mix) {
 
         //基础css
         mix.styles([
+            "ladda/dist/ladda-themeless.min.css",
+            "assets/js/button/ladda/ladda.min.css",
             "assets/css/bootstrap.min.css",
             "toastr/toastr.css",
             "assets/css/style.css",
-            "assets/js/button/ladda/ladda.min.css",
             "assets/js/skin-select/skin-select.css",
             "assets/css/font-awesome.css",
             "assets/css/entypo-icon.css",
@@ -39,7 +40,6 @@ elixir(function(mix) {
             "assets/js/pace/themes/pace-theme-center-simple.css",
             "assets/js/slidebars/slidebars.css",
             "assets/js/gage/jquery.easy-pie-chart.css",
-            "ladda/dist/ladda-themeless.min.css",
         ], "public/dist/base.css");
 
         //登录css
@@ -156,10 +156,7 @@ elixir(function(mix) {
             "js/customJs/html_builder/search.js",
             "js/customJs/html_builder/select.js",
             "js/customJs/html_builder/initUpdatePage.js",
-            "js/customJs/html_builder/initTabPage.js",
-            "ladda/dist/spin.min.js",
-            "ladda/dist/ladda.min.js",
-            "ladda/dist/ladda.jquery.min.js",
+            "js/customJs/html_builder/initTabPage.js",,
             //"assets/js/iCheck/jquery.icheck.js",
             "autolayout/autolayout.js",
             "js/customJs/autolayout/main.js",
@@ -185,6 +182,21 @@ elixir(function(mix) {
             "assets/js/dropZone/lib/dropzone.js"
         ], "public/dist/upload_image_dialog.js");
 
+        // 微店商品分类 页面 js
+        mix.scripts([
+            "js/customJs/weidian/category.js",
+        ], "public/dist/weidian/category.js");
+
+        // 微店商品 页面 js
+        mix.scripts([
+            "js/customJs/weidian/goods.js",
+        ], "public/dist/weidian/goods.js");
+
+        // multi upload image 页面
+        mix.scripts([
+            "js/customJs/multiUploadImage.js"
+        ], "public/dist/multi_upload_image.js");
+
     //压缩文件
         mix.version([
             "public/dist/base.css",
@@ -205,6 +217,9 @@ elixir(function(mix) {
             "public/dist/upload_image_dialog.js",
             "public/dist/login.css",
             "public/dist/login.js",
+            "public/dist/weidian/category.js",
+            "public/dist/weidian/goods.js",
+            "public/dist/multi_upload_image.js",
         ]);
 
     //移动文件
@@ -219,7 +234,7 @@ elixir(function(mix) {
         mix.copy('resources/assets/my97-date', 'public/my97-date');
         mix.copy('resources/assets/assets/js/dropZone/downloads/images', 'public/build/images');
         mix.copy('resources/assets/multiSelect', 'public/multiSelect');
-        mix.copy('resources/assets/raty/lib/img', 'public/raty/img');
+        mix.copy('resources/assets/raty/lib/img', 'public/raty/imimgg');
 
 
 

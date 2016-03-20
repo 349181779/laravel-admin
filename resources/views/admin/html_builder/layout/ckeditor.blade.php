@@ -16,7 +16,7 @@
                    <?php if($schema['disabled'] == true):?>
                    disabled="disabled"
                    <?php endif;?>
-                  class=" <?php echo $schema['class']; ?>"><?php echo array_get($data, $schema['name']) == '' ? '' : array_get($data, $schema['name']); ?></textarea>
+                  class=" <?php echo $schema['class']; ?>"><?php echo arrayGet($data, $schema['name']) == '' ? '' : arrayGet($data, $schema['name']); ?></textarea>
 
         <!-- 实例化编辑器 -->
         <script type="text/javascript">

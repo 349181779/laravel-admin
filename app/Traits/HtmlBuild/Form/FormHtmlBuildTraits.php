@@ -21,6 +21,7 @@ use App\Traits\HtmlBuild\Form\AttrFunction\SetErrorMessageFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetMultiSelectDataSourceFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetNoticeFormHtmlBuildTraits;
 use App\Traits\HtmlBuild\Form\AttrFunction\SetAttrFormHtmlBuildTraits;
+use App\Traits\HtmlBuild\Form\AttrFunction\RemoveFormHtmlBuildTraits;
 
 trait FormHtmlBuildTraits
 {
@@ -98,27 +99,19 @@ trait FormHtmlBuildTraits
         return $this;
     }
 
-    //设置表单为只读
-    use ReadOnlyFormHtmlBuildTraits;
-    //设置表单禁用
-    use DisabledFormHtmlBuildTraits;
-    //设置表单数据源
-    use SetDataSourceHtmlBuildTraits;
-    //设置表单默认值
-    use SetDefaultValueFormHtmlBuildTraits;
-    //设置时间表单的时间格式
-    use SetDateFormatFormHtmlBuildTraits;
-    //设置表单class
-    use SetClassFormHtmlBuildTraits;
-    //验证表单规则
-    use SetRuleFormHtmlBuildTraits;
-    //表单js验证规则错误时提示文字
-    use SetErrorMessageFormHtmlBuildTraits;
-    //设置双向选择器数据源
-    use SetMultiSelectDataSourceFormHtmlBuildTraits;
-    //设置表单提示
-    use SetNoticeFormHtmlBuildTraits;
-    //设置扩展属性
-    use SetAttrFormHtmlBuildTraits;
+
+    use ReadOnlyFormHtmlBuildTraits,                    //设置表单为只读
+        DisabledFormHtmlBuildTraits,                    //设置表单禁用
+        SetDataSourceHtmlBuildTraits,                   //设置表单数据源
+        SetDefaultValueFormHtmlBuildTraits,             //设置表单默认值
+        SetDateFormatFormHtmlBuildTraits,               //设置时间表单的时间格式
+        SetClassFormHtmlBuildTraits,                    //设置表单class
+        SetRuleFormHtmlBuildTraits,                     //验证表单规则
+        SetErrorMessageFormHtmlBuildTraits,             //表单js验证规则错误时提示文字
+        SetMultiSelectDataSourceFormHtmlBuildTraits,    //设置双向选择器数据源
+        SetNoticeFormHtmlBuildTraits,                   //设置表单提示
+        SetAttrFormHtmlBuildTraits,                     //设置扩展属性
+        RemoveFormHtmlBuildTraits                       //删除指定表单元素
+        ;
 
 }

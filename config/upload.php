@@ -24,5 +24,9 @@ return [
         'bucket'    => 'test',
         'url'       => 'http://7xk0dl.com1.z0.glb.clouddn.com',
     ],
+    'maxFiles'          => 10,//限制最多10个文件每次
+    'parallelUploads'   => 200,//允许一起上传的文件个数
+    'maxFilesize'       => 1,//限制文件大小为单位是M
+    'acceptedFiles'     => '.jpg,.png,.jpeg,.gif',//允许上传文件的类型
 
 ];

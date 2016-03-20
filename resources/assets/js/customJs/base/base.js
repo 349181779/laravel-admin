@@ -12,9 +12,8 @@ var HTTP_CODE = {
 $(function(){
 
     $('.ajax-form').on('submit', function (e) {
-        base.ajaxForm(this);
         //取消默认动作，防止表单两次提交
-        e.preventDefault();
+        base.ajaxForm(this) == false && e.preventDefault();
     });
 
     //菜单折叠
@@ -155,7 +154,7 @@ Base.prototype.ajaxForm = function (obj)
 
     //如果是get方式直接跳转
     if(method.toLocaleLowerCase() == 'get'){
-        return;
+        return true;
     }
 
     //如果表单验证不通过,则返回
@@ -165,7 +164,7 @@ Base.prototype.ajaxForm = function (obj)
 
     //如果禁止base.js 解析 则跳过
     if(form.find('input[name=status]').val() == 'false'){
-        return;
+        return true;
     }
 
     //检测提交地址
@@ -266,6 +265,9 @@ Base.prototype.checkForm = function (obj)
     var _instanceof = this;
 
     obj.Validform({
+        beforeCheck : function (curform) {
+            return true;
+        },
         tiptype:function(msg, o, cssctl){
             switch(o.type){
                 case 3:
@@ -280,6 +282,7 @@ Base.prototype.checkForm = function (obj)
         }
 
     });
+
 }
 
 //实例化 base 对象

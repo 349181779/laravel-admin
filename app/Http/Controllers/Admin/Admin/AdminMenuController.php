@@ -190,10 +190,13 @@ class AdminMenuController extends BaseController
      */
     public function getAdminMenu(Request $request)
     {
+        $parent_id  = $request->get('parent_id');
         //获得当前用户菜单数据
-        $all_menu = AdminMenuModel::getAdminMenu($request->get('parent_id'));
+        $all_menu   = AdminMenuModel::getAdminMenu($parent_id);
 
-        return $all_menu != false ? $this->response(self::SUCCESS_STATE_CODE, trans('response.get_menu_success'), $all_menu ) : $this->response(self::ERROR_STATE_CODE, trans('response.get_menu_error'));
+        return $all_menu != false ? $this->response(self::SUCCESS_STATE_CODE, trans('response.get_menu_success'), $all_menu, false, '', [
+            'menu_id' => $parent_id,
+        ] ) : $this->response(self::ERROR_STATE_CODE, trans('response.get_menu_error'));
     }
 
 }

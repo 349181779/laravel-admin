@@ -96,7 +96,13 @@ AutoLayoutObject.prototype.updateFirstChildLeftMargin = function ($visualFormat,
 
     //匹配当前左间距
     $arr = $visualFormat.match(/\|(\-*)(\d*)(\-*)\[/);
-    if ($arr && $arr[2] > 0 ) {
+
+    if ($arr && isNaN($arr[2]) == false ) {
+
+        //如果是 “--” 表示是负值。
+        if ($arr[1] == "--") {
+            $arr[2] = -$arr[2];
+        }
         $margin_right -= $arr[2];
     }
     return $visualFormat.replace(/\|([\-|\d]*)\[/, '|-'+Math.abs($margin_right)+'-[');
@@ -286,7 +292,6 @@ AutoLayoutObject.prototype.updateLayout = function ()
  * 更新视图
  *
  * @param $id
- * @author yangyifan <yangyifanphp@gmail.com>
  */
 AutoLayoutObject.prototype.updateClass = function ($id)
 {

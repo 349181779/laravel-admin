@@ -1,6 +1,6 @@
 
-<?php if($build_html_type != 'tab'):?>
-        <!-- 如果tab类型，则不需要显示form标签 -->
+<?php if( $is_show_form !== false ):?>
+        <!-- 如果builderIsShowForm 设置为 true的时候，则不需要显示form标签 -->
 <form id="form" method="<?php echo $method; ?>" action="<?php echo !empty($confirm_button) ? $confirm_button["url"] : ''; ?>" class="form-horizontal bucket-form ajax-form" enctype="multipart/form-data" >
 <?php endif;?>
 
@@ -108,7 +108,7 @@
 
 <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>"/>
 
-<?php if($build_html_type != 'tab'):?>
-<!-- 如果tab类型，则不需要显示form标签 -->
-</form>
+<?php if( $is_show_form !== false ):?>
+        <!-- 如果builderIsShowForm 设置为 true的时候，则不需要显示form标签 -->
+        </form>
 <?php endif;?>

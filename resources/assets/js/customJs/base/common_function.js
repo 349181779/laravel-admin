@@ -55,10 +55,22 @@ function loadCaptchaImg(obj){
 /**
  *
  * 退出登录
+ *
  * @author yangyifan <yangyifanphp@gmail.com>
  */
 function logout(){
     $.get(logout_url, {}, function(data){
+        base.tools.parseResponseJson($.parseJSON(data));
+    })
+}
+
+/**
+ * 设置语言
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+function settingLocale(locale){
+    $.get(setting_locale_url, {'locale' : locale}, function(data){
         base.tools.parseResponseJson($.parseJSON(data));
     })
 }

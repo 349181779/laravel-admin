@@ -26,7 +26,7 @@ class AdminLimitMenuModel extends BaseModel
      */
     public static function getUserRelationMenu($limit_id)
     {
-        return self::where('limit_id', '=', $limit_id)->lists('menu_id');
+        return objToArray(self::where('limit_id', '=', $limit_id)->lists('menu_id'));
     }
 
     /**

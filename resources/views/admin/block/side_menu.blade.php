@@ -1,6 +1,6 @@
 <div id="skin-select">
     <div id="logo">
-        <h1><?php echo config('config.site_name') ;?><span><?php echo config('config.version') ;?></span></h1>
+        <h1><?php echo config('config.site_name');?><span><?php echo config('config.version');?></span></h1>
     </div>
 
     <a id="toggle" class="hidden">
@@ -27,7 +27,7 @@
     <div class="skin-part">
         <div id="tree-wrap">
             <div class="side-bar">
-                <ul id="menu-showhide " class="topnav menu-left-nest" >
+                <ul id="menu-showhide " class="topnav menu-left-nest">
                     <li class="hidden">
                         <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
 
@@ -40,33 +40,37 @@
                     <!-- 循环 左侧导航菜单 -->
                     <li bg-render="item in side_menu">
                         <script type="text/html">
-                            <a class="tooltip-tip" href="javascript:void(0)" style="cursor: default;" title="{{: item.menu_name}}">
+                            <a class="tooltip-tip" href="javascript:void(0)" style="cursor: default;"
+                               title="{{: item.menu_name}}">
                                 <span bg-text="item.menu_name"></span>
 
                             </a>
 
 
-                        <!-- 三级菜单 -->
+                            <!-- 三级菜单 -->
 
-                        <ul style="display: block;"  >
+                            <ul style="display: block;">
                                 {{for childItem in item.child }}
-                                    {{if childItem.id == cookie("child_menu_id") }}
-                                        <li>
-                                            <a class="topnav_hover tooltip-tip2 ajax-load " bg-click="saveChildMenuId({{: childItem.id}})" href="{{: childItem.menu_url}}" title="">
-                                                <span bg-text="childItem.menu_name" ></span>
-                                            </a>
-                                        </li>
-                                    {{else}}
-                                        <li>
-                                            <a class="tooltip-tip2 ajax-load" bg-click="saveChildMenuId({{: childItem.id}})" href="{{: childItem.menu_url}}" title="">
-                                                <span bg-text="childItem.menu_name" ></span>
-                                            </a>
-                                        </li>
-                                    {{/if}}
+                                {{if childItem.id == cookie("child_menu_id") }}
+                                <li>
+                                    <a class="topnav_hover tooltip-tip2 ajax-load "
+                                       bg-click="saveChildMenuId({{: childItem.id}})" href="{{: childItem.menu_url}}"
+                                       title="">
+                                        <span bg-text="childItem.menu_name"></span>
+                                    </a>
+                                </li>
+                                {{else}}
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" bg-click="saveChildMenuId({{: childItem.id}})"
+                                       href="{{: childItem.menu_url}}" title="">
+                                        <span bg-text="childItem.menu_name"></span>
+                                    </a>
+                                </li>
+                                {{/if}}
                                 {{/for}}
-                        </ul>
+                            </ul>
 
-                        <!-- 三级菜单 -->
+                            <!-- 三级菜单 -->
                         </script>
 
                     </li>

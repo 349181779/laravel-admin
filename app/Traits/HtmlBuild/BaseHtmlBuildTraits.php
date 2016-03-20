@@ -50,6 +50,19 @@ trait BaseHtmlBuildTraits
     }
 
     /**
+     * 当前是否显示 form 元素，如果是否,则不会有 "<form></form>"
+     *
+     * @param boolena $is_show
+     * @return $this
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    public function builderIsShowForm($is_show = true)
+    {
+        $this->is_show_form = $is_show;
+        return $this;
+    }
+
+    /**
      * 构建确认按钮
      *
      * @param $title
@@ -89,16 +102,18 @@ trait BaseHtmlBuildTraits
      * @param  $class   按钮class
      * @param  $url     按钮跳转url
      * @param  $events  js 事件
+     * @param  $class   class
      * @return Response
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderBotton($name, $url = '', $class = '', $events = [])
+    public function builderBotton($name, $url = '', $icon_class = '', $events = [], $class = '')
     {
         array_push($this->list_buttons, [
             'name'          => $name,
             'url'           => $url,
-            'class'         => $class,
+            'icon_class'    => $icon_class,
             'events'        => $events,
+            'class'         => $class,
         ]);
         return $this;
     }

@@ -34,7 +34,8 @@ class BaseController extends \App\Http\Controllers\BaseController
         $this->showAdminInfo();
         //获得当前位置信息
         $this->getLocation();
-
+        //获得菜单id
+        $this->getMenuId();
     }
 
     /**
@@ -55,6 +56,16 @@ class BaseController extends \App\Http\Controllers\BaseController
     private function getLocation()
     {
         //view()->share('location_arr', AdminMenuModel::mergeLocation( AdminMenuModel::getMenuId(implode(self::CONNECTION, $this->getCurrentAction())) ));
+    }
+
+    /**
+     * 获得菜单id
+     *
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function getMenuId()
+    {
+        view()->share('menu_id', \Cookie::get('menu_id'));
     }
 
     /**

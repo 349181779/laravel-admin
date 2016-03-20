@@ -17,10 +17,8 @@ trait ListHtmlBuildTraits
 {
     public $json_url    = '';//列表页获得json数据url
 
-    //设置字段是否允许排序
-    use SetIsSortTraits;
-    //设置列表页显示的条数
-    use SetIsLimitTraits;
+    use SetIsSortTraits,    //设置字段是否允许排序
+        SetIsLimitTraits;   //设置列表页显示的条数
 
     /**
      * 构建HTML列表页字段
@@ -45,18 +43,19 @@ trait ListHtmlBuildTraits
     /**
      * 构建列表页搜索字段
      *
-     * @param $name     表单name
-     * @param $title    表单名称
-     * @param $type     表单类型
-     * @param $default  表单默认值
-     * @param $notice   表单提示
-     * @param $class    表单class
-     * @param $rule     表单验证规则
-     * @param $message  表单验证提示文字
+     * @param $name                     表单name
+     * @param $title                    表单名称
+     * @param $type                     表单类型
+     * @param $default                  表单默认值
+     * @param $class                    表单class
+     * @param $option                   选项
+     * @param $option_value_schema      $option_value_schema
+     * @param $option_value_name        选项值
+     * @param $attr                     附加属性
      * @return $this
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function builderSearchSchema($name, $title, $type = 'text', $default = '', $class = '', $option = '', $option_value_schema = '', $option_value_name = '')
+    public function builderSearchSchema($name, $title, $type = 'text', $default = '', $class = '', $option = '', $option_value_schema = '', $option_value_name = '', $attr = [])
     {
         array_push($this->search_schema, [
             'name'                  => $name,
@@ -66,7 +65,8 @@ trait ListHtmlBuildTraits
             'class'                 => $class,
             'option'                => $option,
             'option_value_schema'   => $option_value_schema,
-            'option_value_name'     => $option_value_name
+            'option_value_name'     => $option_value_name,
+            'attr'                  => $attr,
         ]);
         return $this;
     }

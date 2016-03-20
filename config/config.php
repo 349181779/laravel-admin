@@ -2,7 +2,7 @@
 
 return [
 
-    'site_name' => '测试后台',
+    'site_name' => '后台',
     'version' => 'v 1.0',//后台版本号
 
     //分页

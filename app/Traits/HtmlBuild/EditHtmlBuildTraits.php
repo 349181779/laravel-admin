@@ -10,6 +10,8 @@
 
 namespace App\Traits\HtmlBuild;
 
+use Illuminate\Database\Eloquent\Model;
+
 trait EditHtmlBuildTraits
 {
 
@@ -23,7 +25,12 @@ trait EditHtmlBuildTraits
      */
     public function builderEditData($data = [])
     {
-        $this->edit_data = $data;
+        if ( $data instanceof Model) {
+            $this->edit_data = $data;
+        } elseif ( !is_array($data)) {
+            $this->edit_data = objToArray($data);
+        }
+
         return $this;
     }
 
@@ -46,6 +53,7 @@ trait EditHtmlBuildTraits
             'method'            => $this->method,//当前表单提交method
             'list_buttons'      => $this->list_buttons,//按钮组
             'build_html_type'   => $this->build_html_type[2],//构建页面类型 为 edit
+            'is_show_form'      => $this->is_show_form,//是否显示 form 元素，如果是否,则不会有 "<form></form>"
         ];
     }
 

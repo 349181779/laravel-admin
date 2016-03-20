@@ -36,8 +36,6 @@ class BaseController extends Controller
     public function __construct(){
         //调试sql
         $this->enableQueryLog();
-        //设置语言
-        $this->setLocale();
         //设置错误级别
         $this->setErrorLevel();
     }
@@ -79,15 +77,33 @@ class BaseController extends Controller
      * @param $data     数据
      * @param $target   是否跳转到新页面
      * @prams $href     跳转的网址
+     * @prams $cookie   需要设置的cookie数组
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function response($code = self::SUCCESS_STATE_CODE, $msg = '', $data = [], $target = false, $href = '')
+    public function response($code = self::SUCCESS_STATE_CODE, $msg = '',  $data = [], $target = false, $href = '',  $cookie = [])
     {
         //如果是jsonp 请求，则返回jsonp格式response
         if (!empty($_REQUEST['callback'])) {
-            return response()->jsonp($_REQUEST['callback'], [$code, $msg , $data , $target, $href]);
+            return $this->setCookie($cookie, new Response())->jsonp($_REQUEST['callback'], [$code, $msg , $data , $target, $href]);
         }
-        return (new Response($this->responseContent($code, $msg , $data , $target, $href), self::SUCCESS_STATE_CODE));
+        return $this->setCookie($cookie, new Response())->setContent($this->responseContent($code, $msg , $data , $target, $href), self::SUCCESS_STATE_CODE);
+    }
+
+    /**
+     * 批量设置cookie
+     *
+     * @param array $cookie_arr     cookie数组
+     * @param Response $response    响应对象
+     * @author yangyifan <yangyifanphp@gmail.com>
+     */
+    private function setCookie($cookie_arr = [], Response $response)
+    {
+        if ( count($cookie_arr) > 0 ) {
+            foreach ( $cookie_arr as $cookie_name => $cookie_value) {
+                $response->withCookie(Cookie()->forever($cookie_name, $cookie_value));
+            }
+        }
+        return $response;
     }
 
     /**
@@ -101,23 +117,9 @@ class BaseController extends Controller
      * @return string
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function responseContent($code = self::SUCCESS_STATE_CODE, $msg = '', $data = [], $target = false, $href = '')
+    public function responseContent($code = self::SUCCESS_STATE_CODE, $msg = '', $data = [], $target = true, $href = '')
     {
         return json_encode(compact('code', 'msg', 'data', 'target', 'href'));
-    }
-
-    /**
-     * 设置语言
-     *
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    private function setLocale()
-    {
-        $locale = \Request::cookie('locale');
-        $locale = !empty($locale) ? $locale : 'zh';
-        \App::setLocale($locale);
-        //设置模型语言
-        is_null(BaseModel::$locale) && BaseModel::$locale = $locale;
     }
 
     /**

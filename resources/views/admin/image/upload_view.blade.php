@@ -27,7 +27,7 @@
                     <div class="title-alt">
                         <div class="row">
                             <div class="col-sm-2">
-                                <h6> 上传文件</h6>
+                                <h6><?php echo trans('base.upload_title_1') ;?></h6>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <input type="hidden" name="_token" value="<?php echo  csrf_token();?>">
                             <input type="hidden" name="_id" value="<?php echo $id;?>">
                         </form>
-                        <button style="margin-top:10px;" class="btn btn-info" id="submit-all">确认上传</button>
+                        <button style="margin-top:10px;" class="btn btn-info" id="submit-all"><?php echo trans('base.upload_title_1') ;?></button>
                     </div>
                     <!-- 上传框 -->
 
@@ -56,7 +56,6 @@
      <script src="<?php echo elixir('dist/upload_image_dialog.js');?>"></script>
     <script type="text/javascript">
 
-
         //上传
         Dropzone.options.myDropzone = {
             maxFiles        : <?php echo config('upload.maxFiles');?>, //限制最多10个文件每次
@@ -65,7 +64,7 @@
             addRemoveLinks  : true, //添加删除按钮
             paramName       :"<?php echo $input_name ;?>",//表单名称
             uploadMultiple  : false, //允许上传多个
-            acceptedFiles   :  "<?php echo config('upload.acceptedFiles');?>",//允许上传文件的类型
+            acceptedFiles   : "<?php echo config('upload.acceptedFiles');?>",//允许上传文件的类型
             autoProcessQueue: false,
 
             //初始化
@@ -78,7 +77,7 @@
                 this.on("addedfile", function() {
                 });
                 this.on('maxfilesexceeded', function() {
-                    toastr.warning("每次最多上传<?php echo config('upload.maxFiles');?>张图片");
+                    toastr.warning("<?php echo trans('base.upload_title_3', ['number' => config('upload.maxFiles')]) ;?>");
                 });
 
             },
@@ -87,10 +86,10 @@
             success: function(file){
                 var _data = $.parseJSON(file.xhr.response);
                 if (_data.code == HTTP_CODE.SUCCESS_CODE) {
-                    toastr.success(_data.msg);
+                    if ( _data.msg != '' ) toastr.success(_data.msg);
                     return file.previewElement.classList.add("dz-success");
                 }else{
-                    toastr.warning(_data.msg);
+                    if ( _data.msg != '' ) toastr.warning(_data.msg);
                     return file.previewElement.classList.add("dz-error");
                 }
 

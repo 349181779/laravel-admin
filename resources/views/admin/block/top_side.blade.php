@@ -16,10 +16,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" onclick="logout()"><span
-                                class="glyphicon glyphicon-remove-sign"></span>&#160;&#160; 退出</a>
+                    <a href="javascript:void(0)" onclick="logout()">
+                        &#160;&#160; <?php echo trans('response.logout');?></a>
                 </li>
-                <li class="hidden-xs">
+
+                <li class="hidden-xs hidden-sm hidden-md hidden">
                     <a class="toggle-left" href="#">
                         <span style="font-size:20px;" class="entypo-list-add"></span>
                     </a>

@@ -28,7 +28,9 @@
                <?php if($schema['disabled'] == true):?>
                disabled="disabled"
                <?php endif;?>
-               onclick="laydate()">
+               onclick="laydate()"
+               readonly="readonly"
+                >
 
         <!-- 表单提示 -->
         <span class="help-block"><?php echo $schema['notice']; ?></span>

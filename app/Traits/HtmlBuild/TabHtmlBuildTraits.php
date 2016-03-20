@@ -79,6 +79,7 @@ trait TabHtmlBuildTraits
             'method'            => $method,//提交方式
             'list_buttons'      => $this->list_buttons,//按钮组
             'build_html_type'   => $this->build_html_type[4],//构建页面类型 为 tab
+            'is_show_form'      => isset($this->is_show_form) ? $this->is_show_form : false,//是否显示 form 元素，如果是否,则不会有 "<form></form>",tab类型默认不显示
         ];
     }
 

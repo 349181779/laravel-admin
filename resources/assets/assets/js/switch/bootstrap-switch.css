@@ -331,7 +331,7 @@
 .has-switch span.switch-danger[disabled] {
   color: #ffffff;
    background: #FF0064;
-  * background: #FF0064;
+  background: #FF0064;
 }
 .has-switch span.switch-danger:active,
 .has-switch span.switch-danger.active {

@@ -30,6 +30,7 @@ trait AddHtmlBuildTraits
             'method'            => $this->method,//当前表单提交method
             'list_buttons'      => $this->list_buttons,//按钮组
             'build_html_type'   => $this->build_html_type[1],//构建页面类型 为 add
+            'is_show_form'      => $this->is_show_form,//是否显示 form 元素，如果是否,则不会有 "<form></form>"
         ];
     }
 

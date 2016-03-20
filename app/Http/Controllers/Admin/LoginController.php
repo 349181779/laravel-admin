@@ -71,7 +71,9 @@ class LoginController extends BaseController
 
         switch ($login_status) {
             case AdminInfoModel::LOGIN_SUCCESS:
-                return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\Admin\AdminInfoController@getIndex'));
+                return $this->response(self::SUCCESS_STATE_CODE, trans('response.success'), [], true, createUrl('Admin\Admin\AdminInfoController@getIndex'),[
+                    'menu_id'   => AdminMenuModel::DEFAULT_USER_TOP_MENY_ID,//设置登录后的顶级菜单id为19
+                ]);
             case AdminInfoModel::ACCOUNT_NOT_EXISTS:
             case AdminInfoModel::ACCOUNT_PASSWORD_ERRPR:
                 return $this->response(self::ERROR_STATE_CODE, trans('response.admin_not_exists'));

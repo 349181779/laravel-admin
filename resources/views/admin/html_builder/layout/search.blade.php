@@ -26,7 +26,7 @@
         <select name="<?php echo $schema['name']; ?>" onchange="selectSearch(this)" class="form-control select-con">
             <option value="" >请选择</option>
         </select>
-        <input type="hidden" name="<?php echo $schema['name']; ?>" value="<?php echo array_get($data, $schema['name']) == '' ? $schema['default'] : array_get($data, $schema['name']); ?>">
+        <input type="hidden" name="<?php echo $schema['name']; ?>" value="<?php echo arrayGet($data, $schema['name']) == '' ? $schema['default'] : arrayGet($data, $schema['name']); ?>">
     </div>
     <!-- 右侧 -->
 

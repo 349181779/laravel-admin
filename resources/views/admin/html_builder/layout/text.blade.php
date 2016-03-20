@@ -3,12 +3,11 @@
     <!-- 左侧 -->
     <label class="col-sm-2 control-label"><?php echo $schema['title'] ? $schema['title'] . ':' : ''; ?></label>
     <!-- 左侧 -->
-
     <!-- 右侧 -->
     <div class="col-sm-4 last_child_div">
         <input type="<?php echo $schema['type']; ?>"
                name="<?php echo $schema['name']; ?>"
-               value="<?php echo empty(array_get($data, $schema['name'])) ? $schema['default'] : array_get($data, $schema['name']); ?>"
+               value="<?php echo empty(arrayGet($data, $schema['name'])) ? $schema['default'] : arrayGet($data, $schema['name']); ?>"
                <?php if (empty($schema['rule'])) {
                     echo 'ignore="ignore"';
                } else {

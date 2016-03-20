@@ -22,6 +22,8 @@ class AdminMenuModel extends BaseModel
     protected $table    = 'admin_menu';//定义表名
     private static $all_menu = null;//全部菜单
 
+    const  DEFAULT_USER_TOP_MENY_ID = 6;//登陆到后台默认顶级分类id
+
     /**
      * 获得全部菜单导航
      *
@@ -80,6 +82,7 @@ class AdminMenuModel extends BaseModel
                 $menu->checked = in_array($menu->id, $all_user_menu) ? true : false;
             }
         }
+
         //组合数据
         return arrayToObj(mergeTreeChildNode(objToArray($all_menu), 0, 0, 'parent_id'));
     }
@@ -105,6 +108,7 @@ class AdminMenuModel extends BaseModel
         if (empty($all_menu_id)) {
             return false;
         }
+
         $data = self::mergeMenuUrl(self::multiwhere(['id' => ['IN', $all_menu_id], 'parent_id' => 0])->orderBy('sort', 'asc')->get());
 
         //设置缓存

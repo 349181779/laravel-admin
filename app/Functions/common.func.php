@@ -404,3 +404,19 @@ if(!function_exists('tableName')) {
         return false;
     }
 }
+
+/**
+ * Get an item from an array using "dot" notation.
+ *
+ * @param  array   $array
+ * @param  string  $key
+ * @param  mixed   $default
+ * @return mixed
+ */
+function arrayGet($array, $key, $default = null)
+{
+    if (!is_array($array)) {
+        $array = objToArray($array);
+    }
+    return Illuminate\Support\Arr::get($array, $key, $default);
+}

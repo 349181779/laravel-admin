@@ -30,6 +30,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin.base',  'namespace' => '
     });
     //首页
     Route::controller('home', 'HomeController');
+    //基础控制器
+    Route::controller('base', 'BaseController');
     //权限管理
     Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
         //后台用户
@@ -45,6 +47,17 @@ Route::group(['prefix'=>'admin', 'middleware' => 'admin.base',  'namespace' => '
     });
     //会员(当前会员全部是自动构建创建的代码)
     Route::controller('user', 'UserInfo\UserInfo1Controller');
+    //微店
+    Route::group(['prefix' => 'weidian', 'namespace' => 'Weidian'], function(){
+        //商品管理
+        Route::controller('goods', 'GoodsController');
+        //商品sku
+        Route::controller('goods-sku', 'GoodsSKUController');
+        //商品图片
+        Route::controller('goods-images', 'GoodsImageController');
+        //商品分类
+        Route::controller('category', 'CategoryController');
+    });
 });
 //工具
 Route::group(['prefix'=>'tools', 'namespace' => 'Tools'],function(){

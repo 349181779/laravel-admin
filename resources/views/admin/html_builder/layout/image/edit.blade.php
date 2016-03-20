@@ -17,7 +17,7 @@
             </button>
         </div>
         <input type="hidden" name="<?php echo $schema['name']; ?>"
-               value="<?php echo array_get($data, $schema['name']) == '' ? '' : array_get($data, $schema['name']); ?>"/>
+               value="<?php echo arrayGet($data, $schema['name']) == '' ? '' : arrayGet($data, $schema['name']); ?>"/>
         <span class="help-block"><?php echo $schema['notice']; ?></span>
 
         <div class="alert alert-danger hide" role="alert">

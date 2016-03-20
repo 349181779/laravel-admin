@@ -22,8 +22,7 @@ function Tools()
  */
 Tools.prototype._construct = function ()
 {
-    //更新 Ckeditor
-    this.updateCkeditroData()
+
 }
 
 /**
@@ -36,7 +35,6 @@ Tools.prototype.updateCkeditroData = function ()
     try {
         for (instance  in CKEDITOR.instances ) {
             CKEDITOR.instances[instance].updateElement();
-            return true;
         }
     }catch(e){
     }
@@ -133,7 +131,7 @@ Tools.prototype.parseQueryString = function (url)
         keyvalue    = paraString[i].split("=");
         key         = keyvalue[0];
         value       = decodeURIComponent(keyvalue[1]);
-        value       = decodeURIComponent(value.replace(/\+/g, ' '));
+        value       = value.replace(/\+/g, ' ');
         obj[key]    = value;
     }
     return obj;
@@ -149,7 +147,7 @@ Tools.prototype.parseResponseJson = function (data, callback)
 {
     if(data.code == HTTP_CODE.SUCCESS_CODE){
         //弹出提示框
-        toastr.success(data.msg);
+        if ( data.msg != '') toastr.success(data.msg);
         //如果为true表示跳转到新连接
         data.target == true && setTimeout(function(){
             location.href = data.href;
@@ -158,7 +156,11 @@ Tools.prototype.parseResponseJson = function (data, callback)
     } else if (data.code == HTTP_CODE.REDIRECT_CODE) {
         location.href = data.href;
     } else{
-        toastr.warning(data.msg);
+        if ( data.msg != '') toastr.warning(data.msg);
+        //如果为true表示跳转到新连接
+        data.target == true && setTimeout(function(){
+            location.href = data.href;
+        },1000)
     }
 
     //如果有回调方法，则执行回调方法
