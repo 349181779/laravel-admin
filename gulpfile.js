@@ -182,22 +182,12 @@ elixir(function(mix) {
             "assets/js/dropZone/lib/dropzone.js"
         ], "public/dist/upload_image_dialog.js");
 
-        // 微店商品分类 页面 js
-        mix.scripts([
-            "js/customJs/weidian/category.js",
-        ], "public/dist/weidian/category.js");
-
-        // 微店商品 页面 js
-        mix.scripts([
-            "js/customJs/weidian/goods.js",
-        ], "public/dist/weidian/goods.js");
-
         // multi upload image 页面
         mix.scripts([
             "js/customJs/multiUploadImage.js"
         ], "public/dist/multi_upload_image.js");
 
-    //压缩文件
+        //压缩文件
         mix.version([
             "public/dist/base.css",
             "public/dist/base.js",
@@ -217,8 +207,6 @@ elixir(function(mix) {
             "public/dist/upload_image_dialog.js",
             "public/dist/login.css",
             "public/dist/login.js",
-            "public/dist/weidian/category.js",
-            "public/dist/weidian/goods.js",
             "public/dist/multi_upload_image.js",
         ]);
 

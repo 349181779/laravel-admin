@@ -1,10 +1,10 @@
 /**
- * 商品分类对象
+ * 商品SKU对象
  *
  * @constructor
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-function Categry()
+function GoodsSkuc()
 {
     //初始化
     this.__construct();
@@ -16,28 +16,16 @@ function Categry()
  * @private
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.__construct = function ()
+GoodsSkuc.prototype.__construct = function ()
 {
 }
 
 /**
- * 拉取微店分类
+ * 拉取微店SKU
  *
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.pullWeidianCategory = function(url)
-{
-    //开启按钮动画
-    base.tools.startButtonAnmate();
-    this.send(url);
-}
-
-/**
- * 同步微店分类
- *
- * @author yangyifan <yangyifanphp@gmail.com>
- */
-Categry.prototype.syncWeidianCategory = function(url)
+GoodsSkuc.prototype.pullWeidianCategory = function(url)
 {
     //开启按钮动画
     base.tools.startButtonAnmate();
@@ -45,11 +33,23 @@ Categry.prototype.syncWeidianCategory = function(url)
 }
 
 /**
- * 删除微店分类
+ * 同步微店商品
  *
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.deleteCategory = function(url, category_id)
+GoodsSkuc.prototype.syncWeidianCategory = function(url)
+{
+    //开启按钮动画
+    base.tools.startButtonAnmate();
+    this.send(url);
+}
+
+/**
+ * 删除微店商品SKU
+ *
+ * @author yangyifan <yangyifanphp@gmail.com>
+ */
+GoodsSkuc.prototype.deleteCategory = function(url, category_id)
 {
     //开启按钮动画
     base.tools.startButtonAnmate();
@@ -61,7 +61,7 @@ Categry.prototype.deleteCategory = function(url, category_id)
         });
 
         //询问框
-        layer.confirm('是否删除商品分类', {
+        layer.confirm('是否删除商品SKU', {
             btn: ['是', '否'] //按钮
         }, function(){
             _this.send(url, {id : category_id});
@@ -82,7 +82,7 @@ Categry.prototype.deleteCategory = function(url, category_id)
  * @param params    参数
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.send = function (url, params) {
+GoodsSkuc.prototype.send = function (url, params) {
 
     params = params || {};
 
@@ -99,4 +99,4 @@ Categry.prototype.send = function (url, params) {
     })
 }
 
-var category = new Categry();
+var sku = new GoodsSkuc();

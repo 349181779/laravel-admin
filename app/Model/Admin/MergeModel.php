@@ -32,7 +32,6 @@ class MergeModel extends BaseModel
         return self::$all_state;
     }
 
-
     /**
      * 组合当前状态
      *

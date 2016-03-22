@@ -49,6 +49,8 @@ class BaseModel extends Model
      */
     public function isEqual($schema)
     {
+        if (!is_array($schema)) $schema = func_get_args();
+
         if ( is_array($schema) && count($schema) > 0 ) {
             foreach ($schema as $v) {
                 if ( ( $this->attributes[$v] == $this->getOriginal($v) ) == false) {
@@ -56,8 +58,6 @@ class BaseModel extends Model
                 }
             }
             return true;
-        } elseif ( !empty($schema) ) {
-            return $this->attributes[$schema] == $this->getOriginal($schema);
         }
         return false;
     }

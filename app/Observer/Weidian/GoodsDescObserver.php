@@ -1,35 +1,29 @@
 <?php
 
 // +----------------------------------------------------------------------
-// | date: 2015-09-18
+// | date: 2016-03-20
 // +----------------------------------------------------------------------
-// | TpObserver.php: 第三方物流观察者
+// | GoodsDescObserver.php: 微店商品介绍观察者
 // +----------------------------------------------------------------------
 // | Author: yangyifan <yangyifanphp@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace App\Observer;
+namespace App\Observer\Weidian;
 
-use App\Model\Admin\Tp\TpModel;
+use App\Model\Admin\Weidian\GoodsDescModel;
+use App\Model\Admin\Weidian\GoodsModel;
 
-class TpObserver
+class GoodsDescObserver
 {
-
     /**
-     * 新增第三方物流模型时，操作
+     * 更新商品简介时操作，更新商品为需要更新和更新商品简介
      *
      * @param $model
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function created($model)
+    public function saved($model)
     {
-        $app_id     = TpModel::createAppId();
-        $app_key    = TpModel::createAppKey();
-
-        $model::where('id', '=', $model->id)->update([
-            'appid'     => $app_id,
-            'appkey'    => $app_key,
-        ]);
+        return GoodsModel::updateToIsSync($model->goods_id);
     }
 
 }

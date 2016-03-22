@@ -10,5 +10,6 @@
 </html>
 <script>
     var batchUploadImagesUrl = '<?php echo createUrl("Admin\Weidian\GoodsImageController@getUploadView");?>';
+    var delImageToTopUrl = '<?php echo createUrl('Admin\Weidian\GoodsImageController@postDelete') ;?>'
 </script>
  <script src="<?php echo elixir('dist/multi_upload_image.js');?>"></script>

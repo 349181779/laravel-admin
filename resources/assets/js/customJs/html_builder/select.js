@@ -14,7 +14,13 @@ function addSelect(obj)
     var html    = _this.parents('.form-group').clone(true)
 
     //替换add 按钮 dom ,改成移除 按钮
-    html.find('.addSelect').replaceWith(createRemoveBtnDom())
+    html.find('.addSelect').replaceWith(createRemoveBtnDom());
+
+    //替换name
+    var select = html.find('select');
+    select.attr('name', select.attr('name').replace(/(\[\d*\]){1}/ig, '[]'));
+
+    html.find('select').replaceWith(select);
     _this.parents('.form-group').after(html);
 }
 

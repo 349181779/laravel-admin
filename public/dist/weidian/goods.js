@@ -1,10 +1,10 @@
 /**
- * 商品分类对象
+ * 商品对象
  *
  * @constructor
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-function Categry()
+function Goods()
 {
     //初始化
     this.__construct();
@@ -16,16 +16,16 @@ function Categry()
  * @private
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.__construct = function ()
+Goods.prototype.__construct = function ()
 {
 }
 
 /**
- * 拉取微店分类
+ * 拉取微店
  *
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.pullWeidianCategory = function(url)
+Goods.prototype.pullWeidianCategory = function(url)
 {
     //开启按钮动画
     base.tools.startButtonAnmate();
@@ -37,7 +37,7 @@ Categry.prototype.pullWeidianCategory = function(url)
  *
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.syncWeidianCategory = function(url)
+Goods.prototype.syncWeidianCategory = function(url)
 {
     //开启按钮动画
     base.tools.startButtonAnmate();
@@ -49,7 +49,7 @@ Categry.prototype.syncWeidianCategory = function(url)
  *
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.deleteCategory = function(url, category_id)
+Goods.prototype.deleteCategory = function(url, category_id)
 {
     //开启按钮动画
     base.tools.startButtonAnmate();
@@ -61,7 +61,7 @@ Categry.prototype.deleteCategory = function(url, category_id)
         });
 
         //询问框
-        layer.confirm('是否删除商品分类', {
+        layer.confirm('是否删除商品', {
             btn: ['是', '否'] //按钮
         }, function(){
             _this.send(url, {id : category_id});
@@ -82,7 +82,7 @@ Categry.prototype.deleteCategory = function(url, category_id)
  * @param params    参数
  * @author yangyifan <yangyifanphp@gmail.com>
  */
-Categry.prototype.send = function (url, params) {
+Goods.prototype.send = function (url, params) {
 
     params = params || {};
 
@@ -99,4 +99,4 @@ Categry.prototype.send = function (url, params) {
     })
 }
 
-var category = new Categry();
+var goods = new Goods();

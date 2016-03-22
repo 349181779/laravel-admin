@@ -21,3 +21,39 @@ function batchUploadImages(obj, id){
         },
     });
 }
+
+/**
+ * 软删除图片
+ *
+ * @param obj
+ * @param id
+ * @param product_id
+ */
+function delImageToTop(obj, id, _id)
+{
+    var _this = $(obj);
+
+    //询问框
+    layer.confirm('是否删除？', {
+        btn: ['确定','取消'] //按钮
+    }, function(){
+        $.ajax(delImageToTopUrl, {
+            type : 'post',
+            data:{id: id, _id: _id},
+            dataType: "json",
+        }).success(function (data) {
+            if(data.code == HTTP_CODE.SUCCESS_CODE){
+                _this.parents('.image_list').remove()
+                layer.closeAll()
+                toastr.success(data.msg);
+            } else{
+                layer.closeAll()
+                toastr.warning(data.msg);
+            }
+        });
+    }, function(){
+
+    });
+
+
+}

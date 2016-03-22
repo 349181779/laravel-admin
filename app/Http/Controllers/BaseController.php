@@ -117,7 +117,7 @@ class BaseController extends Controller
      * @return string
      * @author yangyifan <yangyifanphp@gmail.com>
      */
-    public function responseContent($code = self::SUCCESS_STATE_CODE, $msg = '', $data = [], $target = true, $href = '')
+    public function responseContent($code = self::SUCCESS_STATE_CODE, $msg = '', $data = [], $target = false, $href = '')
     {
         return json_encode(compact('code', 'msg', 'data', 'target', 'href'));
     }
