@@ -1,290 +1,243 @@
-## 开始
+## 说明
 
-* [wiki](http://wiki.laravel-administrotar.com/)
-* [安装教程](http://blog.womenshuo.com/?p=162)
-* [视频地址（字幕版）](http://pan.baidu.com/s/1i41oUTR)，视频是在docker环境下面操作的，如果不会docker，可以自己用自己的本地环境即可。
-* [LNMP Dockerfile地址](https://github.com/tyua07/centsos_7_lnmp)
+上一次更新还是2年前，这段时间一直想不到好的解决方案来完成心目中的样子，所以仓库一直处于停滞的状态，而且流产了 2.0版本。这次完全重构了改项目，前端采用 React 框架。
 
-## 环境依赖
+> 注意：只是预览版，没有开放仓库。代码可能会有变更，尽请期待。如果您感兴趣请加群了解！!(群号：649722075)[http://orsbhqabt.bkt.clouddn.com/e_group.png]
 
-* php = 5.6
-* mysql
-* redis
+### 前端
 
-## 计划
+前端采用 React + React-Route。
 
-- [ ] 自动布局（已经在生产环境上面使用，等稳定了再合并。）
-- [ ] 写单元测试
-- [ ] 计划在2月份发布第一个版本，如果单元测试没有写完或者单元测试没有测试完毕，则会跳票，希望理解。(跳票中)
+### 效果图：
 
-## 快速构建CURD页面
+![React](http://orsbhqabt.bkt.clouddn.com/react.gif)
 
-### 开始
+### 后端
 
-* 注入 控制器 ``` use App\Http\Controllers\Admin\HtmlBuilderController; ``` 
+后端采用 Laravel 5.5 版本。并且全部用 composer 把 各个服务打包成包。
 
-```
+### 效果图：
 
-    protected $html_builder;
+![React](http://orsbhqabt.bkt.clouddn.com/1.png)
 
-    /**
-     * 构造方法
-     *
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public  function __construct(HtmlBuilderController $html_builder)
-    {
-        parent::__construct();
-        $this->html_builder = $html_builder;
-    }
-    
-```
+### 代码示例（用 GIF 里面的 管理员这个模块举例）：
 
-### 构建 列表页面
-
-###### 显示列表页代码
-
-```
-
-    /**
-     * 获得后台用户
-     *
-     * @return Response
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getIndex(Request $request)
-    {
-        return  $this->html_builder->
-                builderTitle('后台用户列表')->
-                builderSchema('id', 'id')->
-                builderSchema('admin_name', '管理员名称')->
-                builderSchema('limit_name','角色名称')->
-                builderSchema('mobile', '手机号码')->
-                builderSchema('state_name', '状态')->
-                builderSchema('last_login', '最后一次登陆时间')->
-                builderSchema('create_date', '创建时间')->
-                builderSchema('handle', '操作')->
-                builderSearchSchema('admin_name', '管理员名称')->
-                builderBotton('增加后台用户', createUrl('Admin\Admin\AdminInfoController@getAdd'))->
-                builderJsonDataUrl(createUrl('Admin\Admin\AdminInfoController@getSearch',[ 'limit_id' => $request->id ]))->
-                builderList();
-    }
-    
-```
-
-###### 获取列表页数据代码
+#### 列表页 Table Dom 描述
 
 ```
     /**
-     * 搜索
+     * 获得 table 的描述
      *
-     * @param Request $request
-     * @author yangyifan <yangyifanphp@gmail.com>
+     * @return Table
      */
-    public function getSearch(Request $request)
+    public function getTable(): Table
     {
-        //接受参数
-        $search     = $request->get('search', '');
-        $sort       = $request->get('sort', 'id');
-        $order      = $request->get('order', 'asc');
-        $limit      = $request->get('limit',0);
-        $offset     = $request->get('offset', config('config.page_limit'));
-        $limit_id   = $request->limit_id;
-
-        //admin_info 表名
-        $admin_info_table_name = tableName('admin_info');
-
-        //解析params
-        parse_str($search);
-
-        //组合查询条件
-        $map = [];
-
-        if (!empty($limit_id)) {
-            $map[$admin_info_table_name . '.limit_id'] = $limit_id;
-        }
-        if (!empty($admin_name)) {
-            $map[$admin_info_table_name . '.admin_name'] = ['like','%'.$admin_name.'%'];
-        }
-
-        $data = AdminInfoModel::search($map, $sort, $order, $limit, $offset);
-
-        echo json_encode([
-            'total' => $data['count'],
-            'rows'  => $data['data'],
-        ]);
+        return (new Table(['rowTitle' => 'user_name']))
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => 'ID',
+                    'dataIndex' => 'id',
+                    'width'     => 50,
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'         => '用户名',
+                    'dataIndex'     => 'user_name',
+                    'width'         => 150,
+                    'editableWidth' => 250,
+                ])
+                    ->setEditableFormItem(function (Input $input) {
+                        return $input->setName('user_name')->setRules(function (Rule $rule) {
+                            return $rule->setMessage('用户名不能为空！')->setRequired(true);
+                        });
+                    });
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'         => '角色',
+                    'dataIndex'     => 'role_name',
+                    'width'         => 150,
+                    'editableWidth' => 350,
+                ])
+                    ->setEditableFormItem(function (TreeSelect $treeSelect) {
+                        return $treeSelect
+                            ->setName('role_id')
+                            ->setShowCheckedStrategy(FormItemConst::SHOW_ALL)
+                            ->setTreeData(UtilityLibrary::transColums((new Roles())->recursiveData(), [
+                                'id'       => 'value',
+                                'name'     => 'label',
+                                'children' => 'children',
+                            ]))
+                            ->setRules(function (Rule $rule) {
+                                return $rule->setMessage('父级角色不能为空！')->setRequired(true)->setType('number');
+                            });
+                    })
+                    ->setEditableColunmAlias('role_name')
+                    ->setEditableType(TableConst::EDITABLE_POPOVER);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => '头像',
+                    'dataIndex' => 'avatar_str',
+                    'type'      => 'image',
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => '手机',
+                    'dataIndex' => 'mobile',
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => '邮箱',
+                    'dataIndex' => 'email',
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => '状态',
+                    'dataIndex' => 'status_value',
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => '登录次数',
+                    'dataIndex' => 'login_number',
+                    'sorter'    => true,
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => 'IP',
+                    'dataIndex' => 'last_login_ip',
+                ]);
+            })
+            ->setColumns(function (Column $column) {
+                return $column->add([
+                    'title'     => '登录时间',
+                    'dataIndex' => 'updated_at',
+                ]);
+            });
     }
-
 ```
 
-###### 效果图
-
-![列表页](http://7xojjf.com1.z0.glb.clouddn.com/FireShot%20Capture%2056%20-%20%E5%90%8E%E5%8F%B0%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8%20-%20http___www.laravel-admin.com_admin_admin_info.png)
-
-### 构建 编辑 or 添加 页面
-
-###### 代码
+#### 列表 搜索框 Dom 描述
 
 ```
     /**
-     * 编辑角色
+     * 获得 列表搜索的表单 的描述
      *
-     * @param  int  $id
-     * @author yangyifan <yangyifanphp@gmail.com>
+     * @return SearchForm
      */
-    public function getEdit(Request $request)
+    public function getSearchForm(): SearchForm
     {
-        $infos = AdminInfoModel::find($request->get('id'));
-
-        return  $this->html_builder->
-                builderTitle('编辑后台用户')->
-                builderFormSchema('admin_name', '管理员名称', $type = 'text')->
-                builderFormSchema('password', '登录密码', $type = 'password', '', '', '', '')->
-                builderFormSchema('password_confirmation', '确认密码', $type = 'password', '', '', '', '')->
-                builderFormSchema('limit_id', '角色', $type = 'select', $default = '', $notice = '', $class = '', $rule = '*', $err_message = '', AdminInfoModel::adminInfoLimitName(), '', 'name')->
-                builderFormSchema('mobile', '手机', $type = 'text', $default = '',  $notice = '', $class = '', $rule = '', $err_message = '', $option = '', $option_value_schema = '')->
-                builderFormSchema('state', '状态', 'radio', '', '', '', '', '', [1=>'开启', '2'=>'关闭'] ,$infos->state)->
-                builderConfirmBotton('确认', createUrl('Admin\Admin\AdminInfoController@postEdit'), 'btn btn-success')->
-                builderEditData($infos)->
-                builderEdit();
+        return $this->getEditForm()
+            ->only('user_name', 'email', 'mobile', 'status', 'role_id')
+            ->update('status', function (RadioGroup $radioGroup) {
+                return $radioGroup->setHasAll()->setDefaultValue(null);
+            })
+            ->update('role_id', function (TreeSelect $treeSelect) {
+                return $treeSelect->setHasAll([
+                    'value' => 0,
+                    'label' => '全部'
+                ])->setDefaultValue(0);
+            })
+            ->map(function (FormItem $formItem) {
+                return $formItem->toDefaultSearchItem()->removeRules();
+            })
+            ->toSearchForm();
     }
-
 ```
 
-###### 处理编辑代码
+> 我们可以复用一个组件，然后过滤掉里面不需要的表单 Item，或者设置某个表单 Item，甚至可以批量操作全部 Item。
+
+#### 编辑页面表单 Dom 描述
 
 ```
-    /**
-     * 处理更新角色
+/**
+     * 获得 编辑的表单 的描述
      *
-     * @author yangyifan <yangyifanphp@gmail.com>
+     * @return Form
      */
-    public function postEdit(AdminInfoRequest $request)
+    public function getEditForm(): Form
     {
-
-        $data   = $request->except('password_confirmation');
-
-        $Model  = AdminInfoModel::findOrFail($data['id']);
-
-        if (empty($data['password'])) {
-            $data['password'] =$Model->password;
-        }else{
-            $data['password'] = bcrypt($data['password']);
-        }
-
-        $Model->update($data);
-        //更新成功
-        return $this->response(self::SUCCESS_STATE_CODE, trans('response.update_success'), [], true, createUrl('Admin\Admin\AdminInfoController@getIndex'));
+        return Form::create()
+            ->setItem(function (Input $input) {
+                return $input->setName('user_name')->setLabel('用户名')->setCol(function (Col $col) {
+                    return $col->setSpan(12)->setOffset(12)->setPull(12);
+                });
+            })
+            ->setItem(function (TreeSelect $treeSelect) {
+                return $treeSelect
+                    ->setLabel('父级角色')
+                    ->setName('role_id')
+                    ->setShowCheckedStrategy(FormItemConst::SHOW_ALL)
+                    ->setTreeData(UtilityLibrary::transColums((new Roles())->recursiveData(), [
+                        'id'       => 'value',
+                        'name'     => 'label',
+                        'children' => 'children',
+                    ]))
+                    ->setCol(function (Col $col) {
+                        return $col->setSpan(12)->setOffset(12)->setPull(12);
+                    })
+                    ->setRules(function (Rule $rule) {
+                        return $rule->setMessage('父级角色不能为空！')->setRequired(true)->setType('number');
+                    });
+            })
+            ->setItem(function (Password $password) {
+                return $password->setName('password')->setLabel('密码')->setCol(function (Col $col) {
+                    return $col->setSpan(12);
+                })->setRules(function (Rule $rule) {
+                    return $rule->setValidator('validatePassword');
+                });
+            })
+            ->setItem(function (Password $password) {
+                return $password->setName('rpassword')->setLabel('确认密码')->setCol(function (Col $col) {
+                    return $col->setSpan(12);
+                })->setRules(function (Rule $rule) {
+                    return $rule->setValidator('validateRPassword');
+                });
+            })
+            ->setItem(function (Input $input) {
+                return $input->setName('email')->setLabel('邮箱')->setCol(function (Col $col) {
+                    return $col->setSpan(12);
+                })->setRules(function (Rule $rule) {
+                    return $rule->setMessage('邮箱不能为空！')->setRequired(true);
+                })->setRules(function (Rule $rule) {
+                    return $rule->setMessage('邮箱格式不正确！')->setType('email');
+                });
+            })
+            ->setItem(function (Input $input) {
+                return $input->setName('mobile')->setLabel('手机')->setCol(function (Col $col) {
+                    return $col->setSpan(12);
+                })->setRules(function (Rule $rule) {
+                    return $rule->setMessage('手机号码格式不正确！')->setType('mobile')->setRequired(true);
+                });
+            })
+            ->setItem(function (AvatarUpload $avatarUpload) {
+                return $avatarUpload
+                    ->setName('avatar')
+                    ->setLabel('头像')
+                    ->setRouteNameAction('admin/upload')
+                    ->setCol(function (Col $col) {
+                        return $col->setSpan(12);
+                    });
+            })
+            ->setItem(function (RadioGroup $radioGroup) {
+                return $radioGroup
+                    ->setName('status')
+                    ->setLabel('状态')
+                    ->setDefaultValue(Admin::STATUS_1)
+                    ->setOptions($this->getModel()->statusArrayToOptions())
+                    ->setCol(function (Col $col) {
+                        return $col->setSpan(12)->setOffset(12)->setPull(12);
+                    });
+            });
     }
-
-```
-
-###### 效果图
-
-![编辑或者添加页面](http://7xojjf.com1.z0.glb.clouddn.com/FireShot%20Capture%2057%20-%20%E7%BC%96%E8%BE%91%E5%90%8E%E5%8F%B0%E7%94%A8%E6%88%B7%20-%20http___www.laravel-admin.com_admin_admin_info_edit_id=1.png)
-
-###### 构建 tree 页面
-
-###### 代码
-
-```
- /**
-     * 获得后台菜单
-     *
-     * @return Response
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getIndex()
-    {
-        return  $this->html_builder->
-                builderTitle('后台菜单列表')->
-                builderSchema('id', 'id')->
-                builderSchema('menu_name', '菜单名称')->
-                builderSchema('parent_name','父级菜单名称')->
-                builderSchema('handle', '操作')->
-                builderBotton('增加后台菜单', createUrl('Admin\Admin\AdminMenuController@getAdd'))->
-                builderTreeData(AdminMenuModel::getAll())->
-                builderTree();
-    }
-
-```
-
-###### 效果图
-
-![tree页面](http://7xojjf.com1.z0.glb.clouddn.com/FireShot%20Capture%2058%20-%20%E5%90%8E%E5%8F%B0%E8%8F%9C%E5%8D%95%E5%88%97%E8%A1%A8%20-%20http___www.laravel-admin.com_admin_admin_menu.png)
+    ```
+## 期待这次能够满足您的需求。
 
 
-### 构建 tab 页面
 
-###### 代码
-
-```
- /**
-     * 编辑商品信息
-     *
-     * @param  Request  $request
-     * @author yangyifan <yangyifanphp@gmail.com>
-     */
-    public function getEdit(Request $request)
-    {
-        $goods_info = GoodsModel::getGoodsInfo($request->get('id'));
-
-        return  $this->html_builder->builderTabTitle(trans('goods.goods_title14'))
-                ->builderTabSchema(
-                    $this->html_builder->
-                    builderTitle(trans('goods.goods_title15'))->
-                    builderFormSchema('goods_name', trans('goods.goods_title4'))->
-                    builderFormSchema('id', 'id', 'hidden')->
-                    builderConfirmBotton(trans('base.comfirm_add_data'), '', 'btn btn-success')->
-                    builderEditData($goods_info)
-                )->builderTabSchema(
-                    $this->html_builder->
-                    builderTitle(trans('goods.goods_title32'))->
-                    builderFormSchema('meta_title', trans('goods.goods_title33'))->
-                    builderFormSchema('meta_keywords', trans('goods.goods_title34'), 'textarea')->
-                    builderFormSchema('meta_description', trans('goods.goods_title35'), 'textarea')->
-                    builderConfirmBotton(trans('base.comfirm_add_data'), '', 'btn btn-success')->
-                    builderEditData($goods_info)
-                )->builderBotton(trans('base.return'), createUrl('Admin\Goods\GoodsController@getIndex'), 'glyphicon glyphicon-arrow-left')
-            
-
-```
-
-###### 效果图
-
-![tab 页面](http://7xojjf.com1.z0.glb.clouddn.com/FireShot%20Capture%2059%20-%20%E6%B7%BB%E5%8A%A0%E5%95%86%E5%93%81%20-%20http___admin.zaiseoul.com_admin_goods_goods_add_meitu_1.jpg)
-
-## 生成 CURD 代码
-
-###### 效果图
-
-![效果图](http://7xojjf.com1.z0.glb.clouddn.com/FireShot%20Capture%2060%20-%20%E6%9E%84%E5%BB%BA%E4%BB%A3%E7%A0%81%20-%20http___www.laravel-admin.com_auto-build_home.png)
-
-## 自动布局简要介绍
-
-###### 自动布局之前
-
-![](http://7xojjf.com1.z0.glb.clouddn.com/autolayout%E5%89%8D_meitu_1.jpg)
-
-###### 自动布局之后
-
-![](http://7xojjf.com1.z0.glb.clouddn.com/autolayout%E4%B9%8B%E5%90%8E_meitu_2.jpg)
-
-> 还有一些细节没有完善好，所以没有放出来。
-
-## 注意
-
-* 代码在继续完善中，已经用于生产环境使用，很多细节待完善，文档也会慢慢更新的！
-* 需要下载一份sql执行到你的本地，然后使用这份sql的数据,sql地址保存在"资料文件"--> laravel.sql
-* email:yangyifanphp@gmail.com
-* 账户:yangyifan,密码：qiqi..
-* [线上测试地址](http://test.admin.womenshuo.com/)
-
-## 教程
-* [用laravel自己创建一个属于自己的后台（一）之 构建后台登陆模块](http://blog.womenshuo.com/?p=137)
-* [用laravel自己创建一个属于自己的后台（二）之 构建权限角色模块](http://blog.womenshuo.com/?p=141)
-* [用laravel自己创建一个属于自己的后台（三）之 压缩网站静态文件](http://blog.womenshuo.com/?p=153)
-
-## License
-
-MIT 
