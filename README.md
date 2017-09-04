@@ -2,7 +2,7 @@
 
 上一次更新还是2年前，这段时间一直想不到好的解决方案来完成心目中的样子，所以仓库一直处于停滞的状态，而且流产了 2.0版本。这次完全重构了改项目，前端采用 React 框架。
 
-> 注意：只是预览版，没有开放仓库。代码可能会有变更，尽请期待。如果您感兴趣请加群了解！!(群号：649722075)[http://orsbhqabt.bkt.clouddn.com/e_group.png]
+> 注意：只是预览版，没有开放仓库。代码可能会有变更，尽请期待。如果您感兴趣请加群了解！![群号：649722075](http://orsbhqabt.bkt.clouddn.com/e_group.png)
 
 ### 前端
 
@@ -10,7 +10,10 @@
 
 ### 效果图：
 
-![React](http://orsbhqabt.bkt.clouddn.com/react.gif)
+![React](http://orsbhqabt.bkt.clouddn.com/react-1.gif)
+![React](http://orsbhqabt.bkt.clouddn.com/react-2.gif)
+![React](http://orsbhqabt.bkt.clouddn.com/react-3.gif)
+![React](http://orsbhqabt.bkt.clouddn.com/react-4.gif)
 
 ### 后端
 
@@ -18,7 +21,7 @@
 
 ### 效果图：
 
-![React](http://orsbhqabt.bkt.clouddn.com/1.png)
+![Composer 包](http://orsbhqabt.bkt.clouddn.com/1.png)
 
 ### 代码示例（用 GIF 里面的 管理员这个模块举例）：
 
