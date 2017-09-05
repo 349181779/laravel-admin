@@ -10,7 +10,7 @@
 
 ### 效果图：
 
-![React](http://orsbhqabt.bkt.clouddn.com/react-1.gif)
+![React](http://orsbhqabt.bkt.clouddn.com/react-5.gif)
 ![React](http://orsbhqabt.bkt.clouddn.com/react-2.gif)
 ![React](http://orsbhqabt.bkt.clouddn.com/react-3.gif)
 ![React](http://orsbhqabt.bkt.clouddn.com/react-4.gif)
